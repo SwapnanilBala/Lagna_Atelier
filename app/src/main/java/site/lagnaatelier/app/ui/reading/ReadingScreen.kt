@@ -100,6 +100,8 @@ fun ReadingScreen(
     tab: AppTab,
     onTab: (AppTab) -> Unit,
     today: LocalDate = LocalDate.now(),
+    /* The Timing, Palm and Account tabs, drawn under the same top bar. */
+    otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
 ) {
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
@@ -107,7 +109,7 @@ fun ReadingScreen(
             if (tab == AppTab.Reading) {
                 ReadingContent(chart, today)
             } else {
-                ComingNext(tab)
+                Box(Modifier.weight(1f)) { otherTab(tab) }
             }
         }
 

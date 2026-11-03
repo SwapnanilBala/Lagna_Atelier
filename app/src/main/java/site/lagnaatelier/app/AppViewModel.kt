@@ -1,15 +1,17 @@
 package site.lagnaatelier.app
 
+import android.app.Application
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
+import site.lagnaatelier.app.data.ChartStore
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.Place
@@ -35,7 +37,12 @@ enum class PlaceStatus { Idle, Searching, Locating, Located, NotFound, Failed }
  * The app's state, held across rotation. Compose state throughout, so the
  * screens read it directly.
  */
-class AppViewModel(private val api: LagnaApi = LagnaApi()) : ViewModel() {
+class AppViewModel(application: Application) : AndroidViewModel(application) {
+    /* Shared with the feature screens (timing, palm, report) for their own calls. */
+    val api = LagnaApi()
+
+    /* Charts saved on this phone; see data/ChartStore.kt. */
+    val store = ChartStore(application)
 
     var today by mutableStateOf<TodaySky?>(null)
         private set
@@ -72,7 +79,10 @@ class AppViewModel(private val api: LagnaApi = LagnaApi()) : ViewModel() {
         chartState = ChartState.Loading(details)
         viewModelScope.launch {
             chartState = try {
-                ChartState.Loaded(api.chart(details), details)
+                api.chart(details).let { chart ->
+                    store.save(details, chart)
+                    ChartState.Loaded(chart, details)
+                }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: LagnaApi.ApiException) {

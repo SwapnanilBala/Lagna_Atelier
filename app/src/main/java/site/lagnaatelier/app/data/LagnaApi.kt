@@ -93,18 +93,50 @@ class LagnaApi(private val baseUrl: String = BASE_URL) {
         return ChartParser.parseTodaySky(json, now.toLocalDate())
     }
 
-    private suspend fun get(path: String, params: Map<String, String>): String = withContext(Dispatchers.IO) {
+    private suspend fun get(path: String, params: Map<String, String>): String = getJson(path, params)
+
+    /*
+     * The two raw calls every feature builds on, with the site's error
+     * messages carried through. Feature code (timing, palm, report) adds its
+     * own typed calls on top of these rather than editing this class.
+     */
+
+    /** GET [path] with query [params]; returns the body, or throws [ApiException]. */
+    suspend fun getJson(
+        path: String,
+        params: Map<String, String> = emptyMap(),
+        readTimeoutMs: Int = 30_000,
+    ): String = withContext(Dispatchers.IO) {
         val query = params.entries.joinToString("&") { (k, v) -> "${encode(k)}=${encode(v)}" }
-        val connection = URL("$baseUrl$path?$query").openConnection() as HttpURLConnection
+        val url = if (query.isEmpty()) "$baseUrl$path" else "$baseUrl$path?$query"
+        request(URL(url).openConnection() as HttpURLConnection, readTimeoutMs, body = null)
+    }
+
+    /**
+     * POST [jsonBody] to [path]. The long-running routes (palm reading, the
+     * report's prose) need a [readTimeoutMs] of minutes, not seconds.
+     */
+    suspend fun postJson(path: String, jsonBody: String, readTimeoutMs: Int = 30_000): String =
+        withContext(Dispatchers.IO) {
+            request(URL("$baseUrl$path").openConnection() as HttpURLConnection, readTimeoutMs, body = jsonBody)
+        }
+
+    private fun request(connection: HttpURLConnection, readTimeoutMs: Int, body: String?): String {
         try {
             connection.connectTimeout = 15_000
-            connection.readTimeout = 30_000
+            connection.readTimeout = readTimeoutMs
             connection.setRequestProperty("Accept", "application/json")
+            if (body != null) {
+                connection.requestMethod = "POST"
+                connection.doOutput = true
+                connection.setRequestProperty("Content-Type", "application/json; charset=utf-8")
+                connection.outputStream.use { it.write(body.toByteArray(Charsets.UTF_8)) }
+            }
             val status = connection.responseCode
             val stream = if (status in 200..299) connection.inputStream else connection.errorStream
-            val body = stream?.bufferedReader()?.use { it.readText() }.orEmpty()
-            if (status !in 200..299) throw ApiException(errorMessage(status, body), status)
-            body
+            val text = stream?.bufferedReader()?.use { it.readText() }.orEmpty()
+            if (status !in 200..299) throw ApiException(errorMessage(status, text), status)
+            return text
         } finally {
             connection.disconnect()
         }
