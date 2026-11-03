@@ -22,7 +22,10 @@ import kotlin.math.roundToInt
  * reading needs, a JPEG, under the route's limit, and Base64.
  *
  * The route refuses an image over 5 MB (MAX_IMAGE_BYTES, measured on the
- * decoded Base64) and anything that is not JPEG, PNG or WebP. A JPEG with a
+ * decoded Base64) and anything that is not JPEG, PNG or WebP, but the body
+ * never reaches the route if it is over Vercel's 4.5 MB request limit, and
+ * Base64 makes the image a third larger. So the app sends at most 3 MB of
+ * JPEG: about 4 MB once encoded, with the JSON around it. A JPEG with a
  * 1600 px long edge is a few hundred kilobytes, so the limit here is only
  * ever met by a photo of noise; the encoder steps the quality down, then the
  * size, until it fits.
@@ -37,8 +40,8 @@ object PalmImageMath {
     /** The route's limit on the decoded image. */
     const val ROUTE_MAX_BYTES = 5 * 1024 * 1024
 
-    /** What this app sends at most: under the route's limit with room to spare. */
-    const val UPLOAD_MAX_BYTES = 4 * 1024 * 1024
+    /** What this app sends at most: Base64 of this, in its JSON body, stays under Vercel's 4.5 MB. */
+    const val UPLOAD_MAX_BYTES = 3 * 1024 * 1024
 
     /** JPEG qualities tried in turn before the picture itself is made smaller. */
     val QUALITY_STEPS = listOf(88, 80, 72, 64, 56)
@@ -84,6 +87,14 @@ object PalmImageMath {
 
     fun fitsUpload(bytes: Int): Boolean = bytes in 1..UPLOAD_MAX_BYTES
 
+    /**
+     * Whether the size-only pass found a picture. That pass (inJustDecodeBounds)
+     * always returns a null bitmap, so it is judged by whether the stream
+     * opened and the sizes it filled in, never by its return value.
+     */
+    fun boundsReadable(streamOpened: Boolean, width: Int, height: Int): Boolean =
+        streamOpened && width > 0 && height > 0
+
     /** Degrees to turn and whether to mirror, for an EXIF orientation tag (1 to 8). */
     fun orientation(exif: Int): Pair<Int, Boolean> = when (exif) {
         2 -> 0 to true // flipped horizontally
@@ -111,9 +122,12 @@ object PalmImageLoader {
         withContext(Dispatchers.IO) {
             val resolver = context.contentResolver
             val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-            resolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, bounds) }
-                ?: throw UnreadablePhoto()
-            if (bounds.outWidth <= 0 || bounds.outHeight <= 0) throw UnreadablePhoto()
+            /* decodeStream returns null here by design; only outWidth and outHeight say anything. */
+            val opened = resolver.openInputStream(uri)?.use {
+                BitmapFactory.decodeStream(it, null, bounds)
+                true
+            } ?: false
+            if (!PalmImageMath.boundsReadable(opened, bounds.outWidth, bounds.outHeight)) throw UnreadablePhoto()
 
             val exif = runCatching {
                 resolver.openInputStream(uri)?.use {
@@ -124,13 +138,18 @@ object PalmImageLoader {
             val options = BitmapFactory.Options().apply {
                 inSampleSize = PalmImageMath.sampleSizeFor(bounds.outWidth, bounds.outHeight, maxEdge)
             }
-            val decoded = resolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
-                ?: throw UnreadablePhoto()
-            val upright = transform(decoded, exif, maxEdge)
             try {
-                encode(upright)
-            } finally {
-                upright.recycle()
+                val decoded = resolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
+                    ?: throw UnreadablePhoto()
+                val upright = transform(decoded, exif, maxEdge)
+                try {
+                    encode(upright)
+                } finally {
+                    upright.recycle()
+                }
+            } catch (_: OutOfMemoryError) {
+                /* A picture too big to hold even subsampled: refused, not a crash. */
+                throw UnreadablePhoto()
             }
         }
 

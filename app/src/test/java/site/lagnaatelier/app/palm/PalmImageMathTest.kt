@@ -5,6 +5,8 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import site.lagnaatelier.app.data.palm.PalmImageMath
+import site.lagnaatelier.app.data.palm.PalmReader
+import site.lagnaatelier.app.data.palm.PalmRequests
 import java.util.Base64
 
 class PalmImageMathTest {
@@ -66,5 +68,28 @@ class PalmImageMathTest {
         assertEquals(90 to false, PalmImageMath.orientation(6))
         assertEquals(270 to true, PalmImageMath.orientation(7))
         assertEquals(270 to false, PalmImageMath.orientation(8))
+    }
+
+    @Test
+    fun theLargestUploadFitsVercelsBodyLimitOnceEncoded() {
+        val body = PalmRequests.readingBody(
+            Base64.getEncoder().encodeToString(ByteArray(PalmImageMath.UPLOAD_MAX_BYTES)),
+            "image/jpeg",
+            classicalMode = true,
+            reader = PalmReader.Woman,
+            jyotishContext = null,
+        )
+        /* Vercel refuses a function body over 4.5 MB before the route sees it. */
+        assertTrue(body.toByteArray(Charsets.UTF_8).size < 4_500_000)
+    }
+
+    @Test
+    fun theSizePassIsJudgedByItsSizesNotItsReturnValue() {
+        /* A readable photo: the stream opened and the decoder filled in its size. */
+        assertTrue(PalmImageMath.boundsReadable(streamOpened = true, width = 1200, height = 1600))
+        /* No stream (a revoked or missing URI), or a file that is not a picture. */
+        assertFalse(PalmImageMath.boundsReadable(streamOpened = false, width = 0, height = 0))
+        assertFalse(PalmImageMath.boundsReadable(streamOpened = true, width = -1, height = -1))
+        assertFalse(PalmImageMath.boundsReadable(streamOpened = true, width = 1200, height = 0))
     }
 }
