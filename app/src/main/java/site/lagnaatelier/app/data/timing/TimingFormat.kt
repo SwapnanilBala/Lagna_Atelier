@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.data.timing
 
+import site.lagnaatelier.app.data.AppDates
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -7,15 +8,14 @@ import java.time.format.TextStyle
 import java.util.Locale
 
 /*
- * Dates and clock times as the timing tab prints them. Locale.ENGLISH
- * throughout: the app's copy is English, and the phone's locale would
- * otherwise mix languages inside one line.
+ * Dates and clock times as the timing tab prints them, in the app's language
+ * (AppDates) rather than the phone's, so one line never mixes two.
  */
 object TimingFormat {
     private val clock = DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
-    private val weekdayDay = DateTimeFormatter.ofPattern("EEE d", Locale.ENGLISH)
-    private val weekdayDayMonth = DateTimeFormatter.ofPattern("EEE d MMM", Locale.ENGLISH)
-    private val dayMonth = DateTimeFormatter.ofPattern("d MMM", Locale.ENGLISH)
+    private val weekdayDay get() = AppDates.formatter("EEE d", "EEEd")
+    private val weekdayDayMonth get() = AppDates.formatter("EEE d MMM", "EEEdMMM")
+    private val dayMonth get() = AppDates.formatter("d MMM", "dMMM")
 
     fun clock(time: LocalTime): String = time.format(clock)
 
@@ -29,10 +29,10 @@ object TimingFormat {
     fun dayMonth(date: LocalDate): String = date.format(dayMonth)
 
     /** "Sat", the bar chart's axis. */
-    fun shortWeekday(date: LocalDate): String = date.dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
+    fun shortWeekday(date: LocalDate): String = date.dayOfWeek.getDisplayName(TextStyle.SHORT, AppDates.locale)
 
     /** "Saturday", for the chart's spoken description. */
-    fun longWeekday(date: LocalDate): String = date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH)
+    fun longWeekday(date: LocalDate): String = date.dayOfWeek.getDisplayName(TextStyle.FULL, AppDates.locale)
 
     /**
      * Where a muhurta window ends, at the place's clock: the time alone when it

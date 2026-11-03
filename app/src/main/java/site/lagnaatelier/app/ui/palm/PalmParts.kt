@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.palm.LineKey
 import site.lagnaatelier.app.data.palm.PalmReader
 import site.lagnaatelier.app.data.palm.PalmReading
@@ -72,8 +73,6 @@ import site.lagnaatelier.app.ui.theme.Muted
 import site.lagnaatelier.app.ui.theme.PhotoGround
 import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /* Pieces the three palm views share. Copied in look from ui/reading, not imported from it. */
 
@@ -83,10 +82,9 @@ internal val NavRoom = 140.dp
 /** Room for the nav pill and the palm dock above it. */
 internal val DockRoom = 210.dp
 
-private val DayLabel = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.ENGLISH)
-
 internal fun dayLabel(millis: Long): String =
-    Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate().format(DayLabel)
+    Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate()
+        .format(AppDates.formatter("EEE d MMM yyyy", "EEEdMMMyyyy"))
 
 @Composable
 internal fun handLabel(reader: PalmReader): String = stringResource(

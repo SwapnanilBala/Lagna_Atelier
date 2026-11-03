@@ -1,5 +1,6 @@
 package site.lagnaatelier.app
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +22,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import site.lagnaatelier.app.data.AppDates
+import site.lagnaatelier.app.data.AppLanguage
 import site.lagnaatelier.app.data.LookPreferences
 import site.lagnaatelier.app.data.ShareReading
 import site.lagnaatelier.app.data.SampleChart
@@ -45,9 +48,15 @@ private enum class Screen { Landing, Intake, Saved, Reading }
 class MainActivity : ComponentActivity() {
     private val model: AppViewModel by viewModels()
 
+    /* Before Android 13 the app's own language choice is applied here; see AppLanguage. */
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppLanguage.wrap(newBase))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LookPreferences.load(this)
+        AppDates.locale = AppLanguage.resolve(resources.configuration)
         setContent {
             LagnaAtelierTheme {
                 /* System-bar icons dark on the light canvas, light on the dark one. */

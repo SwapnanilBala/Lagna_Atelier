@@ -68,6 +68,7 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.report.ReportApi
 import site.lagnaatelier.app.data.report.ReportPercent
@@ -89,10 +90,8 @@ import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.LiquidType
 import site.lagnaatelier.app.ui.theme.Muted
 import java.io.File
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
-private val ReadyDate = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.ENGLISH)
+private val ReadyDate get() = AppDates.formatter("EEE d MMM yyyy", "EEEdMMMyyyy")
 
 /* The report's own paper, as in the PDF; the app's glow stays outside it. */
 private val Paper = Color(0xFFF7F4EE)

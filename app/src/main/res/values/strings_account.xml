@@ -14,8 +14,6 @@
     <string name="account_manage_done">Done</string>
     <string name="account_prefs_title">Preferences</string>
     <string name="account_language">Language</string>
-    <string name="account_language_value">English</string>
-    <string name="account_language_note">The website reads in seven languages. The app is in English for now.</string>
     <string name="account_chart_style">Chart style</string>
     <string name="account_new_charts">New charts use</string>
     <string name="account_new_charts_note">You can choose another tradition on the birth details form.</string>
