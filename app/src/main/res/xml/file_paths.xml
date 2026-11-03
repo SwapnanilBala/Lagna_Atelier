@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- What the FileProvider (authority ${applicationId}.files) may hand to other apps. -->
+<paths>
+    <!-- Palm photos while the camera app writes them. -->
+    <cache-path name="palm" path="palm/" />
+    <!-- Finished PDF reports, for Open and Share. -->
+    <cache-path name="reports" path="reports/" />
+</paths>
