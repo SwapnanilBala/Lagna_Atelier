@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.timing
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.periods.PeriodsApi
 import site.lagnaatelier.app.data.timing.TimingQueries
 import site.lagnaatelier.app.data.timing.TimingRepository
 import site.lagnaatelier.app.ui.components.Glow
@@ -40,16 +42,34 @@ fun TimingTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifi
     val today = remember { LocalDate.now() }
     val holder = remember(birth, today) { TimingHolders.get(birth, today) }
     val repo = remember(api) { TimingRepository(api) }
+    val periodsApi = remember(api) { PeriodsApi(api) }
     val scope = rememberCoroutineScope()
+    val readings = holder.readings
 
     LaunchedEffect(holder) {
         launch { holder.loadForecast(repo) }
         launch { holder.loadYear(repo) }
+        /* The paragraph on the periods running now, once per chart and day, as the web's card asks on mount. */
+        readings.startCurrentPeriod(periodsApi)
     }
     LaunchedEffect(holder, holder.weekIndex) { holder.loadWeek(repo, holder.weekIndex) }
     LaunchedEffect(holder, holder.activity) { holder.loadMuhurta(repo, holder.activity) }
 
     val retryForecast: () -> Unit = { scope.launch { holder.loadForecast(repo, force = true) } }
+
+    /* The two screens the tab leads on to stand in for its panels; back returns to them. */
+    BackHandler(enabled = readings.page != TimingPage.Panels) { readings.page = TimingPage.Panels }
+    when (readings.page) {
+        TimingPage.Chapters -> {
+            LifeChaptersScreen(readings, periodsApi, onBack = { readings.page = TimingPage.Panels }, modifier = modifier)
+            return
+        }
+        TimingPage.Compatibility -> {
+            CompatibilityScreen(readings, api, periodsApi, onBack = { readings.page = TimingPage.Panels }, modifier = modifier)
+            return
+        }
+        TimingPage.Panels -> Unit
+    }
 
     Column(
         modifier
@@ -66,11 +86,17 @@ fun TimingTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifi
                     .offset(x = (-40).dp, y = 24.dp)
                     .requiredSize(width = 400.dp, height = 300.dp),
             )
-            PeriodsCard(chart, holder, onRetry = retryForecast)
+            PeriodsCard(
+                chart,
+                holder,
+                onRetry = retryForecast,
+                onRead = { chain -> readings.readPeriod(periodsApi, chain) },
+            )
         }
         WeekPanel(holder) { scope.launch { holder.loadWeek(repo, holder.weekIndex, force = true) } }
         TransitsPanel(holder, onRetry = retryForecast)
         MuhurtaPanel(holder) { scope.launch { holder.loadMuhurta(repo, holder.activity, force = true) } }
         YearPanel(holder) { scope.launch { holder.loadYear(repo, force = true) } }
+        FurtherPanel(onPage = { readings.page = it })
     }
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the period readings, life chapters and compatibility on the Timing tab; that feature owns this file. -->
+<resources>
+    <!-- What the periods running now mean, under the card's headline -->
+    <string name="periods_now_writing">Writing what this means for you…</string>
+    <string name="periods_now_label">What this means for you</string>
+
+    <!-- Read this period -->
+    <string name="periods_read_this">Read this period</string>
+    <string name="periods_read_short">Read</string>
+    <string name="periods_reading_pending">Reading this period in your chart…</string>
+    <string name="periods_reading_kicker">From the classics</string>
+    <string name="periods_reading_heading">What %1$s brings forward</string>
+    <string name="periods_reading_empty">The classical books say nothing about this period\'s planets for your chart.</string>
+    <string name="periods_reading_failed">The reading could not be written just now.</string>
+
+    <!-- A cited reading's passages -->
+    <string name="periods_sources_show">The passages (%1$d)</string>
+    <string name="periods_sources_hide">Hide the passages</string>
+    <string name="periods_source_bj">Brihat Jataka %1$s</string>
+    <string name="periods_source_strijataka">Strijataka, ch. %1$s</string>
+    <string name="periods_source_note">%1$s · translator\'s note</string>
+    <string name="periods_source_text">“%1$s”</string>
+    <string name="periods_credit_bj">The numbers point to the verses they come from, quoted as printed in N. Chidambaram Iyer\'s 1885 English translation of Varahamihira\'s Brihat Jataka.</string>
+    <string name="periods_credit_strijataka">Passages marked Strijataka are quoted as printed in B. Suryanarain Rao\'s Strijataka, or Female Horoscopy (1931), a book on women\'s birth charts. Words in square brackets are ours, not the book\'s.</string>
+    <string name="periods_marks_description">passages %1$s</string>
+
+    <!-- The two ways on from the Timing tab -->
+    <string name="periods_more_title">Go further</string>
+    <string name="chapters_entry_title">Life chapters</string>
+    <string name="chapters_entry_body">The turning points around now and the next one ahead, read from your chart.</string>
+    <string name="compat_entry_title">Compatibility</string>
+    <string name="compat_entry_body">Add someone\'s birth details and see how your two charts read together.</string>
+
+    <!-- Life chapters -->
+    <string name="chapters_title">Life chapters</string>
+    <string name="chapters_lead">The chapter you are in and the next transition, with what the classical books say of each. Dates are planning windows, not deadlines.</string>
+    <string name="chapters_loading">Finding your chapters…</string>
+    <string name="chapters_empty">There is not enough in this chart to place its life chapters. A confirmed birth time helps.</string>
+    <string name="chapters_index">#%1$d</string>
+    <string name="chapters_status_past">Past chapter</string>
+    <string name="chapters_status_active">Active now</string>
+    <string name="chapters_status_upcoming">Upcoming</string>
+    <string name="chapters_pivot">Pivot: %1$s · age %2$d</string>
+    <string name="chapters_window">Window: %1$s</string>
+    <string name="chapters_writing">Writing this chapter for your chart…</string>
+    <string name="chapters_failed">The written readings could not be fetched just now, so these are the short versions.</string>
+    <plurals name="chapters_show_past">
+        <item quantity="one">View %1$d past chapter</item>
+        <item quantity="other">View %1$d past chapters</item>
+    </plurals>
+    <string name="chapters_hide_past">Hide past chapters</string>
+
+    <!-- Compatibility -->
+    <string name="compat_title">Compatibility</string>
+    <string name="compat_lead">Your chart is already here. Add theirs and see how the two read together.</string>
+    <string name="compat_your_chart">Your chart</string>
+    <string name="compat_their_chart">Their chart</string>
+    <string name="compat_their_name">Their name</string>
+    <string name="compat_compare">Compare charts</string>
+    <string name="compat_comparing">Comparing…</string>
+    <string name="compat_ready">Ready to compare.</string>
+    <string name="compat_missing_name">Add their name, at least two letters.</string>
+    <string name="compat_score_heading">Compatibility score</string>
+    <string name="compat_score_of">of 100</string>
+    <string name="compat_band_harmonious">Harmonious</string>
+    <string name="compat_band_compatible">Compatible</string>
+    <string name="compat_band_challenging">Challenging</string>
+    <string name="compat_score_caption">Composite synastry score from aspects and elemental fit.</string>
+    <string name="compat_names">%1$s and %2$s</string>
+    <string name="compat_balance">Balance</string>
+    <string name="compat_balance_value">%1$d supportive · %2$d friction</string>
+    <string name="compat_tightest">Tightest contact</string>
+    <string name="compat_married_life">Married life</string>
+    <string name="compat_married_value">%1$d clear · %2$d caution</string>
+    <string name="compat_tab_themes">Themes</string>
+    <string name="compat_tab_married">Married life</string>
+    <string name="compat_tab_aspects">Aspects</string>
+    <string name="compat_themes_heading">Relationship themes</string>
+    <string name="compat_married_heading">Married life, across the two charts</string>
+    <string name="compat_married_intro">The married-life read on one person\'s chart can only use that chart. These are the parts that need both, including the Mangal cancellation a single chart cannot weigh.</string>
+    <string name="compat_read_from">Read from: %1$s</string>
+    <string name="compat_derivation_show">How these were derived</string>
+    <string name="compat_derivation_hide">Hide how these were derived</string>
+    <string name="compat_aspects_heading">Between the two charts</string>
+    <string name="compat_aspects_intro">Every contact between one chart and the other, tightest first. Easy contacts help; testing ones pull.</string>
+    <string name="compat_no_aspects">No contacts between the charts came back inside the orbs this engine uses.</string>
+    <string name="compat_aspect_pair">%1$s\'s %2$s %3$s %4$s\'s %5$s</string>
+    <string name="compat_aspect_short">%1$s %2$s %3$s</string>
+    <string name="compat_orb">orb %1$s°</string>
+    <string name="compat_polarity_clear">Clear</string>
+    <string name="compat_polarity_caution">Caution</string>
+    <string name="compat_polarity_context">Context</string>
+</resources>

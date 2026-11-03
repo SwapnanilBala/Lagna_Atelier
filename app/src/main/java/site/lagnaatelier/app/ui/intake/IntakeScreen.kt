@@ -186,7 +186,7 @@ private fun Header(onBack: () -> Unit) {
 }
 
 @Composable
-private fun RowScope.ValueTile(label: String, value: String, filled: Boolean, onClick: () -> Unit) {
+internal fun RowScope.ValueTile(label: String, value: String, filled: Boolean, onClick: () -> Unit) {
     val shape = RoundedCornerShape(16.dp)
     Column(
         Modifier
@@ -318,7 +318,7 @@ private fun PlacePanel(draft: AppViewModel.IntakeDraft) {
 }
 
 /* +330 -> "UTC+5:30", -300 -> "UTC−5:00" */
-private fun utcOffset(minutes: Int): String {
+internal fun utcOffset(minutes: Int): String {
     val sign = if (minutes < 0) "−" else "+"
     val abs = kotlin.math.abs(minutes)
     return "UTC$sign${abs / 60}:${(abs % 60).toString().padStart(2, '0')}"
@@ -379,7 +379,7 @@ private fun AppViewModel.Missing.hint(): Int = when (this) {
 /* Material's date picker works in UTC milliseconds; the birth date is a calendar day. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (LocalDate) -> Unit) {
+internal fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (LocalDate) -> Unit) {
     val todayMillis = LocalDate.now().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
     val state = rememberDatePickerState(
         initialSelectedDateMillis = (current ?: LocalDate.of(1990, 1, 1)).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli(),
@@ -403,7 +403,7 @@ private fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (Loca
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun TimeDialog(current: String?, onDismiss: () -> Unit, onPick: (String) -> Unit) {
+internal fun TimeDialog(current: String?, onDismiss: () -> Unit, onPick: (String) -> Unit) {
     val (h, m) = current?.split(":")?.let { it[0].toInt() to it[1].toInt() } ?: (12 to 0)
     val state = rememberTimePickerState(initialHour = h, initialMinute = m, is24Hour = true)
     AlertDialog(
