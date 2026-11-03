@@ -206,6 +206,7 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
     /* The longer sections' own state, held here so it outlives their items scrolling away. */
     var houseRolesOpen by rememberSaveable { mutableStateOf(false) }
+    var fullReadingUi by rememberSaveable { mutableStateOf(FullReadingUi()) }
     val sections = if (isSample) rememberSampleSections() else chart.sections
 
     LazyColumn(
@@ -296,6 +297,9 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
                     FindingRow(finding)
                 }
             }
+        }
+        if (sections.findings.isNotEmpty()) item {
+            FullReadingPanel(sections.findings, fullReadingUi, onUi = { fullReadingUi = it })
         }
     }
 }

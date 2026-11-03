@@ -96,4 +96,18 @@
         <item>retreat, subconscious and spiritual closure</item>
     </string-array>
 
+    <!-- The full reading -->
+    <string name="full_title">The full reading</string>
+    <string name="full_subtitle">%1$d findings, each with what it rests on</string>
+    <string name="full_filter_all">All</string>
+    <string name="full_filter_top">Top priorities</string>
+    <string name="full_theme_core">Who you are</string>
+    <string name="full_theme_career">Work</string>
+    <string name="full_theme_love">Love</string>
+    <string name="full_rare">Rare</string>
+    <string name="full_top_priority">Top priority %1$d</string>
+    <string name="full_other_side">The other side</string>
+    <string name="full_why">Why this reading</string>
+    <string name="full_how_common">How common</string>
+
 </resources>
