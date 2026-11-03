@@ -1,0 +1,7 @@
+* text=auto
+# The Unix launcher must keep LF or it will not run on macOS or Linux
+gradlew text eol=lf
+*.bat text eol=crlf
+*.ttf binary
+*.jar binary
+*.webp binary

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Lagna Atelier</string>
+
+    <!-- Landing -->
+    <string name="landing_language">EN</string>
+    <string name="landing_headline">Read the Sky You Were Born Under</string>
+    <string name="landing_copy">Your birth chart in six traditions, the period of life you are in now, and a reading of your palm.</string>
+    <string name="landing_start">Start your chart</string>
+    <string name="landing_today_label">Today\'s sky · %1$s</string>
+    <string name="landing_today_moon">Moon in %1$s</string>
+    <string name="landing_today_detail">%1$s · Sun in %2$s</string>
+    <string name="landing_traditions_title">Every tradition you trust</string>
+    <string name="landing_traditions_copy">Lahiri to Yukteshwar, with six house systems for each.</string>
+    <string name="landing_traditions_label">Traditions</string>
+    <string name="landing_traditions_count">36</string>
+    <string name="landing_now_label">To the day</string>
+    <string name="landing_now_copy">The chapter you are in, and when it turns</string>
+    <string name="landing_proof">205 yogas checked</string>
+    <!-- Quoted: Android drops a leading space from an unquoted string. -->
+    <string name="landing_proof_tail">" on every chart"</string>
+    <string name="landing_google">Sign in with Google</string>
+    <string name="landing_saved">Saved charts</string>
+    <string name="landing_traditions_initials_description">Lahiri, Raman, Krishnamurti, Fagan-Bradley, Pushyapaksha and Yukteshwar</string>
+
+    <!-- Reading -->
+    <string name="reading_back">Back</string>
+    <string name="reading_share">Share</string>
+    <string name="reading_sample">Sample chart</string>
+    <string name="reading_now_label">Your chapter now</string>
+    <string name="reading_now_through">through</string>
+    <string name="reading_now_to">to %1$s</string>
+    <string name="reading_fact_lagna">Lagna</string>
+    <string name="reading_fact_moon">Moon sign</string>
+    <string name="reading_fact_nakshatra">Nakshatra</string>
+    <string name="reading_fact_mahadasha">Mahadasha</string>
+    <string name="reading_pada">pada %1$d · %2$s</string>
+    <string name="reading_until">to %1$s</string>
+    <string name="reading_dasha_title">Dasha timeline</string>
+    <string name="reading_dasha_maha">Maha</string>
+    <string name="reading_dasha_antar">Antar</string>
+    <string name="reading_chart_title">Birth chart</string>
+    <string name="reading_chart_rasi">Rasi</string>
+    <string name="reading_chart_navamsa">Navamsa</string>
+    <string name="reading_chart_ascendant">Asc</string>
+    <string name="reading_attention_title">What deserves attention</string>
+    <string name="reading_see_all">See all</string>
+    <string name="reading_report">Your report</string>
+    <string name="reading_navamsa_soon">The navamsa chart arrives with the live data.</string>
+
+    <!-- Navigation -->
+    <string name="nav_reading">Reading</string>
+    <string name="nav_timing">Timing</string>
+    <string name="nav_palm">Palm</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_soon">%1$s is the next screen to build.</string>
+</resources>

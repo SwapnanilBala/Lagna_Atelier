@@ -1,0 +1,420 @@
+package site.lagnaatelier.app.ui.reading
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.ChartSummary
+import site.lagnaatelier.app.data.Finding
+import site.lagnaatelier.app.data.SampleChart
+import site.lagnaatelier.app.data.dayMonthYear
+import site.lagnaatelier.app.data.formatDegree
+import site.lagnaatelier.app.data.monthYear
+import site.lagnaatelier.app.data.progress
+import site.lagnaatelier.app.ui.components.CardLabel
+import site.lagnaatelier.app.ui.components.FloatCard
+import site.lagnaatelier.app.ui.components.GhostChip
+import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.LiquidIcons
+import site.lagnaatelier.app.ui.components.Panel
+import site.lagnaatelier.app.ui.components.PillButton
+import site.lagnaatelier.app.ui.components.Segmented
+import site.lagnaatelier.app.ui.components.TickBadge
+import site.lagnaatelier.app.ui.theme.CardWhite
+import site.lagnaatelier.app.ui.theme.Canvas
+import site.lagnaatelier.app.ui.theme.GlowHoney
+import site.lagnaatelier.app.ui.theme.Hairline
+import site.lagnaatelier.app.ui.theme.Ink
+import site.lagnaatelier.app.ui.theme.LagnaAtelierTheme
+import site.lagnaatelier.app.ui.theme.LiquidType
+import site.lagnaatelier.app.ui.theme.Muted
+import java.time.LocalDate
+import kotlin.math.roundToInt
+
+enum class AppTab(val label: Int, val icon: ImageVector) {
+    Reading(R.string.nav_reading, LiquidIcons.Reading),
+    Timing(R.string.nav_timing, LiquidIcons.Timing),
+    Palm(R.string.nav_palm, LiquidIcons.Palm),
+    Account(R.string.nav_account, LiquidIcons.Account),
+}
+
+/*
+ * Laid out like a portfolio screen: the period of life the reader is in is the
+ * headline figure, then the four facts, then the timeline and the chart, then
+ * the readings. The same order as the web app's phone page (app/m/insights).
+ */
+@Composable
+fun ReadingScreen(
+    chart: ChartSummary,
+    isSample: Boolean,
+    onBack: () -> Unit,
+    onReport: () -> Unit,
+    tab: AppTab,
+    onTab: (AppTab) -> Unit,
+    today: LocalDate = LocalDate.now(),
+) {
+    Box(Modifier.fillMaxSize().background(Canvas)) {
+        Column(Modifier.fillMaxSize().statusBarsPadding()) {
+            TopBar(chart, isSample, onBack)
+            if (tab == AppTab.Reading) {
+                ReadingContent(chart, today)
+            } else {
+                ComingNext(tab)
+            }
+        }
+
+        Column(
+            Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .navigationBarsPadding()
+                .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            if (tab == AppTab.Reading) {
+                PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+            }
+            NavPill(tab, onTab)
+        }
+    }
+}
+
+@Composable
+private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit) {
+    val backLabel = stringResource(R.string.reading_back)
+    Row(
+        Modifier.fillMaxWidth().padding(start = 12.dp, end = 16.dp, top = 6.dp, bottom = 12.dp),
+        verticalAlignment = Alignment.Top,
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+    ) {
+        Box(
+            Modifier
+                .size(40.dp)
+                .clip(CircleShape)
+                .background(CardWhite)
+                .border(1.dp, Hairline, CircleShape)
+                .clickable(role = Role.Button, onClick = onBack)
+                .semantics { contentDescription = backLabel },
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(LiquidIcons.ArrowBack, contentDescription = null, modifier = Modifier.size(20.dp))
+        }
+        Column(Modifier.weight(1f).padding(top = 2.dp)) {
+            Text(chart.name, style = MaterialTheme.typography.headlineSmall)
+            Text(
+                "${chart.place} · ${chart.birthDate.dayMonthYear()} · ${chart.birthTime}",
+                style = MaterialTheme.typography.labelSmall,
+                color = Muted,
+                modifier = Modifier.padding(top = 4.dp),
+            )
+            if (isSample) {
+                Text(
+                    stringResource(R.string.reading_sample),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = Muted,
+                    modifier = Modifier.padding(top = 2.dp),
+                )
+            }
+        }
+        GhostChip(stringResource(R.string.reading_share))
+    }
+}
+
+@Composable
+private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
+    var chartView by rememberSaveable { mutableIntStateOf(0) }
+    var dashaView by rememberSaveable { mutableIntStateOf(0) }
+
+    LazyColumn(
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 160.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        item {
+            Box {
+                /* Kept inside the list's top edge, which would otherwise cut it with a hard line. */
+                Glow(
+                    Modifier
+                        .offset(x = (-40).dp, y = 24.dp)
+                        .requiredSize(width = 400.dp, height = 300.dp),
+                )
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    NowCard(chart, today)
+                    FactTiles(chart)
+                }
+            }
+        }
+        item {
+            Panel {
+                PanelHead(stringResource(R.string.reading_dasha_title)) {
+                    Segmented(
+                        listOf(stringResource(R.string.reading_dasha_maha), stringResource(R.string.reading_dasha_antar)),
+                        selected = dashaView,
+                        onSelect = { dashaView = it },
+                    )
+                }
+                DashaTimeline(chart.mahadashas, current = chart.mahadasha, today = today)
+            }
+        }
+        item {
+            Panel {
+                PanelHead(stringResource(R.string.reading_chart_title)) {
+                    Segmented(
+                        listOf(stringResource(R.string.reading_chart_rasi), stringResource(R.string.reading_chart_navamsa)),
+                        selected = chartView,
+                        onSelect = { chartView = it },
+                    )
+                }
+                if (chartView == 0) {
+                    SouthIndianChart(
+                        chart.placements,
+                        ascendant = chart.ascendant,
+                        title = stringResource(R.string.reading_chart_rasi),
+                        subtitle = chart.tradition,
+                    )
+                } else {
+                    Text(
+                        stringResource(R.string.reading_navamsa_soon),
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Muted,
+                        modifier = Modifier.padding(vertical = 24.dp),
+                    )
+                }
+            }
+        }
+        item {
+            Panel {
+                PanelHead(stringResource(R.string.reading_attention_title)) {
+                    CardLabel(stringResource(R.string.reading_see_all))
+                }
+                chart.findings.forEachIndexed { index, finding ->
+                    if (index > 0) HorizontalDivider(color = Hairline)
+                    FindingRow(finding)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun NowCard(chart: ChartSummary, today: LocalDate) {
+    val period = chart.antardasha
+    val fraction = period.progress(today)
+    val percent = (fraction * 100).roundToInt()
+
+    FloatCard(Modifier.fillMaxWidth(), spacing = 12.dp, padding = 16.dp) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
+            Column(Modifier.weight(1f)) {
+                CardLabel(stringResource(R.string.reading_now_label))
+                Text(
+                    buildAnnotatedString {
+                        append(chart.mahadasha.lord)
+                        withStyle(SpanStyle(color = Muted)) { append(" · ") }
+                        append(period.lord)
+                    },
+                    style = MaterialTheme.typography.titleLarge,
+                )
+            }
+            Column(horizontalAlignment = Alignment.End) {
+                Text(
+                    buildAnnotatedString {
+                        append("$percent")
+                        withStyle(SpanStyle(fontSize = LiquidType.figure.fontSize * 0.42f)) { append("%") }
+                    },
+                    style = LiquidType.figure.copy(fontSize = LiquidType.figure.fontSize * 1.05f),
+                )
+                CardLabel(stringResource(R.string.reading_now_through))
+            }
+        }
+        ProgressLine(fraction)
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(period.start.dayMonthYear(), style = MaterialTheme.typography.labelSmall, color = Muted)
+            Text(stringResource(R.string.reading_now_to, period.end.dayMonthYear()), style = MaterialTheme.typography.labelSmall, color = Muted)
+        }
+    }
+}
+
+/* A hairline track with a black fill and a ringed dot at today. */
+@Composable
+private fun ProgressLine(fraction: Float) {
+    androidx.compose.foundation.layout.BoxWithConstraints(Modifier.fillMaxWidth().height(14.dp)) {
+        val x = maxWidth * fraction
+        Box(Modifier.align(Alignment.CenterStart).fillMaxWidth().height(2.dp).background(Hairline, RoundedCornerShape(2.dp)))
+        Box(Modifier.align(Alignment.CenterStart).size(width = x, height = 2.dp).background(Ink, RoundedCornerShape(2.dp)))
+        Box(
+            Modifier
+                .align(Alignment.CenterStart)
+                .offset(x = x - 7.dp)
+                .size(14.dp)
+                .background(Ink, CircleShape)
+                .border(3.dp, CardWhite, CircleShape)
+                .border(1.dp, Ink, CircleShape),
+        )
+    }
+}
+
+@Composable
+private fun FactTiles(chart: ChartSummary) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FactTile(stringResource(R.string.reading_fact_lagna), chart.ascendant.label, formatDegree(chart.ascendantDegree))
+            FactTile(stringResource(R.string.reading_fact_moon), chart.moonSign.label, formatDegree(chart.moonDegree))
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FactTile(
+                stringResource(R.string.reading_fact_nakshatra),
+                chart.nakshatra,
+                stringResource(R.string.reading_pada, chart.pada, chart.nakshatraLord),
+            )
+            FactTile(
+                stringResource(R.string.reading_fact_mahadasha),
+                chart.mahadasha.lord,
+                stringResource(R.string.reading_until, chart.mahadasha.end.monthYear()),
+            )
+        }
+    }
+}
+
+@Composable
+private fun RowScope.FactTile(label: String, value: String, meta: String) {
+    val shape = RoundedCornerShape(16.dp)
+    Column(
+        Modifier
+            .weight(1f)
+            .background(CardWhite, shape)
+            .border(1.dp, Hairline, shape)
+            .padding(horizontal = 12.dp, vertical = 11.dp),
+        verticalArrangement = Arrangement.spacedBy(2.dp),
+    ) {
+        CardLabel(label)
+        Text(value, style = MaterialTheme.typography.titleSmall)
+        Text(meta, style = MaterialTheme.typography.labelSmall, color = Muted)
+    }
+}
+
+@Composable
+private fun PanelHead(title: String, trailing: @Composable () -> Unit) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+        Text(title, style = MaterialTheme.typography.titleMedium)
+        trailing()
+    }
+}
+
+@Composable
+private fun FindingRow(finding: Finding) {
+    Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.Top) {
+        Box(Modifier.padding(top = 1.dp)) { TickBadge() }
+        Column(Modifier.weight(1f)) {
+            Text(finding.headline, style = MaterialTheme.typography.titleMedium.copy(fontSize = MaterialTheme.typography.titleMedium.fontSize * 0.97f))
+            finding.body?.let {
+                Spacer(Modifier.height(3.dp))
+                Text(it, style = MaterialTheme.typography.bodyMedium.copy(fontSize = MaterialTheme.typography.bodyMedium.fontSize * 0.96f), color = Muted)
+            }
+        }
+    }
+}
+
+@Composable
+private fun ComingNext(tab: AppTab) {
+    Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
+        Text(
+            stringResource(R.string.nav_soon, stringResource(tab.label)),
+            style = MaterialTheme.typography.bodyLarge,
+            color = Muted,
+        )
+    }
+}
+
+/* The navigation bar as one floating black pill, as in the mock. */
+@Composable
+private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .clip(CircleShape)
+            .background(Ink)
+            .padding(horizontal = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        AppTab.entries.forEach { tab ->
+            val on = tab == selected
+            val label = stringResource(tab.label)
+            Column(
+                Modifier
+                    .weight(1f)
+                    .clip(CircleShape)
+                    .clickable(role = Role.Tab) { onSelect(tab) }
+                    .semantics { this.selected = on }
+                    .alpha(if (on) 1f else 0.6f)
+                    .padding(vertical = 6.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(2.dp),
+            ) {
+                Icon(tab.icon, contentDescription = null, tint = if (on) GlowHoney else CardWhite, modifier = Modifier.size(22.dp))
+                Text(label, style = MaterialTheme.typography.labelMedium.copy(fontSize = MaterialTheme.typography.labelMedium.fontSize * 0.92f), color = CardWhite)
+            }
+        }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 360, heightDp = 760)
+@Composable
+private fun ReadingPreview() {
+    LagnaAtelierTheme {
+        val tab = remember { AppTab.Reading }
+        ReadingScreen(
+            chart = SampleChart.chart,
+            isSample = true,
+            onBack = {},
+            onReport = {},
+            tab = tab,
+            onTab = {},
+            today = LocalDate.of(2026, 11, 2),
+        )
+    }
+}
