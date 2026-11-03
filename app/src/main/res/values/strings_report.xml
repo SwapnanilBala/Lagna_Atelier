@@ -1,4 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Strings for the report feature; that feature owns this file. -->
 <resources>
+    <!-- The screens -->
+    <string name="report_title">Your report</string>
+    <string name="report_back">Back</string>
+    <plurals name="report_chapters">
+        <item quantity="one">%d chapter</item>
+        <item quantity="other">%d chapters</item>
+    </plurals>
+    <string name="report_subtitle_working">%1$s · %2$s</string>
+    <string name="report_subtitle_preparing">%1$s · preparing</string>
+    <string name="report_subtitle_ready">Ready · %1$s</string>
+
+    <!-- Generating -->
+    <string name="report_generating_label">Your PDF is being written</string>
+    <string name="report_progress_description">Report progress, %1$d percent</string>
+    <string name="report_percent_sign" formatted="false">%</string>
+    <string name="report_step_calculating">Completing the calculation</string>
+    <string name="report_step_verifying">Cross-checking the chart</string>
+    <string name="report_step_writing">Writing your reading</string>
+    <string name="report_step_typesetting">Typesetting the PDF</string>
+    <string name="report_step_checks">%1$d of %2$d</string>
+    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_detail_planning">Planning the chapters…</string>
+    <string name="report_detail_introduction">Writing the introduction…</string>
+    <string name="report_detail_chapter">Writing chapter %1$d of %2$d</string>
+    <string name="report_note">Every chapter is written against your own placements. It takes about a minute. Keep the app open until it is ready.</string>
+    <string name="report_chapters_title">The chapters</string>
+    <string name="report_chapters_label">Checked before writing</string>
+    <string name="report_chapter_done">Written</string>
+    <string name="report_chapter_now">Being written</string>
+    <string name="report_stop">Stop writing</string>
+
+    <!-- Ready -->
+    <string name="report_ready_title">Your report is ready</string>
+    <string name="report_ready_meta">PDF · %1$s · %2$s</string>
+    <string name="report_ready_verified">verified</string>
+    <string name="report_ready_qualified">qualified</string>
+    <string name="report_cover_description">Cover page of your report: %1$s, Your Story.</string>
+    <string name="report_open">Open</string>
+    <string name="report_share">Share</string>
+    <string name="report_share_chooser">Share your report</string>
+    <string name="report_share_subject">Lagna Atelier · %1$s</string>
+    <string name="report_file_kind">PDF</string>
+    <string name="report_file_where">Kept in the app on this phone. Share it to save a copy anywhere else.</string>
+    <string name="report_no_viewer">No app on this phone opens PDFs. Use Share to send it to one.</string>
+    <string name="report_checks_passed">%1$d of %2$d checks passed</string>
+    <string name="report_checks_qualified">%1$d of %2$d checks passed cleanly</string>
+    <string name="report_plain_title">This copy uses the chart’s own shorter text</string>
+    <string name="report_plain_limit">Today’s readings are used up, so each chapter keeps the text the calculation wrote, without the longer written version. Make it again tomorrow for the written one.</string>
+    <string name="report_plain_timeout">The writing took longer than it should, so each chapter keeps the text the calculation wrote, without the longer written version.</string>
+    <string name="report_plain_offline">The connection dropped while the chapters were being written, so each chapter keeps the text the calculation wrote, without the longer written version.</string>
+    <string name="report_plain_declined">The written version did not come through, so each chapter keeps the text the calculation wrote, without the longer written version.</string>
+    <string name="report_make_again">Make it again</string>
+    <string name="report_close">Close</string>
+
+    <!-- Failed -->
+    <string name="report_failed_title">The report did not come through</string>
+    <string name="report_failed_generic">Check your connection and try again.</string>
+    <string name="report_failed_verification">The chart did not pass its consistency checks, so no report was made from it.</string>
+    <string name="report_failed_pdf">The PDF could not be written on this phone. Try again.</string>
+    <string name="report_retry">Try again</string>
+
+    <!-- The PDF -->
+    <string name="report_pdf_brand">Lagna Atelier</string>
+    <string name="report_pdf_edition">Personal Story Edition</string>
+    <string name="report_pdf_cover_kicker">A personal astrological portrait</string>
+    <string name="report_pdf_cover_title">Your Story</string>
+    <string name="report_pdf_cover_ascendant">%1$s ascendant</string>
+    <string name="report_pdf_cover_prepared">Prepared %1$s</string>
+    <string name="report_pdf_verified">Verified report</string>
+    <string name="report_pdf_qualified">Qualified report</string>
+    <string name="report_pdf_running_head">Lagna Atelier · Personal reading</string>
+    <string name="report_pdf_begin_kicker">Begin here</string>
+    <string name="report_pdf_begin_title">The shape of your story</string>
+    <string name="report_pdf_glance">At a glance</string>
+    <string name="report_pdf_threads">Three threads to notice</string>
+    <string name="report_pdf_support_well">Well supported</string>
+    <string name="report_pdf_support_supported">Supported</string>
+    <string name="report_pdf_support_exploratory">Exploratory</string>
+    <string name="report_pdf_seasons">The seasons currently in view</string>
+    <string name="report_pdf_carry">Carry this forward</string>
+    <string name="report_pdf_question">A question to sit with</string>
+    <string name="report_pdf_why">Why this chapter appears</string>
+    <string name="report_pdf_close_kicker">Before you close this</string>
+    <string name="report_pdf_close_title">How to keep using it</string>
+    <string name="report_pdf_close_note1_title">Take one chapter at a time</string>
+    <string name="report_pdf_close_note1">Each was written to stand on its own. The report is not an argument that has to be followed end to end, and the chapter that matters most to you this year may not be the first one.</string>
+    <string name="report_pdf_close_note2_title">Trust the note under each title</string>
+    <string name="report_pdf_close_note2">Where a chapter is marked exploratory, it rests on thinner evidence and is worth holding lightly. That label is calculated, not editorial, and it is the most useful thing on the page.</string>
+    <string name="report_pdf_close_note3_title">Come back to the questions</string>
+    <string name="report_pdf_close_note3">The question at the end of each chapter is the part only you can answer. They are worth returning to, because the answers move even when the chart does not.</string>
+    <string name="report_pdf_sign_off">Nothing here is a verdict. A chart describes the weather you were born into, not what you will do about it.</string>
+    <string name="report_pdf_checked">How this was checked</string>
+    <string name="report_pdf_provenance">Calculated with %1$s (%2$s), %3$s ayanamsha, %4$s houses, from a birth time recorded as %5$s. %6$s</string>
+    <string name="report_pdf_provenance_clean">All %1$d internal consistency checks passed.</string>
+    <string name="report_pdf_provenance_qualified">%1$d of %2$d internal consistency checks passed cleanly; %3$d returned a qualification, which is reflected in the support note of the chapters it affects.</string>
 </resources>
