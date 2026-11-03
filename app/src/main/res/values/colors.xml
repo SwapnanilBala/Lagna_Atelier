@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- The two canvases (ui/theme/Color.kt), for the window behind the first frame. -->
+    <color name="canvas_light">#FFF7F8FB</color>
+    <color name="canvas_dark">#FF131116</color>
 </resources>

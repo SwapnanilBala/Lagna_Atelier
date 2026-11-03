@@ -9,14 +9,19 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import site.lagnaatelier.app.data.LookPreferences
 import site.lagnaatelier.app.data.ShareReading
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.ui.account.AccountTab
@@ -30,7 +35,9 @@ import site.lagnaatelier.app.ui.reading.CastingScreen
 import site.lagnaatelier.app.ui.reading.ReadingScreen
 import site.lagnaatelier.app.ui.report.ReportOverlay
 import site.lagnaatelier.app.ui.report.rememberReportController
+import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.LagnaAtelierTheme
+import site.lagnaatelier.app.ui.theme.isLiquidDark
 import site.lagnaatelier.app.ui.timing.TimingTab
 
 private enum class Screen { Landing, Intake, Saved, Reading }
@@ -40,14 +47,19 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        /* Dark system-bar icons always: the canvas is light whatever the phone's theme. */
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
-        )
+        LookPreferences.load(this)
         setContent {
             LagnaAtelierTheme {
-                LagnaApp(model)
+                /* System-bar icons dark on the light canvas, light on the dark one. */
+                val dark = isLiquidDark()
+                DisposableEffect(dark) {
+                    val style = if (dark) SystemBarStyle.dark(Color.TRANSPARENT) else SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
+                    enableEdgeToEdge(statusBarStyle = style, navigationBarStyle = style)
+                    onDispose {}
+                }
+                Box(Modifier.fillMaxSize().background(Canvas)) {
+                    LagnaApp(model)
+                }
             }
         }
     }

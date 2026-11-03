@@ -67,7 +67,9 @@ import site.lagnaatelier.app.ui.theme.GeistMono
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.LiquidType
+import site.lagnaatelier.app.ui.theme.MidTone
 import site.lagnaatelier.app.ui.theme.Muted
+import site.lagnaatelier.app.ui.theme.PhotoGround
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -80,9 +82,6 @@ internal val NavRoom = 140.dp
 
 /** Room for the nav pill and the palm dock above it. */
 internal val DockRoom = 210.dp
-
-/* The warm ground the mock puts behind a palm photo. */
-private val PhotoGround = Color(0xFFE6E1DA)
 
 private val DayLabel = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.ENGLISH)
 
@@ -282,7 +281,7 @@ internal fun HandOutline(modifier: Modifier = Modifier) {
             floatArrayOf(108f, 46f, 16f, 60f, 8f),
         )
         val outline = Stroke(width = 5f * s, join = StrokeJoin.Round)
-        val edge = Color(0xFFC9CDD6)
+        val edge = MidTone
         fun bar(b: FloatArray, fill: Boolean) {
             val topLeft = Offset(ox + b[0] * s, oy + b[1] * s)
             val sz = Size(b[2] * s, b[3] * s)

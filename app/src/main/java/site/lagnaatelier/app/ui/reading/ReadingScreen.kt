@@ -71,7 +71,7 @@ import site.lagnaatelier.app.ui.components.Segmented
 import site.lagnaatelier.app.ui.components.TickBadge
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Canvas
-import site.lagnaatelier.app.ui.theme.GlowHoney
+import site.lagnaatelier.app.ui.theme.GlowOnInk
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.LagnaAtelierTheme
@@ -448,7 +448,7 @@ private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
-                Icon(tab.icon, contentDescription = null, tint = if (on) GlowHoney else CardWhite, modifier = Modifier.size(22.dp))
+                Icon(tab.icon, contentDescription = null, tint = if (on) GlowOnInk else CardWhite, modifier = Modifier.size(22.dp))
                 Text(label, style = MaterialTheme.typography.labelMedium.copy(fontSize = MaterialTheme.typography.labelMedium.fontSize * 0.92f), color = CardWhite)
             }
         }

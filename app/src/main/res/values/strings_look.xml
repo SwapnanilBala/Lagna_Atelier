@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the look of the app: theme, chart style, language, and the palm compare. -->
+<resources>
+    <!-- Account -> Preferences -->
+    <string name="look_theme">Appearance</string>
+    <string name="look_theme_system">Match phone</string>
+    <string name="look_theme_light">Light</string>
+    <string name="look_theme_dark">Dark</string>
+    <string name="look_theme_note">Match phone follows your phone’s dark theme setting.</string>
+</resources>
