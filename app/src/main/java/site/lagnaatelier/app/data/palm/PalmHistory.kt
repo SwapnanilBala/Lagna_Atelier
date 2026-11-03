@@ -60,6 +60,47 @@ object PalmHistoryCodec {
     private val SAFE_ID = Regex("[A-Za-z0-9-]{1,64}")
 }
 
+/*
+ * The reading just read and not yet saved, written to disk the moment it
+ * arrives: it is one of the week's two, so a process let go in the
+ * background, or a crash, must not lose it. One file pair in
+ * filesDir/palm_pending, restored when the tab starts, and cleared once the
+ * reading is saved or the reader starts a new one.
+ */
+class PalmPendingStore(context: Context) {
+    private val dir = File(context.applicationContext.filesDir, DIR)
+    private val record = File(dir, "reading.json")
+    private val photo = File(dir, "photo.jpg")
+
+    suspend fun write(reading: SavedPalmReading, photoJpeg: ByteArray?) = withContext(Dispatchers.IO) {
+        dir.mkdirs()
+        if (photoJpeg != null) photo.writeBytes(photoJpeg) else photo.delete()
+        /* The record last, so a record on disk always has its photo beside it. */
+        val partial = File(dir, "reading.json.part")
+        partial.writeText(PalmHistoryCodec.toJson(reading).toString())
+        if (!partial.renameTo(record)) {
+            record.delete()
+            partial.renameTo(record)
+        }
+    }
+
+    /** The pending reading and its photo, or null when there is none (or it cannot be read). */
+    suspend fun read(): Pair<SavedPalmReading, ByteArray?>? = withContext(Dispatchers.IO) {
+        if (!record.exists()) return@withContext null
+        val saved = runCatching { PalmHistoryCodec.fromJson(record.readText()) }.getOrNull() ?: return@withContext null
+        saved to runCatching { photo.takeIf { it.exists() }?.readBytes() }.getOrNull()
+    }
+
+    suspend fun clear() = withContext(Dispatchers.IO) {
+        record.delete()
+        photo.delete()
+    }
+
+    private companion object {
+        const val DIR = "palm_pending"
+    }
+}
+
 class PalmHistoryStore(context: Context) {
     private val dir = File(context.applicationContext.filesDir, DIR)
 

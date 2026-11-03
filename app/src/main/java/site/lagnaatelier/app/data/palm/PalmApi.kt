@@ -2,6 +2,7 @@ package site.lagnaatelier.app.data.palm
 
 import org.json.JSONArray
 import org.json.JSONObject
+import site.lagnaatelier.app.data.ApiProblem
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
 import java.time.Instant
@@ -174,14 +175,7 @@ class PalmApi(private val api: LagnaApi) {
             else -> true
         }
 
-        /*
-         * The weekly refusal. LagnaApi carries the message, not the body's
-         * details.scope, so it is told by the route's fixed English
-         * ("You have had this week's 2 palm readings..."): the other 429s
-         * are about today or signing in, and the per-minute limit has no
-         * such words.
-         */
-        fun isWeeklyCap(status: Int?, message: String?): Boolean =
-            status == 429 && message.orEmpty().contains("this week", ignoreCase = true)
+        /** The weekly refusal, told by the scope the route names (error.details.scope), not its English. */
+        fun isWeeklyCap(error: LagnaApi.ApiException): Boolean = error.problem == ApiProblem.WeeklyLimit
     }
 }

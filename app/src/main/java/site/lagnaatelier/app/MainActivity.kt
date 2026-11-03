@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.ui.account.AccountTab
 import site.lagnaatelier.app.ui.account.SavedChartsScreen
@@ -107,7 +108,7 @@ private fun LagnaApp(model: AppViewModel) {
         Screen.Reading -> when (val state = model.chartState) {
             is ChartState.Loading -> CastingScreen(state.details)
             is ChartState.Failed -> CastingFailedScreen(
-                message = state.message,
+                message = stringResource(state.message),
                 onRetry = model::retry,
                 onEdit = { screen = Screen.Intake },
             )

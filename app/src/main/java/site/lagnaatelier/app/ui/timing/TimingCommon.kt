@@ -113,11 +113,7 @@ internal fun <T> LoadState(
         is Load.Ready -> content(state.value)
         is Load.Failed -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(
-                when {
-                    state.offline -> stringResource(R.string.timing_offline)
-                    state.message != null -> state.message
-                    else -> stringResource(R.string.timing_unreadable)
-                },
+                stringResource(if (state.offline) R.string.timing_offline else state.message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Muted,
             )

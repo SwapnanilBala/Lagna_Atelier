@@ -1,6 +1,7 @@
 package site.lagnaatelier.app.ui.report
 
 import android.app.Application
+import androidx.annotation.StringRes
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -18,7 +19,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import site.lagnaatelier.app.data.BirthDetails
+import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartSummary
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.Place
 import site.lagnaatelier.app.data.TimeAccuracy
@@ -61,7 +64,7 @@ sealed interface ReportState {
         val preparedOn: LocalDate,
     ) : ReportState
 
-    data class Failed(val reason: Reason, val message: String? = null) : ReportState {
+    data class Failed(val reason: Reason, @param:StringRes @get:StringRes val message: Int? = null) : ReportState {
         enum class Reason { Network, Verification, Pdf }
     }
 }
@@ -103,12 +106,12 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
             reportApi.storyReport(details)
         } catch (cancelled: CancellationException) {
             throw cancelled
-        } catch (error: LagnaApi.ApiException) {
-            /* A failed consistency check comes back as a 5xx with its own message. */
-            state = ReportState.Failed(ReportState.Failed.Reason.Network, error.message)
-            return
         } catch (error: Exception) {
-            state = ReportState.Failed(ReportState.Failed.Reason.Network, null)
+            /* Worded by the app: a failed consistency check is a 5xx with the site's own English. */
+            state = ReportState.Failed(ReportState.Failed.Reason.Network, ErrorText.of(error))
+            return
+        } catch (error: OutOfMemoryError) {
+            state = ReportState.Failed(ReportState.Failed.Reason.Network, R.string.error_generic)
             return
         }
         var story = report.story
@@ -141,7 +144,9 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (error: Exception) {
-            ReportState.Failed(ReportState.Failed.Reason.Pdf, error.message)
+            ReportState.Failed(ReportState.Failed.Reason.Pdf)
+        } catch (error: OutOfMemoryError) {
+            ReportState.Failed(ReportState.Failed.Reason.Pdf)
         }
     }
 

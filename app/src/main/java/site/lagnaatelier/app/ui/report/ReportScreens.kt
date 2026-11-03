@@ -502,7 +502,7 @@ internal fun FailedScreen(state: ReportState.Failed, onRetry: () -> Unit, onClos
     val message = when (state.reason) {
         ReportState.Failed.Reason.Verification -> stringResource(R.string.report_failed_verification)
         ReportState.Failed.Reason.Pdf -> stringResource(R.string.report_failed_pdf)
-        ReportState.Failed.Reason.Network -> state.message?.takeIf { it.isNotBlank() } ?: stringResource(R.string.report_failed_generic)
+        ReportState.Failed.Reason.Network -> stringResource(state.message ?: R.string.report_failed_generic)
     }
     Box(
         Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp),

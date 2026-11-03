@@ -6,6 +6,8 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import site.lagnaatelier.app.data.ApiProblem
+import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.data.palm.PalmApi
 import site.lagnaatelier.app.data.palm.PalmCopyGuard
@@ -14,6 +16,7 @@ import site.lagnaatelier.app.data.palm.PalmQa
 import site.lagnaatelier.app.data.palm.PalmReader
 import site.lagnaatelier.app.data.palm.PalmReadingParser
 import site.lagnaatelier.app.data.palm.PalmRequests
+import site.lagnaatelier.app.data.palm.PalmWeek
 import site.lagnaatelier.app.data.palm.QaRole
 import site.lagnaatelier.app.data.palm.QaTurn
 import site.lagnaatelier.app.data.palm.SavedPalmReading
@@ -136,10 +139,22 @@ class PalmRequestsTest {
 
     @Test
     fun sortsTheRoutesRefusals() {
-        assertTrue(PalmApi.isWeeklyCap(429, "You have had this week's 2 palm readings. Your next one opens on Monday."))
-        assertFalse(PalmApi.isWeeklyCap(429, "Sign in to read another palm today."))
-        assertFalse(PalmApi.isWeeklyCap(429, "Too many requests just now. Try again in a minute."))
-        assertFalse(PalmApi.isWeeklyCap(400, "this week"))
+        fun refusal(status: Int, body: String) = LagnaApi.apiException(status, body)
+        assertTrue(PalmApi.isWeeklyCap(refusal(429, """{"error":{"code":"RATE_LIMITED","message":"x","details":{"scope":"weekly"}}}""")))
+        /* Told by the scope, not the words: the English can change, the scope is the contract. */
+        assertFalse(PalmApi.isWeeklyCap(refusal(429, """{"error":{"message":"this week","details":{"scope":"anonymous"}}}""")))
+        assertFalse(PalmApi.isWeeklyCap(refusal(429, "")))
+        assertFalse(PalmApi.isWeeklyCap(refusal(400, """{"error":{"message":"this week"}}""")))
+        val daily = refusal(429, """{"error":{"code":"RATE_LIMITED","message":"Sign in to read another palm today.","details":{"scope":"anonymous"}}}""")
+        assertEquals("RATE_LIMITED", daily.code)
+        assertEquals("anonymous", daily.scope)
+        assertEquals(ApiProblem.DailyLimit, daily.problem)
+        assertEquals(ApiProblem.FullToday, refusal(429, """{"error":{"details":{"scope":"global"}}}""").problem)
+        assertEquals(ApiProblem.TooFast, refusal(429, """{"detail":"Too many"}""").problem)
+        assertEquals(ApiProblem.Unavailable, refusal(503, "").problem)
+        assertEquals(listOf(1L, 3L), PalmWeek.withoutSend(listOf(1L, 2L, 3L), 2L))
+        assertEquals(listOf(1L, 2L), PalmWeek.withoutSend(listOf(1L, 2L), 9L))
+        assertEquals(listOf(5L), PalmWeek.withoutSend(listOf(5L, 5L), 5L))
         /* Refused before the model: not one of the week's two. */
         listOf(400, 413, 429, 503).forEach { assertFalse(PalmApi.counted(it)) }
         listOf(200, 500, 502, 504, null).forEach { assertTrue(PalmApi.counted(it)) }

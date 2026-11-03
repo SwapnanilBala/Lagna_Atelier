@@ -1,6 +1,7 @@
 package site.lagnaatelier.app
 
 import android.app.Application
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartStore
 import site.lagnaatelier.app.data.ChartSummary
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.Place
 import site.lagnaatelier.app.data.SampleChart
@@ -27,7 +29,7 @@ sealed interface ChartState {
     data object Sample : ChartState
     data class Loading(val details: BirthDetails) : ChartState
     data class Loaded(val chart: ChartSummary, val details: BirthDetails) : ChartState
-    data class Failed(val details: BirthDetails, val message: String) : ChartState
+    data class Failed(val details: BirthDetails, @param:StringRes @get:StringRes val message: Int) : ChartState
 }
 
 /** Where the place field is, from typing to a place on the map. */
@@ -85,13 +87,9 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 }
             } catch (e: CancellationException) {
                 throw e
-            } catch (e: LagnaApi.ApiException) {
-                ChartState.Failed(details, e.message ?: "")
-            } catch (e: IOException) {
-                ChartState.Failed(details, "")
             } catch (e: Exception) {
-                // A response the parser did not expect: say so rather than crash.
-                ChartState.Failed(details, e.message ?: "")
+                // Including a response the parser did not expect: said plainly, never crashed on.
+                ChartState.Failed(details, ErrorText.of(e))
             }
         }
     }

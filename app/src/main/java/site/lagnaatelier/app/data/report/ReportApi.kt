@@ -27,7 +27,9 @@ import java.net.URL
 class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaApi.BASE_URL) {
 
     suspend fun storyReport(details: BirthDetails): StoryReport =
-        StoryParser.parseReport(api.getJson(STORY_REPORT_PATH, storyReportQuery(details), readTimeoutMs = 90_000))
+        StoryParser.parseReport(
+            api.getJson(STORY_REPORT_PATH, storyReportQuery(details), readTimeoutMs = 90_000, maxBytes = STORY_REPORT_MAX_BYTES),
+        )
 
     /** Why the prose did not come, in the words the ready screen chooses between. */
     enum class ProseFailure { DailyLimit, TimedOut, Offline, Declined }
@@ -59,11 +61,13 @@ class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaAp
 
                 val status = connection.responseCode
                 if (status !in 200..299) {
-                    val text = connection.errorStream?.bufferedReader()?.use { it.readText() }.orEmpty()
+                    val text = runCatching {
+                        connection.errorStream?.let { LagnaApi.readCapped(it, LagnaApi.MAX_ERROR_BYTES) }
+                    }.getOrNull().orEmpty()
                     return@withContext ProseResult.Unavailable(failureFor(status, text), LagnaApi.errorMessage(status, text))
                 }
                 val contentType = connection.contentType.orEmpty()
-                val reader = connection.inputStream.bufferedReader(Charsets.UTF_8)
+                val reader = LagnaApi.capped(connection.inputStream, PROSE_MAX_BYTES).bufferedReader(Charsets.UTF_8)
                 if (!contentType.contains(StoryProseCodec.STREAM_TYPE)) {
                     val prose = StoryProseCodec.parsePlain(reader.use { it.readText() })
                     return@withContext prose?.let { ProseResult.Written(it) }
@@ -89,6 +93,10 @@ class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaAp
         const val STORY_REPORT_PATH = "/api/chart/story-report"
         const val STORY_PROSE_PATH = "/api/chart/story-prose"
         const val PROSE_READ_TIMEOUT_MS = 300_000
+
+        /* The story is about 30 KB and the prose stream less; these are ceilings, not estimates. */
+        const val STORY_REPORT_MAX_BYTES = 8 * 1024 * 1024
+        const val PROSE_MAX_BYTES = LagnaApi.MAX_RESPONSE_BYTES
 
         /*
          * The story route reads the page's own camelCase parameters

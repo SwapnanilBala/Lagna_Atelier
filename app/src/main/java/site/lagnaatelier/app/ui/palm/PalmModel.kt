@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.SystemClock
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -20,11 +21,13 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartSummary
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.palm.PalmAllowanceStore
 import site.lagnaatelier.app.data.palm.PalmApi
 import site.lagnaatelier.app.data.palm.PalmCaptureFiles
 import site.lagnaatelier.app.data.palm.PalmHistoryStore
+import site.lagnaatelier.app.data.palm.PalmPendingStore
 import site.lagnaatelier.app.data.palm.PalmImageLoader
 import site.lagnaatelier.app.data.palm.PalmQa
 import site.lagnaatelier.app.data.palm.PalmReader
@@ -72,6 +75,7 @@ class ShownReading(
 class PalmModel(application: Application) : AndroidViewModel(application) {
     private val allowanceStore = PalmAllowanceStore(application)
     private val history = PalmHistoryStore(application)
+    private val pending = PalmPendingStore(application)
     private fun text(id: Int, vararg args: Any) = getApplication<Application>().getString(id, *args)
 
     var view by mutableStateOf(PalmView.Capture)
@@ -91,7 +95,8 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
     var analysingSince by mutableStateOf<Long?>(null)
         private set
 
-    var remaining by mutableStateOf(allowanceStore.remaining())
+    /* Read off the main thread in init; until then the panel shows the full week. */
+    var remaining by mutableIntStateOf(PalmWeek.READINGS_PER_WEEK)
         private set
 
     var shown by mutableStateOf<ShownReading?>(null)
@@ -114,7 +119,9 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
         private set
 
     init {
+        refreshAllowance()
         refreshHistory()
+        restorePending()
         /* Captures stranded by an app closed with the camera open; see PalmCaptureFiles. */
         viewModelScope.launch(Dispatchers.IO) {
             runCatching { PalmCaptureFiles.clearStale(PalmCaptureFiles.dir(getApplication())) }
@@ -129,7 +136,30 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun refreshAllowance() {
-        remaining = allowanceStore.remaining()
+        viewModelScope.launch {
+            remaining = withContext(Dispatchers.IO) { allowanceStore.remaining() }
+        }
+    }
+
+    /* A reading read before the process was let go, and not saved: back on screen as it was. */
+    private fun restorePending() {
+        viewModelScope.launch {
+            val (record, jpeg) = runCatching { pending.read() }.getOrNull() ?: return@launch
+            if (shown != null) return@launch
+            val bitmap = jpeg?.let { withContext(Dispatchers.IO) { runCatching { decode(it) }.getOrNull() } }
+            show(
+                ShownReading(
+                    reading = record.reading,
+                    photo = bitmap,
+                    photoJpeg = jpeg,
+                    createdAtMillis = record.createdAtMillis,
+                    reader = record.reader,
+                    classicalMode = record.classicalMode,
+                    jyotishContext = record.jyotishContext,
+                    savedId = null,
+                ),
+            )
+        }
     }
 
     fun cameraUnavailable() {
@@ -169,11 +199,6 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
     fun analyse(api: LagnaApi, chart: ChartSummary, hasRealChart: Boolean) {
         val prepared = photo ?: return
         if (analysingSince != null) return
-        refreshAllowance()
-        if (remaining <= 0) {
-            captureError = weeklyMessage()
-            return
-        }
         captureError = null
         analysingSince = SystemClock.elapsedRealtime()
         val reader = reader
@@ -182,51 +207,66 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
         val jyotish = if (hasRealChart) PalmRequests.jyotishContext(chart) else null
         val bitmap = photoBitmap
         viewModelScope.launch {
+            var token: Long? = null
+            /* A refusal before the model ran: the server did not count it, so neither does the phone. */
+            fun rollBack() {
+                token?.let { allowanceStore.rollBack(it) }
+                token = null
+            }
             try {
+                val left = withContext(Dispatchers.IO) { allowanceStore.remaining() }
+                if (left <= 0) {
+                    captureError = weeklyMessage()
+                    return@launch
+                }
                 val body = withContext(Dispatchers.Default) {
                     PalmRequests.readingBody(prepared.base64, prepared.mediaType, classical, reader, jyotish)
                 }
+                /* Counted before it goes: killed mid-reading, the phone still knows it was spent. */
+                token = withContext(Dispatchers.IO) { allowanceStore.recordSend() }
                 val reading = PalmApi(api).read(body)
-                /* An answer came back, so the server spent the reading, read or not. */
-                allowanceStore.recordSend()
                 if (reading == null) {
                     captureError = text(R.string.palm_error_not_reading)
                 } else {
-                    show(
-                        ShownReading(
-                            reading = reading,
-                            photo = bitmap,
-                            photoJpeg = prepared.jpeg,
-                            createdAtMillis = System.currentTimeMillis(),
-                            reader = reader,
-                            classicalMode = classical,
-                            jyotishContext = jyotish,
-                            savedId = null,
-                        ),
+                    val shownReading = ShownReading(
+                        reading = reading,
+                        photo = bitmap,
+                        photoJpeg = prepared.jpeg,
+                        createdAtMillis = System.currentTimeMillis(),
+                        reader = reader,
+                        classicalMode = classical,
+                        jyotishContext = jyotish,
+                        savedId = null,
                     )
+                    /* On disk before it is on screen: it has been spent, so it must not be lost. */
+                    withContext(NonCancellable) { runCatching { pending.write(shownReading.asRecord(), prepared.jpeg) } }
+                    show(shownReading)
                 }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: LagnaApi.ApiException) {
-                if (PalmApi.isWeeklyCap(e.status, e.message)) {
+                if (!PalmApi.counted(e.status)) rollBack()
+                captureError = if (PalmApi.isWeeklyCap(e)) {
                     allowanceStore.recordWeeklyCap()
-                    captureError = weeklyMessage()
+                    weeklyMessage()
                 } else {
-                    if (PalmApi.counted(e.status)) allowanceStore.recordSend()
-                    captureError = e.message ?: text(R.string.palm_error_generic)
+                    text(ErrorText.of(e))
                 }
             } catch (_: SocketTimeoutException) {
-                allowanceStore.recordSend()
                 captureError = text(R.string.palm_error_timeout)
             } catch (_: UnknownHostException) {
+                /* Never reached the site. */
+                rollBack()
                 captureError = text(R.string.palm_error_offline)
             } catch (_: ConnectException) {
+                rollBack()
                 captureError = text(R.string.palm_error_offline)
             } catch (_: IOException) {
-                /* Dropped mid-answer: the server may well have spent it, so it is counted. */
-                allowanceStore.recordSend()
+                /* Dropped mid-answer: the server may well have spent it, so it stays counted. */
                 captureError = text(R.string.palm_error_generic)
             } catch (_: Exception) {
+                captureError = text(R.string.palm_error_generic)
+            } catch (_: OutOfMemoryError) {
                 captureError = text(R.string.palm_error_generic)
             } finally {
                 analysingSince = null
@@ -252,8 +292,9 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
         view = PalmView.Reading
     }
 
-    /** Back to the capture card with nothing chosen. */
+    /** Back to the capture card with nothing chosen. An unsaved reading is let go, as the reader chose. */
     fun newReading() {
+        viewModelScope.launch { runCatching { pending.clear() } }
         shown = null
         photo = null
         photoBitmap = null
@@ -280,6 +321,7 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
                     createdAtMillis = current.createdAtMillis,
                 )
                 current.savedId = record.id
+                runCatching { pending.clear() }
                 saved = history.list()
             } catch (e: CancellationException) {
                 throw e
@@ -368,13 +410,22 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
                     /* Take the question back out, as the web does: unanswered, it reads as ignored. */
                     if (turns.lastOrNull()?.role == QaRole.User) turns.removeAt(turns.lastIndex)
                     draft = question
-                    qaError = (e as? LagnaApi.ApiException)?.message ?: text(R.string.palm_qa_error)
+                    qaError = text(if (e is LagnaApi.ApiException) ErrorText.of(e) else R.string.palm_qa_error)
                 }
             } finally {
                 asking = false
             }
         }
     }
+
+    private fun ShownReading.asRecord() = SavedPalmReading(
+        id = "pending",
+        createdAtMillis = createdAtMillis,
+        reader = reader,
+        classicalMode = classicalMode,
+        jyotishContext = jyotishContext,
+        reading = reading,
+    )
 
     private fun decode(jpeg: ByteArray): ImageBitmap? =
         BitmapFactory.decodeByteArray(jpeg, 0, jpeg.size)?.asImageBitmap()

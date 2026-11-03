@@ -1,0 +1,11 @@
+<resources>
+    <!-- Failures, in the app's own words: never the site's text, never an exception's. -->
+    <string name="error_too_fast">Too many requests just now. Try again in a minute.</string>
+    <string name="error_daily">You have had today’s readings on this phone. Try again tomorrow.</string>
+    <string name="error_full_today">Today’s readings are all taken. Try again tomorrow.</string>
+    <string name="error_weekly">This week’s readings are used up.</string>
+    <string name="error_not_accepted">The site could not use what was sent. Check the details and try again.</string>
+    <string name="error_unavailable">The site could not answer just now. Try again shortly.</string>
+    <string name="error_generic">Something went wrong. Try again.</string>
+    <string name="error_offline">You are offline. Check your connection and try again.</string>
+</resources>

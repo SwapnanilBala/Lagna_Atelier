@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.timing
 
+import androidx.annotation.StringRes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateMapOf
@@ -7,7 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import kotlinx.coroutines.CancellationException
 import site.lagnaatelier.app.data.BirthDetails
-import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.timing.EnergyWeek
 import site.lagnaatelier.app.data.timing.Forecast
 import site.lagnaatelier.app.data.timing.MuhurtaActivity
@@ -15,7 +17,6 @@ import site.lagnaatelier.app.data.timing.MuhurtaResult
 import site.lagnaatelier.app.data.timing.TimingQueries
 import site.lagnaatelier.app.data.timing.TimingRepository
 import site.lagnaatelier.app.data.timing.YearChart
-import java.io.IOException
 import java.time.LocalDate
 
 /** One panel's data, from asking to answered. */
@@ -25,7 +26,7 @@ sealed interface Load<out T> {
     data class Ready<T>(val value: T) : Load<T>
 
     /** [message] is the site's own when it gave one; [offline] when the call never reached it. */
-    data class Failed(val message: String?, val offline: Boolean) : Load<Nothing>
+    data class Failed(@param:StringRes @get:StringRes val message: Int, val offline: Boolean) : Load<Nothing>
 }
 
 /*
@@ -90,13 +91,10 @@ class TimingHolder(val details: BirthDetails, val today: LocalDate) {
         } catch (e: CancellationException) {
             set(Load.Idle)
             throw e
-        } catch (e: LagnaApi.ApiException) {
-            set(Load.Failed(e.message?.ifBlank { null }, offline = false))
-        } catch (e: IOException) {
-            set(Load.Failed(null, offline = true))
         } catch (e: Exception) {
-            // A response the parser did not expect: say so rather than crash.
-            set(Load.Failed(null, offline = false))
+            // Including a response the parser did not expect: said plainly, never crashed on.
+            val message = ErrorText.of(e)
+            set(Load.Failed(message, offline = message == R.string.error_offline))
         }
     }
 }
