@@ -1,5 +1,7 @@
 package site.lagnaatelier.app.ui.reading
 
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -37,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -51,6 +54,7 @@ import androidx.compose.ui.unit.dp
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.Finding
+import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.data.formatDegree
@@ -100,12 +104,14 @@ fun ReadingScreen(
     tab: AppTab,
     onTab: (AppTab) -> Unit,
     today: LocalDate = LocalDate.now(),
+    /* Where Share points: this chart on the website (ShareReading.link). */
+    shareLink: String = LagnaApi.BASE_URL,
     /* The Timing, Palm and Account tabs, drawn under the same top bar. */
     otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
 ) {
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
-            TopBar(chart, isSample, onBack)
+            TopBar(chart, isSample, onBack, shareLink)
             if (tab == AppTab.Reading) {
                 ReadingContent(chart, today)
             } else {
@@ -131,8 +137,21 @@ fun ReadingScreen(
 }
 
 @Composable
-private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit) {
+private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit, shareLink: String) {
     val backLabel = stringResource(R.string.reading_back)
+    val context = LocalContext.current
+    val shareText = stringResource(
+        R.string.reading_share_text,
+        chart.name,
+        chart.ascendant.label,
+        chart.moonSign.label,
+        chart.nakshatra,
+        "${chart.mahadasha.lord} · ${chart.antardasha.lord}",
+        chart.antardasha.end.dayMonthYear(),
+        shareLink,
+    )
+    val shareSubject = stringResource(R.string.reading_share_subject, chart.name)
+    val shareChooser = stringResource(R.string.reading_share_chooser)
     Row(
         Modifier.fillMaxWidth().padding(start = 12.dp, end = 16.dp, top = 6.dp, bottom = 12.dp),
         verticalAlignment = Alignment.Top,
@@ -167,8 +186,17 @@ private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit) {
                 )
             }
         }
-        GhostChip(stringResource(R.string.reading_share))
+        GhostChip(stringResource(R.string.reading_share), onClick = { shareReading(context, shareText, shareSubject, shareChooser) })
     }
+}
+
+/** The system share sheet, with the reading as plain text: any app that takes text can send it. */
+private fun shareReading(context: Context, text: String, subject: String, chooserTitle: String) {
+    val send = Intent(Intent.ACTION_SEND)
+        .setType("text/plain")
+        .putExtra(Intent.EXTRA_TEXT, text)
+        .putExtra(Intent.EXTRA_SUBJECT, subject)
+    context.startActivity(Intent.createChooser(send, chooserTitle))
 }
 
 @Composable

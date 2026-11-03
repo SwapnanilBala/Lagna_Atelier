@@ -69,6 +69,9 @@
     <!-- Reading -->
     <string name="reading_back">Back</string>
     <string name="reading_share">Share</string>
+    <string name="reading_share_text">%1$s’s birth chart: %2$s rising, Moon in %3$s (%4$s), in a %5$s period until %6$s. The full reading on Lagna Atelier: %7$s</string>
+    <string name="reading_share_subject">%1$s’s birth chart</string>
+    <string name="reading_share_chooser">Share this reading</string>
     <string name="reading_sample">Sample chart</string>
     <string name="reading_now_label">Your chapter now</string>
     <string name="reading_now_through">through</string>

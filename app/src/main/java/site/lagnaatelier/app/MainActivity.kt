@@ -17,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import site.lagnaatelier.app.data.ShareReading
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.ui.account.AccountTab
 import site.lagnaatelier.app.ui.account.SavedChartsScreen
@@ -124,6 +125,7 @@ private fun LagnaApp(model: AppViewModel) {
                         onReport = report::start,
                         tab = tab,
                         onTab = { tab = it },
+                        shareLink = ShareReading.link(details),
                         otherTab = { other ->
                             when (other) {
                                 AppTab.Timing -> TimingTab(chart, details, model.api)
