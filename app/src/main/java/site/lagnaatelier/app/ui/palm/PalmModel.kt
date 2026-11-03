@@ -48,7 +48,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 /** Which of the tab's three views is showing. */
-enum class PalmView { Capture, Reading, History }
+enum class PalmView { Capture, Reading, History, Compare }
 
 /** A reading on screen: one just read, or one opened from the history. */
 class ShownReading(

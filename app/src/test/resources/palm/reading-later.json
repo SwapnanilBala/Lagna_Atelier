@@ -1,0 +1,193 @@
+{
+  "overall_summary": "A steadier hand than before. The fate line has come forward, and the head line still leads.",
+  "dominant_hand_note": "This is your left hand, the one the tradition reads for a woman.",
+  "lines": {
+    "heart_line": {
+      "description": "Curves up between the first two fingers.",
+      "interpretation": "You give your partner steady attention more than grand gestures.",
+      "strength": "strong"
+    },
+    "head_line": {
+      "description": "Long and nearly straight.",
+      "interpretation": "You think before you move, and you like a plan.",
+      "strength": "strong"
+    },
+    "life_line": {
+      "description": "A wide arc around the thumb.",
+      "interpretation": "Steady energy, and a liking for a settled base.",
+      "strength": "faint"
+    },
+    "fate_line": {
+      "description": "Faint at the wrist, firmer from the middle.",
+      "interpretation": "Your direction grew clearer with time.",
+      "strength": "moderate"
+    }
+  },
+  "life_trajectory": {
+    "current_phase": "A period of consolidation.",
+    "near_future": "A chance to teach what you know.",
+    "long_term_path": "Steady growth through skill.",
+    "challenges": "Letting go of perfect plans.",
+    "opportunities": "Writing and trade."
+  },
+  "career_and_purpose": {
+    "natural_talents": "Explaining and organising.",
+    "career_direction": "Work that trades in words.",
+    "purpose_alignment": "Close to it already."
+  },
+  "relationships_and_emotional": {
+    "emotional_state": "Settled.",
+    "relationship_dynamics": "Loyal and attentive.",
+    "connection_style": "Quiet and steady."
+  },
+  "mounts": {
+    "prominent": [
+      "  jupiter ",
+      "Saturn",
+      "Mercury",
+      "Saturn"
+    ],
+    "interpretation": "A full Mercury mount favours words, trade and teaching."
+  },
+  "fingers": {
+    "observation": "Long, even fingers.",
+    "interpretation": "Patience with detail."
+  },
+  "special_markings": {
+    "observed": [
+      "Star on the mount of Jupiter",
+      "  "
+    ],
+    "interpretation": "A gift for study."
+  },
+  "guidance": "Trust the plan you have, and leave room in it.",
+  "image_quality": {
+    "rating": "good",
+    "issues": [
+      "fate line faint near the wrist"
+    ],
+    "reliable_for_reading": true,
+    "notes": "Clear lines and even light."
+  },
+  "line_confidence": {
+    "heart_line": {
+      "visibility": "clear",
+      "confidence": 0.92
+    },
+    "head_line": {
+      "visibility": "clear",
+      "confidence": 0.95
+    },
+    "fate_line": {
+      "visibility": "clear",
+      "confidence": 0.81
+    }
+  },
+  "line_coordinates": {
+    "heart_line": [
+      {
+        "x": 0.78,
+        "y": 0.42
+      },
+      {
+        "x": 0.6,
+        "y": 0.4
+      },
+      {
+        "x": 0.4,
+        "y": 0.38
+      }
+    ],
+    "head_line": [
+      {
+        "x": 0.28,
+        "y": 0.47
+      },
+      {
+        "x": 0.5,
+        "y": 0.52
+      },
+      {
+        "x": 0.75,
+        "y": 0.58
+      }
+    ],
+    "life_line": [
+      {
+        "x": 0.3,
+        "y": 0.46
+      },
+      {
+        "x": 0.25,
+        "y": 0.62
+      },
+      {
+        "x": 0.32,
+        "y": 0.8
+      },
+      {
+        "x": 0.44,
+        "y": 0.93
+      }
+    ],
+    "fate_line": [
+      {
+        "x": 0.56,
+        "y": 0.94
+      },
+      {
+        "x": 0.54,
+        "y": 0.7
+      },
+      {
+        "x": 0.52,
+        "y": 0.5
+      }
+    ]
+  },
+  "jyotish_correlation": {
+    "summary": "The palm and chart agree on Mercury.",
+    "correlations": [
+      {
+        "palm_indicator": "Full Mercury mount",
+        "chart_factor": "Mercury Mahadasha, ruler of Virgo rising",
+        "reinforcement": "strong",
+        "reading": "Both point to words."
+      },
+      {
+        "palm_indicator": "Faint fate line",
+        "chart_factor": "Saturn in Capricorn",
+        "reinforcement": "contradictory",
+        "reading": "The chart is firmer than the hand."
+      }
+    ]
+  },
+  "dasha_relevance": {
+    "active_period_summary": "Mercury Mahadasha, themes of learning.",
+    "relevant_palm_indicators": [
+      {
+        "indicator": "Long head line",
+        "relevance_to_dasha": "Mercury rules the mind.",
+        "timing_note": "Most pronounced in the next 18 months"
+      },
+      {
+        "indicator": "Mercury mount",
+        "relevance_to_dasha": "Trade and speech."
+      }
+    ]
+  },
+  "classical_framework_notes": {
+    "framework": "Hasta Samudrika Shastra",
+    "sanskrit_terms": [
+      {
+        "term": "Manibandha",
+        "meaning": "wrist bracelet lines",
+        "observation": "Three clear lines."
+      }
+    ],
+    "classical_text_references": [
+      "No longer asked for."
+    ]
+  },
+  "served_by": "anthropic"
+}

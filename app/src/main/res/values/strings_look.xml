@@ -37,4 +37,38 @@
     <string name="chart_north_description">North Indian chart with %1$s ascendant. The houses are fixed: the ascendant is the top diamond and the houses run anticlockwise from it.</string>
     <string name="chart_sign_holds">%1$s: %2$s.</string>
     <string name="chart_house_holds">House %1$d, %2$s: %3$s.</string>
+
+    <!-- Palm: comparing two saved readings -->
+    <string name="palm_compare_open">Compare two</string>
+    <string name="palm_compare_pick_title">Compare two readings</string>
+    <string name="palm_compare_pick_note">Pick two saved readings to see what changed. Only what is on this phone is used, so nothing is sent and no reading is spent.</string>
+    <string name="palm_compare_picked">%1$d of 2 picked</string>
+    <string name="palm_compare_go">Compare</string>
+    <string name="palm_compare_title">Comparing two readings</string>
+    <string name="palm_compare_same_day">Taken the same day</string>
+    <plurals name="palm_compare_days_apart">
+        <item quantity="one">Taken %1$d day apart</item>
+        <item quantity="other">Taken %1$d days apart</item>
+    </plurals>
+    <string name="palm_compare_dates">%1$s · %2$s</string>
+    <string name="palm_compare_a">Reading A</string>
+    <string name="palm_compare_b">Reading B</string>
+    <string name="palm_compare_open_full">Open full reading</string>
+    <string name="palm_compare_line_strength">Line strength</string>
+    <string name="palm_compare_no_strength">No strength changes across the four major lines.</string>
+    <string name="palm_compare_line_visibility">Line visibility</string>
+    <string name="palm_compare_from_to">%1$s → %2$s</string>
+    <string name="palm_compare_stronger">stronger</string>
+    <string name="palm_compare_weaker">weaker</string>
+    <string name="palm_compare_unchanged">unchanged</string>
+    <string name="palm_compare_not_read">not read</string>
+    <string name="palm_compare_markings">Special markings</string>
+    <string name="palm_compare_newly_visible">Newly visible</string>
+    <string name="palm_compare_no_longer_visible">No longer visible</string>
+    <string name="palm_compare_mounts">Prominent mounts</string>
+    <string name="palm_compare_newly_prominent">Newly prominent</string>
+    <string name="palm_compare_no_longer_prominent">No longer prominent</string>
+    <string name="palm_compare_none">None</string>
+    <string name="palm_compare_summary">Summary contrast</string>
+    <string name="palm_compare_no_summary">(no summary)</string>
 </resources>
