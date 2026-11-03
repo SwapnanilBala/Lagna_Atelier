@@ -1,20 +1,76 @@
 package site.lagnaatelier.app.ui.timing
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
-import site.lagnaatelier.app.R
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
-import site.lagnaatelier.app.ui.FeatureStub
+import site.lagnaatelier.app.data.timing.TimingQueries
+import site.lagnaatelier.app.data.timing.TimingRepository
+import site.lagnaatelier.app.ui.components.Glow
+import java.time.LocalDate
 
 /*
- * The Timing tab. SCAFFOLD: owned by the Timing feature, which replaces this
- * body and adds files in this package (ui/timing) and strings in
- * res/values/strings_timing.xml. [details] is null for the sample chart.
+ * The Timing tab: the running periods, the week ahead, today's transits, a
+ * good-time finder and this year's chart, top to bottom (mock "01 Timing").
+ *
+ * Each panel loads, fails and retries on its own, so one slow or failing
+ * route never holds up the others. What has been fetched lives in a
+ * [TimingHolder] kept per chart and day, so coming back to the tab shows it
+ * at once. [details] is null for the built-in sample chart, which uses the
+ * sample's own birth details.
  */
 @Composable
 fun TimingTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier: Modifier = Modifier) {
-    FeatureStub(stringResource(R.string.nav_timing), modifier)
+    val birth = details ?: TimingQueries.sampleDetails
+    val today = remember { LocalDate.now() }
+    val holder = remember(birth, today) { TimingHolders.get(birth, today) }
+    val repo = remember(api) { TimingRepository(api) }
+    val scope = rememberCoroutineScope()
+
+    LaunchedEffect(holder) {
+        launch { holder.loadForecast(repo) }
+        launch { holder.loadYear(repo) }
+    }
+    LaunchedEffect(holder, holder.weekIndex) { holder.loadWeek(repo, holder.weekIndex) }
+    LaunchedEffect(holder, holder.activity) { holder.loadMuhurta(repo, holder.activity) }
+
+    val retryForecast: () -> Unit = { scope.launch { holder.loadForecast(repo, force = true) } }
+
+    Column(
+        modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            /* Clears the floating nav pill. */
+            .padding(start = 16.dp, end = 16.dp, bottom = 140.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Box {
+            /* Kept inside the column's top edge, which would otherwise cut it with a hard line. */
+            Glow(
+                Modifier
+                    .offset(x = (-40).dp, y = 24.dp)
+                    .requiredSize(width = 400.dp, height = 300.dp),
+            )
+            PeriodsCard(chart, holder, onRetry = retryForecast)
+        }
+        WeekPanel(holder) { scope.launch { holder.loadWeek(repo, holder.weekIndex, force = true) } }
+        TransitsPanel(holder, onRetry = retryForecast)
+        MuhurtaPanel(holder) { scope.launch { holder.loadMuhurta(repo, holder.activity, force = true) } }
+        YearPanel(holder) { scope.launch { holder.loadYear(repo, force = true) } }
+    }
 }

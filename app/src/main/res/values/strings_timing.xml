@@ -1,4 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Strings for the timing feature; that feature owns this file. -->
 <resources>
+    <!-- Shared states: each panel loads, fails and retries on its own. -->
+    <string name="timing_offline">This shows when you are online.</string>
+    <string name="timing_unreadable">This could not be read just now.</string>
+    <string name="timing_retry">Try again</string>
+    <string name="timing_see_fewer">See fewer</string>
+    <string name="timing_see_all_count">See all %1$d</string>
+    <string name="timing_range_to">to %1$s</string>
+    <string name="timing_percent_through">%1$d%% through</string>
+
+    <!-- Periods -->
+    <string name="timing_periods_loading">Reading your periods…</string>
+    <string name="timing_running_now">Running now · %1$s</string>
+    <string name="timing_level_maha">Maha</string>
+    <string name="timing_level_antar">Antar</string>
+    <string name="timing_level_pratyantar">Pratyantar</string>
+    <string name="timing_next_period">Next: %1$s, from %2$s</string>
+    <string name="timing_all_periods">All periods</string>
+    <string name="timing_fewer_periods">Fewer</string>
+    <string name="timing_periods_remaining">Pratyantar periods in this Antar</string>
+    <string name="timing_period_now">now</string>
+    <string name="timing_period_row">%1$s to %2$s</string>
+
+    <!-- The week ahead -->
+    <string name="timing_week_title">The week ahead</string>
+    <string name="timing_week_this">This week</string>
+    <string name="timing_week_next">Next</string>
+    <string name="timing_week_loading">Reading the week…</string>
+    <string name="timing_band_high">Full</string>
+    <string name="timing_band_balanced">Even</string>
+    <string name="timing_band_low">Quiet</string>
+    <string name="timing_week_average">avg %1$d</string>
+    <string name="timing_week_chart_description">Energy for the week, %1$s to %2$s. %3$s. Average %4$d.</string>
+    <string name="timing_week_day_description">%1$s %2$d, %3$d, %4$s</string>
+    <string name="timing_week_day_today">%1$s, today</string>
+    <string name="timing_week_card_title">%1$s · %2$s</string>
+
+    <!-- Transits -->
+    <string name="timing_transits_title">Transits worth knowing</string>
+    <string name="timing_transits_loading">Reading the transits…</string>
+    <string name="timing_transits_empty">No close transits to your chart today.</string>
+    <string name="timing_transit_title">%1$s %2$s your %3$s</string>
+    <string name="timing_aspect_conjunction">conjunct</string>
+    <string name="timing_aspect_opposition">opposite</string>
+    <string name="timing_aspect_trine">trine</string>
+    <string name="timing_aspect_square">square</string>
+    <string name="timing_aspect_sextile">sextile</string>
+    <string name="timing_tone_easy">Easy</string>
+    <string name="timing_tone_testing">Testing</string>
+    <string name="timing_transit_exact_today">Exact within a day</string>
+    <plurals name="timing_transit_exact_in">
+        <item quantity="one">Exact in %1$d day</item>
+        <item quantity="other">Exact in %1$d days</item>
+    </plurals>
+    <string name="timing_transit_separating">Past exact, easing off</string>
+    <string name="timing_transit_meta">%1$s · orb %2$s</string>
+
+    <!-- Find a good time -->
+    <string name="timing_muhurta_title">Find a good time</string>
+    <string name="timing_muhurta_range">Next 14 days</string>
+    <string name="timing_muhurta_loading">Finding good times…</string>
+    <string name="timing_activity_anything">Anything good</string>
+    <string name="timing_activity_travel">Travel</string>
+    <string name="timing_activity_business">Starting a business</string>
+    <string name="timing_activity_study">Study</string>
+    <string name="timing_activity_property">Property</string>
+    <string name="timing_activity_interview">Job interview</string>
+    <string name="timing_activity_spiritual">Spiritual practice</string>
+    <string name="timing_best_anything">Best time overall</string>
+    <string name="timing_best_travel">Best for travel</string>
+    <string name="timing_best_business">Best for starting a business</string>
+    <string name="timing_best_study">Best for study</string>
+    <string name="timing_best_property">Best for property</string>
+    <string name="timing_best_interview">Best for a job interview</string>
+    <string name="timing_best_spiritual">Best for spiritual practice</string>
+    <string name="timing_score_of">of 100</string>
+    <string name="timing_window_range">%1$s to %2$s</string>
+    <string name="timing_window_description">%1$s, %2$s, score %3$d of 100</string>
+    <string name="timing_window_best_description">%1$s. %2$s</string>
+    <string name="timing_no_windows">No good window in the next 14 days. Try another activity.</string>
+    <string name="timing_rahukaala_today">Avoid today (Rahukaala)</string>
+    <string name="timing_clock_range">%1$s–%2$s</string>
+    <plurals name="timing_windows_found">
+        <item quantity="one">%1$d window found</item>
+        <item quantity="other">%1$d windows found</item>
+    </plurals>
+    <string name="timing_see_all">See all</string>
+    <string name="timing_show_fewer">Show fewer</string>
+
+    <!-- This year's chart -->
+    <string name="timing_year_title">This year\'s chart</string>
+    <string name="timing_year_loading">Reading this year…</string>
+    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_rising">Year rising</string>
+    <string name="timing_year_lord">Year lord</string>
+    <string name="timing_year_muntha">Muntha</string>
+    <string name="timing_year_profection">Profection</string>
+    <string name="timing_lord_rules_muntha">rules Muntha</string>
+    <string name="timing_lord_rules_year_rising">rules the year\'s rising</string>
+    <string name="timing_lord_rules_birth_rising">rules your rising</string>
+    <string name="timing_lord_other">this year\'s lord</string>
+    <string name="timing_house">%1$s house</string>
+    <string name="timing_profection_year">Year %1$d</string>
+    <string name="timing_profection_meta">%1$s · %2$s</string>
+    <string-array name="timing_ordinals">
+        <item>1st</item>
+        <item>2nd</item>
+        <item>3rd</item>
+        <item>4th</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+        <item>9th</item>
+        <item>10th</item>
+        <item>11th</item>
+        <item>12th</item>
+    </string-array>
 </resources>
