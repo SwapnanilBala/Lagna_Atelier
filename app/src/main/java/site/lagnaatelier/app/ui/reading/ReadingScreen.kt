@@ -108,12 +108,14 @@ fun ReadingScreen(
     shareLink: String = LagnaApi.BASE_URL,
     /* The Timing, Palm and Account tabs, drawn under the same top bar. */
     otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
+    /* The "More readings" card at the foot of the reading (ui/more). */
+    moreReadings: @Composable () -> Unit = {},
 ) {
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(chart, isSample, onBack, shareLink)
             if (tab == AppTab.Reading) {
-                ReadingContent(chart, today)
+                ReadingContent(chart, today, moreReadings)
             } else {
                 Box(Modifier.weight(1f)) { otherTab(tab) }
             }
@@ -200,7 +202,7 @@ private fun shareReading(context: Context, text: String, subject: String, choose
 }
 
 @Composable
-private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
+private fun ReadingContent(chart: ChartSummary, today: LocalDate, moreReadings: @Composable () -> Unit) {
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
@@ -290,6 +292,7 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
                 }
             }
         }
+        item { moreReadings() }
     }
 }
 

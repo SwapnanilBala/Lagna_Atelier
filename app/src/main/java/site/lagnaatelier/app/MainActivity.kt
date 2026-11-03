@@ -23,6 +23,11 @@ import site.lagnaatelier.app.ui.account.AccountTab
 import site.lagnaatelier.app.ui.account.SavedChartsScreen
 import site.lagnaatelier.app.ui.intake.IntakeScreen
 import site.lagnaatelier.app.ui.landing.LandingScreen
+import site.lagnaatelier.app.ui.more.FirstRunTour
+import site.lagnaatelier.app.ui.more.MoreOverlay
+import site.lagnaatelier.app.ui.more.MoreReadingsCard
+import site.lagnaatelier.app.ui.more.MoreScreen
+import site.lagnaatelier.app.ui.more.rememberMoreController
 import site.lagnaatelier.app.ui.palm.PalmTab
 import site.lagnaatelier.app.ui.reading.AppTab
 import site.lagnaatelier.app.ui.reading.CastingFailedScreen
@@ -60,6 +65,7 @@ private fun LagnaApp(model: AppViewModel) {
     var readingOrigin by rememberSaveable { mutableStateOf(Screen.Landing) }
     var tab by rememberSaveable { mutableStateOf(AppTab.Reading) }
     val report = rememberReportController()
+    val more = rememberMoreController()
     val context = LocalContext.current
     fun notYet(what: String) =
         Toast.makeText(context, context.getString(R.string.nav_soon, what), Toast.LENGTH_SHORT).show()
@@ -126,6 +132,7 @@ private fun LagnaApp(model: AppViewModel) {
                         tab = tab,
                         onTab = { tab = it },
                         shareLink = ShareReading.link(details),
+                        moreReadings = { MoreReadingsCard(onOpen = more::open) },
                         otherTab = { other ->
                             when (other) {
                                 AppTab.Timing -> TimingTab(chart, details, model.api)
@@ -136,12 +143,15 @@ private fun LagnaApp(model: AppViewModel) {
                                         model.castChart(saved.details)
                                         openReading(from = readingOrigin)
                                     },
+                                    onHelp = { more.open(MoreScreen.Help) },
                                 )
                                 AppTab.Reading -> Unit
                             }
                         },
                     )
                     ReportOverlay(report, chart, details, model.api)
+                    MoreOverlay(more, chart, details, model.api)
+                    FirstRunTour(more, onTab = { tab = it })
                 }
             }
         }
