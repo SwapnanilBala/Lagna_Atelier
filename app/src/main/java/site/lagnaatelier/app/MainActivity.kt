@@ -126,6 +126,7 @@ private fun LagnaApp(model: AppViewModel) {
                         tab = tab,
                         onTab = { tab = it },
                         shareLink = ShareReading.link(details),
+                        api = model.api,
                         otherTab = { other ->
                             when (other) {
                                 AppTab.Timing -> TimingTab(chart, details, model.api)

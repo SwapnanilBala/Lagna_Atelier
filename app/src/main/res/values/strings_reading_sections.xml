@@ -110,4 +110,37 @@
     <string name="full_why">Why this reading</string>
     <string name="full_how_common">How common</string>
 
+    <!-- Yogas -->
+    <string name="yogas_title">Yogas</string>
+    <string name="yogas_subtitle">%1$d combinations, strongest first</string>
+    <string name="yogas_intro">Yogas are classical combinations of planets. Each one below was found in this chart from where its planets sit, which signs they rule and which houses they hold.</string>
+    <string name="yoga_strength_strong">Strong</string>
+    <string name="yoga_strength_moderate">Moderate</string>
+    <string name="yoga_strength_weak">Weak</string>
+    <string name="yoga_family_mahapurusha">Mahapurusha</string>
+    <string name="yoga_family_wealth">Wealth &amp; Raja</string>
+    <string name="yoga_family_benefic">Benefic</string>
+    <string name="yoga_family_viparita">Viparita Raja</string>
+    <string name="yoga_family_nabhasa">Nabhasa</string>
+    <string name="yoga_family_challenging">Challenging</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">What it means</string>
+    <string name="yoga_forms">What forms it</string>
+    <string name="yoga_shows">When it shows</string>
+    <string name="yoga_softened">What softens it</string>
+    <string name="yoga_source">Source: %1$s</string>
+
+    <!-- From the classics -->
+    <string name="classics_kicker">From the classics</string>
+    <string name="classics_heading">What the Brihat Jataka says about your yogas</string>
+    <string name="classics_ask">Read what the book says</string>
+    <string name="classics_pending">Reading the Brihat Jataka for your yogas…</string>
+    <string name="classics_empty">The Brihat Jataka has no verses on this chart’s yogas, so there is no note to show.</string>
+    <string name="classics_sources">The verses (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">Brihat Jataka %1$s</string>
+    <string name="classics_ref_brihat_samhita">Brihat Samhita %1$s</string>
+    <string name="classics_ref_strijataka">Strijataka, ch. %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">translator’s note</string>
+    <string name="classics_credit">The numbers point to the verses they come from, quoted as printed in N. Chidambaram Iyer’s 1885 English translation of Varahamihira’s Brihat Jataka. Words in square brackets are ours, not the book’s.</string>
 </resources>

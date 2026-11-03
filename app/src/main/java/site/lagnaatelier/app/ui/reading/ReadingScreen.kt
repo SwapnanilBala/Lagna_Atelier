@@ -108,12 +108,14 @@ fun ReadingScreen(
     shareLink: String = LagnaApi.BASE_URL,
     /* The Timing, Palm and Account tabs, drawn under the same top bar. */
     otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
+    /* For the yogas' classical note; without it (previews) the note is left out. */
+    api: LagnaApi? = null,
 ) {
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(chart, isSample, onBack, shareLink)
             if (tab == AppTab.Reading) {
-                ReadingContent(chart, today, isSample)
+                ReadingContent(chart, today, isSample, api)
             } else {
                 Box(Modifier.weight(1f)) { otherTab(tab) }
             }
@@ -200,13 +202,14 @@ private fun shareReading(context: Context, text: String, subject: String, choose
 }
 
 @Composable
-private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Boolean) {
+private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Boolean, api: LagnaApi?) {
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
     /* The longer sections' own state, held here so it outlives their items scrolling away. */
     var houseRolesOpen by rememberSaveable { mutableStateOf(false) }
     var fullReadingUi by rememberSaveable { mutableStateOf(FullReadingUi()) }
+    var yogasUi by rememberSaveable { mutableStateOf(YogasUi()) }
     val sections = if (isSample) rememberSampleSections() else chart.sections
 
     LazyColumn(
@@ -300,6 +303,9 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
         }
         if (sections.findings.isNotEmpty()) item {
             FullReadingPanel(sections.findings, fullReadingUi, onUi = { fullReadingUi = it })
+        }
+        if (sections.yogas.isNotEmpty()) item {
+            YogasPanel(sections.yogas, yogasUi, onUi = { yogasUi = it }, api = api)
         }
     }
 }
