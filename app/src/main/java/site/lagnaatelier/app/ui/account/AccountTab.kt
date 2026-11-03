@@ -54,6 +54,7 @@ import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.theme.GeistMono
 import site.lagnaatelier.app.ui.theme.Hairline
@@ -70,7 +71,13 @@ private const val FIRST_SAVED = 3
  * the repository root is the plan for the real thing.
  */
 @Composable
-fun AccountTab(store: ChartStore, onOpenSaved: (SavedChart) -> Unit, modifier: Modifier = Modifier) {
+fun AccountTab(
+    store: ChartStore,
+    onOpenSaved: (SavedChart) -> Unit,
+    modifier: Modifier = Modifier,
+    /* Opens Help (ui/more/HelpScreen.kt); no row when null. */
+    onHelp: (() -> Unit)? = null,
+) {
     LazyColumn(
         modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 140.dp),
@@ -103,7 +110,7 @@ fun AccountTab(store: ChartStore, onOpenSaved: (SavedChart) -> Unit, modifier: M
         }
         item { SavedPanel(store, onOpenSaved) }
         item { PreferencesPanel() }
-        item { AboutPanel() }
+        item { AboutPanel(onHelp) }
     }
 }
 
@@ -211,7 +218,7 @@ private fun PreferencesPanel() {
 }
 
 @Composable
-private fun AboutPanel() {
+private fun AboutPanel(onHelp: (() -> Unit)?) {
     val context = LocalContext.current
     val version = remember(context) { versionText(context) }
     var licencesOpen by rememberSaveable { mutableStateOf(false) }
@@ -221,6 +228,16 @@ private fun AboutPanel() {
             if (version != null) {
                 Text(version, style = MaterialTheme.typography.labelSmall, color = Muted)
             }
+        }
+        if (onHelp != null) {
+            Setting(
+                stringResource(R.string.guide_account_help),
+                "",
+                stringResource(R.string.guide_account_help_note),
+                icon = LiquidIcons.Chevron,
+                onClick = onHelp,
+            )
+            HorizontalDivider(color = Hairline)
         }
         val url = stringResource(R.string.account_website_url)
         val failed = stringResource(R.string.account_website_failed)

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for More readings (life areas, ask the classics, divisional charts), Help and the first-run tour; that feature owns this file. -->
+<resources>
+    <!-- The entry card on the Reading tab -->
+    <string name="more_card_title">More readings</string>
+    <string name="more_card_areas">Life areas</string>
+    <string name="more_card_areas_note">Love, work, family and four more, each weighed on its own.</string>
+    <string name="more_card_ask">Ask the classics</string>
+    <string name="more_card_ask_note">Put a question to the old books, answered from your chart.</string>
+    <string name="more_card_vargas">Divisional charts</string>
+    <string name="more_card_vargas_note">All twenty vargas, each drawn for your placements.</string>
+
+    <!-- Shared -->
+    <string name="more_back">Back</string>
+    <string name="more_retry">Try again</string>
+
+    <!-- The seven life areas and how the engine weighs them -->
+    <string name="more_area_love">Love life</string>
+    <string name="more_area_career">Career</string>
+    <string name="more_area_family">Family</string>
+    <string name="more_area_inheritance">Inheritance</string>
+    <string name="more_area_influence">Influence</string>
+    <string name="more_area_life_cycle">Life cycle</string>
+    <string name="more_area_travel">Travel and places</string>
+    <string name="more_band_prominent">Prominent</string>
+    <string name="more_band_active">Active</string>
+    <string name="more_band_developing">Developing</string>
+    <string name="more_conclusion_strong">Strong conclusion</string>
+    <string name="more_conclusion_moderate">Moderate conclusion</string>
+    <string name="more_conclusion_cautious">Cautious conclusion</string>
+    <string name="more_confirmation_confirmed">Confirmed</string>
+    <string name="more_confirmation_qualified">Qualified</string>
+    <string name="more_confirmation_improved">Improved</string>
+    <string name="more_confirmation_contradictory">Mixed evidence</string>
+    <string name="more_confirmation_insufficient">Thin evidence</string>
+
+    <!-- Life areas screen -->
+    <string name="more_areas_title">Life areas</string>
+    <string name="more_areas_lead">Seven parts of your life, each weighed on its own evidence. The most active come first.</string>
+    <string name="more_areas_loading">Weighing your life areas…</string>
+    <string name="more_areas_rank">%1$d of %2$d</string>
+    <string name="more_areas_writing">Writing your brief…</string>
+    <string name="more_areas_open">Read more</string>
+    <string name="more_areas_close">Show less</string>
+    <string name="more_areas_themes">Leading themes</string>
+    <string name="more_areas_support">What supports it</string>
+    <string name="more_areas_watch">What to watch</string>
+    <string name="more_areas_timing">Timing</string>
+    <string name="more_areas_guidance">Do next</string>
+    <string name="more_areas_long_game">Keep in mind</string>
+
+    <!-- From the classics: the cited note, on a life area and as an answer -->
+    <string name="more_classics_kicker">From the classics</string>
+    <string name="more_classics_heading">What the classics say about this area of your life</string>
+    <string name="more_classics_pending">Reading the classics for your chart…</string>
+    <string name="more_classics_show">The passages (%1$d)</string>
+    <string name="more_classics_hide">Hide the passages</string>
+    <string name="more_classics_ref">Brihat Jataka %1$s</string>
+    <string name="more_classics_ref_women">Strijataka, ch. %1$s</string>
+    <string name="more_classics_note">translator’s note</string>
+    <string name="more_classics_credit">The numbers point to the verses they come from, quoted as printed in N. Chidambaram Iyer’s 1885 English translation of Varahamihira’s Brihat Jataka.</string>
+    <string name="more_classics_credit_women">Passages marked Strijataka are quoted as printed in B. Suryanarain Rao’s Strijataka, or Female Horoscopy (1931), a book on women’s birth charts. Words in square brackets are ours, not the book’s.</string>
+
+    <!-- Ask the classics -->
+    <string name="more_ask_title">Ask the classics</string>
+    <string name="more_ask_lead">Pick a question or ask your own. The answer comes only from the passages that hold in your chart, and every statement points to the passage it rests on.</string>
+    <string name="more_ask_loading">Finding the questions your chart can answer…</string>
+    <string name="more_ask_choose">Questions you can ask</string>
+    <string name="more_ask_none">The books hold no ready questions for this chart. You can still ask your own.</string>
+    <string name="more_ask_own_label">Or ask your own question</string>
+    <string name="more_ask_own_placeholder">What kind of work suits me?</string>
+    <string name="more_ask_own_submit">Ask</string>
+    <string name="more_ask_own_hint">About your own chart, up to %1$d characters. Each one counts toward today’s questions.</string>
+    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_pending">Reading the passages for your question…</string>
+    <string name="more_ask_you_asked">You asked</string>
+    <string name="more_ask_empty">The books have nothing on this question for your chart.</string>
+    <string name="more_ask_limited">That is all the questions for today. Come back tomorrow to ask more.</string>
+    <string name="more_ask_refused_instructions">That reads like an instruction rather than a question. Ask something about your own chart.</string>
+    <string name="more_ask_refused_forbidden">The readings do not go into that. Try a question about another part of your life.</string>
+    <string name="more_ask_refused_not_chart">The books can only answer questions about your own chart: work, money, love, family, character and the like.</string>
+    <string name="more_ask_q_career_year">My career in the year ahead</string>
+    <string name="more_ask_q_love_year">My love life in the year ahead</string>
+    <string name="more_ask_q_money_year">Money in the year ahead</string>
+    <string name="more_ask_q_health">Health and vitality</string>
+    <string name="more_ask_q_marriage">Marriage and my partner</string>
+    <string name="more_ask_q_strengths">My natural strengths</string>
+    <string name="more_ask_q_children">Children</string>
+    <string name="more_ask_q_standing">Reputation and standing</string>
+
+    <!-- Divisional charts -->
+    <string name="more_varga_title">Divisional charts</string>
+    <string name="more_varga_lead">The D1 is the foundation. Each varga magnifies one part of life, to confirm, qualify or narrow what the main chart already shows.</string>
+    <string name="more_varga_loading">Casting your divisional charts…</string>
+    <string name="more_varga_missing">The divisional charts did not come with this chart.</string>
+    <string name="more_varga_key_heading">The ten key charts</string>
+    <string name="more_varga_key_lead">Each answers a clear question, and gets a note written for your placements.</string>
+    <string name="more_varga_support_heading">Supporting charts</string>
+    <string name="more_varga_support_lead">They add context, and count only when the D1 and a key chart already agree.</string>
+    <string name="more_varga_time_caution">Your birth time is approximate, so read the rising sign and houses of the higher charts as a first look, not a verdict.</string>
+    <string name="more_varga_subtitle">%1$s · %2$s</string>
+    <string name="more_varga_extended">Outside Parashara’s sixteen vargas: read it as a supplementary layer, not a classical authority.</string>
+    <string name="more_varga_supporting_note">A supporting chart. It adds context, but count it only when the D1 and a key chart already say the same.</string>
+    <string name="more_varga_note_kicker">Read for your chart</string>
+    <string name="more_varga_note_pending">Reading your placements…</string>
+    <string name="more_varga_note_missing">No note came back for this chart. The guidance below still applies.</string>
+    <string name="more_varga_note_after">Read it alongside the guidance below, not instead of it.</string>
+    <string name="more_varga_read_with">Read it with</string>
+    <string name="more_varga_question">The question it answers</string>
+    <string name="more_varga_reliability">Birth time</string>
+    <string name="more_varga_positions">Where each point falls</string>
+    <string name="more_varga_col_point">Point</string>
+    <string name="more_varga_col_d1">D1</string>
+    <string name="more_varga_repeats">repeats</string>
+    <string name="more_varga_repeat_count">%1$d of %2$d points keep their D1 sign</string>
+    <string name="more_varga_positions_note">“Repeats” means the point keeps its D1 sign. It is a consistency signal, not good or bad in itself.</string>
+    <string name="more_varga_sensitivity_foundation">Foundation layer</string>
+    <string name="more_varga_sensitivity_exact">Exact time advised</string>
+    <string name="more_varga_sensitivity_rectified">Rectified time advised</string>
+    <string name="more_varga_no_ascendant">This chart came without its rising sign, so only the table is shown.</string>
+
+    <!-- The ten key vargas, in the website's words (divisional.guide) -->
+    <string name="more_varga_d1_name">Rashi</string>
+    <string name="more_varga_d1_focus">Natal foundation</string>
+    <string name="more_varga_d1_summary">The main chart describes the overall pattern: identity, life direction, houses, and the natal promise that every other varga must refine rather than replace.</string>
+    <string name="more_varga_d1_read_with">Begin here. No divisional conclusion should contradict a weak or absent promise in D1.</string>
+    <string name="more_varga_d1_question">What is the central pattern through which the rest of this reading unfolds?</string>
+    <string name="more_varga_d1_time">Planetary signs are comparatively stable; the ascendant and houses still depend on the recorded birth time.</string>
+    <string name="more_varga_d2_name">Hora</string>
+    <string name="more_varga_d2_focus">Resources and stewardship</string>
+    <string name="more_varga_d2_summary">D2 refines the way resources are gathered, protected, shared, and converted into material stability.</string>
+    <string name="more_varga_d2_read_with">Read with the D1 second and eleventh houses, their lords, and Jupiter and Venus strength.</string>
+    <string name="more_varga_d2_question">What style of resource-building is easiest to sustain over time?</string>
+    <string name="more_varga_d2_time">Use an exact birth time before promoting the D2 ascendant or houses into a firm conclusion.</string>
+    <string name="more_varga_d4_name">Chaturthamsa</string>
+    <string name="more_varga_d4_focus">Home, property, and rootedness</string>
+    <string name="more_varga_d4_summary">D4 refines home, property, settlement, emotional rootedness, and the conditions that make a place feel secure.</string>
+    <string name="more_varga_d4_read_with">Read with the D1 fourth house, Moon, Mars, and relevant property or relocation periods.</string>
+    <string name="more_varga_d4_question">What conditions help home and long-term security become genuinely restorative?</string>
+    <string name="more_varga_d4_time">An exact time is important because the divisional ascendant can change within a short interval.</string>
+    <string name="more_varga_d7_name">Saptamsa</string>
+    <string name="more_varga_d7_focus">Children, care, and legacy</string>
+    <string name="more_varga_d7_summary">D7 refines themes of children, caregiving, mentorship, creative continuation, and what is carried into the next generation.</string>
+    <string name="more_varga_d7_read_with">Read with the D1 fifth house, Jupiter, its lord, and supportive timing periods.</string>
+    <string name="more_varga_d7_question">How does the chart describe care, continuation, and the legacy you cultivate?</string>
+    <string name="more_varga_d7_time">Treat D7 house-based statements as provisional unless the recorded time is exact.</string>
+    <string name="more_varga_d9_name">Navamsa</string>
+    <string name="more_varga_d9_focus">Partnership and inner maturity</string>
+    <string name="more_varga_d9_summary">D9 refines relationship maturity, commitments, values, dharma, and how natal potential develops with experience.</string>
+    <string name="more_varga_d9_read_with">Read with the D1 seventh house, Venus, Jupiter, relationship rules, and the active dasha lords.</string>
+    <string name="more_varga_d9_question">What qualities help commitment become more mature and sustainable?</string>
+    <string name="more_varga_d9_time">D9 is highly useful, but its ascendant should be trusted only when the birth time is exact.</string>
+    <string name="more_varga_d10_name">Dashamsa</string>
+    <string name="more_varga_d10_focus">Career and public contribution</string>
+    <string name="more_varga_d10_summary">D10 refines vocation, responsibility, leadership, professional visibility, and the way work reaches the wider world.</string>
+    <string name="more_varga_d10_read_with">Read with the D1 tenth house, its lord, Sun, Saturn, Mercury, and current career timing.</string>
+    <string name="more_varga_d10_question">Where can competence become visible, useful, and increasingly authoritative?</string>
+    <string name="more_varga_d10_time">Small time errors can change the D10 ascendant; confirm it before making specific career claims.</string>
+    <string name="more_varga_d12_name">Dwadashamsa</string>
+    <string name="more_varga_d12_focus">Parents and inherited patterns</string>
+    <string name="more_varga_d12_summary">D12 refines parental influence, ancestry, inherited habits, and the family patterns a person carries forward or consciously changes.</string>
+    <string name="more_varga_d12_read_with">Read with the D1 fourth and ninth houses, Sun, Moon, and family-domain evidence.</string>
+    <string name="more_varga_d12_question">Which inherited patterns provide support, and which are ready to be handled differently?</string>
+    <string name="more_varga_d12_time">Use exact-time data for the D12 ascendant and house emphasis.</string>
+    <string name="more_varga_d24_name">Chaturvimshamsa</string>
+    <string name="more_varga_d24_focus">Learning and mastery</string>
+    <string name="more_varga_d24_summary">D24 refines education, learning style, disciplined study, teachers, and how knowledge becomes usable mastery.</string>
+    <string name="more_varga_d24_read_with">Read with the D1 fourth, fifth, and ninth houses, plus Mercury and Jupiter strength.</string>
+    <string name="more_varga_d24_question">Which conditions make learning deeper, more consistent, and easier to apply?</string>
+    <string name="more_varga_d24_time">At this resolution, exact birth time and boundary awareness are essential.</string>
+    <string name="more_varga_d30_name">Trimshamsa</string>
+    <string name="more_varga_d30_focus">Pressure and resilience</string>
+    <string name="more_varga_d30_summary">D30 refines how strain, conflict, vulnerability, and recovery are experienced. It is best used for practical risk awareness, not fear-based prediction.</string>
+    <string name="more_varga_d30_read_with">Read with the D1 sixth, eighth, and twelfth houses, Saturn and Mars, and measured support factors.</string>
+    <string name="more_varga_d30_question">What helps you respond to pressure without letting it define the whole story?</string>
+    <string name="more_varga_d30_time">High sensitivity makes exact-time input necessary for house-level interpretation.</string>
+    <string name="more_varga_d60_name">Shashtiamsa</string>
+    <string name="more_varga_d60_focus">Fine-grained patterning</string>
+    <string name="more_varga_d60_summary">D60 is a very fine-grained traditional layer used to qualify deeper patterning. It should never be treated as a standalone verdict or used to override more stable evidence.</string>
+    <string name="more_varga_d60_read_with">Use only after D1, the relevant domain varga, strength measures, and timing all point in the same direction.</string>
+    <string name="more_varga_d60_question">Does this fine layer repeat an already well-supported theme, or merely introduce noise?</string>
+    <string name="more_varga_d60_time">D60 needs a rectified or exceptionally precise birth time; otherwise treat it as exploratory only.</string>
+
+    <!-- Help -->
+    <string name="guide_help_title">Help</string>
+    <string name="guide_help_lead">A short guide to the app and the words it uses.</string>
+    <string name="guide_help_ways_title">Finding your way</string>
+    <string name="guide_help_reading">Your chart, the period of life you are in, and what the chart points to first. Start here.</string>
+    <string name="guide_help_timing">The periods running now, the week ahead, today’s transits, good times for a task, and this year’s chart.</string>
+    <string name="guide_help_palm">Photograph a palm and read its lines, two readings a week.</string>
+    <string name="guide_help_account">The charts saved on this phone, your preferences, and this Help.</string>
+    <string name="guide_help_more">At the foot of the Reading tab: life areas, questions for the classics, and every divisional chart.</string>
+    <string name="guide_help_terms_title">Words you will meet</string>
+    <string name="guide_term_chart">Birth chart</string>
+    <string name="guide_term_chart_body">A map of where the planets stood at your birth date, time and place. Every reading here starts from it.</string>
+    <string name="guide_term_lagna">Lagna, or ascendant</string>
+    <string name="guide_term_lagna_body">The sign rising on the eastern horizon as you were born. It sets where the houses begin, which is why the birth time matters.</string>
+    <string name="guide_term_house">House</string>
+    <string name="guide_term_house_body">One of twelve divisions of the chart, each tied to a part of life such as work or partnership.</string>
+    <string name="guide_term_nakshatra">Nakshatra</string>
+    <string name="guide_term_nakshatra_body">One of 27 star divisions of the zodiac. The one your Moon was in at birth sets the order of your dashas.</string>
+    <string name="guide_term_dasha">Dasha</string>
+    <string name="guide_term_dasha_body">A planetary period, used to read how themes unfold over time. Smaller periods, antar and pratyantar, sit inside the larger ones.</string>
+    <string name="guide_term_yoga">Yoga</string>
+    <string name="guide_term_yoga_body">A combination of planets the tradition gives a particular meaning. What it means depends on the rest of the chart; it is not a promise of an outcome.</string>
+    <string name="guide_term_varga">Divisional chart</string>
+    <string name="guide_term_varga_body">A chart drawn from the same birth positions by dividing each sign, to look closely at one theme: D9 for partnership, D10 for work. The finer ones need an exact birth time.</string>
+    <string name="guide_term_traditions">Traditions</string>
+    <string name="guide_term_traditions_body">The ayanamsha sets where the zodiac starts, and the house system how the sky is cut into houses. Lahiri with whole-sign houses is the default; another choice can move a point that sits near a boundary.</string>
+    <string name="guide_help_honest_title">How to read it</string>
+    <string name="guide_help_honest">Planetary positions are calculated; the readings interpret them within astrology. They describe possible themes, not certain events.</string>
+    <string name="guide_help_time">With an approximate birth time, the rising sign, houses and timing can shift. Treat those parts as a first look.</string>
+    <string name="guide_help_tour">Take the tour again</string>
+    <string name="guide_account_help">Help</string>
+    <string name="guide_account_help_note">The words the app uses, and the tour again.</string>
+
+    <!-- The first-run tour, shown once over the reading -->
+    <string name="guide_tour_progress">%1$d of %2$d</string>
+    <string name="guide_tour_skip">Skip</string>
+    <string name="guide_tour_next">Next</string>
+    <string name="guide_tour_done">Done</string>
+    <string name="guide_tour_reading_title">Your reading</string>
+    <string name="guide_tour_reading_body">The period of life you are in, your four key facts, your chart, and what it points to first.</string>
+    <string name="guide_tour_more_title">More readings</string>
+    <string name="guide_tour_more_body">At the foot of this tab: life areas, questions for the classics, and every divisional chart.</string>
+    <string name="guide_tour_timing_title">Timing</string>
+    <string name="guide_tour_timing_body">The periods running now, the week ahead, and good times for a task.</string>
+    <string name="guide_tour_palm_title">Palm</string>
+    <string name="guide_tour_palm_body">Photograph a palm and read its lines, two readings a week.</string>
+    <string name="guide_tour_account_title">Account</string>
+    <string name="guide_tour_account_body">Your saved charts, and Help whenever a word is unfamiliar. The tour can be taken again from there.</string>
+</resources>

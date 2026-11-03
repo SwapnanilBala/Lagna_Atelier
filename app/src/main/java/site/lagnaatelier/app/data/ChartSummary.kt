@@ -54,6 +54,8 @@ data class ChartSummary(
     val timeIsEstimated: Boolean = false,
     /** The reading tab's longer sections: planet table, house support, every finding, yogas. */
     val sections: ReadingSections = ReadingSections(),
+    /** Every divisional chart the engine cast, D1 to D60 (data/vargas). Empty for the built-in sample. */
+    val vargas: List<site.lagnaatelier.app.data.vargas.Varga> = emptyList(),
 )
 
 data class TodaySky(val date: LocalDate, val moonSign: Sign, val moonNakshatra: String, val sunSign: Sign)

@@ -110,12 +110,14 @@ fun ReadingScreen(
     otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
     /* For the yogas' classical note; without it (previews) the note is left out. */
     api: LagnaApi? = null,
+    /* The "More readings" card at the foot of the reading (ui/more). */
+    moreReadings: @Composable () -> Unit = {},
 ) {
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(chart, isSample, onBack, shareLink)
             if (tab == AppTab.Reading) {
-                ReadingContent(chart, today, isSample, api)
+                ReadingContent(chart, today, isSample, api, moreReadings)
             } else {
                 Box(Modifier.weight(1f)) { otherTab(tab) }
             }
@@ -202,7 +204,7 @@ private fun shareReading(context: Context, text: String, subject: String, choose
 }
 
 @Composable
-private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Boolean, api: LagnaApi?) {
+private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Boolean, api: LagnaApi?, moreReadings: @Composable () -> Unit) {
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
@@ -307,6 +309,7 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
         if (sections.yogas.isNotEmpty()) item {
             YogasPanel(sections.yogas, yogasUi, onUi = { yogasUi = it }, api = api)
         }
+        item { moreReadings() }
     }
 }
 
