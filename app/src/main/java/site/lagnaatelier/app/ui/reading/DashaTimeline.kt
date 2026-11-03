@@ -34,7 +34,13 @@ import java.time.temporal.ChronoUnit
 /*
  * The mahadashas laid end to end on one scale, like a price chart over a life.
  * Every position comes from the dates, so a bar's width is its length in years.
+ *
+ * The engine lists the whole 120-year Vimshottari cycle; the bar shows the
+ * first [YEARS_SHOWN] years from birth, and a period too short to draw (the
+ * fortnight of Rahu the sample chart is born into) is left out.
  */
+private const val YEARS_SHOWN = 80
+
 @Composable
 fun DashaTimeline(
     periods: List<Period>,
@@ -42,21 +48,23 @@ fun DashaTimeline(
     today: LocalDate,
     modifier: Modifier = Modifier,
     from: LocalDate = LocalDate.of(periods.first().start.year, 1, 1),
-    to: LocalDate = LocalDate.of(((periods.last().end.year + 9) / 10) * 10, 1, 1),
+    to: LocalDate = LocalDate.of(((from.year + YEARS_SHOWN + 9) / 10) * 10, 1, 1),
 ) {
     val span = ChronoUnit.DAYS.between(from, to).toFloat()
     fun fraction(date: LocalDate) = (ChronoUnit.DAYS.between(from, date) / span).coerceIn(0f, 1f)
 
-    val description = periods.joinToString(", ") { "${it.lord} ${it.start.year} to ${it.end.year}" } +
+    val visible = periods.filter { it.end > from && it.start < to }
+    val description = visible.joinToString(", ") { "${it.lord} ${it.start.year} to ${it.end.year}" } +
         ". Now in ${current.lord}."
 
     Column(modifier.semantics { contentDescription = description }) {
         BoxWithConstraints(Modifier.fillMaxWidth().height(34.dp)) {
-            periods.forEach { period ->
+            visible.forEach { period ->
                 val left = fraction(period.start)
                 val width = fraction(period.end) - left
                 val isCurrent = period == current
                 val barWidth = maxWidth * width - 3.dp
+                if (barWidth < 8.dp) return@forEach
                 val shape = RoundedCornerShape(8.dp)
                 Box(
                     Modifier
@@ -68,33 +76,41 @@ fun DashaTimeline(
                         .border(1.dp, if (isCurrent) Ink else Hairline, shape),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(
-                        if (barWidth < 44.dp) period.lord.take(2) else period.lord,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = if (isCurrent) CardWhite else Ink,
-                        maxLines = 1,
-                        overflow = TextOverflow.Clip,
-                    )
+                    if (barWidth >= 20.dp) {
+                        Text(
+                            if (barWidth < 44.dp) period.lord.take(2) else period.lord,
+                            style = MaterialTheme.typography.labelMedium,
+                            color = if (isCurrent) CardWhite else Ink,
+                            maxLines = 1,
+                            overflow = TextOverflow.Clip,
+                        )
+                    }
                 }
             }
             // Today, as a thin glow-coloured mark across the bars.
-            Box(
-                Modifier
-                    .offset(x = maxWidth * fraction(today) - 1.dp, y = (-5).dp)
-                    .width(2.dp)
-                    .height(44.dp)
-                    .clip(RoundedCornerShape(2.dp))
-                    .background(GlowApricot),
-            )
+            if (today > from && today < to) {
+                Box(
+                    Modifier
+                        .offset(x = maxWidth * fraction(today) - 1.dp, y = (-5).dp)
+                        .width(2.dp)
+                        .height(44.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(GlowApricot),
+                )
+            }
         }
 
         BoxWithConstraints(Modifier.fillMaxWidth().height(18.dp)) {
-            val years = (from.year..to.year step 20).toList()
+            /* Round years every twenty, whatever year the reader was born in. */
+            val firstLabel = ((from.year + 19) / 20) * 20
+            val years = (firstLabel..to.year step 20).toList()
             years.forEach { year ->
-                val x = maxWidth * fraction(LocalDate.of(year, 1, 1))
-                val shift = when (year) {
-                    years.first() -> 0.dp
-                    years.last() -> 26.dp
+                val at = fraction(LocalDate.of(year, 1, 1))
+                val x = maxWidth * at
+                // Centred under its tick, but kept inside the panel at either end.
+                val shift = when {
+                    at < 0.06f -> 0.dp
+                    at > 0.94f -> 26.dp
                     else -> 13.dp
                 }
                 Text(

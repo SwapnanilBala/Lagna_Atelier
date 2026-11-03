@@ -60,7 +60,8 @@ import site.lagnaatelier.app.ui.theme.Muted
 
 @Composable
 fun LandingScreen(
-    today: TodaySky,
+    today: TodaySky?,
+    todayUnavailable: Boolean,
     onStart: () -> Unit,
     onOpenSaved: () -> Unit,
     onSignIn: () -> Unit,
@@ -102,7 +103,7 @@ fun LandingScreen(
                 PillButton(stringResource(R.string.landing_start), onClick = onStart)
             }
 
-            CardCluster(today)
+            CardCluster(today, todayUnavailable)
 
             ProofRow(Modifier.padding(horizontal = 20.dp))
         }
@@ -118,9 +119,16 @@ fun LandingScreen(
     }
 }
 
+@Composable
+private fun MoonDisc() {
+    Box(Modifier.size(28.dp).background(Ink, CircleShape), contentAlignment = Alignment.Center) {
+        Text("☽", color = CardWhite, fontSize = 15.sp)
+    }
+}
+
 /* Three cards over the glow, overlapping the way the reference's do. */
 @Composable
-private fun CardCluster(today: TodaySky) {
+private fun CardCluster(today: TodaySky?, todayUnavailable: Boolean) {
     Box(
         Modifier
             .fillMaxWidth()
@@ -133,21 +141,32 @@ private fun CardCluster(today: TodaySky) {
             Modifier.width(178.dp).offset(y = 22.dp),
             spacing = 6.dp,
         ) {
-            CardLabel(stringResource(R.string.landing_today_label, today.date.weekdayDayMonth()))
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Box(Modifier.size(28.dp).background(Ink, CircleShape), contentAlignment = Alignment.Center) {
-                    Text("☽", color = CardWhite, fontSize = 15.sp)
+            if (today != null) {
+                CardLabel(stringResource(R.string.landing_today_label, today.date.weekdayDayMonth()))
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    MoonDisc()
+                    Text(
+                        stringResource(R.string.landing_today_moon, today.moonSign.label),
+                        style = MaterialTheme.typography.titleSmall.copy(fontSize = 17.sp),
+                    )
                 }
                 Text(
-                    stringResource(R.string.landing_today_moon, today.moonSign.label),
-                    style = MaterialTheme.typography.titleSmall.copy(fontSize = 17.sp),
+                    stringResource(R.string.landing_today_detail, today.moonNakshatra, today.sunSign.label),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Muted,
                 )
+            } else {
+                /* Never a stale sky: until today's has loaded, the card says so. */
+                CardLabel(stringResource(R.string.landing_today_plain))
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    MoonDisc()
+                    Text(
+                        stringResource(if (todayUnavailable) R.string.landing_today_unavailable else R.string.landing_today_loading),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Muted,
+                    )
+                }
             }
-            Text(
-                stringResource(R.string.landing_today_detail, today.moonNakshatra, today.sunSign.label),
-                style = MaterialTheme.typography.bodySmall,
-                color = Muted,
-            )
         }
 
         FloatCard(
@@ -295,6 +314,6 @@ private fun GoogleSignIn(onClick: () -> Unit) {
 @Composable
 private fun LandingPreview() {
     LagnaAtelierTheme {
-        LandingScreen(SampleChart.today, onStart = {}, onOpenSaved = {}, onSignIn = {})
+        LandingScreen(SampleChart.today, todayUnavailable = false, onStart = {}, onOpenSaved = {}, onSignIn = {})
     }
 }

@@ -29,6 +29,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -74,6 +75,9 @@ import site.lagnaatelier.app.ui.theme.LiquidType
 import site.lagnaatelier.app.ui.theme.Muted
 import java.time.LocalDate
 import kotlin.math.roundToInt
+
+/* How many findings show before "See all". */
+private const val FIRST_FINDINGS = 3
 
 enum class AppTab(val label: Int, val icon: ImageVector) {
     Reading(R.string.nav_reading, LiquidIcons.Reading),
@@ -152,9 +156,9 @@ private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit) {
                 color = Muted,
                 modifier = Modifier.padding(top = 4.dp),
             )
-            if (isSample) {
+            if (isSample || chart.timeIsEstimated) {
                 Text(
-                    stringResource(R.string.reading_sample),
+                    stringResource(if (isSample) R.string.reading_sample else R.string.reading_time_estimated),
                     style = MaterialTheme.typography.labelMedium,
                     color = Muted,
                     modifier = Modifier.padding(top = 2.dp),
@@ -169,6 +173,7 @@ private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit) {
 private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
+    var showAllFindings by rememberSaveable { mutableStateOf(false) }
 
     LazyColumn(
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 160.dp),
@@ -209,16 +214,22 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
                         onSelect = { chartView = it },
                     )
                 }
-                if (chartView == 0) {
-                    SouthIndianChart(
+                val navamsaAscendant = chart.navamsaAscendant
+                when {
+                    chartView == 0 -> SouthIndianChart(
                         chart.placements,
                         ascendant = chart.ascendant,
                         title = stringResource(R.string.reading_chart_rasi),
                         subtitle = chart.tradition,
                     )
-                } else {
-                    Text(
-                        stringResource(R.string.reading_navamsa_soon),
+                    chart.navamsa.isNotEmpty() && navamsaAscendant != null -> SouthIndianChart(
+                        chart.navamsa,
+                        ascendant = navamsaAscendant,
+                        title = stringResource(R.string.reading_chart_navamsa),
+                        subtitle = "D9 · ${chart.tradition}",
+                    )
+                    else -> Text(
+                        stringResource(R.string.reading_navamsa_missing),
                         style = MaterialTheme.typography.bodyMedium,
                         color = Muted,
                         modifier = Modifier.padding(vertical = 24.dp),
@@ -226,12 +237,24 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
                 }
             }
         }
-        item {
+        if (chart.findings.isNotEmpty()) item {
+            val shown = if (showAllFindings) chart.findings else chart.findings.take(FIRST_FINDINGS)
             Panel {
                 PanelHead(stringResource(R.string.reading_attention_title)) {
-                    CardLabel(stringResource(R.string.reading_see_all))
+                    if (chart.findings.size > FIRST_FINDINGS) {
+                        Text(
+                            if (showAllFindings) stringResource(R.string.reading_see_fewer)
+                            else stringResource(R.string.reading_see_all, chart.findings.size),
+                            style = MaterialTheme.typography.labelMedium,
+                            color = Muted,
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .clickable(role = Role.Button) { showAllFindings = !showAllFindings }
+                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                        )
+                    }
                 }
-                chart.findings.forEachIndexed { index, finding ->
+                shown.forEachIndexed { index, finding ->
                     if (index > 0) HorizontalDivider(color = Hairline)
                     FindingRow(finding)
                 }

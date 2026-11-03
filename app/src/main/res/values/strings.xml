@@ -22,6 +22,50 @@
     <string name="landing_saved">Saved charts</string>
     <string name="landing_traditions_initials_description">Lahiri, Raman, Krishnamurti, Fagan-Bradley, Pushyapaksha and Yukteshwar</string>
 
+    <string name="landing_today_plain">Today\'s sky</string>
+    <string name="landing_today_loading">Reading the sky…</string>
+    <string name="landing_today_unavailable">The sky shows here when you are online.</string>
+
+    <!-- Intake -->
+    <string name="intake_title">Your birth details</string>
+    <string name="intake_lead">The chart is cast for this exact moment and place.</string>
+    <string name="intake_name">Name</string>
+    <string name="intake_date">Date of birth</string>
+    <string name="intake_time">Time of birth</string>
+    <string name="intake_choose">Choose</string>
+    <string name="intake_knows_time">I know the exact time</string>
+    <string name="intake_estimate_label">Roughly when?</string>
+    <string name="intake_estimate_morning">Morning</string>
+    <string name="intake_estimate_afternoon">Afternoon</string>
+    <string name="intake_estimate_evening">Evening</string>
+    <string name="intake_estimate_unknown">No idea</string>
+    <string name="intake_estimate_note">The chart will use %1$s. The rising sign and houses can shift with the hour, so treat those as a guide.</string>
+    <string name="intake_place">Place of birth</string>
+    <string name="intake_place_hint">Start typing a town or city</string>
+    <string name="intake_place_located">Time zone %1$s, %2$s at that date.</string>
+    <string name="intake_place_not_found">No place by that name. Try the nearest larger town.</string>
+    <string name="intake_place_failed">Place search is not answering. Check your connection and try again.</string>
+    <string name="intake_tradition">Tradition</string>
+    <string name="intake_ayanamsha">Ayanamsha</string>
+    <string name="intake_houses">Houses</string>
+    <string name="intake_tradition_note">Lahiri with whole signs is the usual choice, and the one the website starts with.</string>
+    <string name="intake_submit">Cast my chart</string>
+    <string name="intake_ready">Ready when you are.</string>
+    <string name="intake_missing_name">Add a name of at least two letters.</string>
+    <string name="intake_missing_date">Add the date of birth.</string>
+    <string name="intake_missing_time">Add the time, or turn off “I know the exact time”.</string>
+    <string name="intake_missing_place">Choose the place of birth from the list.</string>
+    <string name="intake_ok">OK</string>
+    <string name="intake_cancel">Cancel</string>
+
+    <!-- Casting -->
+    <string name="casting_title">Casting %1$s’s chart</string>
+    <string name="casting_detail">Placing the planets for %1$s, %2$s.</string>
+    <string name="casting_failed_title">The chart did not come through</string>
+    <string name="casting_failed_generic">Check your connection and try again.</string>
+    <string name="casting_retry">Try again</string>
+    <string name="casting_edit">Edit details</string>
+
     <!-- Reading -->
     <string name="reading_back">Back</string>
     <string name="reading_share">Share</string>
@@ -43,9 +87,11 @@
     <string name="reading_chart_navamsa">Navamsa</string>
     <string name="reading_chart_ascendant">Asc</string>
     <string name="reading_attention_title">What deserves attention</string>
-    <string name="reading_see_all">See all</string>
+    <string name="reading_see_all">See all %1$d</string>
+    <string name="reading_see_fewer">Show fewer</string>
     <string name="reading_report">Your report</string>
-    <string name="reading_navamsa_soon">The navamsa chart arrives with the live data.</string>
+    <string name="reading_navamsa_missing">This chart came back without its navamsa.</string>
+    <string name="reading_time_estimated">Birth time estimated</string>
 
     <!-- Navigation -->
     <string name="nav_reading">Reading</string>

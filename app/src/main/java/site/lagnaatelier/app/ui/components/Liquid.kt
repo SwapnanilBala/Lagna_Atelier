@@ -9,19 +9,25 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.BlurredEdgeTreatment
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -33,6 +39,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import site.lagnaatelier.app.ui.theme.CardShadow
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.GoldenGlow
@@ -86,13 +93,15 @@ fun PillButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: ImageVector = LiquidIcons.ArrowForward,
+    enabled: Boolean = true,
 ) {
     Row(
         modifier
             .height(46.dp)
+            .alpha(if (enabled) 1f else 0.35f)
             .clip(CircleShape)
             .background(Ink)
-            .clickable(role = Role.Button, onClick = onClick)
+            .clickable(enabled = enabled, role = Role.Button, onClick = onClick)
             .padding(start = 20.dp, end = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -168,6 +177,63 @@ fun TickBadge(size: Dp = 22.dp) {
     Box(Modifier.size(size).background(Ink, CircleShape), contentAlignment = Alignment.Center) {
         Icon(LiquidIcons.Check, contentDescription = null, tint = CardWhite, modifier = Modifier.size(size * 0.56f))
     }
+}
+
+/** One choice among several: black when picked, white with a hairline when not. */
+@Composable
+fun LiquidChip(text: String, selected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Box(
+        modifier
+            .clip(CircleShape)
+            .background(if (selected) Ink else CardWhite)
+            .border(1.dp, if (selected) Ink else Hairline, CircleShape)
+            .clickable(role = Role.RadioButton, onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text,
+            style = MaterialTheme.typography.bodySmall.copy(fontSize = 13.sp),
+            color = if (selected) CardWhite else Ink,
+            maxLines = 1,
+        )
+    }
+}
+
+/** A text field on a white ground, hairline at rest and ink when focused. */
+@Composable
+fun LiquidTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    modifier: Modifier = Modifier,
+    placeholder: String? = null,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    trailing: (@Composable () -> Unit)? = null,
+) {
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = modifier.fillMaxWidth(),
+        label = { Text(label) },
+        placeholder = placeholder?.let { { Text(it, color = Muted) } },
+        singleLine = true,
+        shape = RoundedCornerShape(16.dp),
+        keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
+        trailingIcon = trailing,
+        textStyle = MaterialTheme.typography.bodyLarge,
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedContainerColor = CardWhite,
+            unfocusedContainerColor = CardWhite,
+            focusedBorderColor = Ink,
+            unfocusedBorderColor = Hairline,
+            focusedLabelColor = Ink,
+            unfocusedLabelColor = Muted,
+            cursorColor = Ink,
+        ),
+    )
 }
 
 /** Two or three options in a soft track; the selected one is a black pill. */

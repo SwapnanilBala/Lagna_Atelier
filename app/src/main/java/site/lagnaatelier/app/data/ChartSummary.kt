@@ -46,6 +46,11 @@ data class ChartSummary(
     val mahadashas: List<Period>,
     val placements: List<Placement>,
     val findings: List<Finding>,
+    /** D9 placements by navamsa sign, and the navamsa's rising sign. */
+    val navamsa: List<Placement> = emptyList(),
+    val navamsaAscendant: Sign? = null,
+    /** True when the reader did not know the exact time and the chart stands in one. */
+    val timeIsEstimated: Boolean = false,
 )
 
 data class TodaySky(val date: LocalDate, val moonSign: Sign, val moonNakshatra: String, val sunSign: Sign)
