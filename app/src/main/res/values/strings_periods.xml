@@ -27,6 +27,7 @@
 
     <!-- The two ways on from the Timing tab -->
     <string name="periods_more_title">Go further</string>
+    <string name="periods_back_to_timing">Timing</string>
     <string name="chapters_entry_title">Life chapters</string>
     <string name="chapters_entry_body">The turning points around now and the next one ahead, read from your chart.</string>
     <string name="compat_entry_title">Compatibility</string>
@@ -69,10 +70,12 @@
     <string name="compat_score_caption">Composite synastry score from aspects and elemental fit.</string>
     <string name="compat_names">%1$s and %2$s</string>
     <string name="compat_balance">Balance</string>
-    <string name="compat_balance_value">%1$d supportive · %2$d friction</string>
+    <string name="compat_supportive_count">%1$d supportive</string>
+    <string name="compat_friction_count">%1$d friction</string>
     <string name="compat_tightest">Tightest contact</string>
     <string name="compat_married_life">Married life</string>
-    <string name="compat_married_value">%1$d clear · %2$d caution</string>
+    <string name="compat_clear_count">%1$d clear</string>
+    <string name="compat_caution_count">%1$d caution</string>
     <string name="compat_tab_themes">Themes</string>
     <string name="compat_tab_married">Married life</string>
     <string name="compat_tab_aspects">Aspects</string>

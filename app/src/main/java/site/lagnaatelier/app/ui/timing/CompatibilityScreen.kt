@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
@@ -339,14 +340,14 @@ private fun CompatibilityResultView(result: CompatibilityResult, readings: Perio
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FlatTile(
                 stringResource(R.string.compat_balance),
-                "${result.supportive} · ${result.friction}",
-                stringResource(R.string.compat_balance_value, result.supportive, result.friction),
+                stringResource(R.string.compat_supportive_count, result.supportive),
+                stringResource(R.string.compat_friction_count, result.friction),
             )
             if (result.facets.any { it.findings.isNotEmpty() }) {
                 FlatTile(
                     stringResource(R.string.compat_married_life),
-                    "${result.clearFindings} · ${result.cautionFindings}",
-                    stringResource(R.string.compat_married_value, result.clearFindings, result.cautionFindings),
+                    stringResource(R.string.compat_clear_count, result.clearFindings),
+                    stringResource(R.string.compat_caution_count, result.cautionFindings),
                 )
             }
         }
@@ -416,7 +417,8 @@ private fun Facet(facet: SynastryFacet) {
                         },
                     ),
                     color = if (finding.polarity == FindingPolarity.Context) Muted else Ink,
-                    modifier = Modifier.padding(top = 2.dp),
+                    /* One width for all three, so the findings line up. */
+                    modifier = Modifier.width(64.dp).padding(top = 2.dp),
                 )
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                     Text(finding.text, style = MaterialTheme.typography.bodyMedium)
