@@ -44,6 +44,15 @@
     <string name="chart_abbrev_sa">Sa</string>
     <string name="chart_abbrev_ra">Ra</string>
     <string name="chart_abbrev_ke">Ke</string>
+    <string name="chart_planet_sun">Sun</string>
+    <string name="chart_planet_moon">Moon</string>
+    <string name="chart_planet_mars">Mars</string>
+    <string name="chart_planet_mercury">Mercury</string>
+    <string name="chart_planet_jupiter">Jupiter</string>
+    <string name="chart_planet_venus">Venus</string>
+    <string name="chart_planet_saturn">Saturn</string>
+    <string name="chart_planet_rahu">Rahu</string>
+    <string name="chart_planet_ketu">Ketu</string>
     <string name="chart_south_description">South Indian chart, %1$s rising.</string>
     <string name="chart_north_description">North Indian chart with %1$s ascendant. The houses are fixed: the ascendant is the top diamond and the houses run anticlockwise from it.</string>
     <string name="chart_sign_holds">%1$s: %2$s.</string>

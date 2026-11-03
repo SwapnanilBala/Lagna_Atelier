@@ -28,6 +28,7 @@ import site.lagnaatelier.app.data.timing.TimingFormat
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
+import site.lagnaatelier.app.ui.reading.planetName
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.Muted
@@ -76,7 +77,7 @@ private fun Periods(forecast: Forecast, today: LocalDate, holder: TimingHolder) 
         ) {
             val next = periods.next
             Text(
-                if (next != null) stringResource(R.string.timing_next_period, next.lord, next.start.dayMonthYear()) else "",
+                if (next != null) stringResource(R.string.timing_next_period, planetName(next.lord), next.start.dayMonthYear()) else "",
                 style = MaterialTheme.typography.labelMedium,
                 color = Muted,
                 modifier = Modifier.weight(1f),
@@ -103,7 +104,7 @@ private fun Lords(lords: List<String>) {
         buildAnnotatedString {
             lords.forEachIndexed { index, lord ->
                 if (index > 0) withStyle(SpanStyle(color = Muted)) { append(" · ") }
-                append(lord)
+                append(planetName(lord))
             }
         },
         style = MaterialTheme.typography.titleLarge.copy(fontSize = 25.sp, lineHeight = 27.sp),
@@ -119,7 +120,7 @@ private fun Level(label: String, period: Period, today: LocalDate) {
                 buildAnnotatedString {
                     withStyle(SpanStyle(fontWeight = FontWeight.Normal, color = Muted)) { append(label) }
                     append("  ")
-                    append(period.lord)
+                    append(planetName(period.lord))
                 },
                 style = MaterialTheme.typography.titleMedium,
             )
@@ -141,7 +142,7 @@ private fun PeriodRow(period: Period, isCurrent: Boolean) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            period.lord,
+            planetName(period.lord),
             style = MaterialTheme.typography.bodyMedium,
             color = if (isCurrent) Ink else Muted,
             fontWeight = if (isCurrent) FontWeight.Medium else FontWeight.Normal,

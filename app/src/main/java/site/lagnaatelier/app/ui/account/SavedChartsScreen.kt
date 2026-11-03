@@ -50,6 +50,7 @@ import site.lagnaatelier.app.ui.components.Glow
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
+import site.lagnaatelier.app.ui.reading.signName
 import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Hairline
@@ -217,10 +218,10 @@ private fun FrontCard(
             IconCircle(AccountIcons.Bin, stringResource(R.string.saved_delete_button, details.name), onAskDelete)
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Tile(stringResource(R.string.saved_rising), chart.ascendant.label, chart.risingDegree())
+            Tile(stringResource(R.string.saved_rising), signName(chart.ascendant), chart.risingDegree())
             Tile(
                 stringResource(R.string.saved_moon),
-                chart.moonSign?.label ?: stringResource(R.string.saved_missing_value),
+                chart.moonSign?.let { signName(it) } ?: stringResource(R.string.saved_missing_value),
                 chart.moonDegree?.let(::formatDegree) ?: stringResource(R.string.saved_missing_value),
             )
         }

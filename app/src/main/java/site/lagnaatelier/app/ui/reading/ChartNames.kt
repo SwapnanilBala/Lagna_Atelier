@@ -54,6 +54,36 @@ fun bodyAbbreviation(abbreviation: String): String = when (abbreviation) {
     else -> abbreviation
 }
 
+/** A planet's name in the app's language, from the API's English one: "Mercury" -> "बुध". Unknown ones print as given. */
+@Composable
+fun planetName(name: String): String = when (name) {
+    "Sun" -> stringResource(R.string.chart_planet_sun)
+    "Moon" -> stringResource(R.string.chart_planet_moon)
+    "Mars" -> stringResource(R.string.chart_planet_mars)
+    "Mercury" -> stringResource(R.string.chart_planet_mercury)
+    "Jupiter" -> stringResource(R.string.chart_planet_jupiter)
+    "Venus" -> stringResource(R.string.chart_planet_venus)
+    "Saturn" -> stringResource(R.string.chart_planet_saturn)
+    "Rahu" -> stringResource(R.string.chart_planet_rahu)
+    "Ketu" -> stringResource(R.string.chart_planet_ketu)
+    else -> name
+}
+
+/** A planet's chart abbreviation in the app's language, from its English name: "Ketu" -> "Ke". */
+@Composable
+fun planetAbbreviation(name: String): String = when (name) {
+    "Sun" -> bodyAbbreviation("Su")
+    "Moon" -> bodyAbbreviation("Mo")
+    "Mars" -> bodyAbbreviation("Ma")
+    "Mercury" -> bodyAbbreviation("Me")
+    "Jupiter" -> bodyAbbreviation("Ju")
+    "Venus" -> bodyAbbreviation("Ve")
+    "Saturn" -> bodyAbbreviation("Sa")
+    "Rahu" -> bodyAbbreviation("Ra")
+    "Ketu" -> bodyAbbreviation("Ke")
+    else -> name.take(2)
+}
+
 /** Every sign's name, for building a chart's spoken description in one pass. */
 @Composable
 internal fun signNames(): Map<Sign, String> = Sign.entries.associateWith { signName(it) }

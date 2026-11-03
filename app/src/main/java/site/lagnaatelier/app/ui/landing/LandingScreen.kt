@@ -49,6 +49,7 @@ import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.Glow
 import site.lagnaatelier.app.ui.components.PillButton
 import site.lagnaatelier.app.ui.components.TickBadge
+import site.lagnaatelier.app.ui.reading.signName
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.GeistMono
@@ -146,12 +147,12 @@ private fun CardCluster(today: TodaySky?, todayUnavailable: Boolean) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     MoonDisc()
                     Text(
-                        stringResource(R.string.landing_today_moon, today.moonSign.label),
+                        stringResource(R.string.landing_today_moon, signName(today.moonSign)),
                         style = MaterialTheme.typography.titleSmall.copy(fontSize = 17.sp),
                     )
                 }
                 Text(
-                    stringResource(R.string.landing_today_detail, today.moonNakshatra, today.sunSign.label),
+                    stringResource(R.string.landing_today_detail, today.moonNakshatra, signName(today.sunSign)),
                     style = MaterialTheme.typography.bodySmall,
                     color = Muted,
                 )

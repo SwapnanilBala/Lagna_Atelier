@@ -143,10 +143,10 @@ private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit, s
     val shareText = stringResource(
         R.string.reading_share_text,
         chart.name,
-        chart.ascendant.label,
-        chart.moonSign.label,
+        signName(chart.ascendant),
+        signName(chart.moonSign),
         chart.nakshatra,
-        "${chart.mahadasha.lord} · ${chart.antardasha.lord}",
+        "${planetName(chart.mahadasha.lord)} · ${planetName(chart.antardasha.lord)}",
         chart.antardasha.end.dayMonthYear(),
         shareLink,
     )
@@ -305,9 +305,9 @@ private fun NowCard(chart: ChartSummary, today: LocalDate) {
                 CardLabel(stringResource(R.string.reading_now_label))
                 Text(
                     buildAnnotatedString {
-                        append(chart.mahadasha.lord)
+                        append(planetName(chart.mahadasha.lord))
                         withStyle(SpanStyle(color = Muted)) { append(" · ") }
-                        append(period.lord)
+                        append(planetName(period.lord))
                     },
                     style = MaterialTheme.typography.titleLarge,
                 )
@@ -354,18 +354,18 @@ private fun ProgressLine(fraction: Float) {
 private fun FactTiles(chart: ChartSummary) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            FactTile(stringResource(R.string.reading_fact_lagna), chart.ascendant.label, formatDegree(chart.ascendantDegree))
-            FactTile(stringResource(R.string.reading_fact_moon), chart.moonSign.label, formatDegree(chart.moonDegree))
+            FactTile(stringResource(R.string.reading_fact_lagna), signName(chart.ascendant), formatDegree(chart.ascendantDegree))
+            FactTile(stringResource(R.string.reading_fact_moon), signName(chart.moonSign), formatDegree(chart.moonDegree))
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FactTile(
                 stringResource(R.string.reading_fact_nakshatra),
                 chart.nakshatra,
-                stringResource(R.string.reading_pada, chart.pada, chart.nakshatraLord),
+                stringResource(R.string.reading_pada, chart.pada, planetName(chart.nakshatraLord)),
             )
             FactTile(
                 stringResource(R.string.reading_fact_mahadasha),
-                chart.mahadasha.lord,
+                planetName(chart.mahadasha.lord),
                 stringResource(R.string.reading_until, chart.mahadasha.end.monthYear()),
             )
         }
