@@ -2,6 +2,7 @@ package site.lagnaatelier.app.data
 
 import org.json.JSONArray
 import org.json.JSONObject
+import site.lagnaatelier.app.data.reading.ReadingSectionsParser
 import java.time.LocalDate
 
 /*
@@ -74,6 +75,7 @@ object ChartParser {
             navamsaAscendant = navamsaAscendant,
             findings = findings(chart),
             timeIsEstimated = details.accuracy != TimeAccuracy.Exact,
+            sections = ReadingSectionsParser.parse(root),
         )
     }
 

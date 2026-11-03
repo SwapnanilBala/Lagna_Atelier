@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.data
 
+import site.lagnaatelier.app.data.reading.ReadingSections
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -51,6 +52,8 @@ data class ChartSummary(
     val navamsaAscendant: Sign? = null,
     /** True when the reader did not know the exact time and the chart stands in one. */
     val timeIsEstimated: Boolean = false,
+    /** The reading tab's longer sections: planet table, house support, every finding, yogas. */
+    val sections: ReadingSections = ReadingSections(),
 )
 
 data class TodaySky(val date: LocalDate, val moonSign: Sign, val moonNakshatra: String, val sunSign: Sign)

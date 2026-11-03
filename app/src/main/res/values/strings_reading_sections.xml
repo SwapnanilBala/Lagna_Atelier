@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The reading tab's longer sections: planet positions, house support, the
+    full reading with its evidence, and the yogas. Worded after the website's
+    own copy (messages/en.mobile-insights.json, en.full-reading.json and
+    en.strength.json), so a reading says the same thing on both.
+-->
+<resources>
+    <!-- Shared -->
+    <string name="sections_show">Show</string>
+    <string name="sections_hide">Hide</string>
+    <string name="sections_see_all">See all %1$d</string>
+    <string name="sections_see_fewer">See fewer</string>
+    <string name="sections_retry">Try again</string>
+
+    <!-- Planet positions -->
+    <string name="positions_title">Planetary positions</string>
+    <string name="positions_count">%1$d grahas</string>
+    <string name="positions_col_graha">Graha</string>
+    <string name="positions_col_sign">Sign</string>
+    <string name="positions_col_degree">Deg</string>
+    <string name="positions_col_house">Hse</string>
+    <string name="positions_col_bhava">Bhava</string>
+    <string name="positions_flag_retrograde">Rx</string>
+    <string name="positions_flag_combust">Cmb</string>
+    <string name="positions_retrograde_description">moving backwards</string>
+    <string name="positions_combust_description">too close to the Sun</string>
+    <string name="positions_row_description">%1$s in %2$s at %3$s, house %4$d</string>
+    <string name="positions_row_bhava_description">%1$s in %2$s at %3$s, house %4$d by sign, bhava %5$d</string>
+    <string name="positions_flag_legend">Rx = moving backwards from here · Cmb = too close to the Sun to act freely</string>
+    <string name="positions_bhava_legend">Hse counts houses by sign, as the chart does. Bhava is the house under %1$s, the system the readings use.</string>
+    <string name="house_system_equal">Equal Houses</string>
+    <string name="house_system_placidus">Placidus</string>
+    <string name="house_system_koch">Koch</string>
+    <string name="house_system_campanus">Campanus</string>
+    <string name="house_system_regiomontanus">Regiomontanus</string>
+    <string name="house_system_porphyry">Porphyry</string>
+
+    <!-- House support -->
+    <string name="houses_title">Which house is responsible for what</string>
+    <string name="houses_subtitle">All twelve, and the support each holds</string>
+    <string name="houses_bindus_legend">Bindus are Ashtakavarga’s support score for the sign sitting on that house, out of a fixed pool of 337. Dead average is 28.1, so a house is read against that rather than against a maximum.</string>
+    <string name="houses_self_label">Support for the self</string>
+    <string name="houses_self_value">%1$d%%</string>
+    <string name="houses_self_meta">of average · %1$d bindus in %2$s</string>
+    <string name="houses_best">Best supported</string>
+    <string name="houses_least">Least supported</string>
+    <string name="houses_readout_house">House %1$d · %2$s · %3$d</string>
+    <string name="houses_above_average">%1$d of 12 houses above average</string>
+    <string name="houses_bars_description">Bindus in each of the twelve houses, against the 28.1 average.</string>
+    <string name="houses_band_strong">28+ bindus</string>
+    <string name="houses_band_neutral">26–27</string>
+    <string name="houses_band_weak">25 or fewer</string>
+    <string name="houses_show_roles">What each house answers for</string>
+    <string name="houses_bhava">%1$s Bhava</string>
+    <string name="houses_readout">%1$s · %2$d</string>
+    <string name="houses_row_description">House %1$d, %2$s Bhava: %3$s, %4$d bindus. %5$s.</string>
+    <string name="houses_peak_best">best supported</string>
+    <string name="houses_peak_least">least supported</string>
+    <string name="houses_group_legend">Kendra are the four angles the chart is built on; Panaphara and Apoklima are the houses that follow them and fall away from them. On top of that, Trikona houses are read as where merit arrives, Upachaya as the ones that improve with age and effort, and Dusthana as the ones that ask for something first. A house can be more than one: the 6th is an Upachaya and a Dusthana both.</string>
+    <string name="houses_caveat">This chart’s house system puts one sign on two cusps and leaves another with none, so the twelve houses add up to %1$d rather than a clean 337. The figure for each house stands; the total is reporting the house division as much as the chart.</string>
+    <string name="house_group_kendra">Kendra</string>
+    <string name="house_group_panaphara">Panaphara</string>
+    <string name="house_group_apoklima">Apoklima</string>
+    <string name="house_group_trikona">Trikona</string>
+    <string name="house_group_upachaya">Upachaya</string>
+    <string name="house_group_dusthana">Dusthana</string>
+    <!-- The classical names of the twelve bhavas, 1st to 12th. -->
+    <string-array name="bhava_names">
+        <item>Tanu</item>
+        <item>Dhana</item>
+        <item>Sahaja</item>
+        <item>Bandhu</item>
+        <item>Putra</item>
+        <item>Ari</item>
+        <item>Yuvati</item>
+        <item>Randhra</item>
+        <item>Dharma</item>
+        <item>Karma</item>
+        <item>Labha</item>
+        <item>Vyaya</item>
+    </string-array>
+    <!-- What each house governs, 1st to 12th: the wording the web's rule engine uses (HOUSE_THEMES). -->
+    <string-array name="house_themes">
+        <item>identity, appearance and direction</item>
+        <item>assets, income and values</item>
+        <item>communication, learning and siblings</item>
+        <item>home, roots and emotional foundations</item>
+        <item>creativity, romance and children</item>
+        <item>service, routines and health</item>
+        <item>partnerships and agreements</item>
+        <item>shared resources and transformation</item>
+        <item>beliefs, wisdom and long-distance journeys</item>
+        <item>career, authority and public standing</item>
+        <item>community, networks and long goals</item>
+        <item>retreat, subconscious and spiritual closure</item>
+    </string-array>
+
+    <!-- The full reading -->
+    <string name="full_title">The full reading</string>
+    <string name="full_subtitle">%1$d findings, each with what it rests on</string>
+    <string name="full_filter_all">All</string>
+    <string name="full_filter_top">Top priorities</string>
+    <string name="full_theme_core">Who you are</string>
+    <string name="full_theme_career">Work</string>
+    <string name="full_theme_love">Love</string>
+    <string name="full_rare">Rare</string>
+    <string name="full_top_priority">Top priority %1$d</string>
+    <string name="full_other_side">The other side</string>
+    <string name="full_why">Why this reading</string>
+    <string name="full_how_common">How common</string>
+
+    <!-- Yogas -->
+    <string name="yogas_title">Yogas</string>
+    <string name="yogas_subtitle">%1$d combinations, strongest first</string>
+    <string name="yogas_intro">Yogas are classical combinations of planets. Each one below was found in this chart from where its planets sit, which signs they rule and which houses they hold.</string>
+    <string name="yoga_strength_strong">Strong</string>
+    <string name="yoga_strength_moderate">Moderate</string>
+    <string name="yoga_strength_weak">Weak</string>
+    <string name="yoga_family_mahapurusha">Mahapurusha</string>
+    <string name="yoga_family_wealth">Wealth &amp; Raja</string>
+    <string name="yoga_family_benefic">Benefic</string>
+    <string name="yoga_family_viparita">Viparita Raja</string>
+    <string name="yoga_family_nabhasa">Nabhasa</string>
+    <string name="yoga_family_challenging">Challenging</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">What it means</string>
+    <string name="yoga_forms">What forms it</string>
+    <string name="yoga_shows">When it shows</string>
+    <string name="yoga_softened">What softens it</string>
+    <string name="yoga_source">Source: %1$s</string>
+
+    <!-- From the classics -->
+    <string name="classics_kicker">From the classics</string>
+    <string name="classics_heading">What the Brihat Jataka says about your yogas</string>
+    <string name="classics_ask">Read what the book says</string>
+    <string name="classics_pending">Reading the Brihat Jataka for your yogas…</string>
+    <string name="classics_empty">The Brihat Jataka has no verses on this chart’s yogas, so there is no note to show.</string>
+    <string name="classics_sources">The verses (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">Brihat Jataka %1$s</string>
+    <string name="classics_ref_brihat_samhita">Brihat Samhita %1$s</string>
+    <string name="classics_ref_strijataka">Strijataka, ch. %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">translator’s note</string>
+    <string name="classics_credit">The numbers point to the verses they come from, quoted as printed in N. Chidambaram Iyer’s 1885 English translation of Varahamihira’s Brihat Jataka. Words in square brackets are ours, not the book’s.</string>
+</resources>
