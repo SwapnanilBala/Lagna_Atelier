@@ -1,0 +1,36 @@
+{
+  "overall_summary": "  A hand of steady lines.  ",
+  "lines": {
+    "heart_line": { "description": 42, "interpretation": "Loyal.", "strength": "  STRONG " },
+    "head_line": { "interpretation": "Careful.", "strength": "very strong" },
+    "fate_line": "not an object"
+  },
+  "life_trajectory": ["not", "an", "object"],
+  "mounts": { "prominent": ["Jupiter", "", 7, null, "Saturn"], "interpretation": null },
+  "special_markings": { "observed": "a star" },
+  "guidance": true,
+  "image_quality": { "rating": "Marginal", "issues": "blurry", "notes": "Low light." },
+  "line_confidence": {
+    "heart_line": { "visibility": "Not Detected", "confidence": 1.4 },
+    "head_line": { "visibility": "clear", "confidence": "high" },
+    "life_line": { "visibility": "hazy", "confidence": 0.5 }
+  },
+  "line_coordinates": {
+    "heart_line": [{ "x": -0.2, "y": 0.4 }, { "x": "0.5", "y": 0.4 }, { "x": 0.5, "y": 2 }, "point"],
+    "head_line": [],
+    "life_line": [
+      { "x": 0.1, "y": 0.1 }, { "x": 0.1, "y": 0.2 }, { "x": 0.1, "y": 0.3 }, { "x": 0.1, "y": 0.4 },
+      { "x": 0.1, "y": 0.5 }, { "x": 0.1, "y": 0.6 }, { "x": 0.1, "y": 0.7 }, { "x": 0.1, "y": 0.8 },
+      { "x": 0.1, "y": 0.9 }, { "x": 0.2, "y": 0.9 }, { "x": 0.3, "y": 0.9 }, { "x": 0.4, "y": 0.9 },
+      { "x": 0.5, "y": 0.9 }, { "x": 0.6, "y": 0.9 }
+    ]
+  },
+  "jyotish_correlation": {
+    "correlations": [
+      { "palm_indicator": "Mount", "chart_factor": "Moon", "reinforcement": "certain", "reading": "Dropped." },
+      { "palm_indicator": "Line", "chart_factor": "Sun", "reinforcement": " Moderate", "reading": "Kept." },
+      "not an object"
+    ]
+  },
+  "served_by": "somebody else"
+}
