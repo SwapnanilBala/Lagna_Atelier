@@ -21,12 +21,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.FileProvider
+import site.lagnaatelier.app.data.palm.PalmCaptureFiles
 import androidx.lifecycle.ViewModelProvider
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
-import java.io.File
 
 /*
  * The Palm tab: capture, reading and history, as a small state machine of
@@ -49,7 +49,9 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier
     var cameraUri by rememberSaveable { mutableStateOf<String?>(null) }
     val takePicture = rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) { ok ->
         val uri = cameraUri
-        if (ok && uri != null) model.onPhoto(Uri.parse(uri))
+        cameraUri = null
+        /* The camera's full-size file is deleted once read, or now if there is nothing to read. */
+        if (ok && uri != null) model.onPhoto(Uri.parse(uri), fromCamera = true) else model.discardCapture()
     }
     val pickPhoto = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
         if (uri != null) model.onPhoto(uri)
@@ -61,11 +63,8 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier
             return
         }
         val uri = runCatching {
-            val dir = File(context.cacheDir, "palm").apply { mkdirs() }
-            /* One photo at a time: the last capture is no longer needed once a new one starts. */
-            dir.listFiles()?.forEach { it.delete() }
-            val file = File(dir, "capture-${System.currentTimeMillis()}.jpg")
-            FileProvider.getUriForFile(context, "${context.packageName}.files", file)
+            /* Earlier captures are already gone: each is deleted as soon as it has been read. */
+            FileProvider.getUriForFile(context, "${context.packageName}.files", PalmCaptureFiles.newCapture(context))
         }.getOrNull()
         if (uri == null) {
             model.cameraUnavailable()

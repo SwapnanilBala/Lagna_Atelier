@@ -14,6 +14,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -22,6 +23,7 @@ import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.palm.PalmAllowanceStore
 import site.lagnaatelier.app.data.palm.PalmApi
+import site.lagnaatelier.app.data.palm.PalmCaptureFiles
 import site.lagnaatelier.app.data.palm.PalmHistoryStore
 import site.lagnaatelier.app.data.palm.PalmImageLoader
 import site.lagnaatelier.app.data.palm.PalmQa
@@ -113,6 +115,17 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
 
     init {
         refreshHistory()
+        /* Captures stranded by an app closed with the camera open; see PalmCaptureFiles. */
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching { PalmCaptureFiles.clearStale(PalmCaptureFiles.dir(getApplication())) }
+        }
+    }
+
+    /** The camera was cancelled or failed: its empty or partial file goes now. */
+    fun discardCapture() {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching { PalmCaptureFiles.clearAll(PalmCaptureFiles.dir(getApplication())) }
+        }
     }
 
     fun refreshAllowance() {
@@ -123,7 +136,13 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
         captureError = text(R.string.palm_error_camera)
     }
 
-    fun onPhoto(uri: Uri) {
+    /**
+     * Prepares the upload copy of [uri]. For a [fromCamera] photo the camera's
+     * full-size original (EXIF and GPS included) is deleted as soon as it has
+     * been read, whether or not preparing it worked. A photo chosen from the
+     * gallery is the reader's own file and is never touched.
+     */
+    fun onPhoto(uri: Uri, fromCamera: Boolean = false) {
         captureError = null
         preparing = true
         viewModelScope.launch {
@@ -137,6 +156,12 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
                 captureError = text(R.string.palm_error_photo)
             } finally {
                 preparing = false
+                if (fromCamera) {
+                    /* NonCancellable: the original must go even if this work was cancelled. */
+                    withContext(NonCancellable + Dispatchers.IO) {
+                        runCatching { PalmCaptureFiles.clearAll(PalmCaptureFiles.dir(getApplication())) }
+                    }
+                }
             }
         }
     }
