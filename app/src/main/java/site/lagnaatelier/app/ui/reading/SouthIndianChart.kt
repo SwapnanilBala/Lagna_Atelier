@@ -36,10 +36,11 @@ import site.lagnaatelier.app.ui.theme.LiquidType
 import site.lagnaatelier.app.ui.theme.Muted
 
 /*
- * The South Indian chart: the signs sit in fixed squares, Pisces top left and
- * running clockwise, and the planets are placed by sign. Never by house --
- * in this app a planet's `house` is the bhava, which can differ from its sign
- * square (the web app's rule, lib/chart-style.ts and wheelPlacement).
+ * The South Indian chart, one of the two styles (RasiChart picks): the signs
+ * sit in fixed squares, Pisces top left and running clockwise, and the
+ * planets are placed by sign. Never by house -- in this app a planet's
+ * `house` is the bhava, which can differ from its sign square (the web app's
+ * rule, lib/chart-style.ts and wheelPlacement).
  */
 
 /** Column and row of each sign's square, Pisces at (0, 0). */
@@ -67,11 +68,13 @@ fun SouthIndianChart(
     modifier: Modifier = Modifier,
 ) {
     val ascLabel = stringResource(R.string.reading_chart_ascendant)
+    val names = signNames()
+    val abbreviations = abbreviations(placements)
     val description = buildString {
-        append("South Indian chart. ${ascendant.label} rising. ")
+        append(stringResource(R.string.chart_south_description, names.getValue(ascendant)))
         Sign.entries.forEach { sign ->
-            val here = placements.filter { it.sign == sign }.map { it.abbreviation }
-            if (here.isNotEmpty()) append("${sign.label}: ${here.joinToString(", ")}. ")
+            val here = placements.filter { it.sign == sign }.map { abbreviations.getValue(it.abbreviation) }
+            if (here.isNotEmpty()) append(' ').append(stringResource(R.string.chart_sign_holds, names.getValue(sign), here.joinToString(", ")))
         }
     }
     val shape = RoundedCornerShape(12.dp)
@@ -89,7 +92,7 @@ fun SouthIndianChart(
         Sign.entries.forEach { sign ->
             val (col, row) = southIndianCell(sign)
             val isAsc = sign == ascendant
-            val bodies = placements.filter { it.sign == sign }.joinToString(" ") { it.abbreviation }
+            val bodies = placements.filter { it.sign == sign }.joinToString(" ") { abbreviations.getValue(it.abbreviation) }
             Column(
                 Modifier
                     .offset(x = cell * col, y = cell * row)
@@ -99,7 +102,7 @@ fun SouthIndianChart(
                     .padding(horizontal = 6.dp, vertical = 5.dp),
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
-                Text(sign.label, style = LiquidType.gridLabel, color = if (isAsc) CardWhite else Muted, maxLines = 1)
+                Text(names.getValue(sign), style = LiquidType.gridLabel, color = if (isAsc) CardWhite else Muted, maxLines = 1)
                 Text(
                     if (isAsc) listOf(ascLabel, bodies).filter { it.isNotEmpty() }.joinToString(" ") else bodies,
                     style = MaterialTheme.typography.titleMedium.copy(fontSize = MaterialTheme.typography.titleMedium.fontSize * 0.84f),

@@ -199,12 +199,6 @@ private fun PreferencesPanel() {
         )
         HorizontalDivider(color = Hairline)
         Setting(
-            stringResource(R.string.account_chart_style),
-            stringResource(R.string.account_chart_style_value),
-            stringResource(R.string.account_chart_style_note),
-        )
-        HorizontalDivider(color = Hairline)
-        Setting(
             stringResource(R.string.account_new_charts),
             traditionLabel(Traditions.DEFAULT_ENGINE_ID).orEmpty(),
             stringResource(R.string.account_new_charts_note),

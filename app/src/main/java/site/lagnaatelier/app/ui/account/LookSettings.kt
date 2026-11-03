@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,14 +16,16 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.ChartStyle
 import site.lagnaatelier.app.data.LookPreferences
 import site.lagnaatelier.app.data.ThemeChoice
 import site.lagnaatelier.app.ui.components.LiquidChip
+import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Muted
 
 /*
  * The three choices about how the app looks, in Account -> Preferences:
- * for now the appearance. It is remembered on this phone.
+ * appearance and chart style. Each is remembered on this phone.
  */
 @Composable
 internal fun LookSettings() {
@@ -31,6 +34,17 @@ internal fun LookSettings() {
         note = stringResource(R.string.look_theme_note),
         options = ThemeChoice.entries.map { it to stringResource(themeLabel(it)) },
         selected = LookPreferences.theme,
+        onSelect = LookPreferences::choose,
+    )
+    HorizontalDivider(color = Hairline)
+    val style = LookPreferences.chartStyle
+    Choice(
+        title = stringResource(R.string.account_chart_style),
+        note = stringResource(
+            if (style == ChartStyle.NorthIndian) R.string.look_chart_north_note else R.string.look_chart_south_note,
+        ),
+        options = ChartStyle.entries.map { it to stringResource(chartStyleLabel(it)) },
+        selected = style,
         onSelect = LookPreferences::choose,
     )
 }
@@ -62,4 +76,9 @@ private fun themeLabel(choice: ThemeChoice): Int = when (choice) {
     ThemeChoice.System -> R.string.look_theme_system
     ThemeChoice.Light -> R.string.look_theme_light
     ThemeChoice.Dark -> R.string.look_theme_dark
+}
+
+internal fun chartStyleLabel(style: ChartStyle): Int = when (style) {
+    ChartStyle.SouthIndian -> R.string.look_chart_south
+    ChartStyle.NorthIndian -> R.string.look_chart_north
 }

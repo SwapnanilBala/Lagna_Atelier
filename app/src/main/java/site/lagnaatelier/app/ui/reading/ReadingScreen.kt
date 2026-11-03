@@ -246,13 +246,13 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate) {
                 }
                 val navamsaAscendant = chart.navamsaAscendant
                 when {
-                    chartView == 0 -> SouthIndianChart(
+                    chartView == 0 -> RasiChart(
                         chart.placements,
                         ascendant = chart.ascendant,
                         title = stringResource(R.string.reading_chart_rasi),
                         subtitle = chart.tradition,
                     )
-                    chart.navamsa.isNotEmpty() && navamsaAscendant != null -> SouthIndianChart(
+                    chart.navamsa.isNotEmpty() && navamsaAscendant != null -> RasiChart(
                         chart.navamsa,
                         ascendant = navamsaAscendant,
                         title = stringResource(R.string.reading_chart_navamsa),

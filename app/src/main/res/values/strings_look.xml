@@ -7,4 +7,34 @@
     <string name="look_theme_light">Light</string>
     <string name="look_theme_dark">Dark</string>
     <string name="look_theme_note">Match phone follows your phone’s dark theme setting.</string>
+    <string name="look_chart_south">South Indian</string>
+    <string name="look_chart_north">North Indian</string>
+    <string name="look_chart_south_note">Signs keep their places; the rising sign is the filled square.</string>
+    <string name="look_chart_north_note">Houses keep their places; the rising sign is the top diamond, and each house shows its sign’s number, Aries as 1.</string>
+    <!-- The chart, drawn either way -->
+    <string name="chart_sign_aries">Aries</string>
+    <string name="chart_sign_taurus">Taurus</string>
+    <string name="chart_sign_gemini">Gemini</string>
+    <string name="chart_sign_cancer">Cancer</string>
+    <string name="chart_sign_leo">Leo</string>
+    <string name="chart_sign_virgo">Virgo</string>
+    <string name="chart_sign_libra">Libra</string>
+    <string name="chart_sign_scorpio">Scorpio</string>
+    <string name="chart_sign_sagittarius">Sagittarius</string>
+    <string name="chart_sign_capricorn">Capricorn</string>
+    <string name="chart_sign_aquarius">Aquarius</string>
+    <string name="chart_sign_pisces">Pisces</string>
+    <string name="chart_abbrev_su">Su</string>
+    <string name="chart_abbrev_mo">Mo</string>
+    <string name="chart_abbrev_ma">Ma</string>
+    <string name="chart_abbrev_me">Me</string>
+    <string name="chart_abbrev_ju">Ju</string>
+    <string name="chart_abbrev_ve">Ve</string>
+    <string name="chart_abbrev_sa">Sa</string>
+    <string name="chart_abbrev_ra">Ra</string>
+    <string name="chart_abbrev_ke">Ke</string>
+    <string name="chart_south_description">South Indian chart, %1$s rising.</string>
+    <string name="chart_north_description">North Indian chart with %1$s ascendant. The houses are fixed: the ascendant is the top diamond and the houses run anticlockwise from it.</string>
+    <string name="chart_sign_holds">%1$s: %2$s.</string>
+    <string name="chart_house_holds">House %1$d, %2$s: %3$s.</string>
 </resources>
