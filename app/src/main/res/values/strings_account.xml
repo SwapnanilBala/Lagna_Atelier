@@ -1,4 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Strings for the account feature; that feature owns this file. -->
 <resources>
+    <!-- Account tab -->
+    <string name="account_title">Account</string>
+    <string name="account_signed_out">Not signed in</string>
+    <string name="account_signin_tag">COMING SOON</string>
+    <string name="account_signin_title">Sign in with Google is on its way</string>
+    <string name="account_signin_copy">It is not in the app yet. When it arrives, you can keep your charts with your account and see them on lagnaatelier.site too. Until then, everything here stays on this phone.</string>
+    <string name="account_saved_title">Saved charts</string>
+    <string name="account_saved_count">%1$d of %2$d</string>
+    <string name="account_saved_local">Kept on this phone only</string>
+    <string name="account_manage">Manage</string>
+    <string name="account_manage_done">Done</string>
+    <string name="account_prefs_title">Preferences</string>
+    <string name="account_language">Language</string>
+    <string name="account_language_value">English</string>
+    <string name="account_language_note">The website reads in seven languages. The app is in English for now.</string>
+    <string name="account_chart_style">Chart style</string>
+    <string name="account_chart_style_value">South Indian</string>
+    <string name="account_chart_style_note">Signs keep their places; the rising sign is the black square.</string>
+    <string name="account_new_charts">New charts use</string>
+    <string name="account_new_charts_note">You can choose another tradition on the birth details form.</string>
+    <string name="account_about_title">About</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">Website</string>
+    <string name="account_website_value" translatable="false">lagnaatelier.site</string>
+    <string name="account_website_url" translatable="false">https://lagnaatelier.site</string>
+    <string name="account_website_note">Charts are cast there and saved only on this phone.</string>
+    <string name="account_website_failed">No app on this phone can open the link.</string>
+    <string name="account_licences">Licences</string>
+    <string name="account_licences_summary">Geist and Geist Mono, SIL Open Font License 1.1. Planet positions by astronomy-engine, MIT licence.</string>
+    <string name="account_licences_fonts">Geist and Geist Mono</string>
+    <string name="account_licences_fonts_note">The app\'s typefaces, by The Geist Project Authors, under the SIL Open Font License 1.1.</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">By Don Cross, under the MIT licence. The website uses it to place the planets; the app shows what the site sends.</string>
+    <string name="account_licences_show">Read the font licence</string>
+    <string name="account_licences_hide">Hide the font licence</string>
+
+    <!-- Saved charts screen -->
+    <string name="saved_title">Saved charts</string>
+    <string name="saved_count">%1$d of %2$d on this phone</string>
+    <string name="saved_opened_last">Opened last</string>
+    <string name="saved_rising">Rising</string>
+    <string name="saved_moon">Moon</string>
+    <string name="saved_open">Open</string>
+    <string name="saved_add">Add a chart</string>
+    <string name="saved_empty">No saved charts yet. Cast one and it is kept here.</string>
+    <string name="saved_sample">Look at the sample chart</string>
+    <string name="saved_note">Tap the bin beside a chart, or long-press it, to delete it. You can keep five; adding a sixth replaces the one opened longest ago.</string>
+    <string name="saved_delete_button">Delete %1$s’s chart</string>
+    <string name="saved_delete_question">Delete %1$s’s chart?</string>
+    <string name="saved_delete_detail">It goes from this phone. You can add it again from the birth details.</string>
+    <string name="saved_cancel">Cancel</string>
+    <string name="saved_delete">Delete</string>
+    <string name="saved_open_chart">Open %1$s’s chart</string>
+    <string name="saved_time_morning">morning</string>
+    <string name="saved_time_afternoon">afternoon</string>
+    <string name="saved_time_evening">evening</string>
+    <string name="saved_time_unknown">time unknown</string>
+    <string name="saved_missing_value">—</string>
 </resources>
