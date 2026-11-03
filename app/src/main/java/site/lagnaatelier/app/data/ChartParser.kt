@@ -74,6 +74,7 @@ object ChartParser {
             navamsaAscendant = navamsaAscendant,
             findings = findings(chart),
             timeIsEstimated = details.accuracy != TimeAccuracy.Exact,
+            vargas = site.lagnaatelier.app.data.vargas.VargaParser.parse(chart.optJSONObject("divisional_charts")),
         )
     }
 

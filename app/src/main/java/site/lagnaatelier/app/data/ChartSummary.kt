@@ -51,6 +51,8 @@ data class ChartSummary(
     val navamsaAscendant: Sign? = null,
     /** True when the reader did not know the exact time and the chart stands in one. */
     val timeIsEstimated: Boolean = false,
+    /** Every divisional chart the engine cast, D1 to D60 (data/vargas). Empty for the built-in sample. */
+    val vargas: List<site.lagnaatelier.app.data.vargas.Varga> = emptyList(),
 )
 
 data class TodaySky(val date: LocalDate, val moonSign: Sign, val moonNakshatra: String, val sunSign: Sign)
