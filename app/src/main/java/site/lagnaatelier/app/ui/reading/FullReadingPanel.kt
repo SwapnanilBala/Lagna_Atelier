@@ -136,7 +136,7 @@ private fun ClaimRow(claim: Claim) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         Text(claim.label, style = MaterialTheme.typography.bodySmall, color = Muted, modifier = Modifier.weight(1f))
         Column(Modifier.weight(1.2f)) {
-            Text(claim.value, style = MaterialTheme.typography.bodySmall)
+            Text(chartValue(claim.value), style = MaterialTheme.typography.bodySmall)
             claim.detail?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = Muted) }
         }
     }

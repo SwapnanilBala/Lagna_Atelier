@@ -49,6 +49,7 @@ import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.Glow
 import site.lagnaatelier.app.ui.components.PillButton
 import site.lagnaatelier.app.ui.components.TickBadge
+import site.lagnaatelier.app.ui.reading.nakshatraName
 import site.lagnaatelier.app.ui.reading.signName
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Canvas
@@ -154,7 +155,7 @@ private fun CardCluster(today: TodaySky?, todayUnavailable: Boolean) {
                     )
                 }
                 Text(
-                    stringResource(R.string.landing_today_detail, today.moonNakshatra, signName(today.sunSign)),
+                    stringResource(R.string.landing_today_detail, nakshatraName(today.moonNakshatra), signName(today.sunSign)),
                     style = MaterialTheme.typography.bodySmall,
                     color = Muted,
                 )

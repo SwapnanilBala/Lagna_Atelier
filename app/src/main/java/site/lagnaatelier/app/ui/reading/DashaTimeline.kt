@@ -17,10 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.Period
 import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.CardWhite
@@ -54,8 +56,11 @@ fun DashaTimeline(
     fun fraction(date: LocalDate) = (ChronoUnit.DAYS.between(from, date) / span).coerceIn(0f, 1f)
 
     val visible = periods.filter { it.end > from && it.start < to }
-    val description = visible.joinToString(", ") { "${it.lord} ${it.start.year} to ${it.end.year}" } +
-        ". Now in ${current.lord}."
+    val description = stringResource(
+        R.string.dasha_timeline_description,
+        visible.map { stringResource(R.string.dasha_timeline_period, planetName(it.lord), it.start.year, it.end.year) }.joinToString(", "),
+        stringResource(R.string.dasha_timeline_now, planetName(current.lord)),
+    )
 
     Column(modifier.semantics { contentDescription = description }) {
         BoxWithConstraints(Modifier.fillMaxWidth().height(34.dp)) {

@@ -16,6 +16,8 @@ import site.lagnaatelier.app.data.timing.TimingFormat
 import site.lagnaatelier.app.data.timing.YearChart
 import site.lagnaatelier.app.data.timing.YearLordReason
 import site.lagnaatelier.app.ui.components.Panel
+import site.lagnaatelier.app.ui.reading.planetName
+import site.lagnaatelier.app.ui.reading.signName
 
 /* The varshaphal: the chart for the moment each year the Sun comes back to where it stood at birth. */
 @Composable
@@ -40,10 +42,10 @@ private fun Year(year: YearChart) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FlatTile(stringResource(R.string.timing_year_rising), year.rising, formatDegree(year.risingDegree))
+                FlatTile(stringResource(R.string.timing_year_rising), signName(year.rising), formatDegree(year.risingDegree))
                 FlatTile(
                     stringResource(R.string.timing_year_lord),
-                    year.yearLord,
+                    planetName(year.yearLord),
                     stringResource(
                         when (year.yearLordReason) {
                             YearLordReason.RulesMuntha -> R.string.timing_lord_rules_muntha
@@ -57,13 +59,13 @@ private fun Year(year: YearChart) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 FlatTile(
                     stringResource(R.string.timing_year_muntha),
-                    year.munthaSign,
+                    signName(year.munthaSign),
                     stringResource(R.string.timing_house, ordinal(year.munthaHouse)),
                 )
                 FlatTile(
                     stringResource(R.string.timing_year_profection),
                     stringResource(R.string.timing_profection_year, year.profectionYear),
-                    stringResource(R.string.timing_profection_meta, ordinal(year.profectionHouse), year.profectionSign),
+                    stringResource(R.string.timing_profection_meta, ordinal(year.profectionHouse), signName(year.profectionSign)),
                 )
             }
         }

@@ -29,6 +29,9 @@ import site.lagnaatelier.app.data.timing.TimingFormat
 import site.lagnaatelier.app.data.timing.Transit
 import site.lagnaatelier.app.data.timing.TransitTone
 import site.lagnaatelier.app.ui.components.Panel
+import site.lagnaatelier.app.ui.reading.planetAbbreviation
+import site.lagnaatelier.app.ui.reading.planetName
+import site.lagnaatelier.app.ui.reading.pointName
 import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Hairline
@@ -83,14 +86,14 @@ private fun TransitRow(transit: Transit) {
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                TimingFormat.planetAbbreviation(transit.planet),
+                planetAbbreviation(transit.planet),
                 style = MaterialTheme.typography.labelSmall.copy(fontSize = 10.5.sp),
                 color = if (easy) CardWhite else Ink,
             )
         }
         Column(Modifier.weight(1f)) {
             Text(
-                stringResource(R.string.timing_transit_title, transit.planet, aspectWord(transit.aspect), transit.natalPlanet),
+                stringResource(R.string.timing_transit_title, planetName(transit.planet), aspectWord(transit.aspect), pointName(transit.natalPlanet)),
                 style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp),
             )
             Spacer(Modifier.height(2.dp))

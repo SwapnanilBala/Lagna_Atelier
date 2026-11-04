@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chart_nakshatra_ashwini">Ashwini</string>
+    <string name="chart_nakshatra_bharani">Bharani</string>
+    <string name="chart_nakshatra_krittika">Krittika</string>
+    <string name="chart_nakshatra_rohini">Rohini</string>
+    <string name="chart_nakshatra_mrigashira">Mrigashira</string>
+    <string name="chart_nakshatra_ardra">Ardra</string>
+    <string name="chart_nakshatra_punarvasu">Punarvasu</string>
+    <string name="chart_nakshatra_pushya">Pushya</string>
+    <string name="chart_nakshatra_ashlesha">Ashlesha</string>
+    <string name="chart_nakshatra_magha">Magha</string>
+    <string name="chart_nakshatra_purva_phalguni">Purva Phalguni</string>
+    <string name="chart_nakshatra_uttara_phalguni">Uttara Phalguni</string>
+    <string name="chart_nakshatra_hasta">Hasta</string>
+    <string name="chart_nakshatra_chitra">Chitra</string>
+    <string name="chart_nakshatra_swati">Swati</string>
+    <string name="chart_nakshatra_vishakha">Vishakha</string>
+    <string name="chart_nakshatra_anuradha">Anuradha</string>
+    <string name="chart_nakshatra_jyeshtha">Jyeshtha</string>
+    <string name="chart_nakshatra_moola">Moola</string>
+    <string name="chart_nakshatra_purva_ashadha">Purva Ashadha</string>
+    <string name="chart_nakshatra_uttara_ashadha">Uttara Ashadha</string>
+    <string name="chart_nakshatra_shravana">Shravana</string>
+    <string name="chart_nakshatra_dhanishta">Dhanishta</string>
+    <string name="chart_nakshatra_shatabhisha">Shatabhisha</string>
+    <string name="chart_nakshatra_purva_bhadrapada">Purva Bhadrapada</string>
+    <string name="chart_nakshatra_uttara_bhadrapada">Uttara Bhadrapada</string>
+    <string name="chart_nakshatra_revati">Revati</string>
+    <string name="chart_point_ascendant">Ascendant</string>
+    <string-array name="chart_house_names">
+        <item>1re maison</item>
+        <item>2e maison</item>
+        <item>3e maison</item>
+        <item>4e maison</item>
+        <item>5e maison</item>
+        <item>6e maison</item>
+        <item>7e maison</item>
+        <item>8e maison</item>
+        <item>9e maison</item>
+        <item>10e maison</item>
+        <item>11e maison</item>
+        <item>12e maison</item>
+    </string-array>
+    <string name="dasha_timeline_period">%1$s de %2$d à %3$d</string>
+    <string name="dasha_timeline_now">En cours : %1$s.</string>
+    <string name="dasha_timeline_description">%1$s. %2$s</string>
+</resources>

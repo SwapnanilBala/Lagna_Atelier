@@ -56,20 +56,6 @@ object TimingFormat {
     fun windowDay(window: MuhurtaWindow, offsetMinutes: Int): LocalDate =
         TimingQueries.atPlace(window.start, offsetMinutes).toLocalDate()
 
-    /** The two-letter chart abbreviation: "Venus" -> "Ve". */
-    fun planetAbbreviation(planet: String): String = when (planet) {
-        "Sun" -> "Su"
-        "Moon" -> "Mo"
-        "Mars" -> "Ma"
-        "Mercury" -> "Me"
-        "Jupiter" -> "Ju"
-        "Venus" -> "Ve"
-        "Saturn" -> "Sa"
-        "Rahu" -> "Ra"
-        "Ketu" -> "Ke"
-        else -> planet.take(2)
-    }
-
     /**
      * The year lord's theme as a heading and a line under it: the first
      * sentence, without its full stop, and the rest.

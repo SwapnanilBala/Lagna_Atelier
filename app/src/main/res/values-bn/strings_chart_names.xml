@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chart_nakshatra_ashwini">অশ্বিনী</string>
+    <string name="chart_nakshatra_bharani">ভরণী</string>
+    <string name="chart_nakshatra_krittika">কৃত্তিকা</string>
+    <string name="chart_nakshatra_rohini">রোহিণী</string>
+    <string name="chart_nakshatra_mrigashira">মৃগশিরা</string>
+    <string name="chart_nakshatra_ardra">আর্দ্রা</string>
+    <string name="chart_nakshatra_punarvasu">পুনর্বসু</string>
+    <string name="chart_nakshatra_pushya">পুষ্যা</string>
+    <string name="chart_nakshatra_ashlesha">অশ্লেষা</string>
+    <string name="chart_nakshatra_magha">মঘা</string>
+    <string name="chart_nakshatra_purva_phalguni">পূর্বফাল্গুনী</string>
+    <string name="chart_nakshatra_uttara_phalguni">উত্তরফাল্গুনী</string>
+    <string name="chart_nakshatra_hasta">হস্তা</string>
+    <string name="chart_nakshatra_chitra">চিত্রা</string>
+    <string name="chart_nakshatra_swati">স্বাতী</string>
+    <string name="chart_nakshatra_vishakha">বিশাখা</string>
+    <string name="chart_nakshatra_anuradha">অনুরাধা</string>
+    <string name="chart_nakshatra_jyeshtha">জ্যেষ্ঠা</string>
+    <string name="chart_nakshatra_moola">মূলা</string>
+    <string name="chart_nakshatra_purva_ashadha">পূর্বাষাঢ়া</string>
+    <string name="chart_nakshatra_uttara_ashadha">উত্তরাষাঢ়া</string>
+    <string name="chart_nakshatra_shravana">শ্রবণা</string>
+    <string name="chart_nakshatra_dhanishta">ধনিষ্ঠা</string>
+    <string name="chart_nakshatra_shatabhisha">শতভিষা</string>
+    <string name="chart_nakshatra_purva_bhadrapada">পূর্বভাদ্রপদ</string>
+    <string name="chart_nakshatra_uttara_bhadrapada">উত্তরভাদ্রপদ</string>
+    <string name="chart_nakshatra_revati">রেবতী</string>
+    <string name="chart_point_ascendant">লগ্ন</string>
+    <string-array name="chart_house_names">
+        <item>প্রথম ভাব</item>
+        <item>দ্বিতীয় ভাব</item>
+        <item>তৃতীয় ভাব</item>
+        <item>চতুর্থ ভাব</item>
+        <item>পঞ্চম ভাব</item>
+        <item>ষষ্ঠ ভাব</item>
+        <item>সপ্তম ভাব</item>
+        <item>অষ্টম ভাব</item>
+        <item>নবম ভাব</item>
+        <item>দশম ভাব</item>
+        <item>একাদশ ভাব</item>
+        <item>দ্বাদশ ভাব</item>
+    </string-array>
+    <string name="dasha_timeline_period">%1$s %2$d থেকে %3$d</string>
+    <string name="dasha_timeline_now">এখন %1$s দশা চলছে।</string>
+    <string name="dasha_timeline_description">%1$s। %2$s</string>
+</resources>

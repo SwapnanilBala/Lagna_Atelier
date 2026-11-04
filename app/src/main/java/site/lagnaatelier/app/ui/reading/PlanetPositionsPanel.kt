@@ -73,14 +73,16 @@ internal fun PlanetPositionsPanel(table: PlanetTable) {
 @Composable
 private fun PlanetTableRow(row: PlanetRow, showBhava: Boolean) {
     val degree = formatDegree(row.degreeInSign)
+    val name = planetName(row.name)
+    val sign = signName(row.sign)
     val flags = listOfNotNull(
         stringResource(R.string.positions_retrograde_description).takeIf { row.retrograde },
         stringResource(R.string.positions_combust_description).takeIf { row.combust },
     )
     /* Read as one sentence, not five cells; the Rx and Cmb marks are spelled out. */
     val description = (
-        if (showBhava) stringResource(R.string.positions_row_bhava_description, row.name, row.sign.label, degree, row.signHouse, row.bhava)
-        else stringResource(R.string.positions_row_description, row.name, row.sign.label, degree, row.signHouse)
+        if (showBhava) stringResource(R.string.positions_row_bhava_description, name, sign, degree, row.signHouse, row.bhava)
+        else stringResource(R.string.positions_row_description, name, sign, degree, row.signHouse)
         ) + flags.joinToString("") { ", $it" }
     val retrograde = stringResource(R.string.positions_flag_retrograde)
     val combust = stringResource(R.string.positions_flag_combust)
@@ -88,7 +90,7 @@ private fun PlanetTableRow(row: PlanetRow, showBhava: Boolean) {
     TableRow(Modifier.clearAndSetSemantics { contentDescription = description }) {
         Text(
             buildAnnotatedString {
-                append(row.name)
+                append(name)
                 withStyle(SpanStyle(color = Muted, fontSize = MaterialTheme.typography.labelSmall.fontSize)) {
                     if (row.retrograde) append(" $retrograde")
                     if (row.combust) append(" $combust")
@@ -97,7 +99,7 @@ private fun PlanetTableRow(row: PlanetRow, showBhava: Boolean) {
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.weight(1.5f),
         )
-        Cell(row.sign.label, Modifier.weight(1.3f))
+        Cell(sign, Modifier.weight(1.3f))
         Cell(degree, Modifier.width(56.dp), numeric = true)
         Cell("${row.signHouse}", Modifier.width(36.dp), numeric = true)
         if (showBhava) Cell("${row.bhava}", Modifier.width(48.dp), numeric = true)

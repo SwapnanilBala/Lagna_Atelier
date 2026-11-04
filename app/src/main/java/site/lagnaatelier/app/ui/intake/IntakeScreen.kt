@@ -3,6 +3,9 @@ package site.lagnaatelier.app.ui.intake
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.isImeVisible
 import androidx.compose.foundation.relocation.BringIntoViewRequester
 import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.clickable
@@ -47,11 +50,16 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
@@ -60,12 +68,16 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import site.lagnaatelier.app.AppViewModel
 import site.lagnaatelier.app.PlaceStatus
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.BirthSex
+import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.Place
 import site.lagnaatelier.app.data.TimeAccuracy
 import site.lagnaatelier.app.data.Traditions
 import site.lagnaatelier.app.data.dayMonthYear
@@ -250,25 +262,71 @@ private fun TimeKnowledge(draft: AppViewModel.IntakeDraft) {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun PlacePanel(draft: AppViewModel.IntakeDraft) {
+    PlaceSearchPanel(
+        query = draft.placeQuery,
+        onQuery = draft::onPlaceQuery,
+        status = draft.placeStatus,
+        suggestions = draft.suggestions,
+        place = draft.place,
+        onChoose = draft::choose,
+    )
+}
+
+/*
+ * The place of birth: the search field, the suggestions under it, and what
+ * the chosen place resolved to. The intake form and the compatibility form
+ * both use it.
+ *
+ * Whenever new suggestions arrive, the field and the list are scrolled into
+ * the part of the screen nothing covers: above the keyboard when it is up,
+ * and above [barClearance] of floating chrome (the timing pages' nav pill)
+ * when it is down. A list too tall for that space keeps the field and the
+ * top suggestions in view. The scroll area around it must stop at the
+ * keyboard (imePadding) for "in view" to mean visible.
+ */
+@OptIn(ExperimentalFoundationApi::class, ExperimentalLayoutApi::class)
+@Composable
+internal fun PlaceSearchPanel(
+    query: String,
+    onQuery: (String) -> Unit,
+    status: PlaceStatus,
+    suggestions: List<LagnaApi.PlaceSuggestion>,
+    place: Place?,
+    onChoose: (LagnaApi.PlaceSuggestion) -> Unit,
+    modifier: Modifier = Modifier,
+    barClearance: Dp = 0.dp,
+) {
     val keyboard = LocalSoftwareKeyboardController.current
     val focus = LocalFocusManager.current
-    /* With the keyboard up the list would sit behind the footer; scroll it into view. */
-    val listInView = remember { BringIntoViewRequester() }
-    LaunchedEffect(draft.suggestions) {
-        if (draft.suggestions.isNotEmpty()) listInView.bringIntoView()
+    val density = LocalDensity.current
+    val panelInView = remember { BringIntoViewRequester() }
+    val fieldInView = remember { BringIntoViewRequester() }
+    var panelSize by remember { mutableStateOf(IntSize.Zero) }
+    val keyboardUp = WindowInsets.isImeVisible
+    val below by rememberUpdatedState(with(density) { (PLACE_LIST_GAP + if (keyboardUp) 0.dp else barClearance).toPx() })
+    LaunchedEffect(suggestions) {
+        if (suggestions.isEmpty()) return@LaunchedEffect
+        withFrameNanos { } // one frame, so the panel's measured size includes the list
+        panelInView.bringIntoView(Rect(0f, 0f, panelSize.width.toFloat(), panelSize.height + below))
+        // When field and list do not both fit, the field and the first suggestions win.
+        fieldInView.bringIntoView()
     }
 
-    Panel {
+    Panel(
+        modifier
+            .bringIntoViewRequester(panelInView)
+            .onSizeChanged { panelSize = it },
+    ) {
         LiquidTextField(
-            value = draft.placeQuery,
-            onValueChange = draft::onPlaceQuery,
+            value = query,
+            onValueChange = onQuery,
             label = stringResource(R.string.intake_place),
             placeholder = stringResource(R.string.intake_place_hint),
             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words, imeAction = ImeAction.Search),
-            trailing = when (draft.placeStatus) {
+            modifier = Modifier.bringIntoViewRequester(fieldInView),
+            trailing = when (status) {
                 PlaceStatus.Searching, PlaceStatus.Locating -> {
                     { CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = Ink) }
                 }
@@ -279,15 +337,14 @@ private fun PlacePanel(draft: AppViewModel.IntakeDraft) {
             },
         )
 
-        if (draft.suggestions.isNotEmpty()) {
+        if (suggestions.isNotEmpty()) {
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .bringIntoViewRequester(listInView)
                     .clip(RoundedCornerShape(14.dp))
                     .border(1.dp, Hairline, RoundedCornerShape(14.dp)),
             ) {
-                draft.suggestions.forEachIndexed { index, suggestion ->
+                suggestions.forEachIndexed { index, suggestion ->
                     if (index > 0) HorizontalDivider(color = Hairline)
                     Text(
                         suggestion.displayName,
@@ -298,7 +355,7 @@ private fun PlacePanel(draft: AppViewModel.IntakeDraft) {
                                 // The place is chosen; the keyboard only hides the rest of the form now.
                                 keyboard?.hide()
                                 focus.clearFocus()
-                                draft.choose(suggestion)
+                                onChoose(suggestion)
                             }
                             .padding(horizontal = 14.dp, vertical = 12.dp),
                     )
@@ -306,8 +363,7 @@ private fun PlacePanel(draft: AppViewModel.IntakeDraft) {
             }
         }
 
-        val place = draft.place
-        val note = when (draft.placeStatus) {
+        val note = when (status) {
             PlaceStatus.Located -> place?.let {
                 stringResource(R.string.intake_place_located, it.timeZoneId.ifBlank { "UTC" }, utcOffset(it.timezoneOffsetMinutes))
             }
@@ -318,6 +374,9 @@ private fun PlacePanel(draft: AppViewModel.IntakeDraft) {
         note?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = Muted) }
     }
 }
+
+/* Room left between the last suggestion and whatever is below it. */
+private val PLACE_LIST_GAP = 12.dp
 
 /* +330 -> "UTC+5:30", -300 -> "UTC−5:00" */
 internal fun utcOffset(minutes: Int): String {

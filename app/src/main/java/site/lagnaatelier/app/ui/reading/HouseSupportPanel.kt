@@ -65,7 +65,7 @@ internal fun HouseSupportPanel(support: HouseSupport, rolesOpen: Boolean, onTogg
             Column(Modifier.padding(bottom = 3.dp)) {
                 CardLabel(stringResource(R.string.houses_self_label))
                 Text(
-                    stringResource(R.string.houses_self_meta, self.bindus, self.sign.label),
+                    stringResource(R.string.houses_self_meta, self.bindus, signName(self.sign)),
                     style = MaterialTheme.typography.labelSmall,
                     color = Muted,
                 )
@@ -109,7 +109,7 @@ internal fun HouseSupportPanel(support: HouseSupport, rolesOpen: Boolean, onTogg
 }
 
 @Composable
-private fun readout(house: HouseRow) = stringResource(R.string.houses_readout_house, house.house, house.sign.label, house.bindus)
+private fun readout(house: HouseRow) = stringResource(R.string.houses_readout_house, house.house, signName(house.sign), house.bindus)
 
 @Composable
 private fun Fact(label: String, value: String) {
@@ -167,7 +167,7 @@ private fun HouseBars(houses: List<HouseRow>) {
             houses.forEach { house ->
                 Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text("${house.house}", style = LiquidType.gridLabel, textAlign = TextAlign.Center)
-                    Text(house.sign.label.take(3), style = LiquidType.gridLabel, color = Muted, textAlign = TextAlign.Center, maxLines = 1)
+                    Text(signAbbreviation(house.sign), style = LiquidType.gridLabel, color = Muted, textAlign = TextAlign.Center, maxLines = 1)
                 }
             }
         }
@@ -197,7 +197,7 @@ private fun HouseRoleRow(house: HouseRow, bhava: String, theme: String, @StringR
     val bhavaName = stringResource(R.string.houses_bhava, bhava)
     val groups = house.groups.map { stringResource(it.label) }
     val peakText = peak?.let { stringResource(it) }
-    val description = stringResource(R.string.houses_row_description, house.house, bhava, house.sign.label, house.bindus, theme) +
+    val description = stringResource(R.string.houses_row_description, house.house, bhava, signName(house.sign), house.bindus, theme) +
         " " + (groups + listOfNotNull(peakText)).joinToString(", ")
 
     Row(
@@ -210,7 +210,7 @@ private fun HouseRoleRow(house: HouseRow, bhava: String, theme: String, @StringR
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 Text(bhavaName, style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
-                Text(stringResource(R.string.houses_readout, house.sign.label, house.bindus), style = MaterialTheme.typography.labelSmall, color = Muted)
+                Text(stringResource(R.string.houses_readout, signName(house.sign), house.bindus), style = MaterialTheme.typography.labelSmall, color = Muted)
             }
             Text(theme.replaceFirstChar { it.uppercase() }, style = MaterialTheme.typography.bodyMedium, color = Muted)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
