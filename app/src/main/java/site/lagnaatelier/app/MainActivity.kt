@@ -139,7 +139,11 @@ private fun LagnaApp(model: AppViewModel) {
                 model.castChart(saved.details)
                 openReading(from = Screen.Saved)
             },
-            onStartNew = { screen = Screen.Intake },
+            onStartNew = {
+                /* "Add a chart" is someone new: a fresh form, not the last chart's details. */
+                model.intake.reset()
+                screen = Screen.Intake
+            },
             onSample = {
                 model.showSample()
                 openReading(from = Screen.Saved)
