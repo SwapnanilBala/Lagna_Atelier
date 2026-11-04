@@ -1,8 +1,5 @@
 package site.lagnaatelier.app.ui.timing
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -10,44 +7,34 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.relocation.BringIntoViewRequester
-import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import site.lagnaatelier.app.PlaceStatus
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.TimeAccuracy
@@ -66,11 +53,10 @@ import site.lagnaatelier.app.ui.components.LiquidTextField
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
 import site.lagnaatelier.app.ui.components.Segmented
-import site.lagnaatelier.app.ui.components.TickBadge
 import site.lagnaatelier.app.ui.intake.DateDialog
+import site.lagnaatelier.app.ui.intake.PlaceSearchPanel
 import site.lagnaatelier.app.ui.intake.TimeDialog
 import site.lagnaatelier.app.ui.intake.ValueTile
-import site.lagnaatelier.app.ui.intake.utcOffset
 import site.lagnaatelier.app.ui.reading.planetName
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Hairline
@@ -104,8 +90,10 @@ internal fun CompatibilityScreen(
     Column(
         modifier
             .fillMaxSize()
+            /* Ends at the keyboard, so a focused field scrolls up above it rather than staying out of sight behind it. */
+            .imePadding()
             .verticalScroll(rememberScrollState())
-            .padding(start = 16.dp, end = 16.dp, bottom = 140.dp),
+            .padding(start = 16.dp, end = 16.dp, bottom = NAV_CLEARANCE),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         SubPageHeader(stringResource(R.string.compat_title), stringResource(R.string.compat_lead), onBack)
@@ -148,7 +136,16 @@ internal fun CompatibilityScreen(
             }
         }
 
-        PartnerPlace(partner, onQuery = { partner.onPlaceQuery(it, scope, api) }, onChoose = { partner.choose(it, scope, api) })
+        PlaceSearchPanel(
+            query = partner.placeQuery,
+            onQuery = { partner.onPlaceQuery(it, scope, api) },
+            status = partner.placeStatus,
+            suggestions = partner.suggestions,
+            place = partner.place,
+            onChoose = { partner.choose(it, scope, api) },
+            modifier = Modifier.fillMaxWidth(),
+            barClearance = NAV_CLEARANCE,
+        )
 
         val comparing = readings.compatibility is Load.Loading
         val missing = partner.missing
@@ -239,74 +236,8 @@ private fun PartnerTime(partner: PartnerDraft) {
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-private fun PartnerPlace(
-    partner: PartnerDraft,
-    onQuery: (String) -> Unit,
-    onChoose: (LagnaApi.PlaceSuggestion) -> Unit,
-) {
-    val keyboard = LocalSoftwareKeyboardController.current
-    val focus = LocalFocusManager.current
-    val listInView = remember { BringIntoViewRequester() }
-    LaunchedEffect(partner.suggestions) {
-        if (partner.suggestions.isNotEmpty()) listInView.bringIntoView()
-    }
-
-    Panel(Modifier.fillMaxWidth()) {
-        LiquidTextField(
-            value = partner.placeQuery,
-            onValueChange = onQuery,
-            label = stringResource(R.string.intake_place),
-            placeholder = stringResource(R.string.intake_place_hint),
-            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words, imeAction = ImeAction.Search),
-            trailing = when (partner.placeStatus) {
-                PlaceStatus.Searching, PlaceStatus.Locating -> {
-                    { CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = Ink) }
-                }
-                PlaceStatus.Located -> {
-                    { TickBadge(20.dp) }
-                }
-                else -> null
-            },
-        )
-        if (partner.suggestions.isNotEmpty()) {
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .bringIntoViewRequester(listInView)
-                    .clip(RoundedCornerShape(14.dp))
-                    .border(1.dp, Hairline, RoundedCornerShape(14.dp)),
-            ) {
-                partner.suggestions.forEachIndexed { index, suggestion ->
-                    if (index > 0) HorizontalDivider(color = Hairline)
-                    Text(
-                        suggestion.displayName,
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable(role = Role.Button) {
-                                keyboard?.hide()
-                                focus.clearFocus()
-                                onChoose(suggestion)
-                            }
-                            .padding(horizontal = 14.dp, vertical = 12.dp),
-                    )
-                }
-            }
-        }
-        val place = partner.place
-        val note = when (partner.placeStatus) {
-            PlaceStatus.Located -> place?.let {
-                stringResource(R.string.intake_place_located, it.timeZoneId.ifBlank { "UTC" }, utcOffset(it.timezoneOffsetMinutes))
-            }
-            PlaceStatus.NotFound -> stringResource(R.string.intake_place_not_found)
-            PlaceStatus.Failed -> stringResource(R.string.intake_place_failed)
-            else -> null
-        }
-        note?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = Muted) }
-    }
-}
+/* What the floating nav pill covers at the foot of the timing pages; the tab's own panels clear the same. */
+private val NAV_CLEARANCE = 140.dp
 
 /* ── The result ─────────────────────────────────────────────────────────── */
 
