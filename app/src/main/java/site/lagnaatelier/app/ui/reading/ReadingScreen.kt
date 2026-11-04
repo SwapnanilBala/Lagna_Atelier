@@ -55,6 +55,7 @@ import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.Finding
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.antardashas
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.data.formatDegree
@@ -241,7 +242,21 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
                         onSelect = { dashaView = it },
                     )
                 }
-                DashaTimeline(chart.mahadashas, current = chart.mahadasha, today = today)
+                val antardashas = chart.antardashas
+                if (dashaView == 1 && antardashas.isNotEmpty()) {
+                    /* The antardashas of the mahadasha running now, on its own span. */
+                    val maha = antardashas.first().start to antardashas.last().end
+                    DashaTimeline(
+                        antardashas,
+                        current = chart.antardasha,
+                        today = today,
+                        from = maha.first,
+                        to = maha.second,
+                        labelEvery = if (maha.second.year - maha.first.year > 12) 4 else 2,
+                    )
+                } else {
+                    DashaTimeline(chart.mahadashas, current = chart.mahadasha, today = today)
+                }
             }
         }
         item {

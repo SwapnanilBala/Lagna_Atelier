@@ -68,7 +68,15 @@ object ChartParser {
                 date(dasha.getString("current_antardasha_end")),
             ),
             mahadashas = dasha.getJSONArray("periods").objects().map {
-                Period(it.getString("planet"), date(it.getString("start_date")), date(it.getString("end_date")))
+                val start = date(it.getString("start_date"))
+                val end = date(it.getString("end_date"))
+                Period(
+                    it.getString("planet"),
+                    start,
+                    end,
+                    sequenceStart = it.optString("sequence_start_date").takeIf { s -> s.length >= 10 }?.let(::date) ?: start,
+                    sequenceEnd = it.optString("sequence_end_date").takeIf { s -> s.length >= 10 }?.let(::date) ?: end,
+                )
             },
             placements = placements,
             navamsa = navamsa,
