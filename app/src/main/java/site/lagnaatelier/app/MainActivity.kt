@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -88,8 +89,16 @@ private fun LagnaApp(model: AppViewModel) {
     val report = rememberReportController()
     val more = rememberMoreController()
     val context = LocalContext.current
-    fun notYet(what: String) =
-        Toast.makeText(context, context.getString(R.string.nav_soon, what), Toast.LENGTH_SHORT).show()
+    val account = model.account
+
+    /* The landing page has no room for the sign-in card's messages; say them briefly. */
+    LaunchedEffect(account.message) {
+        val text = account.message ?: return@LaunchedEffect
+        if (screen == Screen.Landing) {
+            Toast.makeText(context, context.getString(text), Toast.LENGTH_LONG).show()
+            account.dismissMessage()
+        }
+    }
 
     fun openReading(from: Screen) {
         readingOrigin = from
@@ -107,7 +116,11 @@ private fun LagnaApp(model: AppViewModel) {
             todayUnavailable = model.todayUnavailable,
             onStart = { screen = Screen.Intake },
             onOpenSaved = { screen = Screen.Saved },
-            onSignIn = { notYet(context.getString(R.string.landing_google)) },
+            signedInAs = account.user?.let { it.displayName ?: it.email },
+            onSignIn = {
+                /* Signed in already, the button names the account and opens its charts. */
+                if (account.signedIn) screen = Screen.Saved else account.signIn(context)
+            },
         )
 
         Screen.Intake -> IntakeScreen(
@@ -121,6 +134,7 @@ private fun LagnaApp(model: AppViewModel) {
 
         Screen.Saved -> SavedChartsScreen(
             store = model.store,
+            syncing = model.sync.active,
             onOpen = { saved ->
                 model.castChart(saved.details)
                 openReading(from = Screen.Saved)
@@ -161,6 +175,8 @@ private fun LagnaApp(model: AppViewModel) {
                                 AppTab.Palm -> PalmTab(chart, details, model.api)
                                 AppTab.Account -> AccountTab(
                                     store = model.store,
+                                    account = model.account,
+                                    sync = model.sync,
                                     onOpenSaved = { saved ->
                                         model.castChart(saved.details)
                                         openReading(from = readingOrigin)

@@ -82,6 +82,7 @@ object TimingQueries {
             "birthTimeSource" to if (details.accuracy == TimeAccuracy.Exact) "exact" else "fallback",
             "birthTimeFallback" to (details.accuracy != TimeAccuracy.Exact).toString(),
         )
+        details.withBirthSex(params)
         if (weekStart != null) {
             require(weekStart.dayOfWeek == DayOfWeek.SATURDAY) { "week_start must be a Saturday" }
             params["week_start"] = weekStart.toString()

@@ -25,7 +25,17 @@ data class SavedChart(
     val tradition: String = "",
     /** When it was last cast or opened; the list is kept in this order, newest first. */
     val lastOpenedMillis: Long = savedAtMillis,
+    /**
+     * The chart's id on the signed-in account (/api/sync/charts), once it is
+     * there. Null for a chart kept on this phone only.
+     */
+    val remoteId: String? = null,
+    /** On the account, but changed here since (sex at birth added, say): send it again. */
+    val needsUpload: Boolean = false,
 ) {
+    /** On the signed-in account as it stands here. */
+    val synced: Boolean get() = remoteId != null && !needsUpload
+
     /** Which chart this is: the same birth details ask the site the same question. */
     val key: String get() = chartKey(details)
 }
@@ -56,18 +66,33 @@ class ChartStore internal constructor(
     var saved by mutableStateOf<List<SavedChart>>(emptyList())
         private set
 
+    /**
+     * Account ids of charts deleted here that the account still has. Kept
+     * with the list, so a delete made offline still reaches the account at
+     * the next sync (data/account/ChartSync.kt).
+     */
+    var pendingDeletes by mutableStateOf<List<String>>(emptyList())
+        private set
+
+    /** Told after every change made on this phone; the sync listens. */
+    @Volatile
+    var onChanged: () -> Unit = {}
+
     private val lock = Any()
     private val loaded = CountDownLatch(1)
 
     init {
         runLoad {
             val stored = try {
-                SavedChartsCodec.decode(storage.read())
+                SavedChartsCodec.decodeDocument(storage.read())
             } catch (e: Exception) {
                 // Storage that cannot be read is treated as empty, never as a crash.
-                emptyList()
+                SavedChartsCodec.Document(emptyList(), emptyList())
             }
-            synchronized(lock) { saved = stored }
+            synchronized(lock) {
+                saved = stored.charts
+                pendingDeletes = stored.pendingDeletes
+            }
             loaded.countDown()
         }
     }
@@ -86,19 +111,54 @@ class ChartStore internal constructor(
             lastOpenedMillis = now,
         )
         update { SavedChartRules.upsert(it, entry) }
+        onChanged()
     }
 
+    /** Deletes [entry] here, and from the account at the next sync if it is there. */
     fun delete(entry: SavedChart) {
-        update { list -> list.filterNot { it.key == entry.key } }
+        updateAll { list, deletes ->
+            val gone = list.filter { it.key == entry.key }.mapNotNull { it.remoteId }
+            list.filterNot { it.key == entry.key } to (deletes + gone).distinct()
+        }
+        onChanged()
+    }
+
+    /** The list and the pending deletes as they stand, once the stored list has loaded. */
+    fun snapshot(): Pair<List<SavedChart>, List<String>> {
+        loaded.await()
+        synchronized(lock) { return saved to pendingDeletes }
+    }
+
+    /**
+     * A change the sync works out from what the account said. [change] runs
+     * under the lock on the list as it is now, so a chart cast while the sync
+     * was on the network is not lost. Does not call [onChanged]: the sync is
+     * not a change made here.
+     */
+    fun applySync(change: (List<SavedChart>, List<String>) -> Pair<List<SavedChart>, List<String>>) {
+        updateAll(change)
+    }
+
+    /**
+     * Signed out, or another account: every chart becomes this phone's only,
+     * and deletes owed to the old account are dropped. Nothing is deleted.
+     */
+    fun forgetAccount() {
+        updateAll { list, _ -> list.map { it.copy(remoteId = null, needsUpload = false) } to emptyList() }
     }
 
     private fun update(change: (List<SavedChart>) -> List<SavedChart>) {
+        updateAll { list, deletes -> change(list) to deletes }
+    }
+
+    private fun updateAll(change: (List<SavedChart>, List<String>) -> Pair<List<SavedChart>, List<String>>) {
         loaded.await()
         synchronized(lock) {
-            val next = change(saved)
+            val (next, deletes) = change(saved, pendingDeletes)
             saved = next
+            pendingDeletes = deletes
             try {
-                storage.write(SavedChartsCodec.encode(next))
+                storage.write(SavedChartsCodec.encode(next, deletes))
             } catch (e: Exception) {
                 // A full disk loses the write, not the list on screen.
             }
@@ -140,7 +200,17 @@ internal object SavedChartRules {
      */
     fun upsert(current: List<SavedChart>, entry: SavedChart, max: Int = ChartStore.MAX_SAVED): List<SavedChart> {
         val previous = current.firstOrNull { it.key == entry.key }
-        val merged = if (previous != null) entry.copy(savedAtMillis = previous.savedAtMillis) else entry
+        /* The account copy is kept; if the details changed beyond the chart's
+           key (sex at birth), it is sent again. */
+        val merged = if (previous != null) {
+            entry.copy(
+                savedAtMillis = previous.savedAtMillis,
+                remoteId = previous.remoteId,
+                needsUpload = previous.remoteId != null && (previous.needsUpload || previous.details != entry.details),
+            )
+        } else {
+            entry
+        }
         val rest = current.filterNot { it.key == entry.key }
         return (listOf(merged) + rest).take(max)
     }
@@ -160,7 +230,13 @@ internal object SavedChartRules {
  *                         "latitude":28.6139,"longitude":77.209,
  *                         "timeZoneId":"Asia/Kolkata","timezoneOffsetMinutes":330}},
  *     "ascendant":"Virgo","ascendantDegree":28.7507,"moonSign":"Aquarius","moonDegree":19.97,
- *     "tradition":"Lahiri Classic","savedAt":1793000000000,"lastOpened":1793000000000}]}
+ *     "tradition":"Lahiri Classic","savedAt":1793000000000,"lastOpened":1793000000000,
+ *     "remoteId":"0b6c2f4e-...","needsUpload":true}],
+ *    "pendingDeletes":["5d1e..."]}
+ *
+ * details.sex ("female"/"male") is left out when not given. remoteId,
+ * needsUpload and pendingDeletes are the account sync's bookkeeping
+ * (data/account/ChartSync.kt); a document without them is a phone-only list.
  *
  * Signs are stored by enum name and accuracy by its API value. Decoding drops
  * any entry it cannot cast again (no name, date, place or a usable time) and
@@ -169,17 +245,31 @@ internal object SavedChartRules {
 internal object SavedChartsCodec {
     const val VERSION = 1
 
-    fun encode(charts: List<SavedChart>): String = JSONObject()
+    /** The whole stored document: the charts, and deletes still owed to the account. */
+    data class Document(val charts: List<SavedChart>, val pendingDeletes: List<String>)
+
+    fun encode(charts: List<SavedChart>, pendingDeletes: List<String> = emptyList()): String = JSONObject()
         .put("version", VERSION)
         .put("charts", JSONArray().apply { charts.forEach { put(encodeChart(it)) } })
+        .apply { if (pendingDeletes.isNotEmpty()) put("pendingDeletes", JSONArray(pendingDeletes)) }
         .toString()
 
-    fun decode(raw: String?): List<SavedChart> {
-        if (raw.isNullOrBlank()) return emptyList()
+    fun decode(raw: String?): List<SavedChart> = decodeDocument(raw).charts
+
+    fun decodeDocument(raw: String?): Document {
+        if (raw.isNullOrBlank()) return Document(emptyList(), emptyList())
+        val trimmed = raw.trim()
+        val root = if (trimmed.startsWith("{")) runCatching { JSONObject(trimmed) }.getOrNull() else null
+        val deletes = root?.optJSONArray("pendingDeletes")?.let { array ->
+            (0 until array.length()).mapNotNull { (array.opt(it) as? String)?.takeIf(REMOTE_ID::matches) }.distinct()
+        }.orEmpty()
+        return Document(decodeCharts(trimmed, root), deletes)
+    }
+
+    private fun decodeCharts(trimmed: String, root: JSONObject?): List<SavedChart> {
         val array = try {
-            val trimmed = raw.trim()
             // A bare array is accepted too, should an early build have written one.
-            if (trimmed.startsWith("[")) JSONArray(trimmed) else JSONObject(trimmed).optJSONArray("charts")
+            if (trimmed.startsWith("[")) JSONArray(trimmed) else root?.optJSONArray("charts")
         } catch (e: Exception) {
             null
         } ?: return emptyList()
@@ -203,12 +293,15 @@ internal object SavedChartsCodec {
         put("tradition", chart.tradition)
         put("savedAt", chart.savedAtMillis)
         put("lastOpened", chart.lastOpenedMillis)
+        chart.remoteId?.let { put("remoteId", it) }
+        if (chart.needsUpload) put("needsUpload", true)
     }
 
     fun decodeChart(json: JSONObject): SavedChart? {
         val details = json.optJSONObject("details")?.let(::decodeDetails) ?: return null
         val ascendant = json.string("ascendant")?.let(::sign) ?: return null
         val savedAt = json.long("savedAt") ?: 0L
+        val remoteId = json.string("remoteId")?.takeIf(REMOTE_ID::matches)
         return SavedChart(
             details = details,
             ascendant = ascendant,
@@ -218,6 +311,8 @@ internal object SavedChartsCodec {
             moonDegree = json.double("moonDegree")?.takeIf { it in 0.0..30.0 },
             tradition = json.string("tradition").orEmpty(),
             lastOpenedMillis = json.long("lastOpened") ?: savedAt,
+            remoteId = remoteId,
+            needsUpload = json.opt("needsUpload") == true && remoteId != null,
         )
     }
 
@@ -227,6 +322,7 @@ internal object SavedChartsCodec {
         details.exactTime?.let { put("exactTime", it) }
         put("accuracy", details.accuracy.apiValue)
         put("engineId", details.engineId)
+        details.sex?.let { put("sex", it.apiValue) }
         put("place", JSONObject().apply {
             val place = details.place
             put("city", place.city)
@@ -248,7 +344,8 @@ internal object SavedChartsCodec {
         if (accuracy == TimeAccuracy.Exact && exactTime == null) return null
         val place = json.optJSONObject("place")?.let(::decodePlace) ?: return null
         val engineId = json.string("engineId")?.takeIf { it.isNotBlank() } ?: Traditions.DEFAULT_ENGINE_ID
-        return BirthDetails(name, date, exactTime, accuracy, place, engineId)
+        val sex = BirthSex.from(json.string("sex"))
+        return BirthDetails(name, date, exactTime, accuracy, place, engineId, sex)
     }
 
     private fun decodePlace(json: JSONObject): Place? {
@@ -268,6 +365,9 @@ internal object SavedChartsCodec {
     }
 
     private val TIME = Regex("""([01]\d|2[0-3]):[0-5]\d""")
+
+    /** A chart id on the account: a uuid, as /api/sync/charts hands it out. */
+    val REMOTE_ID = Regex("""[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}""")
 
     private fun sign(name: String): Sign? = Sign.entries.firstOrNull { it.name == name }
 

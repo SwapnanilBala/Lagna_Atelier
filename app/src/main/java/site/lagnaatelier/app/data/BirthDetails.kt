@@ -34,6 +34,22 @@ enum class TimeAccuracy(val apiValue: String, val fallbackTime: String?) {
     Unknown("unknown", "12:00"),
 }
 
+/**
+ * Sex at birth, as the website's intake asks it (lib/birth-sex.ts there):
+ * Woman, Man, or Prefer not to say, which is null. Optional, and used only
+ * where the tradition reads the sexes differently: the partner's planet
+ * (Jupiter for a woman, Venus for a man) and which hand a palm reading reads.
+ */
+enum class BirthSex(val apiValue: String) {
+    Female("female"),
+    Male("male");
+
+    companion object {
+        /** Anything but the two values is "not given", as on the web. */
+        fun from(value: String?): BirthSex? = entries.firstOrNull { it.apiValue == value }
+    }
+}
+
 data class BirthDetails(
     val name: String,
     val date: LocalDate,
@@ -42,6 +58,8 @@ data class BirthDetails(
     val accuracy: TimeAccuracy,
     val place: Place,
     val engineId: String = Traditions.DEFAULT_ENGINE_ID,
+    /** Null when the reader preferred not to say. Not part of [chartQuery]: GET /api/chart ignores it. */
+    val sex: BirthSex? = null,
 ) {
     /** The time the chart is cast for. */
     val time: String get() = if (accuracy == TimeAccuracy.Exact) exactTime.orEmpty() else accuracy.fallbackTime!!
@@ -63,6 +81,16 @@ data class BirthDetails(
         "birth_time_fallback" to (accuracy != TimeAccuracy.Exact).toString(),
         "include_transits" to "true",
     )
+
+    /**
+     * The camelCase routes that read sex at birth (story-report,
+     * weekly-energy: readChartParams on the web) take it as `birthSex`, and
+     * only when it was given.
+     */
+    fun withBirthSex(params: MutableMap<String, String>): MutableMap<String, String> {
+        sex?.let { params["birthSex"] = it.apiValue }
+        return params
+    }
 }
 
 /** The 36 traditions: six ayanamshas, each with six house systems (lib/engines/engine-registry.ts). */

@@ -21,6 +21,7 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.AppDates
+import site.lagnaatelier.app.data.BirthSex
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
@@ -71,6 +72,13 @@ class ShownReading(
  * ViewModelProvider, since lifecycle-viewmodel-compose is not on the
  * classpath.
  */
+/** "Whose hand" for a chart's sex at birth: a woman's or a man's, or not said. */
+fun readerFor(sex: BirthSex?): PalmReader = when (sex) {
+    BirthSex.Female -> PalmReader.Woman
+    BirthSex.Male -> PalmReader.Man
+    null -> PalmReader.Unspecified
+}
+
 class PalmModel(application: Application) : AndroidViewModel(application) {
     private val allowanceStore = PalmAllowanceStore(application)
     private val history = PalmHistoryStore(application)
@@ -80,6 +88,20 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
     var view by mutableStateOf(PalmView.Capture)
 
     var reader by mutableStateOf(PalmReader.Unspecified)
+
+    /* The chart (and its sex at birth) "whose hand" was last preset from. */
+    private var presetFrom: String? = null
+
+    /**
+     * Presets "whose hand" from the chart's sex at birth, once per chart, so a
+     * choice the reader then makes by hand stands until another chart opens.
+     */
+    fun presetReader(chart: String?, sex: BirthSex?) {
+        val from = chart?.let { "$it|${sex?.apiValue.orEmpty()}" }
+        if (from == presetFrom) return
+        presetFrom = from
+        reader = readerFor(sex)
+    }
     var classicalMode by mutableStateOf(false)
 
     var photo by mutableStateOf<PreparedPhoto?>(null)

@@ -66,6 +66,8 @@ fun LandingScreen(
     onStart: () -> Unit,
     onOpenSaved: () -> Unit,
     onSignIn: () -> Unit,
+    /** The signed-in account's name or address; null when signed out. */
+    signedInAs: String? = null,
 ) {
     Column(
         Modifier
@@ -114,7 +116,7 @@ fun LandingScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            GoogleSignIn(onSignIn)
+            GoogleSignIn(signedInAs, onSignIn)
             GhostChip(stringResource(R.string.landing_saved), onClick = onOpenSaved)
         }
     }
@@ -284,7 +286,7 @@ private fun ProofRow(modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun GoogleSignIn(onClick: () -> Unit) {
+private fun GoogleSignIn(signedInAs: String?, onClick: () -> Unit) {
     Row(
         Modifier
             .clip(CircleShape)
@@ -305,7 +307,8 @@ private fun GoogleSignIn(onClick: () -> Unit) {
                 ),
         )
         Text(
-            stringResource(R.string.landing_google),
+            signedInAs?.let { stringResource(R.string.accounts_landing_signed_in, it) }
+                ?: stringResource(R.string.landing_google),
             style = MaterialTheme.typography.bodySmall.copy(fontSize = 13.sp, fontWeight = FontWeight.Medium),
         )
     }

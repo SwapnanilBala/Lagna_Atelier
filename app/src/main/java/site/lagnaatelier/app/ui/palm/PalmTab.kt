@@ -25,6 +25,7 @@ import site.lagnaatelier.app.data.palm.PalmCaptureFiles
 import androidx.lifecycle.ViewModelProvider
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.BirthDetails
+import site.lagnaatelier.app.data.chartKey
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
 
@@ -44,6 +45,9 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier
     val hasChart = details != null
 
     LaunchedEffect(Unit) { model.refreshAllowance() }
+    /* The sample chart is somebody else's, so it presets nothing. */
+    val chartKey = details?.let(::chartKey)
+    LaunchedEffect(chartKey, details?.sex) { model.presetReader(chartKey, details?.sex) }
 
     /* Where the camera app writes, kept across the process being let go while it is open. */
     var cameraUri by rememberSaveable { mutableStateOf<String?>(null) }

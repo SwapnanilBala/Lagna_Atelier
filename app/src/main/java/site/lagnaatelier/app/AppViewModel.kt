@@ -12,6 +12,12 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
+import site.lagnaatelier.app.data.BirthSex
+import site.lagnaatelier.app.data.account.AccountApi
+import site.lagnaatelier.app.data.account.AccountSession
+import site.lagnaatelier.app.data.account.ChartSync
+import site.lagnaatelier.app.data.account.GoogleIdTokens
+import site.lagnaatelier.app.data.account.SessionVault
 import site.lagnaatelier.app.data.ChartStore
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.ErrorText
@@ -46,6 +52,28 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     /* Charts saved on this phone; see data/ChartStore.kt. */
     val store = ChartStore(application)
 
+    /* Sign in with Google, and the saved charts kept in step with the account; see data/account. */
+    private val accountApi = AccountApi(api)
+
+    val account: AccountSession = AccountSession(
+        api = accountApi,
+        vault = SessionVault(application),
+        tokens = GoogleIdTokens(),
+        serverClientId = BuildConfig.GOOGLE_WEB_CLIENT_ID,
+        scope = viewModelScope,
+        onSignedIn = { sync.request() },
+        onSignedOut = { store.forgetAccount() },
+    )
+
+    val sync: ChartSync = ChartSync(
+        store = store,
+        api = accountApi,
+        session = account,
+        cast = api::chart,
+        consentPrompt = { application.getString(R.string.accounts_sync_prompt) },
+        scope = viewModelScope,
+    )
+
     var today by mutableStateOf<TodaySky?>(null)
         private set
     var todayUnavailable by mutableStateOf(false)
@@ -57,6 +85,10 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     val intake = IntakeDraft()
 
     init {
+        api.sessionToken = { account.token }
+        api.onSessionRejected = { account.sessionRejected() }
+        store.onChanged = { sync.request() }
+        account.load()
         loadToday()
     }
 
@@ -116,6 +148,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         var estimate by mutableStateOf(TimeAccuracy.Unknown)
         var ayanamsha by mutableStateOf(Traditions.Ayanamsha.Lahiri)
         var houses by mutableStateOf(Traditions.HouseSystem.WholeSign)
+        /** Sex at birth; null is "Prefer not to say", where the choice starts. */
+        var sex by mutableStateOf<BirthSex?>(null)
 
         var placeQuery by mutableStateOf("")
             private set
@@ -191,6 +225,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 accuracy = accuracy,
                 place = place!!,
                 engineId = Traditions.engineId(ayanamsha, houses),
+                sex = sex,
             )
         }
     }
