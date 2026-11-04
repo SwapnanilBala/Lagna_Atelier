@@ -41,6 +41,9 @@ class TimingHolder(val details: BirthDetails, val today: LocalDate) {
     val placeToday: LocalDate = TimingQueries.placeToday(placeOffsetMinutes)
     val targetYear = TimingQueries.varshaphalYear(details.date, today)
 
+    /* The written readings, the life chapters and compatibility (PeriodsState.kt). */
+    val readings = PeriodsHolder(details, today)
+
     var forecast by mutableStateOf<Load<Forecast>>(Load.Idle)
         private set
     var year by mutableStateOf<Load<YearChart>>(Load.Idle)
