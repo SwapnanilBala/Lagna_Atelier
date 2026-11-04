@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.account
 
+import site.lagnaatelier.app.ui.components.NavRoom
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -55,7 +56,7 @@ import site.lagnaatelier.app.data.account.ChartSync
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
@@ -86,7 +87,7 @@ fun AccountTab(
 ) {
     LazyColumn(
         modifier.fillMaxSize(),
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 140.dp),
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = NavRoom),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item {
@@ -111,12 +112,7 @@ fun AccountTab(
         }
         item {
             Box {
-                Glow(
-                    Modifier
-                        .matchParentSize()
-                        .offset(x = (-40).dp, y = (-10).dp)
-                        .requiredSize(width = 400.dp, height = 260.dp),
-                )
+                GlowBehind(height = 260.dp)
                 SignInCard(account)
             }
         }

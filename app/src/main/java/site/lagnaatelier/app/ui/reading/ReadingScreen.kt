@@ -69,7 +69,7 @@ import site.lagnaatelier.app.data.progress
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
@@ -113,7 +113,7 @@ fun ReadingScreen(
     /* Where Share points: this chart on the website (ShareReading.link). */
     shareLink: String = LagnaApi.BASE_URL,
     /* The Timing, Palm and Account tabs, drawn under the same top bar. */
-    otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
+    otherTab: @Composable (AppTab) -> Unit = {},
     /* For the yogas' classical note; without it (previews) the note is left out. */
     api: LagnaApi? = null,
     /* The "More readings" card at the foot of the reading (ui/more). */
@@ -257,11 +257,7 @@ private fun ReadingContent(
         item {
             Box {
                 /* Kept inside the list's top edge, which would otherwise cut it with a hard line. */
-                Glow(
-                    Modifier
-                        .offset(x = (-40).dp, y = 24.dp)
-                        .requiredSize(width = 400.dp, height = 300.dp),
-                )
+                GlowBehind()
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     NowCard(chart, today)
                     FactTiles(chart)
@@ -478,17 +474,6 @@ private fun FindingRow(finding: Finding) {
                 Text(it, style = MaterialTheme.typography.bodyMedium.copy(fontSize = MaterialTheme.typography.bodyMedium.fontSize * 0.96f), color = Muted)
             }
         }
-    }
-}
-
-@Composable
-private fun ComingNext(tab: AppTab) {
-    Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
-        Text(
-            stringResource(R.string.nav_soon, stringResource(tab.label)),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Muted,
-        )
     }
 }
 

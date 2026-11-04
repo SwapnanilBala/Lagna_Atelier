@@ -77,6 +77,7 @@ import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
@@ -129,7 +130,7 @@ internal fun GeneratingScreen(state: ReportState.Working, onStop: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Box {
-                Glow(Modifier.offset(x = (-40).dp, y = 10.dp).requiredSize(width = 400.dp, height = 300.dp))
+                GlowBehind()
                 FloatCard(Modifier.fillMaxWidth(), spacing = 14.dp, padding = 16.dp) {
                     Row(verticalAlignment = Alignment.Top) {
                         Column(Modifier.weight(1f).padding(end = 8.dp)) {

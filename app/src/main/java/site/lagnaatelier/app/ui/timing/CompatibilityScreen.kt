@@ -47,7 +47,7 @@ import site.lagnaatelier.app.data.periods.SynastryFacet
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidChip
 import site.lagnaatelier.app.ui.components.LiquidTextField
 import site.lagnaatelier.app.ui.components.Panel
@@ -107,7 +107,7 @@ internal fun CompatibilityScreen(
         }
 
         Box {
-            Glow(Modifier.offset(x = (-40).dp, y = 10.dp).requiredSize(width = 400.dp, height = 260.dp))
+            GlowBehind(height = 260.dp)
             FloatCard(Modifier.fillMaxWidth(), spacing = 12.dp, padding = 16.dp) {
                 CardLabel(stringResource(R.string.compat_their_chart))
                 LiquidTextField(

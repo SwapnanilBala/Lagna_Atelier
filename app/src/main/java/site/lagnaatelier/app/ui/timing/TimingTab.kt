@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.timing
 
+import site.lagnaatelier.app.ui.components.NavRoom
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,7 +24,7 @@ import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.periods.PeriodsApi
 import site.lagnaatelier.app.data.timing.TimingQueries
 import site.lagnaatelier.app.data.timing.TimingRepository
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import java.time.LocalDate
 
 /*
@@ -76,16 +77,12 @@ fun TimingTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifi
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             /* Clears the floating nav pill. */
-            .padding(start = 16.dp, end = 16.dp, bottom = 140.dp),
+            .padding(start = 16.dp, end = 16.dp, bottom = NavRoom),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Box {
             /* Kept inside the column's top edge, which would otherwise cut it with a hard line. */
-            Glow(
-                Modifier
-                    .offset(x = (-40).dp, y = 24.dp)
-                    .requiredSize(width = 400.dp, height = 300.dp),
-            )
+            GlowBehind()
             PeriodsCard(
                 chart,
                 holder,

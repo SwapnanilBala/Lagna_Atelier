@@ -32,7 +32,7 @@ import site.lagnaatelier.app.data.periods.ShiftStatus
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.Muted
@@ -93,7 +93,7 @@ internal fun LifeChaptersScreen(readings: PeriodsHolder, api: PeriodsApi, onBack
             val card = @Composable { ChapterCard(shift, readings.chapterReadings[shift.id], writing) }
             if (index == 0) {
                 Box {
-                    Glow(Modifier.offset(x = (-40).dp, y = 24.dp).requiredSize(width = 400.dp, height = 300.dp))
+                    GlowBehind()
                     card()
                 }
             } else {

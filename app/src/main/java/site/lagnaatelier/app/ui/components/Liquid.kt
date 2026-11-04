@@ -1,5 +1,9 @@
 package site.lagnaatelier.app.ui.components
 
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -57,6 +61,25 @@ import site.lagnaatelier.app.ui.theme.Muted
  * Blurred on Android 12 and later. On 9 to 11 `blur` does nothing, and the
  * gradients' transparent edges carry the softness on their own.
  */
+/**
+ * The glow behind the card at the head of a screen, inside that card's Box.
+ * It never sizes the Box (matchParentSize), so a short or loading card is
+ * not given the glow's 300 dp of empty room; it draws at [width] x [height]
+ * from the Box's top-left, moved by [x] and [y]. [y] is kept at least 24 dp
+ * so a list's top edge, which clips what is drawn above it, never cuts the
+ * glow flat.
+ */
+@Composable
+fun BoxScope.GlowBehind(width: Dp = 400.dp, height: Dp = 300.dp, x: Dp = (-40).dp, y: Dp = 24.dp) {
+    Glow(
+        Modifier
+            .matchParentSize()
+            .wrapContentSize(Alignment.TopStart, unbounded = true)
+            .offset(x = x, y = y.coerceAtLeast(24.dp))
+            .requiredSize(width = width, height = height),
+    )
+}
+
 @Composable
 fun Glow(modifier: Modifier = Modifier, colors: List<Color> = GoldenGlow) {
     Box(
@@ -260,3 +283,9 @@ fun Segmented(options: List<String>, selected: Int, onSelect: (Int) -> Unit, mod
         }
     }
 }
+
+/** Room under a list for the floating nav pill (or one floating pill), so its last line is never under it. */
+val NavRoom = 140.dp
+
+/** Room for the nav pill and a dock of actions above it. */
+val DockRoom = 210.dp

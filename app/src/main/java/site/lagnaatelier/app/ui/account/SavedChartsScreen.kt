@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.account
 
+import site.lagnaatelier.app.ui.components.NavRoom
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -46,7 +47,7 @@ import site.lagnaatelier.app.data.formatDegree
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
@@ -87,7 +88,7 @@ fun SavedChartsScreen(
             Header(count = charts.size, onBack = onBack)
             LazyColumn(
                 Modifier.weight(1f),
-                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 120.dp),
+                contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 4.dp, bottom = NavRoom),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 if (charts.isEmpty()) {
@@ -96,12 +97,7 @@ fun SavedChartsScreen(
                     val first = charts.first()
                     item(key = "front") {
                         Box {
-                            Glow(
-                                Modifier
-                                    .matchParentSize()
-                                    .offset(x = (-40).dp, y = 0.dp)
-                                    .requiredSize(width = 400.dp, height = 280.dp),
-                            )
+                            GlowBehind(height = 280.dp)
                             FrontCard(
                                 chart = first,
                                 syncing = syncing,
@@ -269,12 +265,7 @@ private fun RowScope.Tile(label: String, value: String, meta: String) {
 @Composable
 private fun EmptyState(onSample: () -> Unit) {
     Box {
-        Glow(
-            Modifier
-                .matchParentSize()
-                .offset(x = (-40).dp, y = (-20).dp)
-                .requiredSize(width = 400.dp, height = 260.dp),
-        )
+        GlowBehind(height = 260.dp)
         FloatCard(Modifier.fillMaxWidth(), spacing = 14.dp, padding = 16.dp) {
             Text(
                 stringResource(R.string.saved_empty),
