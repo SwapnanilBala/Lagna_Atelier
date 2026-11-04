@@ -47,7 +47,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
-import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -469,35 +469,40 @@ private fun AppViewModel.Missing.hint(): Int = when (this) {
 @Composable
 internal fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (LocalDate) -> Unit) {
     val todayMillis = LocalDate.now().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
-    val state = rememberDatePickerState(
-        initialSelectedDateMillis = (current ?: LocalDate.of(1990, 1, 1)).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli(),
-        yearRange = 1900..LocalDate.now().year,
-        selectableDates = object : SelectableDates {
-            override fun isSelectableDate(utcTimeMillis: Long) = utcTimeMillis <= todayMillis
-        },
-    )
-    val colors = DatePickerDefaults.colors(containerColor = CardWhite)
     /*
-     * The picker formats and starts its weeks by the configuration's locale.
-     * In English that is the phone's, often en-US ("Jan 1, 1990", Sunday
-     * first) while the app writes "1 Jan 1990": English is shown as en-GB,
-     * day first and Monday first. Other languages keep their own.
+     * The picker formats and starts its weeks by its locale. In English that
+     * is the phone's, often en-US ("Jan 1, 1990", Sunday first), while the app
+     * writes "1 Jan 1990": English is shown as en-GB, day first and Monday
+     * first. Other languages keep their own. The dialog is a window of its
+     * own that provides its own configuration, so the locale is given to the
+     * picker's state and inside the dialog, not around it.
      */
     val configuration = LocalConfiguration.current
     val pickerConfiguration = remember(configuration) {
         if (configuration.locales[0].language == "en") Configuration(configuration).apply { setLocale(Locale.UK) } else configuration
     }
-    CompositionLocalProvider(LocalConfiguration provides pickerConfiguration) {
-        DatePickerDialog(
-            onDismissRequest = onDismiss,
-            confirmButton = {
-                TextButton(onClick = {
-                    state.selectedDateMillis?.let { onPick(Instant.ofEpochMilli(it).atZone(ZoneOffset.UTC).toLocalDate()) }
-                }) { Text(stringResource(R.string.intake_ok), color = Ink) }
+    val state = remember(pickerConfiguration) {
+        DatePickerState(
+            locale = pickerConfiguration.locales[0],
+            initialSelectedDateMillis = (current ?: LocalDate.of(1990, 1, 1)).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli(),
+            yearRange = 1900..LocalDate.now().year,
+            selectableDates = object : SelectableDates {
+                override fun isSelectableDate(utcTimeMillis: Long) = utcTimeMillis <= todayMillis
             },
-            dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.intake_cancel), color = Muted) } },
-            colors = colors,
-        ) {
+        )
+    }
+    val colors = DatePickerDefaults.colors(containerColor = CardWhite)
+    DatePickerDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            TextButton(onClick = {
+                state.selectedDateMillis?.let { onPick(Instant.ofEpochMilli(it).atZone(ZoneOffset.UTC).toLocalDate()) }
+            }) { Text(stringResource(R.string.intake_ok), color = Ink) }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.intake_cancel), color = Muted) } },
+        colors = colors,
+    ) {
+        CompositionLocalProvider(LocalConfiguration provides pickerConfiguration) {
             DatePicker(state = state, colors = colors)
         }
     }
