@@ -39,6 +39,28 @@ private fun schemeFor(palette: LiquidPalette): ColorScheme {
         onSurfaceVariant = palette.muted,
         outline = palette.hairline,
         outlineVariant = palette.hairline,
+        /*
+         * Material's own containers (the date and time pickers, menus,
+         * dialogs) default to its baseline lavender. They take the app's
+         * card, canvas and ink instead, so a picker looks like the app.
+         */
+        primaryContainer = palette.canvas,
+        onPrimaryContainer = palette.ink,
+        secondaryContainer = palette.canvas,
+        onSecondaryContainer = palette.ink,
+        tertiaryContainer = palette.canvas,
+        onTertiaryContainer = palette.ink,
+        surfaceTint = palette.card,
+        surfaceBright = palette.card,
+        surfaceDim = palette.canvas,
+        surfaceContainerLowest = palette.card,
+        surfaceContainerLow = palette.card,
+        surfaceContainer = palette.card,
+        surfaceContainerHigh = palette.card,
+        surfaceContainerHighest = palette.canvas,
+        inverseSurface = palette.ink,
+        inverseOnSurface = palette.card,
+        inversePrimary = palette.canvas,
     )
 }
 

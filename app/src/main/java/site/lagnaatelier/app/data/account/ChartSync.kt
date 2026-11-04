@@ -85,6 +85,7 @@ class ChartSync(
             AccountSession.Verification.Unreachable -> throw java.io.IOException("Account unreachable")
         }
 
+        store.awaitLoaded()
         val (_, deletes) = store.snapshot()
         for (id in deletes) {
             api.delete(id)

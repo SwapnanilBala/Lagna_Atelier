@@ -4,7 +4,7 @@
     <string name="sections_show">Afficher</string>
     <string name="sections_hide">Masquer</string>
     <string name="sections_see_all">Tout voir (%1$d)</string>
-    <string name="sections_see_fewer">Voir moins</string>
+    <string name="sections_see_fewer">Afficher moins</string>
     <string name="sections_retry">Réessayer</string>
     <string name="positions_title">Positions planétaires</string>
     <string name="positions_count">%1$d grahas</string>

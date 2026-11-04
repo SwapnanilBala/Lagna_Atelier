@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Strings for the palm feature; that feature owns this file.
      Wording follows the web's messages/fr.json (palm) where the web has it. -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Capture -->
     <string name="palm_title">Faites lire votre paume</string>
     <string name="palm_lead_chart">Une photo de votre paume, lue pour ses lignes, ses monts et ses signes particuliers, et mise en regard de votre thème.</string>
@@ -35,7 +35,7 @@
     <string name="palm_classical_title">Mode classique</string>
     <string name="palm_classical_subtitle">Hasta Samudrika Shastra uniquement</string>
 
-    <plurals name="palm_allowance_left">
+    <plurals name="palm_allowance_left" tools:ignore="ImpliedQuantity">
         <item quantity="one">lecture restante cette semaine</item>
         <item quantity="many">lectures restantes cette semaine</item>
         <item quantity="other">lectures restantes cette semaine</item>

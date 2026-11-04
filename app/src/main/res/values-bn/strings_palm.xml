@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Bengali (bn). Terms follow the website's messages/bn.json. -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="palm_title">আপনার হস্তরেখা পড়ুন</string>
     <string name="palm_lead_chart">আপনার হাতের তালুর একটি ছবি, তার রেখা, পর্বত ও চিহ্ন ধরে পড়া, আর আপনার কুণ্ডলীর সঙ্গে মিলিয়ে বিচার করা।</string>
     <string name="palm_lead_plain">আপনার হাতের তালুর একটি ছবি, তার রেখা, পর্বত ও চিহ্ন ধরে পড়া।</string>
@@ -30,7 +30,7 @@
     <string name="palm_tip_frame">পুরো তালু ফ্রেমে, কবজি পর্যন্ত</string>
     <string name="palm_classical_title">শাস্ত্রীয় মোড</string>
     <string name="palm_classical_subtitle">শুধুমাত্র হস্ত সামুদ্রিক শাস্ত্র</string>
-    <plurals name="palm_allowance_left">
+    <plurals name="palm_allowance_left" tools:ignore="ImpliedQuantity">
         <item quantity="one">এই সপ্তাহে বাকি পাঠ</item>
         <item quantity="other">এই সপ্তাহে বাকি পাঠ</item>
     </plurals>

@@ -96,4 +96,33 @@ class PaginatorTest {
         /* Pages come in order. */
         assertTrue(slices.zipWithNext().all { (a, b) -> b.page >= a.page })
     }
+
+    @Test
+    fun aShortTableMovesWholeRatherThanLeaveALoneRow() {
+        /* 70 used: the heading and first two rows (20 + 10 + 10) would fit, the third row would not. */
+        val rows = (0 until 3).map { FlowBlock.box(10f, keepWithPrevious = it > 0) }
+        val slices = Paginator.paginate(listOf(paragraph(6), heading(), *rows.toTypedArray(), paragraph(2)), pageHeight = 100f)
+        val pages = slices.associate { it.block to it.page }
+        assertEquals(0, pages[0])
+        /* The heading and all three rows go over together. */
+        assertEquals(listOf(1, 1, 1, 1), (1..4).map { pages[it] })
+        assertEquals(listOf(0f, 20f, 30f, 40f), (1..4).map { index -> slices.single { it.block == index }.top })
+    }
+
+    @Test
+    fun aSectionsSliverOfALastPageIsSavedByTighterSpacing() {
+        /* Nine one-line paragraphs, each 10 tall with 2 above: 9 x 10 + 8 x 2 = 106, six over a page of 100. */
+        val section = listOf(paragraph(1, newPage = true)) + (1 until 9).map { paragraph(1, spaceBefore = 2f) }
+        val slices = Paginator.paginate(section + paragraph(1, newPage = true), pageHeight = 100f)
+        /* Tightened to 0.8 above each, it fits one page; the next section still starts on a new one. */
+        assertEquals(2, Paginator.pageCount(slices))
+        assertTrue(slices.filter { it.block < 9 }.all { it.page == 0 })
+        assertEquals(1, slices.single { it.block == 9 }.page)
+    }
+
+    @Test
+    fun aFullLastPageIsLeftAsItIs() {
+        val slices = Paginator.paginate(listOf(paragraph(9), paragraph(6, spaceBefore = 4f)), pageHeight = 100f)
+        assertEquals(Slice(1, 1, 0, 6, 0f), slices.last())
+    }
 }

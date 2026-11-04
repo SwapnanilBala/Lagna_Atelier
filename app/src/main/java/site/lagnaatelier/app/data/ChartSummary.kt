@@ -21,8 +21,22 @@ enum class Sign(val label: String) {
 /** One body in a sign, by its two-letter chart abbreviation. */
 data class Placement(val abbreviation: String, val sign: Sign)
 
-/** A dasha period. `end` is exclusive, as the engine reports it. */
-data class Period(val lord: String, val start: LocalDate, val end: LocalDate)
+/**
+ * A dasha period. `end` is exclusive, as the engine reports it. The sequence
+ * dates are the whole period before it was clipped to the reader's life (the
+ * mahadasha running at birth began before it); sub-periods are proportioned
+ * from them.
+ */
+data class Period(
+    val lord: String,
+    val start: LocalDate,
+    val end: LocalDate,
+    val sequenceStart: LocalDate = start,
+    val sequenceEnd: LocalDate = end,
+) {
+    /** The same period of life, however it was reported (with or without its sequence dates). */
+    fun sameAs(other: Period): Boolean = lord == other.lord && start == other.start
+}
 
 data class Finding(val category: String, val headline: String, val body: String? = null)
 
@@ -55,6 +69,10 @@ data class ChartSummary(
     /** Every divisional chart the engine cast, D1 to D60 (data/vargas). Empty for the built-in sample. */
     val vargas: List<site.lagnaatelier.app.data.vargas.Varga> = emptyList(),
 )
+
+/** The antardashas of the mahadasha running now, from the chart's own dates. */
+val ChartSummary.antardashas: List<Period>
+    get() = Vimshottari.subPeriods(mahadashas.firstOrNull { it.sameAs(mahadasha) } ?: mahadasha)
 
 data class TodaySky(val date: LocalDate, val moonSign: Sign, val moonNakshatra: String, val sunSign: Sign)
 

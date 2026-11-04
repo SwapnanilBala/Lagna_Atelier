@@ -1,5 +1,7 @@
 package site.lagnaatelier.app.ui.palm
 
+import site.lagnaatelier.app.ui.components.DockRoom
+import site.lagnaatelier.app.ui.components.NavRoom
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable

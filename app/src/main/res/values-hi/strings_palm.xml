@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Strings for the palm feature; that feature owns this file.
      Wording follows the web's palm namespace in messages/hi.json where the web has it. -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Capture -->
     <string name="palm_title">अपनी हथेली पढ़वाएँ</string>
     <string name="palm_lead_chart">आपकी हथेली की एक तस्वीर, जिसकी रेखाएँ, पर्वत और चिह्न पढ़े जाते हैं और आपकी कुंडली के साथ तौले जाते हैं।</string>
@@ -35,7 +35,7 @@
     <string name="palm_classical_title">शास्त्रीय मोड</string>
     <string name="palm_classical_subtitle">केवल हस्त सामुद्रिक शास्त्र</string>
 
-    <plurals name="palm_allowance_left">
+    <plurals name="palm_allowance_left" tools:ignore="ImpliedQuantity">
         <item quantity="one">पठन इस सप्ताह शेष</item>
         <item quantity="other">पठन इस सप्ताह शेष</item>
     </plurals>

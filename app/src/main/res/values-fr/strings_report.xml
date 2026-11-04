@@ -22,7 +22,8 @@
     <string name="report_step_writing">Rédaction de votre lecture</string>
     <string name="report_step_typesetting">Mise en page du PDF</string>
     <string name="report_step_checks">%1$d sur %2$d</string>
-    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_pdf_folio">%1$d sur %2$d</string>
+    <string name="report_step_chapters">%1$d sur %2$d</string>
     <string name="report_detail_planning">Préparation des chapitres…</string>
     <string name="report_detail_introduction">Rédaction de l’introduction…</string>
     <string name="report_detail_chapter">Rédaction du chapitre %1$d sur %2$d</string>

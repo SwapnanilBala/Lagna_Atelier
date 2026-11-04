@@ -5,7 +5,7 @@
     <string name="timing_offline">Ceci s’affiche lorsque vous êtes en ligne.</string>
     <string name="timing_unreadable">Ceci n’a pas pu être lu pour le moment.</string>
     <string name="timing_retry">Réessayer</string>
-    <string name="timing_see_fewer">Voir moins</string>
+    <string name="timing_see_fewer">Afficher moins</string>
     <string name="timing_see_all_count">Voir les %1$d</string>
     <string name="timing_range_to">jusqu’au %1$s</string>
     <string name="timing_percent_through">%1$d%% écoulé</string>
@@ -18,7 +18,7 @@
     <string name="timing_level_pratyantar">Pratyantar</string>
     <string name="timing_next_period">Suivante : %1$s, à partir du %2$s</string>
     <string name="timing_all_periods">Toutes les périodes</string>
-    <string name="timing_fewer_periods">Moins</string>
+    <string name="timing_fewer_periods">Afficher moins</string>
     <string name="timing_periods_remaining">Périodes Pratyantar de cette Antar</string>
     <string name="timing_period_now">maintenant</string>
     <string name="timing_period_row">Du %1$s au %2$s</string>
@@ -82,7 +82,7 @@
     <string name="timing_window_best_description">%1$s. %2$s</string>
     <string name="timing_no_windows">Aucune bonne fenêtre dans les 14 prochains jours. Essayez une autre activité.</string>
     <string name="timing_rahukaala_today">À éviter aujourd’hui (Rahukaala)</string>
-    <string name="timing_clock_range">%1$s–%2$s</string>
+    <string name="timing_clock_range">%1$s à %2$s</string>
     <plurals name="timing_windows_found">
         <item quantity="one">%1$d fenêtre trouvée</item>
         <item quantity="many">%1$d fenêtres trouvées</item>
@@ -94,7 +94,7 @@
     <!-- This year's chart -->
     <string name="timing_year_title">Le thème de cette année</string>
     <string name="timing_year_loading">Lecture de cette année…</string>
-    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_span">%1$s à %2$s</string>
     <string name="timing_year_rising">Ascendant de l’année</string>
     <string name="timing_year_lord">Seigneur de l’année</string>
     <string name="timing_year_muntha">Muntha</string>

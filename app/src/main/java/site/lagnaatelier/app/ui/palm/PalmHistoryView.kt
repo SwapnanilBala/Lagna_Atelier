@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.palm
 
+import site.lagnaatelier.app.ui.components.DockRoom
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -38,7 +39,7 @@ import site.lagnaatelier.app.data.palm.SavedPalmReading
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
 import site.lagnaatelier.app.ui.theme.Hairline
@@ -75,7 +76,7 @@ internal fun PalmHistoryView(model: PalmModel) {
             saved.firstOrNull()?.let { latest ->
                 item(key = latest.id) {
                     Box {
-                        Glow(Modifier.offset(x = (-40).dp, y = (-30).dp).requiredSize(width = 400.dp, height = 260.dp))
+                        GlowBehind(height = 260.dp)
                         FloatCard(Modifier.fillMaxWidth(), spacing = 10.dp) {
                             Row(
                                 Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).clickable(role = Role.Button) { model.openSaved(latest) },

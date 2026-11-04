@@ -1,5 +1,10 @@
 package site.lagnaatelier.app.ui.reading
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import android.content.res.Configuration
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.background
@@ -55,6 +60,7 @@ import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.Finding
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.antardashas
 import site.lagnaatelier.app.data.SampleChart
 import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.data.formatDegree
@@ -63,7 +69,7 @@ import site.lagnaatelier.app.data.progress
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
@@ -107,35 +113,58 @@ fun ReadingScreen(
     /* Where Share points: this chart on the website (ShareReading.link). */
     shareLink: String = LagnaApi.BASE_URL,
     /* The Timing, Palm and Account tabs, drawn under the same top bar. */
-    otherTab: @Composable (AppTab) -> Unit = { ComingNext(it) },
+    otherTab: @Composable (AppTab) -> Unit = {},
     /* For the yogas' classical note; without it (previews) the note is left out. */
     api: LagnaApi? = null,
     /* The "More readings" card at the foot of the reading (ui/more). */
     moreReadings: @Composable () -> Unit = {},
 ) {
+    /* Each tab keeps its own remembered state (its scroll position above all) while another is shown. */
+    val tabStates = rememberSaveableStateHolder()
+    /* On its side the phone has little height: the report pill sits beside the nav pill, not over it. */
+    val landscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(chart, isSample, onBack, shareLink)
-            if (tab == AppTab.Reading) {
-                ReadingContent(chart, today, isSample, api, moreReadings)
-            } else {
-                Box(Modifier.weight(1f)) { otherTab(tab) }
+            tabStates.SaveableStateProvider(tab.name) {
+                if (tab == AppTab.Reading) {
+                    ReadingContent(chart, today, isSample, api, moreReadings, bottomRoom = if (landscape) 96.dp else 160.dp)
+                } else {
+                    Box(Modifier.weight(1f)) { otherTab(tab) }
+                }
             }
         }
 
-        Column(
-            Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .navigationBarsPadding()
-                .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
-            horizontalAlignment = Alignment.End,
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
-            if (tab == AppTab.Reading) {
-                PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+        if (landscape) {
+            Row(
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.End),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                if (tab == AppTab.Reading) {
+                    PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+                }
+                NavPill(tab, onTab, Modifier.widthIn(max = 440.dp))
             }
-            NavPill(tab, onTab)
+        } else {
+            Column(
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                if (tab == AppTab.Reading) {
+                    PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+                }
+                NavPill(tab, onTab)
+            }
         }
     }
 }
@@ -204,7 +233,14 @@ private fun shareReading(context: Context, text: String, subject: String, choose
 }
 
 @Composable
-private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Boolean, api: LagnaApi?, moreReadings: @Composable () -> Unit) {
+private fun ReadingContent(
+    chart: ChartSummary,
+    today: LocalDate,
+    isSample: Boolean,
+    api: LagnaApi?,
+    moreReadings: @Composable () -> Unit,
+    bottomRoom: Dp,
+) {
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
@@ -215,17 +251,13 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
     val sections = if (isSample) rememberSampleSections() else chart.sections
 
     LazyColumn(
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 160.dp),
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = bottomRoom),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item {
             Box {
                 /* Kept inside the list's top edge, which would otherwise cut it with a hard line. */
-                Glow(
-                    Modifier
-                        .offset(x = (-40).dp, y = 24.dp)
-                        .requiredSize(width = 400.dp, height = 300.dp),
-                )
+                GlowBehind()
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     NowCard(chart, today)
                     FactTiles(chart)
@@ -241,7 +273,21 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
                         onSelect = { dashaView = it },
                     )
                 }
-                DashaTimeline(chart.mahadashas, current = chart.mahadasha, today = today)
+                val antardashas = chart.antardashas
+                if (dashaView == 1 && antardashas.isNotEmpty()) {
+                    /* The antardashas of the mahadasha running now, on its own span. */
+                    val maha = antardashas.first().start to antardashas.last().end
+                    DashaTimeline(
+                        antardashas,
+                        current = chart.antardasha,
+                        today = today,
+                        from = maha.first,
+                        to = maha.second,
+                        labelEvery = if (maha.second.year - maha.first.year > 12) 4 else 2,
+                    )
+                } else {
+                    DashaTimeline(chart.mahadashas, current = chart.mahadasha, today = today)
+                }
             }
         }
         item {
@@ -431,22 +477,11 @@ private fun FindingRow(finding: Finding) {
     }
 }
 
-@Composable
-private fun ComingNext(tab: AppTab) {
-    Box(Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
-        Text(
-            stringResource(R.string.nav_soon, stringResource(tab.label)),
-            style = MaterialTheme.typography.bodyLarge,
-            color = Muted,
-        )
-    }
-}
-
 /* The navigation bar as one floating black pill, as in the mock. */
 @Composable
-private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit) {
+private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit, modifier: Modifier = Modifier) {
     Row(
-        Modifier
+        modifier
             .fillMaxWidth()
             .height(60.dp)
             .clip(CircleShape)

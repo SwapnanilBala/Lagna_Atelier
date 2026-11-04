@@ -5,7 +5,7 @@
     <string name="timing_offline">यह ऑनलाइन होने पर दिखता है।</string>
     <string name="timing_unreadable">यह अभी पढ़ा नहीं जा सका।</string>
     <string name="timing_retry">फिर कोशिश करें</string>
-    <string name="timing_see_fewer">कम देखें</string>
+    <string name="timing_see_fewer">कम दिखाएँ</string>
     <string name="timing_see_all_count">सभी %1$d देखें</string>
     <string name="timing_range_to">%1$s तक</string>
     <string name="timing_percent_through">%1$d%% बीत चुका</string>
@@ -18,7 +18,7 @@
     <string name="timing_level_pratyantar">प्रत्यंतर</string>
     <string name="timing_next_period">अगली: %1$s, %2$s से</string>
     <string name="timing_all_periods">सभी अवधियाँ</string>
-    <string name="timing_fewer_periods">कम</string>
+    <string name="timing_fewer_periods">कम दिखाएँ</string>
     <string name="timing_periods_remaining">इस अंतर्दशा की प्रत्यंतर्दशाएँ</string>
     <string name="timing_period_now">अभी</string>
     <string name="timing_period_row">%1$s से %2$s</string>
@@ -81,7 +81,7 @@
     <string name="timing_window_best_description">%1$s। %2$s</string>
     <string name="timing_no_windows">अगले 14 दिनों में कोई अच्छी अवधि नहीं। कोई दूसरा कार्य आज़माएँ।</string>
     <string name="timing_rahukaala_today">आज इससे बचें (राहुकाल)</string>
-    <string name="timing_clock_range">%1$s–%2$s</string>
+    <string name="timing_clock_range">%1$s से %2$s</string>
     <plurals name="timing_windows_found">
         <item quantity="one">%1$d अवधि मिली</item>
         <item quantity="other">%1$d अवधियाँ मिलीं</item>
@@ -92,7 +92,7 @@
     <!-- This year's chart -->
     <string name="timing_year_title">इस वर्ष की कुंडली</string>
     <string name="timing_year_loading">यह वर्ष पढ़ा जा रहा है…</string>
-    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_span">%1$s से %2$s</string>
     <string name="timing_year_rising">वर्ष लग्न</string>
     <string name="timing_year_lord">वर्षपति</string>
     <string name="timing_year_muntha">मुन्था</string>

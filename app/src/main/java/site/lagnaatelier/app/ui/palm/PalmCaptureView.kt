@@ -1,5 +1,8 @@
 package site.lagnaatelier.app.ui.palm
 
+import site.lagnaatelier.app.ui.components.NavRoom
+import androidx.compose.ui.semantics.Role
+import androidx.compose.foundation.selection.toggleable
 import android.os.SystemClock
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -45,7 +48,7 @@ import site.lagnaatelier.app.data.palm.PalmReader
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidChip
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.components.PillButton
@@ -102,11 +105,8 @@ internal fun PalmCaptureView(
         }
         item {
             Box {
-                /* The glow sets the slot's least height; the sign-in card is shorter than the camera's, as on the Account tab. */
-                Glow(
-                    Modifier.offset(x = (-40).dp, y = (-10).dp)
-                        .requiredSize(width = 400.dp, height = if (signIn != null) 260.dp else 320.dp),
-                )
+                /* Behind the card, never sizing it: the sign-in card is shorter than the camera card. */
+                GlowBehind(height = if (signIn != null) 260.dp else 320.dp)
                 FloatCard(Modifier.fillMaxWidth(), spacing = 14.dp) {
                     if (signIn != null) {
                         signIn()
@@ -290,16 +290,20 @@ private fun TipRow(title: String, detail: String? = null) {
 private fun ClassicalPanel(on: Boolean, enabled: Boolean, onChange: (Boolean) -> Unit) {
     val title = stringResource(R.string.palm_classical_title)
     Panel(Modifier.fillMaxWidth()) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        /* The whole row is one switch: one tap target, read out as a switch with its on or off state. */
+        Row(
+            Modifier.toggleable(value = on, enabled = enabled, role = Role.Switch, onValueChange = onChange),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
             Column(Modifier.weight(1f)) {
                 Text(title, style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp))
                 Text(stringResource(R.string.palm_classical_subtitle), style = MaterialTheme.typography.bodySmall, color = Muted)
             }
             Switch(
                 checked = on,
-                onCheckedChange = onChange,
+                onCheckedChange = null,
                 enabled = enabled,
-                modifier = Modifier.semantics { contentDescription = title },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = CardWhite,
                     checkedTrackColor = Ink,

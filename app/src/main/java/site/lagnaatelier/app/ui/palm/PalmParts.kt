@@ -76,11 +76,6 @@ import java.time.ZoneId
 
 /* Pieces the three palm views share. Copied in look from ui/reading, not imported from it. */
 
-/** Room under the content for the floating nav pill. */
-internal val NavRoom = 140.dp
-
-/** Room for the nav pill and the palm dock above it. */
-internal val DockRoom = 210.dp
 
 internal fun dayLabel(millis: Long): String =
     Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate()

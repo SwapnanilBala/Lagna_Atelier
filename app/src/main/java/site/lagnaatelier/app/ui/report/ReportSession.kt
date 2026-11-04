@@ -125,7 +125,9 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
         state = ReportState.Working(ReportStage.Writing, chart.name, story)
         val prose = withTimeoutOrNull(PROSE_DEADLINE_MS) {
             reportApi.storyProse(story) { line ->
-                (state as? ReportState.Working)?.let { if (it.stage == ReportStage.Writing) state = it.copy(writing = line) }
+                (state as? ReportState.Working)?.let {
+                    if (it.stage == ReportStage.Writing) state = it.copy(writing = it.writing?.advancedBy(line) ?: line)
+                }
             }
         } ?: ReportApi.ProseResult.Unavailable(ReportApi.ProseFailure.TimedOut, null)
         if (prose is ReportApi.ProseResult.Written) story = StoryProseCodec.apply(story, prose.prose)

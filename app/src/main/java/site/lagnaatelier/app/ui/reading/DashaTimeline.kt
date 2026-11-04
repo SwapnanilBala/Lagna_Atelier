@@ -51,6 +51,8 @@ fun DashaTimeline(
     modifier: Modifier = Modifier,
     from: LocalDate = LocalDate.of(periods.first().start.year, 1, 1),
     to: LocalDate = LocalDate.of(((from.year + YEARS_SHOWN + 9) / 10) * 10, 1, 1),
+    /** Years between the labels under the bar: round twenties over a life, fewer over one mahadasha. */
+    labelEvery: Int = 20,
 ) {
     val span = ChronoUnit.DAYS.between(from, to).toFloat()
     fun fraction(date: LocalDate) = (ChronoUnit.DAYS.between(from, date) / span).coerceIn(0f, 1f)
@@ -67,7 +69,7 @@ fun DashaTimeline(
             visible.forEach { period ->
                 val left = fraction(period.start)
                 val width = fraction(period.end) - left
-                val isCurrent = period == current
+                val isCurrent = period.sameAs(current)
                 val barWidth = maxWidth * width - 3.dp
                 if (barWidth < 8.dp) return@forEach
                 val shape = RoundedCornerShape(8.dp)
@@ -106,9 +108,10 @@ fun DashaTimeline(
         }
 
         BoxWithConstraints(Modifier.fillMaxWidth().height(18.dp)) {
-            /* Round years every twenty, whatever year the reader was born in. */
-            val firstLabel = ((from.year + 19) / 20) * 20
-            val years = (firstLabel..to.year step 20).toList()
+            /* Round years every [labelEvery], whatever year the reader was born in. */
+            val firstYear = if (from.dayOfYear == 1) from.year else from.year + 1
+            val firstLabel = ((firstYear + labelEvery - 1) / labelEvery) * labelEvery
+            val years = (firstLabel..to.year step labelEvery).filter { LocalDate.of(it, 1, 1) < to }
             years.forEach { year ->
                 val at = fraction(LocalDate.of(year, 1, 1))
                 val x = maxWidth * at

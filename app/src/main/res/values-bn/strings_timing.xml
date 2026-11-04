@@ -4,7 +4,7 @@
     <string name="timing_offline">আপনি অনলাইনে থাকলে এটি দেখা যাবে।</string>
     <string name="timing_unreadable">এই মুহূর্তে এটি পড়া গেল না।</string>
     <string name="timing_retry">আবার চেষ্টা করুন</string>
-    <string name="timing_see_fewer">কম দেখুন</string>
+    <string name="timing_see_fewer">কম দেখান</string>
     <string name="timing_see_all_count">সব %1$dটি দেখুন</string>
     <string name="timing_range_to">%1$s পর্যন্ত</string>
     <string name="timing_percent_through">%1$d%% পেরিয়েছে</string>
@@ -15,7 +15,7 @@
     <string name="timing_level_pratyantar">প্রত্যন্তর</string>
     <string name="timing_next_period">পরবর্তী: %1$s, %2$s থেকে</string>
     <string name="timing_all_periods">সব দশা</string>
-    <string name="timing_fewer_periods">কম</string>
+    <string name="timing_fewer_periods">কম দেখান</string>
     <string name="timing_periods_remaining">এই অন্তর্দশার ভিতরের প্রত্যন্তর্দশা</string>
     <string name="timing_period_now">এখন</string>
     <string name="timing_period_row">%1$s থেকে %2$s</string>
@@ -72,7 +72,7 @@
     <string name="timing_window_best_description">%1$s। %2$s</string>
     <string name="timing_no_windows">আগামী 14 দিনে কোনো ভালো সময় নেই। অন্য একটি কাজ বেছে দেখুন।</string>
     <string name="timing_rahukaala_today">আজ এড়িয়ে চলুন (রাহুকাল)</string>
-    <string name="timing_clock_range">%1$s–%2$s</string>
+    <string name="timing_clock_range">%1$s থেকে %2$s</string>
     <plurals name="timing_windows_found">
         <item quantity="one">%1$dটি সময়কাল পাওয়া গেছে</item>
         <item quantity="other">%1$dটি সময়কাল পাওয়া গেছে</item>
@@ -81,7 +81,7 @@
     <string name="timing_show_fewer">কম দেখান</string>
     <string name="timing_year_title">এই বছরের কুণ্ডলী</string>
     <string name="timing_year_loading">এই বছর পড়া হচ্ছে…</string>
-    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_span">%1$s থেকে %2$s</string>
     <string name="timing_year_rising">বর্ষ লগ্ন</string>
     <string name="timing_year_lord">বর্ষপতি</string>
     <string name="timing_year_muntha">মুন্থা</string>

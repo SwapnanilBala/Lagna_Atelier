@@ -1,8 +1,12 @@
 package site.lagnaatelier.app.ui.intake
 
+import java.util.Locale
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.isImeVisible
@@ -43,7 +47,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
-import androidx.compose.material3.rememberDatePickerState
+import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -60,6 +64,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
@@ -83,7 +88,7 @@ import site.lagnaatelier.app.data.Traditions
 import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidChip
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.LiquidTextField
@@ -99,6 +104,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneOffset
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun IntakeScreen(
     draft: AppViewModel.IntakeDraft,
@@ -107,6 +113,13 @@ fun IntakeScreen(
 ) {
     var askDate by rememberSaveable { mutableStateOf(false) }
     var askTime by rememberSaveable { mutableStateOf(false) }
+    /*
+     * A phone on its side with the keyboard up has about a third of its
+     * height left: the header and the footer would take all of it and hide
+     * the field being typed in. They fold away until the keyboard goes.
+     */
+    val folded = WindowInsets.isImeVisible &&
+        LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(
@@ -115,7 +128,7 @@ fun IntakeScreen(
                 .statusBarsPadding()
                 .imePadding(),
         ) {
-            Header(onBack)
+            if (!folded) Header(onBack)
             Column(
                 Modifier
                     .weight(1f)
@@ -124,11 +137,7 @@ fun IntakeScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Box {
-                    Glow(
-                        Modifier
-                            .offset(x = (-40).dp, y = 10.dp)
-                            .requiredSize(width = 400.dp, height = 260.dp),
-                    )
+                    GlowBehind(height = 260.dp)
                     FloatCard(Modifier.fillMaxWidth(), spacing = 12.dp, padding = 16.dp) {
                         LiquidTextField(
                             value = draft.name,
@@ -164,7 +173,7 @@ fun IntakeScreen(
                 TraditionPanel(draft)
             }
 
-            Footer(draft, onSubmit)
+            if (!folded) Footer(draft, onSubmit)
         }
     }
 
@@ -460,13 +469,29 @@ private fun AppViewModel.Missing.hint(): Int = when (this) {
 @Composable
 internal fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (LocalDate) -> Unit) {
     val todayMillis = LocalDate.now().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
-    val state = rememberDatePickerState(
-        initialSelectedDateMillis = (current ?: LocalDate.of(1990, 1, 1)).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli(),
-        yearRange = 1900..LocalDate.now().year,
-        selectableDates = object : SelectableDates {
-            override fun isSelectableDate(utcTimeMillis: Long) = utcTimeMillis <= todayMillis
-        },
-    )
+    /*
+     * The picker formats and starts its weeks by its locale. In English that
+     * is the phone's, often en-US ("Jan 1, 1990", Sunday first), while the app
+     * writes "1 Jan 1990": English is shown as en-GB, day first and Monday
+     * first. Other languages keep their own. The dialog is a window of its
+     * own that provides its own configuration, so the locale is given to the
+     * picker's state and inside the dialog, not around it.
+     */
+    val configuration = LocalConfiguration.current
+    val pickerConfiguration = remember(configuration) {
+        if (configuration.locales[0].language == "en") Configuration(configuration).apply { setLocale(Locale.UK) } else configuration
+    }
+    val state = remember(pickerConfiguration) {
+        DatePickerState(
+            locale = pickerConfiguration.locales[0],
+            initialSelectedDateMillis = (current ?: LocalDate.of(1990, 1, 1)).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli(),
+            yearRange = 1900..LocalDate.now().year,
+            selectableDates = object : SelectableDates {
+                override fun isSelectableDate(utcTimeMillis: Long) = utcTimeMillis <= todayMillis
+            },
+        )
+    }
+    val colors = DatePickerDefaults.colors(containerColor = CardWhite)
     DatePickerDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -475,8 +500,11 @@ internal fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (Loc
             }) { Text(stringResource(R.string.intake_ok), color = Ink) }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.intake_cancel), color = Muted) } },
+        colors = colors,
     ) {
-        DatePicker(state = state)
+        CompositionLocalProvider(LocalConfiguration provides pickerConfiguration) {
+            DatePicker(state = state, colors = colors)
+        }
     }
 }
 

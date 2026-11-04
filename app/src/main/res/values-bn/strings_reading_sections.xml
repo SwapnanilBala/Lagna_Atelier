@@ -4,7 +4,7 @@
     <string name="sections_show">দেখান</string>
     <string name="sections_hide">লুকান</string>
     <string name="sections_see_all">সবগুলি দেখুন (%1$d)</string>
-    <string name="sections_see_fewer">কম দেখুন</string>
+    <string name="sections_see_fewer">কম দেখান</string>
     <string name="sections_retry">আবার চেষ্টা করুন</string>
     <string name="positions_title">গ্রহের অবস্থান</string>
     <string name="positions_count">%1$dটি গ্রহ</string>

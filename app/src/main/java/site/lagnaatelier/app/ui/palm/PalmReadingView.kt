@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.ui.palm
 
+import site.lagnaatelier.app.ui.components.DockRoom
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -53,7 +54,7 @@ import site.lagnaatelier.app.data.palm.QaRole
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.LiquidTextField
 import site.lagnaatelier.app.ui.components.Panel
@@ -139,7 +140,7 @@ private fun QualityPanel(rating: String, reliable: Boolean, notes: String) {
 @Composable
 private fun SummaryCard(shown: ShownReading, reading: PalmReading) {
     Box {
-        Glow(Modifier.offset(x = (-56).dp, y = (-10).dp).requiredSize(width = 410.dp, height = 330.dp))
+        GlowBehind(width = 410.dp, height = 330.dp, x = (-56).dp)
         FloatCard(Modifier.fillMaxWidth(), spacing = 10.dp) {
             if (shown.photo != null) TracedPhoto(shown.photo, reading)
             CardLabel(stringResource(R.string.palm_in_short))

@@ -22,6 +22,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.AppLanguage
@@ -89,13 +90,15 @@ private fun LagnaApp(model: AppViewModel) {
     val report = rememberReportController()
     val more = rememberMoreController()
     val context = LocalContext.current
+    /* Resources, not the context, so a language or configuration change reads afresh. */
+    val resources = LocalResources.current
     val account = model.account
 
     /* The landing page has no room for the sign-in card's messages; say them briefly. */
     LaunchedEffect(account.message) {
         val text = account.message ?: return@LaunchedEffect
         if (screen == Screen.Landing) {
-            Toast.makeText(context, context.getString(text), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, resources.getString(text), Toast.LENGTH_LONG).show()
             account.dismissMessage()
         }
     }
@@ -107,7 +110,15 @@ private fun LagnaApp(model: AppViewModel) {
     }
 
     BackHandler(enabled = screen != Screen.Landing) {
-        screen = if (screen == Screen.Reading) readingOrigin else Screen.Landing
+        screen = when {
+            /* Back from Timing, Palm or Account goes to the Reading tab first, as a tab bar's back does. */
+            screen == Screen.Reading && tab != AppTab.Reading -> {
+                tab = AppTab.Reading
+                Screen.Reading
+            }
+            screen == Screen.Reading -> readingOrigin
+            else -> Screen.Landing
+        }
     }
 
     when (screen) {
@@ -139,7 +150,11 @@ private fun LagnaApp(model: AppViewModel) {
                 model.castChart(saved.details)
                 openReading(from = Screen.Saved)
             },
-            onStartNew = { screen = Screen.Intake },
+            onStartNew = {
+                /* "Add a chart" is someone new: a fresh form, not the last chart's details. */
+                model.intake.reset()
+                screen = Screen.Intake
+            },
             onSample = {
                 model.showSample()
                 openReading(from = Screen.Saved)

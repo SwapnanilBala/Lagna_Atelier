@@ -142,7 +142,7 @@ class ChartSyncTest {
             this.value = value
         }
     }
-    private val store = ChartStore(storage, clock = { 1L }, runLoad = { it() })
+    private val store = ChartStore(storage, clock = { 1L }, runLoad = { it() }, deliver = { it() })
     private val vault = SessionVault(MemoryVault(), XorCipher())
     private val session = AccountSession(accountApi, vault, NoTokens, "web.apps.googleusercontent.com", scope,
         onSignedOut = { store.forgetAccount() })

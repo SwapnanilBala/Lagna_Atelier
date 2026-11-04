@@ -106,7 +106,7 @@ internal fun chartStyleLabel(style: ChartStyle): Int = when (style) {
 }
 
 @Composable
-private fun languageLabel(tag: String?): String = stringResource(
+internal fun languageLabel(tag: String?): String = stringResource(
     when (tag) {
         null -> R.string.look_language_system
         "hi" -> R.string.look_language_hi

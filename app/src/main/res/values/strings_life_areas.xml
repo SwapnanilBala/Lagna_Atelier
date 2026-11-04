@@ -71,7 +71,7 @@
     <string name="more_ask_own_placeholder">What kind of work suits me?</string>
     <string name="more_ask_own_submit">Ask</string>
     <string name="more_ask_own_hint">About your own chart, up to %1$d characters. Each one counts toward today’s questions.</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%1$d of %2$d</string>
     <string name="more_ask_pending">Reading the passages for your question…</string>
     <string name="more_ask_you_asked">You asked</string>
     <string name="more_ask_empty">The books have nothing on this question for your chart.</string>

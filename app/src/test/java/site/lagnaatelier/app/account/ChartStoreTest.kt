@@ -3,6 +3,7 @@ package site.lagnaatelier.app.account
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -52,7 +53,7 @@ class ChartStoreTest {
 
     /* A store whose clock the test moves, loading on the calling thread. */
     private fun store(storage: MemoryStorage, clock: LongArray) =
-        ChartStore(storage, clock = { clock[0]++ }, runLoad = { it() })
+        ChartStore(storage, clock = { clock[0]++ }, runLoad = { it() }, deliver = { it() })
 
     // --- JSON round trip -------------------------------------------------
 
@@ -177,7 +178,7 @@ class ChartStoreTest {
             override fun read(): String = throw IllegalStateException("disk")
             override fun write(value: String) = throw IllegalStateException("full")
         }
-        val store = ChartStore(failing, clock = { 1L }, runLoad = { it() })
+        val store = ChartStore(failing, clock = { 1L }, runLoad = { it() }, deliver = { it() })
         store.save(details("Ananya Mehra"), SampleChart.chart)
         assertEquals(1, store.saved.size)
     }
@@ -251,15 +252,21 @@ class ChartStoreTest {
     }
 
     @Test
-    fun savingWaitsForTheStoredListToArrive() {
-        val storage = MemoryStorage(SavedChartsCodec.encode(listOf(saved("A", 1), saved("B", 2))))
+    fun savingBeforeTheStoredListArrivesKeepsBoth() {
+        val before = SavedChartsCodec.encode(listOf(saved("A", 1), saved("B", 2)))
+        val storage2 = MemoryStorage(before)
         var pending: (() -> Unit)? = null
-        val store = ChartStore(storage, clock = { 3L }, runLoad = { task -> pending = task })
-        val loader = Thread { Thread.sleep(50); pending!!() }
-        loader.start()
-        // save() blocks until the load finishes, then adds to the stored list rather than replacing it.
+        val store = ChartStore(storage2, clock = { 3L }, runLoad = { task -> pending = task }, deliver = { it() })
+        // Nothing blocks on the read: the chart cast first shows at once...
         store.save(details("C"), SampleChart.chart)
-        loader.join()
+        assertEquals(listOf("C"), store.saved.map { it.details.name })
+        assertFalse(store.loaded)
+        // ...and nothing is written over the stored list before it has arrived.
+        assertEquals(before, storage2.value)
+        pending!!()
+        // Once it arrives, the early save is added to it rather than replacing it.
+        assertTrue(store.loaded)
         assertEquals(listOf("C", "A", "B"), store.saved.map { it.details.name })
+        assertEquals(listOf("C", "A", "B"), SavedChartsCodec.decode(storage2.value).map { it.details.name })
     }
 }

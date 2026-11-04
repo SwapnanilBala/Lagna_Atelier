@@ -202,4 +202,24 @@ class StoryProseTest {
         assertEquals(story.chapters.first().opening, essence.opening)
         assertEquals(listOf("New paragraph."), essence.narrative)
     }
+
+    @Test
+    fun progressNeverGoesBackwards() {
+        val lines = listOf(
+            ProseProgress("planning", 0.10, 0, 9),
+            ProseProgress("writing", 0.40, 3, 9),
+            /* The route re-estimates: a lower fraction and fewer chapters started. */
+            ProseProgress("writing", 0.32, 2, 9),
+            ProseProgress("planning", 0.35, 0, 0),
+            ProseProgress("writing", 0.60, 5, 9),
+        )
+        val shown = lines.drop(1).runningFold(lines.first()) { current, next -> current.advancedBy(next) }
+        shown.zipWithNext().forEach { (before, after) ->
+            assertTrue(after.fraction >= before.fraction)
+            assertTrue(after.chaptersStarted >= before.chaptersStarted)
+            assertTrue(after.chapters >= before.chapters)
+        }
+        assertEquals(ProseProgress("writing", 0.60, 5, 9), shown.last())
+        assertFalse(shown[3].planning)
+    }
 }

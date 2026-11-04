@@ -18,7 +18,8 @@
     <string name="report_step_writing">আপনার পাঠ লেখা হচ্ছে</string>
     <string name="report_step_typesetting">PDF সাজানো হচ্ছে</string>
     <string name="report_step_checks">%2$dটির মধ্যে %1$dটি</string>
-    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_pdf_folio">%2$dটির মধ্যে %1$dটি</string>
+    <string name="report_step_chapters">%2$dটির মধ্যে %1$dটি</string>
     <string name="report_detail_planning">অধ্যায়গুলির পরিকল্পনা চলছে…</string>
     <string name="report_detail_introduction">ভূমিকা লেখা হচ্ছে…</string>
     <string name="report_detail_chapter">%2$dটির মধ্যে অধ্যায় %1$d লেখা হচ্ছে</string>

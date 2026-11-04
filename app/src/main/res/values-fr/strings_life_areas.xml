@@ -60,7 +60,7 @@
     <string name="more_ask_own_placeholder">Quel genre de travail me convient ?</string>
     <string name="more_ask_own_submit">Demander</string>
     <string name="more_ask_own_hint">Sur votre propre thème, jusqu’à %1$d caractères. Chaque question compte parmi celles du jour.</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%1$d sur %2$d</string>
     <string name="more_ask_pending">Lecture des passages pour votre question…</string>
     <string name="more_ask_you_asked">Votre question</string>
     <string name="more_ask_empty">Les livres ne disent rien sur cette question pour votre thème.</string>

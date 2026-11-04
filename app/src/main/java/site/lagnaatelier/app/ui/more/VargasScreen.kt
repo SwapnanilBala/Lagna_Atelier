@@ -66,7 +66,7 @@ internal fun VargasScreen(
     val vargas = (holder.vargas as? Fetch.Ready)?.value
     val selected = vargas?.firstOrNull { it.division == division }
 
-    if (selected != null && vargas != null) {
+    if (selected != null) {
         VargaDetail(selected, vargas, holder, timeIsEstimated, tradition, onDivision, onBack)
         return
     }
