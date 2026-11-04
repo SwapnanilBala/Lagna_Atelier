@@ -1,7 +1,9 @@
 Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font)
 
-Applies to app/src/main/res/font/geist.ttf and geist_mono.ttf (Geist and Geist Mono,
-variable weight, Latin subset), converted from WOFF2 to TTF without other changes.
+Applies to the Geist and Geist Mono fonts in this app: the variable-weight
+Latin subsets, converted from WOFF2 to TTF without other changes, and the
+fixed-weight copies of them (Geist 300, 400, 500 and 600, Geist Mono 400)
+made from those for the PDF report.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

@@ -1,5 +1,6 @@
 package site.lagnaatelier.app.data.report
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -69,25 +70,40 @@ class ReportPdf(private val context: Context) {
     private val contentWidth = pageWidth - 2 * marginX
     private val contentHeight = pageHeight - marginTop - marginBottom
 
-    private val sans: Typeface = ResourcesCompat.getFont(context, R.font.geist) ?: Typeface.SANS_SERIF
-    private val mono: Typeface = ResourcesCompat.getFont(context, R.font.geist_mono) ?: Typeface.MONOSPACE
+    /*
+     * Static instances of Geist (res/font/report_geist_*.ttf, cut from the
+     * variable font at each weight the report uses). Android's PDF writer
+     * embeds a variable font as Type 3 glyph drawings, whose text a reader
+     * cannot reliably copy or search; a static TrueType face goes in as real
+     * text with its Unicode map.
+     */
+    private val faces: Map<Int, Typeface> = mapOf(
+        300 to R.font.report_geist_300,
+        400 to R.font.report_geist_400,
+        500 to R.font.report_geist_500,
+        600 to R.font.report_geist_600,
+    ).mapValues { (_, id) -> ResourcesCompat.getFont(context, id) ?: Typeface.SANS_SERIF }
+    private val mono: Typeface = ResourcesCompat.getFont(context, R.font.report_geist_mono_400) ?: Typeface.MONOSPACE
 
     private fun s(id: Int, vararg args: Any): String = context.getString(id, *args)
 
-    private data class PaintKey(val size: Float, val color: Int, val weight: Int, val monospace: Boolean, val tracking: Float)
+    private data class PaintKey(val size: Float, val color: Int, val weight: Int, val monospace: Boolean)
 
-    /* Shared, since each variation setting builds a typeface; a layout never changes the paint it was given. */
+    /* Shared: a layout never changes the paint it was given. */
     private val paints = HashMap<PaintKey, TextPaint>()
 
-    private fun paint(size: Float, color: Int, weight: Int = 400, monospace: Boolean = false, tracking: Float = 0f): TextPaint =
-        paints.getOrPut(PaintKey(size, color, weight, monospace, tracking)) {
+    /*
+     * No letter-spacing and no ligatures: both are drawn as glyphs placed one
+     * by one or merged, and a PDF reader then copies "L A G N A" or "veri ed"
+     * where the page says LAGNA and verified. Small caps labels are set plain.
+     */
+    private fun paint(size: Float, color: Int, weight: Int = 400, monospace: Boolean = false): TextPaint =
+        paints.getOrPut(PaintKey(size, color, weight, monospace)) {
             TextPaint(Paint.ANTI_ALIAS_FLAG or Paint.SUBPIXEL_TEXT_FLAG).apply {
-                typeface = if (monospace) mono else sans
+                typeface = if (monospace) mono else faces[weight] ?: faces.getValue(400)
                 textSize = size
                 this.color = color
-                letterSpacing = tracking
-                /* Both faces are variable; each weight names its own instance rather than a faked bold. */
-                fontVariationSettings = "'wght' $weight"
+                fontFeatureSettings = "'liga' 0, 'clig' 0, 'dlig' 0"
             }
         }
 
@@ -145,8 +161,8 @@ class ReportPdf(private val context: Context) {
         val top = 62f
 
         /* Top row: the brand, the edition, a hairline. */
-        val brand = paint(9.5f, Palette.INK, weight = 600, tracking = 0.16f)
-        val edition = paint(8.5f, Palette.FAINT, tracking = 0.1f)
+        val brand = paint(9.5f, Palette.INK, weight = 600)
+        val edition = paint(8.5f, Palette.FAINT)
         canvas.drawText(s(R.string.report_pdf_brand).uppercase(), left, top + 9f, brand)
         val editionText = s(R.string.report_pdf_edition).uppercase()
         canvas.drawText(editionText, left + width - edition.measureText(editionText), top + 9f, edition)
@@ -159,7 +175,7 @@ class ReportPdf(private val context: Context) {
             cover.preparedOn?.let { s(R.string.report_pdf_cover_prepared, it) },
         )
         val badgeText = s(if (story.verification.isVerified) R.string.report_pdf_verified else R.string.report_pdf_qualified).uppercase()
-        val badgePaint = paint(7.5f, Palette.GREEN, weight = 600, tracking = 0.1f)
+        val badgePaint = paint(7.5f, Palette.GREEN, weight = 600)
         val badgeWidth = badgePaint.measureText(badgeText) + 20f
         val meta = layout(clean(metaParts.joinToString(" · ")), paint(9.5f, Palette.MUTED), width - badgeWidth - 24f, spacing = 1.45f)
         val metaTop = pageHeight - 54f - meta.height
@@ -174,8 +190,8 @@ class ReportPdf(private val context: Context) {
         canvas.drawText(badgeText, badgeRect.left + 10f, badgeRect.centerY() + 2.7f, badgePaint)
 
         /* The body, centred in what is left. */
-        val kicker = layout(s(R.string.report_pdf_cover_kicker).uppercase(), paint(9f, Palette.GOLD, weight = 600, tracking = 0.18f), width)
-        val name = layout(clean(cover.name).uppercase(), paint(32f, Palette.INK, weight = 600, tracking = 0.03f), 450f, spacing = 1.08f)
+        val kicker = layout(s(R.string.report_pdf_cover_kicker).uppercase(), paint(9f, Palette.GOLD, weight = 600), width)
+        val name = layout(clean(cover.name).uppercase(), paint(32f, Palette.INK, weight = 600), 450f, spacing = 1.08f)
         val title = layout(s(R.string.report_pdf_cover_title), paint(19f, Palette.GOLD, weight = 400), width)
         val deck = layout(clean(story.subtitle), paint(13.5f, Palette.MUTED, weight = 300), 340f, spacing = 1.5f)
         val bodyHeight = 2f + 26f + kicker.height + 14f + name.height + 12f + title.height + 18f + deck.height
@@ -192,7 +208,7 @@ class ReportPdf(private val context: Context) {
     }
 
     private fun drawRunningElements(canvas: Canvas, name: String, pageNumber: Int, totalPages: Int) {
-        val head = paint(7.5f, Palette.FAINT, tracking = 0.12f)
+        val head = paint(7.5f, Palette.FAINT)
         val y = 38f
         canvas.drawText(s(R.string.report_pdf_running_head).uppercase(), marginX, y, head)
         val right = clean(name).uppercase()
@@ -217,30 +233,30 @@ class ReportPdf(private val context: Context) {
 
         if (story.atAGlance.isNotEmpty()) {
             add(miniHeading(s(R.string.report_pdf_glance), spaceBefore = 22f))
-            story.atAGlance.chunked(2).forEachIndexed { index, row -> add(glanceRow(row, spaceBefore = if (index == 0) 0f else 9f)) }
+            story.atAGlance.chunked(2).forEachIndexed { index, row -> add(glanceRow(row, spaceBefore = if (index == 0) 0f else 9f, follows = index > 0)) }
         }
         if (story.centralThemes.isNotEmpty()) {
             add(miniHeading(s(R.string.report_pdf_threads), spaceBefore = 22f))
             story.centralThemes.take(3).forEachIndexed { index, theme ->
-                add(numberedRow(index + 1, theme, bodyPaint(11f), spaceBefore = if (index == 0) 0f else 7f))
+                add(numberedRow(index + 1, theme, bodyPaint(11f), spaceBefore = if (index == 0) 0f else 7f, follows = index > 0))
             }
         }
     }
 
-    private fun glanceRow(items: List<StoryGlance>, spaceBefore: Float): Element {
+    private fun glanceRow(items: List<StoryGlance>, spaceBefore: Float, follows: Boolean = false): Element {
         val gap = 10f
         val cardWidth = (contentWidth - gap) / 2f
         val pad = 11f
         val inner = cardWidth - 2 * pad
         val cards = items.map { item ->
             Triple(
-                layout(clean(item.label).uppercase(), paint(7.5f, Palette.FAINT, weight = 600, tracking = 0.1f), inner),
+                layout(clean(item.label).uppercase(), paint(7.5f, Palette.FAINT, weight = 600), inner),
                 layout(clean(item.value), paint(13f, Palette.INK, weight = 500), inner),
                 layout(clean(item.context), paint(9.5f, Palette.MUTED), inner, spacing = 1.35f),
             )
         }
         val height = cards.maxOf { (label, value, context) -> pad + label.height + 5f + value.height + 4f + context.height + pad }
-        return box(height, spaceBefore) { canvas, top ->
+        return box(height, spaceBefore, keepWithPrevious = follows) { canvas, top ->
             cards.forEachIndexed { index, (label, value, context) ->
                 val x = index * (cardWidth + gap)
                 card(canvas, RectF(x, top, x + cardWidth, top + height))
@@ -258,7 +274,7 @@ class ReportPdf(private val context: Context) {
         val number = (index + 1).toString().padStart(2, '0')
         add(text(number, paint(30f, Palette.GOLD_SOFT, weight = 400, monospace = true), keepWithNext = true, newPage = true))
         add(kicker(chapter.eyebrow, spaceBefore = 8f))
-        add(text(chapter.title, paint(21f, Palette.INK, weight = 500, tracking = -0.01f), spacing = 1.18f, spaceBefore = 6f, keepWithNext = true))
+        add(text(chapter.title, paint(21f, Palette.INK, weight = 500), spacing = 1.18f, spaceBefore = 6f, keepWithNext = true))
         add(supportRow(chapter))
 
         val opening = clean(chapter.opening.orEmpty())
@@ -270,14 +286,14 @@ class ReportPdf(private val context: Context) {
 
         if (chapter.id == "timing" && story.timeline.isNotEmpty()) {
             add(miniHeading(s(R.string.report_pdf_seasons), spaceBefore = 22f))
-            story.timeline.forEachIndexed { itemIndex, item -> add(timelineRow(item, spaceBefore = if (itemIndex == 0) 0f else 10f)) }
+            story.timeline.forEachIndexed { itemIndex, item -> add(timelineRow(item, spaceBefore = if (itemIndex == 0) 0f else 10f, follows = itemIndex > 0)) }
         }
 
         val practices = chapter.practices.ifEmpty { chapter.highlights }
         if (practices.isNotEmpty()) {
             add(miniHeading(s(R.string.report_pdf_carry), spaceBefore = 22f))
             practices.forEachIndexed { practiceIndex, practice ->
-                add(numberedRow(practiceIndex + 1, practice, paint(10.5f, Palette.INK), spaceBefore = if (practiceIndex == 0) 0f else 6f))
+                add(numberedRow(practiceIndex + 1, practice, paint(10.5f, Palette.INK), spaceBefore = if (practiceIndex == 0) 0f else 6f, follows = practiceIndex > 0))
             }
         }
 
@@ -289,7 +305,7 @@ class ReportPdf(private val context: Context) {
         if (chapter.signals.isNotEmpty()) {
             add(miniHeading(s(R.string.report_pdf_why), spaceBefore = 20f))
             chapter.signals.take(4).forEachIndexed { signalIndex, signal ->
-                add(signalRow(signal, spaceBefore = if (signalIndex == 0) 0f else 4f))
+                add(signalRow(signal, spaceBefore = if (signalIndex == 0) 0f else 4f, follows = signalIndex > 0))
             }
         }
     }
@@ -300,7 +316,7 @@ class ReportPdf(private val context: Context) {
             "exploratory" -> Triple(R.string.report_pdf_support_exploratory, Palette.ROSE, Palette.ROSE_SOFT)
             else -> Triple(R.string.report_pdf_support_supported, Palette.GOLD, Palette.PAPER_DEEP)
         }
-        val pillPaint = paint(7.5f, ink, weight = 600, tracking = 0.1f)
+        val pillPaint = paint(7.5f, ink, weight = 600)
         val pillText = s(label).uppercase()
         val pillWidth = pillPaint.measureText(pillText) + 16f
         val pillHeight = 18f
@@ -327,7 +343,7 @@ class ReportPdf(private val context: Context) {
         }
     }
 
-    private fun timelineRow(item: StoryTimelineItem, spaceBefore: Float): Element {
+    private fun timelineRow(item: StoryTimelineItem, spaceBefore: Float, follows: Boolean = false): Element {
         val rail = 16f
         val windowPaint = paint(9.5f, Palette.GOLD, monospace = true)
         val window = clean(item.window)
@@ -335,7 +351,7 @@ class ReportPdf(private val context: Context) {
         val label = layout(clean(item.label), paint(11f, Palette.INK, weight = 500), contentWidth - rail - windowWidth - 12f)
         val narrative = layout(clean(item.narrative), paint(10f, Palette.MUTED), contentWidth - rail, spacing = 1.4f)
         val height = label.height + 3f + narrative.height
-        return box(height, spaceBefore) { canvas, top ->
+        return box(height, spaceBefore, keepWithPrevious = follows) { canvas, top ->
             fill.color = Palette.GOLD
             canvas.drawCircle(3.5f, top + 6.5f, 3.5f, fill)
             draw(canvas, label, rail, top)
@@ -344,12 +360,12 @@ class ReportPdf(private val context: Context) {
         }
     }
 
-    private fun signalRow(signal: StorySignal, spaceBefore: Float): Element {
+    private fun signalRow(signal: StorySignal, spaceBefore: Float, follows: Boolean = false): Element {
         val labelWidth = 118f
         val label = layout(clean(signal.label), paint(9.5f, Palette.FAINT), labelWidth - 8f, spacing = 1.35f)
         val value = layout(clean(signal.value), paint(9.5f, Palette.MUTED), contentWidth - labelWidth, spacing = 1.35f)
         val height = maxOf(label.height, value.height).toFloat()
-        return box(height, spaceBefore) { canvas, top ->
+        return box(height, spaceBefore, keepWithPrevious = follows) { canvas, top ->
             draw(canvas, label, 0f, top)
             draw(canvas, value, labelWidth, top)
         }
@@ -367,35 +383,35 @@ class ReportPdf(private val context: Context) {
             R.string.report_pdf_close_note2_title to R.string.report_pdf_close_note2,
             R.string.report_pdf_close_note3_title to R.string.report_pdf_close_note3,
         ).forEachIndexed { index, (heading, body) ->
-            add(closingNote(index + 1, s(heading), s(body), spaceBefore = 14f))
+            add(closingNote(index + 1, s(heading), s(body), spaceBefore = 14f, follows = index > 0))
         }
         add(text(s(R.string.report_pdf_sign_off), paint(12.5f, Palette.INK, weight = 300), spacing = 1.5f, spaceBefore = 22f, breakable = false))
 
         val verification = story.verification
         add(miniHeading(s(R.string.report_pdf_checked), spaceBefore = 30f))
         add(text(verification.summary, paint(11f, Palette.MUTED), spacing = 1.45f, spaceBefore = 0f, breakable = false))
-        verification.checks.forEachIndexed { index, check -> add(checkRow(check, spaceBefore = if (index == 0) 12f else 7f)) }
+        verification.checks.forEachIndexed { index, check -> add(checkRow(check, spaceBefore = if (index == 0) 12f else 7f, follows = index > 0)) }
         add(rule(spaceBefore = 16f))
         add(text(provenance(verification), paint(8.5f, Palette.FAINT), spacing = 1.5f, spaceBefore = 10f, breakable = false))
     }
 
-    private fun closingNote(number: Int, heading: String, body: String, spaceBefore: Float): Element {
+    private fun closingNote(number: Int, heading: String, body: String, spaceBefore: Float, follows: Boolean = false): Element {
         val mark = 28f
         val title = layout(heading, paint(11.5f, Palette.INK, weight = 500), contentWidth - mark)
         val text = layout(body, paint(10.5f, Palette.MUTED), contentWidth - mark, spacing = 1.5f)
         val markPaint = paint(11f, Palette.GOLD, monospace = true)
-        return box(title.height + 4f + text.height, spaceBefore) { canvas, top ->
+        return box(title.height + 4f + text.height, spaceBefore, keepWithPrevious = follows) { canvas, top ->
             canvas.drawText(number.toString().padStart(2, '0'), 0f, top + title.getLineBaseline(0), markPaint)
             draw(canvas, title, mark, top)
             draw(canvas, text, mark, top + title.height + 4f)
         }
     }
 
-    private fun checkRow(check: VerificationCheck, spaceBefore: Float): Element {
+    private fun checkRow(check: VerificationCheck, spaceBefore: Float, follows: Boolean = false): Element {
         val mark = 22f
         val label = layout(clean(check.label), paint(10f, Palette.INK, weight = 500), contentWidth - mark)
         val detail = layout(clean(check.detail), paint(9.5f, Palette.MUTED), contentWidth - mark, spacing = 1.35f)
-        return box(label.height + 2f + detail.height, spaceBefore) { canvas, top ->
+        return box(label.height + 2f + detail.height, spaceBefore, keepWithPrevious = follows) { canvas, top ->
             statusMark(canvas, check.status, 6.5f, top + 6.5f)
             draw(canvas, label, mark, top)
             draw(canvas, detail, mark, top + label.height + 2f)
@@ -460,13 +476,13 @@ class ReportPdf(private val context: Context) {
     private fun bodyPaint(size: Float) = paint(size, Palette.INK, weight = 400)
 
     private fun kicker(text: String, spaceBefore: Float = 0f, newPage: Boolean = false) =
-        text(text.uppercase(), paint(8.5f, Palette.GOLD, weight = 600, tracking = 0.14f), spaceBefore = spaceBefore, keepWithNext = true, newPage = newPage)
+        text(text.uppercase(), paint(8.5f, Palette.GOLD, weight = 600), spaceBefore = spaceBefore, keepWithNext = true, newPage = newPage)
 
     private fun sectionTitle(text: String) =
-        text(text, paint(23f, Palette.INK, weight = 500, tracking = -0.015f), spacing = 1.15f, spaceBefore = 8f, keepWithNext = true)
+        text(text, paint(23f, Palette.INK, weight = 500), spacing = 1.15f, spaceBefore = 8f, keepWithNext = true)
 
     private fun miniHeading(text: String, spaceBefore: Float) =
-        text(text.uppercase(), paint(8f, Palette.GOLD, weight = 600, tracking = 0.12f), spaceBefore = spaceBefore, keepWithNext = true).let {
+        text(text.uppercase(), paint(8f, Palette.GOLD, weight = 600), spaceBefore = spaceBefore, keepWithNext = true).let {
             /* The space under a heading belongs to it, so it travels with the heading. */
             val height = it.block.height + 8f
             Element(FlowBlock(listOf(0f, height), it.block.spaceBefore, breakable = false, keepWithNext = true)) { canvas, _, _, top ->
@@ -474,11 +490,11 @@ class ReportPdf(private val context: Context) {
             }
         }
 
-    private fun numberedRow(number: Int, text: String, textPaint: TextPaint, spaceBefore: Float): Element {
+    private fun numberedRow(number: Int, text: String, textPaint: TextPaint, spaceBefore: Float, follows: Boolean = false): Element {
         val mark = 24f
         val layout = layout(clean(text), textPaint, contentWidth - mark, spacing = 1.42f)
         val markPaint = paint(9.5f, Palette.GOLD, monospace = true)
-        return box(layout.height.toFloat(), spaceBefore) { canvas, top ->
+        return box(layout.height.toFloat(), spaceBefore, keepWithPrevious = follows) { canvas, top ->
             canvas.drawText(number.toString().padStart(2, '0'), 0f, top + layout.getLineBaseline(0), markPaint)
             draw(canvas, layout, mark, top)
         }
@@ -502,14 +518,26 @@ class ReportPdf(private val context: Context) {
         }
     }
 
-    private fun box(height: Float, spaceBefore: Float, keepWithNext: Boolean = false, draw: (Canvas, Float) -> Unit) =
-        Element(FlowBlock.box(height, spaceBefore, keepWithNext)) { canvas, _, _, top -> draw(canvas, top) }
+    /* [keepWithPrevious]: a table's second and later rows, which move with the row above rather than start a page alone. */
+    private fun box(
+        height: Float,
+        spaceBefore: Float,
+        keepWithNext: Boolean = false,
+        keepWithPrevious: Boolean = false,
+        draw: (Canvas, Float) -> Unit,
+    ) = Element(FlowBlock.box(height, spaceBefore, keepWithNext, keepWithPrevious = keepWithPrevious)) { canvas, _, _, top -> draw(canvas, top) }
 
     /*
      * [spacing] is a line height in ems, as CSS means it (1.6 = 1.6 x the type
      * size), not StaticLayout's multiplier of the font's own ascent-to-descent,
      * which for Geist is 1.3 em and would open every paragraph by nearly a third.
+     *
+     * Words are never hyphenated: a word split over two lines is two words
+     * to a PDF reader's search. WrongConstant: the builder's annotations name
+     * LineBreaker's constants, which are API 29; Layout's (API 23 and 26) are
+     * the same values and this app runs from API 28.
      */
+    @SuppressLint("WrongConstant")
     private fun layout(text: String, textPaint: TextPaint, width: Float, spacing: Float = 1.25f, justify: Boolean = false): StaticLayout {
         val metrics = textPaint.fontMetrics
         val extra = spacing * textPaint.textSize - (metrics.descent - metrics.ascent)
@@ -518,7 +546,7 @@ class ReportPdf(private val context: Context) {
             .setLineSpacing(extra, 1f)
             .setIncludePad(false)
             .setBreakStrategy(Layout.BREAK_STRATEGY_HIGH_QUALITY)
-            .setHyphenationFrequency(if (justify) Layout.HYPHENATION_FREQUENCY_NORMAL else Layout.HYPHENATION_FREQUENCY_NONE)
+            .setHyphenationFrequency(Layout.HYPHENATION_FREQUENCY_NONE)
             .setJustificationMode(if (justify) Layout.JUSTIFICATION_MODE_INTER_WORD else Layout.JUSTIFICATION_MODE_NONE)
             .build()
     }
