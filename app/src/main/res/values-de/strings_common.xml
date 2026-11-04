@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Failures, in the app's own words: never the site's text, never an exception's. -->
+    <string name="error_too_fast">Gerade zu viele Anfragen. Versuche es in einer Minute erneut.</string>
+    <string name="error_daily">Du hast die heutigen Deutungen auf diesem Handy aufgebraucht. Versuche es morgen wieder.</string>
+    <string name="error_full_today">Die heutigen Deutungen sind alle vergeben. Versuche es morgen wieder.</string>
+    <string name="error_weekly">Die Deutungen dieser Woche sind aufgebraucht.</string>
+    <string name="error_not_accepted">Die Website konnte mit den gesendeten Angaben nichts anfangen. Prüfe sie und versuche es erneut.</string>
+    <string name="error_unavailable">Die Website konnte gerade nicht antworten. Versuche es gleich noch einmal.</string>
+    <string name="error_generic">Etwas ist schiefgelaufen. Versuche es erneut.</string>
+    <string name="error_offline">Du bist offline. Prüfe deine Verbindung und versuche es erneut.</string>
+</resources>

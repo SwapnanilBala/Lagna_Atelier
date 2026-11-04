@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the report feature; that feature owns this file. -->
+<resources>
+    <!-- The screens -->
+    <string name="report_title">Dein Bericht</string>
+    <string name="report_back">Zurück</string>
+    <plurals name="report_chapters">
+        <item quantity="one">%d Kapitel</item>
+        <item quantity="other">%d Kapitel</item>
+    </plurals>
+    <string name="report_subtitle_working">%1$s · %2$s</string>
+    <string name="report_subtitle_preparing">%1$s · in Vorbereitung</string>
+    <string name="report_subtitle_ready">Fertig · %1$s</string>
+
+    <!-- Generating -->
+    <string name="report_generating_label">Dein PDF wird geschrieben</string>
+    <string name="report_progress_description">Fortschritt des Berichts, %1$d Prozent</string>
+    <string name="report_percent_sign" formatted="false">%</string>
+    <string name="report_step_calculating">Die Berechnung wird abgeschlossen</string>
+    <string name="report_step_verifying">Das Horoskop wird gegengeprüft</string>
+    <string name="report_step_writing">Deine Deutung wird geschrieben</string>
+    <string name="report_step_typesetting">Das PDF wird gesetzt</string>
+    <string name="report_step_checks">%1$d von %2$d</string>
+    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_detail_planning">Die Kapitel werden geplant…</string>
+    <string name="report_detail_introduction">Die Einleitung wird geschrieben…</string>
+    <string name="report_detail_chapter">Kapitel %1$d von %2$d wird geschrieben</string>
+    <string name="report_note">Jedes Kapitel wird auf deine eigenen Stellungen hin geschrieben. Das dauert etwa eine Minute. Lass die App geöffnet, bis der Bericht fertig ist.</string>
+    <string name="report_chapters_title">Die Kapitel</string>
+    <string name="report_chapters_label">Vor dem Schreiben geprüft</string>
+    <string name="report_chapter_done">Geschrieben</string>
+    <string name="report_chapter_now">Wird geschrieben</string>
+    <string name="report_stop">Schreiben abbrechen</string>
+
+    <!-- Ready -->
+    <string name="report_ready_title">Dein Bericht ist fertig</string>
+    <string name="report_ready_meta">PDF · %1$s · %2$s</string>
+    <string name="report_ready_verified">geprüft</string>
+    <string name="report_ready_qualified">mit Vorbehalt</string>
+    <string name="report_cover_description">Titelseite deines Berichts: %1$s, Deine Geschichte.</string>
+    <string name="report_open">Öffnen</string>
+    <string name="report_share">Teilen</string>
+    <string name="report_share_chooser">Deinen Bericht teilen</string>
+    <string name="report_share_subject">Lagna Atelier · %1$s</string>
+    <string name="report_file_kind">PDF</string>
+    <string name="report_file_where">In der App auf diesem Handy gespeichert. Teile ihn, um anderswo eine Kopie zu sichern.</string>
+    <string name="report_no_viewer">Keine App auf diesem Handy öffnet PDFs. Sende ihn über „Teilen“ an eine solche App.</string>
+    <string name="report_checks_passed">%1$d von %2$d Prüfungen bestanden</string>
+    <string name="report_checks_qualified">%1$d von %2$d Prüfungen ohne Vorbehalt bestanden</string>
+    <string name="report_plain_title">Diese Fassung nutzt den kürzeren Text des Horoskops selbst</string>
+    <string name="report_plain_limit">Die heutigen Deutungen sind aufgebraucht, daher behält jedes Kapitel den Text, den die Berechnung geschrieben hat, ohne die längere ausformulierte Fassung. Erstelle ihn morgen neu, um die ausformulierte Fassung zu bekommen.</string>
+    <string name="report_plain_timeout">Das Schreiben hat länger gedauert als vorgesehen, daher behält jedes Kapitel den Text, den die Berechnung geschrieben hat, ohne die längere ausformulierte Fassung.</string>
+    <string name="report_plain_offline">Die Verbindung ist abgebrochen, während die Kapitel geschrieben wurden, daher behält jedes Kapitel den Text, den die Berechnung geschrieben hat, ohne die längere ausformulierte Fassung.</string>
+    <string name="report_plain_declined">Die ausformulierte Fassung ist nicht angekommen, daher behält jedes Kapitel den Text, den die Berechnung geschrieben hat, ohne die längere ausformulierte Fassung.</string>
+    <string name="report_make_again">Neu erstellen</string>
+    <string name="report_close">Schließen</string>
+
+    <!-- Failed -->
+    <string name="report_failed_title">Der Bericht ist nicht angekommen</string>
+    <string name="report_failed_generic">Prüfe deine Verbindung und versuche es erneut.</string>
+    <string name="report_failed_verification">Das Horoskop hat seine Konsistenzprüfungen nicht bestanden, daher wurde kein Bericht daraus erstellt.</string>
+    <string name="report_failed_pdf">Das PDF konnte auf diesem Handy nicht geschrieben werden. Versuche es erneut.</string>
+    <string name="report_retry">Erneut versuchen</string>
+
+    <!-- The PDF -->
+    <string name="report_pdf_brand">Lagna Atelier</string>
+    <string name="report_pdf_edition">Ausgabe Persönliche Geschichte</string>
+    <string name="report_pdf_cover_kicker">Ein persönliches astrologisches Porträt</string>
+    <string name="report_pdf_cover_title">Deine Geschichte</string>
+    <string name="report_pdf_cover_ascendant">Aszendent %1$s</string>
+    <string name="report_pdf_cover_prepared">Erstellt am %1$s</string>
+    <string name="report_pdf_verified">Geprüfter Bericht</string>
+    <string name="report_pdf_qualified">Bericht mit Vorbehalt</string>
+    <string name="report_pdf_running_head">Lagna Atelier · Persönliche Deutung</string>
+    <string name="report_pdf_begin_kicker">Beginne hier</string>
+    <string name="report_pdf_begin_title">Die Gestalt deiner Geschichte</string>
+    <string name="report_pdf_glance">Auf einen Blick</string>
+    <string name="report_pdf_threads">Drei Fäden, die du beachten solltest</string>
+    <string name="report_pdf_support_well">Gut gestützt</string>
+    <string name="report_pdf_support_supported">Gestützt</string>
+    <string name="report_pdf_support_exploratory">Vorläufig</string>
+    <string name="report_pdf_seasons">Die Zeiten, die gerade im Blick sind</string>
+    <string name="report_pdf_carry">Nimm das mit</string>
+    <string name="report_pdf_question">Eine Frage zum Nachdenken</string>
+    <string name="report_pdf_why">Warum dieses Kapitel erscheint</string>
+    <string name="report_pdf_close_kicker">Bevor du ihn schließt</string>
+    <string name="report_pdf_close_title">Wie du ihn weiter nutzen kannst</string>
+    <string name="report_pdf_close_note1_title">Nimm dir ein Kapitel nach dem anderen vor</string>
+    <string name="report_pdf_close_note1">Jedes wurde so geschrieben, dass es für sich steht. Der Bericht ist keine Argumentation, der du von Anfang bis Ende folgen musst, und das Kapitel, das dir in diesem Jahr am meisten bedeutet, ist vielleicht nicht das erste.</string>
+    <string name="report_pdf_close_note2_title">Vertraue der Anmerkung unter jedem Titel</string>
+    <string name="report_pdf_close_note2">Wo ein Kapitel als vorläufig markiert ist, beruht es auf dünneren Belegen und sollte mit leichter Hand gelesen werden. Diese Kennzeichnung ist berechnet, nicht redaktionell, und sie ist das Nützlichste auf der Seite.</string>
+    <string name="report_pdf_close_note3_title">Kehre zu den Fragen zurück</string>
+    <string name="report_pdf_close_note3">Die Frage am Ende jedes Kapitels ist der Teil, den nur du beantworten kannst. Es lohnt sich, zu ihnen zurückzukehren, denn die Antworten ändern sich, auch wenn das Horoskop gleich bleibt.</string>
+    <string name="report_pdf_sign_off">Nichts hier ist ein Urteil. Ein Horoskop beschreibt das Wetter, in das du hineingeboren wurdest, nicht, was du daraus machst.</string>
+    <string name="report_pdf_checked">Wie das geprüft wurde</string>
+    <string name="report_pdf_provenance">Berechnet mit %1$s (%2$s), Ayanamsha %3$s, Häusersystem %4$s, nach einer als %5$s erfassten Geburtszeit. %6$s</string>
+    <string name="report_pdf_provenance_clean">Alle %1$d internen Konsistenzprüfungen bestanden.</string>
+    <string name="report_pdf_provenance_qualified">%1$d von %2$d internen Konsistenzprüfungen ohne Vorbehalt bestanden; bei %3$d gab es einen Vorbehalt, der in der Anmerkung der betroffenen Kapitel berücksichtigt ist.</string>
+</resources>

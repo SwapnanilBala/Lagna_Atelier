@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the look of the app: theme, chart style, language, and the palm compare. -->
+<resources>
+    <!-- Account -> Preferences -->
+    <string name="look_theme">दिखावट</string>
+    <string name="look_theme_system">फ़ोन के अनुसार</string>
+    <string name="look_theme_light">लाइट</string>
+    <string name="look_theme_dark">डार्क</string>
+    <string name="look_theme_note">“फ़ोन के अनुसार” आपके फ़ोन की डार्क थीम सेटिंग का पालन करता है।</string>
+    <string name="look_chart_south">दक्षिण भारतीय</string>
+    <string name="look_chart_north">उत्तर भारतीय</string>
+    <string name="look_chart_south_note">राशियाँ अपनी जगह रहती हैं; लग्न राशि भरा हुआ खाना है।</string>
+    <string name="look_chart_north_note">भाव अपनी जगह रहते हैं; लग्न ऊपर का हीरा है, और हर भाव में उसकी राशि की संख्या लिखी है, मेष 1 है।</string>
+    <string name="look_language_system">फ़ोन की भाषा</string>
+    <string name="look_language_note">ऐप के अपने शब्द इस चुनाव के अनुसार दिखते हैं। आपके लिए लिखे गए पठन अभी अंग्रेज़ी में ही आते हैं।</string>
+
+    <!-- The chart, drawn either way -->
+    <string name="chart_sign_aries">मेष</string>
+    <string name="chart_sign_taurus">वृषभ</string>
+    <string name="chart_sign_gemini">मिथुन</string>
+    <string name="chart_sign_cancer">कर्क</string>
+    <string name="chart_sign_leo">सिंह</string>
+    <string name="chart_sign_virgo">कन्या</string>
+    <string name="chart_sign_libra">तुला</string>
+    <string name="chart_sign_scorpio">वृश्चिक</string>
+    <string name="chart_sign_sagittarius">धनु</string>
+    <string name="chart_sign_capricorn">मकर</string>
+    <string name="chart_sign_aquarius">कुंभ</string>
+    <string name="chart_sign_pisces">मीन</string>
+    <string name="chart_abbrev_su">सू</string>
+    <string name="chart_abbrev_mo">चं</string>
+    <string name="chart_abbrev_ma">मं</string>
+    <string name="chart_abbrev_me">बु</string>
+    <string name="chart_abbrev_ju">गु</string>
+    <string name="chart_abbrev_ve">शु</string>
+    <string name="chart_abbrev_sa">श</string>
+    <string name="chart_abbrev_ra">रा</string>
+    <string name="chart_abbrev_ke">के</string>
+    <string name="chart_planet_sun">सूर्य</string>
+    <string name="chart_planet_moon">चंद्र</string>
+    <string name="chart_planet_mars">मंगल</string>
+    <string name="chart_planet_mercury">बुध</string>
+    <string name="chart_planet_jupiter">बृहस्पति</string>
+    <string name="chart_planet_venus">शुक्र</string>
+    <string name="chart_planet_saturn">शनि</string>
+    <string name="chart_planet_rahu">राहु</string>
+    <string name="chart_planet_ketu">केतु</string>
+    <string name="chart_south_description">दक्षिण भारतीय कुंडली, %1$s लग्न।</string>
+    <string name="chart_north_description">%1$s लग्न की उत्तर भारतीय कुंडली। भाव स्थिर रहते हैं: लग्न ऊपर का हीरा है और भाव वहाँ से वामावर्त क्रम में चलते हैं।</string>
+    <string name="chart_sign_holds">%1$s: %2$s।</string>
+    <string name="chart_house_holds">भाव %1$d, %2$s: %3$s।</string>
+
+    <!-- Palm: comparing two saved readings -->
+    <string name="palm_compare_open">दो की तुलना करें</string>
+    <string name="palm_compare_pick_title">दो पठनों की तुलना करें</string>
+    <string name="palm_compare_pick_note">क्या बदला, यह देखने के लिए दो सहेजे गए पठन चुनें। केवल इसी फ़ोन पर रखी जानकारी का उपयोग होता है, इसलिए कुछ भी भेजा नहीं जाता और कोई पठन खर्च नहीं होता।</string>
+    <string name="palm_compare_picked">2 में से %1$d चुने गए</string>
+    <string name="palm_compare_go">तुलना करें</string>
+    <string name="palm_compare_title">दो पठनों की तुलना</string>
+    <string name="palm_compare_same_day">एक ही दिन लिए गए</string>
+    <plurals name="palm_compare_days_apart">
+        <item quantity="one">%1$d दिन के अंतर पर लिए गए</item>
+        <item quantity="other">%1$d दिन के अंतर पर लिए गए</item>
+    </plurals>
+    <string name="palm_compare_dates">%1$s · %2$s</string>
+    <string name="palm_compare_a">पठन क</string>
+    <string name="palm_compare_b">पठन ख</string>
+    <string name="palm_compare_open_full">पूरा पठन खोलें</string>
+    <string name="palm_compare_line_strength">रेखाओं की शक्ति</string>
+    <string name="palm_compare_no_strength">चारों प्रमुख रेखाओं की शक्ति में कोई बदलाव नहीं।</string>
+    <string name="palm_compare_line_visibility">रेखाओं की स्पष्टता</string>
+    <string name="palm_compare_from_to">%1$s → %2$s</string>
+    <string name="palm_compare_stronger">अधिक मजबूत</string>
+    <string name="palm_compare_weaker">कमज़ोर</string>
+    <string name="palm_compare_unchanged">अपरिवर्तित</string>
+    <string name="palm_compare_not_read">पढ़ी नहीं गई</string>
+    <string name="palm_compare_markings">विशेष चिह्न</string>
+    <string name="palm_compare_newly_visible">नए दिखाई देने वाले</string>
+    <string name="palm_compare_no_longer_visible">अब दिखाई न देने वाले</string>
+    <string name="palm_compare_mounts">प्रमुख पर्वत</string>
+    <string name="palm_compare_newly_prominent">नए उभरे</string>
+    <string name="palm_compare_no_longer_prominent">अब उभरे नहीं</string>
+    <string name="palm_compare_none">कोई नहीं</string>
+    <string name="palm_compare_summary">सारांशों की तुलना</string>
+    <string name="palm_compare_no_summary">(कोई सारांश नहीं)</string>
+</resources>

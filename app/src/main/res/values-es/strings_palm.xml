@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the palm feature; that feature owns this file.
+     Wording follows the web's messages/es.json (palm) where the web has it. -->
+<resources>
+    <!-- Capture -->
+    <string name="palm_title">Lee tu palma</string>
+    <string name="palm_lead_chart">Una foto de tu palma, leída por sus líneas, montes y marcas, y contrastada con tu carta.</string>
+    <string name="palm_lead_plain">Una foto de tu palma, leída por sus líneas, montes y marcas.</string>
+    <string name="palm_reader_legend">¿De quién es esta mano?</string>
+    <string name="palm_reader_woman">De una mujer</string>
+    <string name="palm_reader_man">De un hombre</string>
+    <string name="palm_reader_unspecified">Prefiero no decirlo</string>
+    <string name="palm_reader_hint_woman">Fotografía la mano izquierda: la quiromancia clásica lee la mano izquierda de la mujer.</string>
+    <string name="palm_reader_hint_man">Fotografía la mano derecha: la quiromancia clásica lee la mano derecha del hombre.</string>
+    <string name="palm_reader_hint_unspecified">Fotografía la mano con la que escribes.</string>
+    <string name="palm_finder_left">Mano izquierda · palma hacia la cámara</string>
+    <string name="palm_finder_right">Mano derecha · palma hacia la cámara</string>
+    <string name="palm_finder_writing">Mano con la que escribes · palma hacia la cámara</string>
+    <string name="palm_take_photo">Hacer una foto</string>
+    <string name="palm_choose_photo">Elegir una foto</string>
+    <string name="palm_retake">Repetir</string>
+    <string name="palm_choose_another">Elegir otra</string>
+    <string name="palm_analyze">Leer mi palma</string>
+    <string name="palm_preparing">Preparando la foto…</string>
+    <string name="palm_photo_description">La foto de tu palma</string>
+    <string name="palm_back_to_reading">Volver a tu lectura</string>
+
+    <string name="palm_tips_title">Para una foto nítida</string>
+    <string name="palm_tip_flat">Mano plana, con la palma hacia la cámara</string>
+    <string name="palm_tip_light">Luz uniforme, sin sombras marcadas</string>
+    <string name="palm_tip_light_detail">La luz natural de una ventana es la mejor. No uses el flash.</string>
+    <string name="palm_tip_fingers">Dedos ligeramente separados</string>
+    <string name="palm_tip_frame">Toda la palma en el encuadre, hasta la muñeca</string>
+
+    <string name="palm_classical_title">Modo clásico</string>
+    <string name="palm_classical_subtitle">Solo Hasta Samudrika Shastra</string>
+
+    <plurals name="palm_allowance_left">
+        <item quantity="one">lectura restante esta semana</item>
+        <item quantity="many">lecturas restantes esta semana</item>
+        <item quantity="other">lecturas restantes esta semana</item>
+    </plurals>
+    <string name="palm_allowance_note">Puedes hacer dos lecturas de la palma por semana. El recuento vuelve a empezar cada lunes.</string>
+    <string name="palm_allowance_opens">Las dos siguientes estarán disponibles el %1$s.</string>
+    <string name="palm_history_link">Tus lecturas · %1$d</string>
+    <string name="palm_history_link_empty">Tus lecturas</string>
+
+    <!-- Analysing: the web's stage lines, paced for a reading of about a minute -->
+    <string name="palm_stage_start">Leyendo tu palma</string>
+    <string name="palm_stage_lines">Siguiendo las líneas principales</string>
+    <string name="palm_stage_mounts">Leyendo los montes y los dedos</string>
+    <string name="palm_stage_weighing">Sopesando en qué coinciden las líneas</string>
+    <string name="palm_stage_writing">Escribiendo tu lectura</string>
+    <string name="palm_stage_finishing">Terminando las últimas secciones</string>
+    <string name="palm_patience">Una lectura completa tarda alrededor de un minuto. Se escribe para tu mano, no se saca de un cajón.</string>
+
+    <!-- Errors -->
+    <string name="palm_error_camera">No hay ninguna cámara disponible. Elige una foto en su lugar.</string>
+    <string name="palm_error_photo">No se pudo abrir esa foto. Elige otra.</string>
+    <string name="palm_error_weekly">Ya has hecho las %1$d lecturas de la palma de esta semana. La próxima estará disponible el %2$s.</string>
+    <string name="palm_error_generic">Algo salió mal. Inténtalo de nuevo.</string>
+    <string name="palm_error_offline">No se pudo conectar con el sitio. Revisa tu conexión e inténtalo de nuevo.</string>
+    <string name="palm_error_timeout">La lectura tardó demasiado en llegar. Inténtalo de nuevo.</string>
+    <string name="palm_error_not_reading">No se devolvió ninguna lectura.</string>
+    <string name="palm_error_save">No se pudo guardar la lectura</string>
+
+    <!-- Reading -->
+    <string name="palm_reading_title">Lectura de la palma</string>
+    <string name="palm_back">Atrás</string>
+    <string name="palm_quality_title">Calidad de la foto: %1$s</string>
+    <string name="palm_quality_excellent">excelente</string>
+    <string name="palm_quality_good">buena</string>
+    <string name="palm_quality_marginal">límite</string>
+    <string name="palm_quality_poor">baja</string>
+    <string name="palm_quality_hard">La calidad de la imagen puede afectar la precisión</string>
+    <string name="palm_quality_soft">La imagen es límite — interprétala con cuidado</string>
+    <string name="palm_traced_description">Tu foto con las líneas trazadas</string>
+    <string name="palm_in_short">En resumen</string>
+    <string name="palm_lines_title">Las cuatro líneas</string>
+    <string name="palm_lines_label">Con qué claridad se vio cada una</string>
+    <string name="palm_line_heart">Línea del corazón</string>
+    <string name="palm_line_head">Línea de la cabeza</string>
+    <string name="palm_line_life">Línea de la vida</string>
+    <string name="palm_line_fate">Línea del destino</string>
+    <string name="palm_trace_heart">corazón</string>
+    <string name="palm_trace_head">cabeza</string>
+    <string name="palm_trace_life">vida</string>
+    <string name="palm_trace_fate">destino</string>
+    <string name="palm_visibility_clear">clara</string>
+    <string name="palm_visibility_partial">parcial</string>
+    <string name="palm_visibility_faint">tenue</string>
+    <string name="palm_visibility_not_detected">no detectada</string>
+    <string name="palm_line_confidence">%1$s · %2$d%%</string>
+    <string name="palm_strength_strong">fuerte</string>
+    <string name="palm_strength_moderate">moderada</string>
+    <string name="palm_strength_faint">tenue</string>
+    <string name="palm_strength_absent">ausente</string>
+    <string name="palm_mounts_title">Montes</string>
+    <string name="palm_mounts_label">Los más desarrollados</string>
+    <string name="palm_reinforcement_strong">fuerte</string>
+    <string name="palm_reinforcement_moderate">moderado</string>
+    <string name="palm_reinforcement_contradictory">difiere</string>
+    <string name="palm_reinforcement_neutral">neutro</string>
+    <string name="palm_more_title">Más de tu lectura</string>
+    <string name="palm_more_show">Ver todo</string>
+    <string name="palm_more_hide">Ver menos</string>
+    <string name="palm_more_current">Fase actual</string>
+    <string name="palm_more_near">Futuro próximo</string>
+    <string name="palm_more_long">Camino a largo plazo</string>
+    <string name="palm_more_challenges">Desafíos</string>
+    <string name="palm_more_opportunities">Oportunidades</string>
+    <string name="palm_more_talents">Talentos naturales</string>
+    <string name="palm_more_career">Dirección profesional</string>
+    <string name="palm_more_purpose">Alineación con el propósito</string>
+    <string name="palm_more_emotional">Estado emocional</string>
+    <string name="palm_more_relationships">Dinámica de las relaciones</string>
+    <string name="palm_more_connection">Estilo de conexión</string>
+    <string name="palm_more_fingers">Dedos</string>
+    <string name="palm_more_markings">Marcas especiales</string>
+    <string name="palm_more_dasha">Lente de la dasha activa</string>
+    <string name="palm_more_guidance">Orientación</string>
+    <string name="palm_new_reading">Nueva lectura</string>
+    <string name="palm_save">Guardar lectura</string>
+    <string name="palm_saving">Guardando…</string>
+    <string name="palm_saved">Guardada</string>
+
+    <!-- Ask about this reading -->
+    <string name="palm_qa_title">Pregunta sobre esta lectura</string>
+    <plurals name="palm_qa_left">
+        <item quantity="one">%1$d pregunta</item>
+        <item quantity="many">%1$d preguntas</item>
+        <item quantity="other">%1$d preguntas</item>
+    </plurals>
+    <string name="palm_qa_lead">Las respuestas salen de esta lectura y de tu carta, no de otro sitio.</string>
+    <string name="palm_qa_starter_career">¿Qué dice mi palma sobre hacia dónde va mi trabajo?</string>
+    <string name="palm_qa_starter_timing">¿A qué debería prestar atención durante el próximo año?</string>
+    <string name="palm_qa_starter_strength">¿Cuál es la línea más fuerte de mi mano y qué significa?</string>
+    <string name="palm_qa_label">Tu pregunta</string>
+    <string name="palm_qa_placeholder">Pregunta por una línea, por el momento…</string>
+    <string name="palm_qa_send">Preguntar</string>
+    <string name="palm_qa_thinking">Mirando tu palma de nuevo…</string>
+    <string name="palm_qa_full">No quedan más preguntas para esta lectura. Haz una lectura nueva para seguir.</string>
+    <string name="palm_qa_error">No se pudo responder a esa pregunta. Inténtalo de nuevo.</string>
+    <string name="palm_qa_footnote">Tendencias y potenciales, nunca un destino fijo.</string>
+
+    <!-- History -->
+    <string name="palm_history_title">Lecturas de la palma</string>
+    <plurals name="palm_history_count">
+        <item quantity="one">%1$d guardada en este teléfono</item>
+        <item quantity="many">%1$d guardadas en este teléfono</item>
+        <item quantity="other">%1$d guardadas en este teléfono</item>
+    </plurals>
+    <string name="palm_history_latest">La más reciente</string>
+    <string name="palm_history_earlier">Anteriores</string>
+    <string name="palm_history_meta">%1$s · %2$s</string>
+    <string name="palm_history_meta_hand_quality">%1$s · foto %2$s</string>
+    <string name="palm_history_meta_quality">%1$s · %2$s · foto %3$s</string>
+    <string name="palm_hand_left">mano izquierda</string>
+    <string name="palm_hand_right">mano derecha</string>
+    <string name="palm_hand_writing">mano con la que escribes</string>
+    <string name="palm_history_empty">Aún no has guardado ninguna lectura de la palma.</string>
+    <string name="palm_history_note">Las lecturas se guardan solo en este teléfono. Al eliminar una, también se borra su foto.</string>
+    <string name="palm_delete">Eliminar</string>
+    <string name="palm_delete_confirm">¿Eliminar esta lectura?</string>
+    <string name="palm_delete_yes">Sí, eliminar</string>
+    <string name="palm_cancel">Cancelar</string>
+</resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Failures, in the app's own words: never the site's text, never an exception's. -->
+    <string name="error_too_fast">Troppe richieste in questo momento. Riprova tra un minuto.</string>
+    <string name="error_daily">Hai già usato le letture di oggi su questo telefono. Riprova domani.</string>
+    <string name="error_full_today">Le letture di oggi sono esaurite. Riprova domani.</string>
+    <string name="error_weekly">Le letture di questa settimana sono esaurite.</string>
+    <string name="error_not_accepted">Il sito non ha potuto usare ciò che è stato inviato. Controlla i dati e riprova.</string>
+    <string name="error_unavailable">Il sito non ha potuto rispondere in questo momento. Riprova tra poco.</string>
+    <string name="error_generic">Qualcosa è andato storto. Riprova.</string>
+    <string name="error_offline">Sei offline. Controlla la connessione e riprova.</string>
+</resources>

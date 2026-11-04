@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the palm feature; that feature owns this file.
+     Wording follows the web's messages/de.json (palm) where the web has it. -->
+<resources>
+    <!-- Capture -->
+    <string name="palm_title">Deine Hand deuten</string>
+    <string name="palm_lead_chart">Ein Foto deiner Handfläche, gedeutet nach Linien, Handbergen und Merkmalen und mit deinem Horoskop abgewogen.</string>
+    <string name="palm_lead_plain">Ein Foto deiner Handfläche, gedeutet nach Linien, Handbergen und Merkmalen.</string>
+    <string name="palm_reader_legend">Wessen Hand ist das?</string>
+    <string name="palm_reader_woman">Frau</string>
+    <string name="palm_reader_man">Mann</string>
+    <string name="palm_reader_unspecified">Keine Angabe</string>
+    <string name="palm_reader_hint_woman">Fotografiere die linke Hand: Die klassische Handlesekunst deutet bei Frauen die linke Hand.</string>
+    <string name="palm_reader_hint_man">Fotografiere die rechte Hand: Die klassische Handlesekunst deutet bei Männern die rechte Hand.</string>
+    <string name="palm_reader_hint_unspecified">Fotografiere die Hand, mit der du schreibst.</string>
+    <string name="palm_finder_left">Linke Hand · Handfläche zur Kamera</string>
+    <string name="palm_finder_right">Rechte Hand · Handfläche zur Kamera</string>
+    <string name="palm_finder_writing">Schreibhand · Handfläche zur Kamera</string>
+    <string name="palm_take_photo">Foto aufnehmen</string>
+    <string name="palm_choose_photo">Foto auswählen</string>
+    <string name="palm_retake">Neu aufnehmen</string>
+    <string name="palm_choose_another">Anderes wählen</string>
+    <string name="palm_analyze">Meine Hand deuten</string>
+    <string name="palm_preparing">Das Foto wird vorbereitet…</string>
+    <string name="palm_photo_description">Dein Foto der Handfläche</string>
+    <string name="palm_back_to_reading">Zurück zu deiner Deutung</string>
+
+    <string name="palm_tips_title">Für ein klares Foto</string>
+    <string name="palm_tip_flat">Hand flach, Handfläche zur Kamera</string>
+    <string name="palm_tip_light">Gleichmäßiges Licht, keine harten Schatten</string>
+    <string name="palm_tip_light_detail">Tageslicht von einem Fenster ist am besten. Lass den Blitz aus.</string>
+    <string name="palm_tip_fingers">Finger leicht gespreizt</string>
+    <string name="palm_tip_frame">Die ganze Handfläche im Bild, bis zum Handgelenk</string>
+
+    <string name="palm_classical_title">Klassischer Modus</string>
+    <string name="palm_classical_subtitle">Nur Hasta Samudrika Shastra</string>
+
+    <plurals name="palm_allowance_left">
+        <item quantity="one">Deutung diese Woche übrig</item>
+        <item quantity="other">Deutungen diese Woche übrig</item>
+    </plurals>
+    <string name="palm_allowance_note">Du kannst zwei Handdeutungen pro Woche bekommen. Die Zählung beginnt jeden Montag neu.</string>
+    <string name="palm_allowance_opens">Die nächsten zwei gibt es ab %1$s.</string>
+    <string name="palm_history_link">Deine Deutungen · %1$d</string>
+    <string name="palm_history_link_empty">Deine Deutungen</string>
+
+    <!-- Analysing: the web's stage lines, paced for a reading of about a minute -->
+    <string name="palm_stage_start">Deine Handfläche wird gedeutet</string>
+    <string name="palm_stage_lines">Die Hauptlinien werden nachgezeichnet</string>
+    <string name="palm_stage_mounts">Die Handberge und Finger werden gedeutet</string>
+    <string name="palm_stage_weighing">Es wird abgewogen, worin die Linien übereinstimmen</string>
+    <string name="palm_stage_writing">Deine Deutung wird geschrieben</string>
+    <string name="palm_stage_finishing">Die letzten Abschnitte werden fertiggestellt</string>
+    <string name="palm_patience">Eine vollständige Deutung dauert etwa eine Minute. Sie wird eigens für deine Hand geschrieben und kommt nicht von der Stange.</string>
+
+    <!-- Errors -->
+    <string name="palm_error_camera">Keine Kamera verfügbar. Wähle stattdessen ein Foto.</string>
+    <string name="palm_error_photo">Dieses Foto ließ sich nicht öffnen. Wähle ein anderes.</string>
+    <string name="palm_error_weekly">Du hast die %1$d Handdeutungen dieser Woche bekommen. Die nächste gibt es ab %2$s.</string>
+    <string name="palm_error_generic">Etwas ist schiefgelaufen. Versuche es bitte noch einmal.</string>
+    <string name="palm_error_offline">Die Website war nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.</string>
+    <string name="palm_error_timeout">Die Deutung hat zu lange gebraucht. Versuche es bitte noch einmal.</string>
+    <string name="palm_error_not_reading">Es kam keine Deutung zurück.</string>
+    <string name="palm_error_save">Die Deutung konnte nicht gespeichert werden</string>
+
+    <!-- Reading -->
+    <string name="palm_reading_title">Handdeutung</string>
+    <string name="palm_back">Zurück</string>
+    <string name="palm_quality_title">Fotoqualität: %1$s</string>
+    <string name="palm_quality_excellent">ausgezeichnet</string>
+    <string name="palm_quality_good">gut</string>
+    <string name="palm_quality_marginal">grenzwertig</string>
+    <string name="palm_quality_poor">schwach</string>
+    <string name="palm_quality_hard">Die Bildqualität kann die Genauigkeit beeinträchtigen</string>
+    <string name="palm_quality_soft">Das Bild ist grenzwertig – lies die Deutung mit Vorsicht</string>
+    <string name="palm_traced_description">Dein Foto mit nachgezeichneten Linien</string>
+    <string name="palm_in_short">Kurz gesagt</string>
+    <string name="palm_lines_title">Die vier Linien</string>
+    <string name="palm_lines_label">Wie deutlich jede zu sehen war</string>
+    <string name="palm_line_heart">Herzlinie</string>
+    <string name="palm_line_head">Kopflinie</string>
+    <string name="palm_line_life">Lebenslinie</string>
+    <string name="palm_line_fate">Schicksalslinie</string>
+    <string name="palm_trace_heart">Herz</string>
+    <string name="palm_trace_head">Kopf</string>
+    <string name="palm_trace_life">Leben</string>
+    <string name="palm_trace_fate">Schicksal</string>
+    <string name="palm_visibility_clear">deutlich</string>
+    <string name="palm_visibility_partial">teilweise</string>
+    <string name="palm_visibility_faint">schwach</string>
+    <string name="palm_visibility_not_detected">nicht erkannt</string>
+    <string name="palm_line_confidence">%1$s · %2$d %%</string>
+    <string name="palm_strength_strong">stark</string>
+    <string name="palm_strength_moderate">mittel</string>
+    <string name="palm_strength_faint">schwach</string>
+    <string name="palm_strength_absent">fehlt</string>
+    <string name="palm_mounts_title">Handberge</string>
+    <string name="palm_mounts_label">Am stärksten ausgeprägt</string>
+    <string name="palm_reinforcement_strong">stark</string>
+    <string name="palm_reinforcement_moderate">mittel</string>
+    <string name="palm_reinforcement_contradictory">weicht ab</string>
+    <string name="palm_reinforcement_neutral">neutral</string>
+    <string name="palm_more_title">Mehr aus deiner Deutung</string>
+    <string name="palm_more_show">Alle ansehen</string>
+    <string name="palm_more_hide">Weniger ansehen</string>
+    <string name="palm_more_current">Aktuelle Phase</string>
+    <string name="palm_more_near">Nahe Zukunft</string>
+    <string name="palm_more_long">Langfristiger Weg</string>
+    <string name="palm_more_challenges">Herausforderungen</string>
+    <string name="palm_more_opportunities">Chancen</string>
+    <string name="palm_more_talents">Natürliche Begabungen</string>
+    <string name="palm_more_career">Berufliche Richtung</string>
+    <string name="palm_more_purpose">Einklang mit der Lebensaufgabe</string>
+    <string name="palm_more_emotional">Gefühlslage</string>
+    <string name="palm_more_relationships">Beziehungsdynamik</string>
+    <string name="palm_more_connection">Bindungsstil</string>
+    <string name="palm_more_fingers">Finger</string>
+    <string name="palm_more_markings">Besondere Merkmale</string>
+    <string name="palm_more_dasha">Im Licht der aktiven Dasha</string>
+    <string name="palm_more_guidance">Empfehlungen</string>
+    <string name="palm_new_reading">Neue Deutung</string>
+    <string name="palm_save">Deutung speichern</string>
+    <string name="palm_saving">Wird gespeichert…</string>
+    <string name="palm_saved">Gespeichert</string>
+
+    <!-- Ask about this reading -->
+    <string name="palm_qa_title">Fragen zu dieser Deutung</string>
+    <plurals name="palm_qa_left">
+        <item quantity="one">%1$d Frage</item>
+        <item quantity="other">%1$d Fragen</item>
+    </plurals>
+    <string name="palm_qa_lead">Die Antworten kommen aus dieser Deutung und deinem Horoskop, nicht von anderswo.</string>
+    <string name="palm_qa_starter_career">Was sagt meine Hand darüber, wohin sich meine Arbeit entwickelt?</string>
+    <string name="palm_qa_starter_timing">Worauf sollte ich im kommenden Jahr achten?</string>
+    <string name="palm_qa_starter_strength">Welche Linie meiner Hand ist am stärksten, und was bedeutet sie?</string>
+    <string name="palm_qa_label">Deine Frage</string>
+    <string name="palm_qa_placeholder">Frag nach einer Linie, dem Zeitpunkt…</string>
+    <string name="palm_qa_send">Fragen</string>
+    <string name="palm_qa_thinking">Noch ein Blick auf deine Handfläche…</string>
+    <string name="palm_qa_full">Das waren alle Fragen zu dieser Deutung. Starte eine neue Deutung, um weiterzumachen.</string>
+    <string name="palm_qa_error">Diese Frage konnte nicht beantwortet werden. Versuche es bitte noch einmal.</string>
+    <string name="palm_qa_footnote">Tendenzen und Potenziale, nie ein festes Schicksal.</string>
+
+    <!-- History -->
+    <string name="palm_history_title">Handdeutungen</string>
+    <plurals name="palm_history_count">
+        <item quantity="one">%1$d auf diesem Handy gespeichert</item>
+        <item quantity="other">%1$d auf diesem Handy gespeichert</item>
+    </plurals>
+    <string name="palm_history_latest">Neueste</string>
+    <string name="palm_history_earlier">Frühere</string>
+    <string name="palm_history_meta">%1$s · %2$s</string>
+    <string name="palm_history_meta_hand_quality">%1$s · Foto: %2$s</string>
+    <string name="palm_history_meta_quality">%1$s · %2$s · Foto: %3$s</string>
+    <string name="palm_hand_left">linke Hand</string>
+    <string name="palm_hand_right">rechte Hand</string>
+    <string name="palm_hand_writing">Schreibhand</string>
+    <string name="palm_history_empty">Du hast noch keine Handdeutungen gespeichert.</string>
+    <string name="palm_history_note">Deutungen werden nur auf diesem Handy aufbewahrt. Wenn du eine löschst, wird auch ihr Foto entfernt.</string>
+    <string name="palm_delete">Löschen</string>
+    <string name="palm_delete_confirm">Diese Deutung löschen?</string>
+    <string name="palm_delete_yes">Ja, löschen</string>
+    <string name="palm_cancel">Abbrechen</string>
+</resources>

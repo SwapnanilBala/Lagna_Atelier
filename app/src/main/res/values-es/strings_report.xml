@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the report feature; that feature owns this file. -->
+<resources>
+    <!-- The screens -->
+    <string name="report_title">Tu informe</string>
+    <string name="report_back">Atrás</string>
+    <plurals name="report_chapters">
+        <item quantity="one">%d capítulo</item>
+        <item quantity="many">%d capítulos</item>
+        <item quantity="other">%d capítulos</item>
+    </plurals>
+    <string name="report_subtitle_working">%1$s · %2$s</string>
+    <string name="report_subtitle_preparing">%1$s · preparando</string>
+    <string name="report_subtitle_ready">Listo · %1$s</string>
+
+    <!-- Generating -->
+    <string name="report_generating_label">Estamos escribiendo tu PDF</string>
+    <string name="report_progress_description">Progreso del informe, %1$d por ciento</string>
+    <string name="report_percent_sign" formatted="false">%</string>
+    <string name="report_step_calculating">Completando el cálculo</string>
+    <string name="report_step_verifying">Verificando la carta</string>
+    <string name="report_step_writing">Escribiendo tu lectura</string>
+    <string name="report_step_typesetting">Maquetando el PDF</string>
+    <string name="report_step_checks">%1$d de %2$d</string>
+    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_detail_planning">Planificando los capítulos…</string>
+    <string name="report_detail_introduction">Escribiendo la introducción…</string>
+    <string name="report_detail_chapter">Escribiendo el capítulo %1$d de %2$d</string>
+    <string name="report_note">Cada capítulo se escribe a partir de tus propias posiciones. Tarda alrededor de un minuto. Mantén la app abierta hasta que esté listo.</string>
+    <string name="report_chapters_title">Los capítulos</string>
+    <string name="report_chapters_label">Revisados antes de escribir</string>
+    <string name="report_chapter_done">Escrito</string>
+    <string name="report_chapter_now">Escribiéndose</string>
+    <string name="report_stop">Dejar de escribir</string>
+
+    <!-- Ready -->
+    <string name="report_ready_title">Tu informe está listo</string>
+    <string name="report_ready_meta">PDF · %1$s · %2$s</string>
+    <string name="report_ready_verified">verificado</string>
+    <string name="report_ready_qualified">con reservas</string>
+    <string name="report_cover_description">Portada de tu informe: %1$s, Tu historia.</string>
+    <string name="report_open">Abrir</string>
+    <string name="report_share">Compartir</string>
+    <string name="report_share_chooser">Compartir tu informe</string>
+    <string name="report_share_subject">Lagna Atelier · %1$s</string>
+    <string name="report_file_kind">PDF</string>
+    <string name="report_file_where">Se guarda en la app, en este teléfono. Compártelo para guardar una copia en cualquier otro sitio.</string>
+    <string name="report_no_viewer">Ninguna app de este teléfono abre archivos PDF. Usa Compartir para enviarlo a una.</string>
+    <string name="report_checks_passed">%1$d de %2$d comprobaciones superadas</string>
+    <string name="report_checks_qualified">%1$d de %2$d comprobaciones superadas sin reservas</string>
+    <string name="report_plain_title">Esta copia usa el texto propio de la carta, más breve</string>
+    <string name="report_plain_limit">Las lecturas de hoy se han agotado, así que cada capítulo conserva el texto que escribió el cálculo, sin la versión redactada más larga. Vuelve a generarlo mañana para tener la versión redactada.</string>
+    <string name="report_plain_timeout">La redacción tardó más de lo debido, así que cada capítulo conserva el texto que escribió el cálculo, sin la versión redactada más larga.</string>
+    <string name="report_plain_offline">La conexión se cortó mientras se escribían los capítulos, así que cada capítulo conserva el texto que escribió el cálculo, sin la versión redactada más larga.</string>
+    <string name="report_plain_declined">La versión redactada no llegó, así que cada capítulo conserva el texto que escribió el cálculo, sin la versión redactada más larga.</string>
+    <string name="report_make_again">Generarlo de nuevo</string>
+    <string name="report_close">Cerrar</string>
+
+    <!-- Failed -->
+    <string name="report_failed_title">El informe no llegó</string>
+    <string name="report_failed_generic">Revisa tu conexión e inténtalo de nuevo.</string>
+    <string name="report_failed_verification">La carta no superó sus comprobaciones de coherencia, así que no se generó ningún informe a partir de ella.</string>
+    <string name="report_failed_pdf">No se pudo crear el PDF en este teléfono. Inténtalo de nuevo.</string>
+    <string name="report_retry">Reintentar</string>
+
+    <!-- The PDF -->
+    <string name="report_pdf_brand">Lagna Atelier</string>
+    <string name="report_pdf_edition">Edición Historia Personal</string>
+    <string name="report_pdf_cover_kicker">Un retrato astrológico personal</string>
+    <string name="report_pdf_cover_title">Tu historia</string>
+    <string name="report_pdf_cover_ascendant">Ascendente %1$s</string>
+    <string name="report_pdf_cover_prepared">Preparado el %1$s</string>
+    <string name="report_pdf_verified">Informe verificado</string>
+    <string name="report_pdf_qualified">Informe con reservas</string>
+    <string name="report_pdf_running_head">Lagna Atelier · Lectura personal</string>
+    <string name="report_pdf_begin_kicker">Empieza aquí</string>
+    <string name="report_pdf_begin_title">La forma de tu historia</string>
+    <string name="report_pdf_glance">De un vistazo</string>
+    <string name="report_pdf_threads">Tres hilos en los que fijarse</string>
+    <string name="report_pdf_support_well">Bien respaldado</string>
+    <string name="report_pdf_support_supported">Respaldado</string>
+    <string name="report_pdf_support_exploratory">Exploratorio</string>
+    <string name="report_pdf_seasons">Las etapas que tienes a la vista</string>
+    <string name="report_pdf_carry">Llévate esto</string>
+    <string name="report_pdf_question">Una pregunta para reflexionar</string>
+    <string name="report_pdf_why">Por qué aparece este capítulo</string>
+    <string name="report_pdf_close_kicker">Antes de cerrar esto</string>
+    <string name="report_pdf_close_title">Cómo seguir usándolo</string>
+    <string name="report_pdf_close_note1_title">Lee un capítulo cada vez</string>
+    <string name="report_pdf_close_note1">Cada uno se escribió para sostenerse por sí solo. El informe no es un argumento que haya que seguir de principio a fin, y puede que el capítulo que más te importa este año no sea el primero.</string>
+    <string name="report_pdf_close_note2_title">Fíate de la nota bajo cada título</string>
+    <string name="report_pdf_close_note2">Cuando un capítulo está marcado como exploratorio, se apoya en indicios más escasos y conviene tomarlo con cautela. Esa etiqueta es calculada, no editorial, y es lo más útil de la página.</string>
+    <string name="report_pdf_close_note3_title">Vuelve a las preguntas</string>
+    <string name="report_pdf_close_note3">La pregunta al final de cada capítulo es la parte que solo tú puedes responder. Vale la pena volver a ellas, porque las respuestas cambian aunque la carta no cambie.</string>
+    <string name="report_pdf_sign_off">Nada de esto es un veredicto. Una carta describe el clima en el que naciste, no lo que harás con él.</string>
+    <string name="report_pdf_checked">Cómo se verificó</string>
+    <string name="report_pdf_provenance">Calculado con %1$s (%2$s), ayanamsha %3$s, casas %4$s, a partir de una hora de nacimiento registrada como %5$s. %6$s</string>
+    <string name="report_pdf_provenance_clean">Se superaron las %1$d comprobaciones internas de coherencia.</string>
+    <string name="report_pdf_provenance_qualified">%1$d de %2$d comprobaciones internas de coherencia se superaron sin reservas; las que llevan una reserva (%3$d) se reflejan en la nota de respaldo de los capítulos a los que afectan.</string>
+</resources>

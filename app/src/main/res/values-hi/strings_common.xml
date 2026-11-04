@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Failures, in the app's own words: never the site's text, never an exception's. -->
+    <string name="error_too_fast">अभी बहुत सारे अनुरोध हो गए। एक मिनट बाद फिर कोशिश करें।</string>
+    <string name="error_daily">इस फ़ोन पर आज के पठन पूरे हो चुके हैं। कल फिर कोशिश करें।</string>
+    <string name="error_full_today">आज के सभी पठन पूरे हो चुके हैं। कल फिर कोशिश करें।</string>
+    <string name="error_weekly">इस सप्ताह के पठन पूरे हो चुके हैं।</string>
+    <string name="error_not_accepted">भेजी गई जानकारी साइट उपयोग नहीं कर सकी। विवरण जाँचें और फिर कोशिश करें।</string>
+    <string name="error_unavailable">साइट अभी जवाब नहीं दे सकी। थोड़ी देर बाद फिर कोशिश करें।</string>
+    <string name="error_generic">कुछ गलत हो गया। फिर कोशिश करें।</string>
+    <string name="error_offline">आप ऑफ़लाइन हैं। अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+</resources>

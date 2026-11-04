@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lagna Atelier</string>
+
+    <!-- Landing -->
+    <string name="landing_language">FR</string>
+    <string name="landing_headline">Lisez le ciel de votre naissance</string>
+    <string name="landing_copy">Votre thème natal selon six traditions, la période de vie que vous traversez, et une lecture de votre paume.</string>
+    <string name="landing_start">Commencer votre thème</string>
+    <string name="landing_today_label">Le ciel du jour · %1$s</string>
+    <string name="landing_today_moon">Lune en %1$s</string>
+    <string name="landing_today_detail">%1$s · Soleil en %2$s</string>
+    <string name="landing_traditions_title">Toutes les traditions auxquelles vous vous fiez</string>
+    <string name="landing_traditions_copy">De Lahiri à Yukteshwar, avec six systèmes de maisons pour chacune.</string>
+    <string name="landing_traditions_label">Traditions</string>
+    <string name="landing_traditions_count">36</string>
+    <string name="landing_now_label">Au jour près</string>
+    <string name="landing_now_copy">Le chapitre que vous vivez, et le moment où il change</string>
+    <string name="landing_proof">205 yogas vérifiés</string>
+    <!-- Quoted: Android drops a leading space from an unquoted string. -->
+    <string name="landing_proof_tail">" sur chaque thème"</string>
+    <string name="landing_google">Se connecter avec Google</string>
+    <string name="landing_saved">Cartes enregistrées</string>
+    <string name="landing_traditions_initials_description">Lahiri, Raman, Krishnamurti, Fagan-Bradley, Pushyapaksha et Yukteshwar</string>
+
+    <string name="landing_today_plain">Le ciel du jour</string>
+    <string name="landing_today_loading">Lecture du ciel…</string>
+    <string name="landing_today_unavailable">Le ciel s’affiche ici lorsque vous êtes en ligne.</string>
+
+    <!-- Intake -->
+    <string name="intake_title">Vos données de naissance</string>
+    <string name="intake_lead">Le thème est calculé pour ce moment et ce lieu précis.</string>
+    <string name="intake_name">Nom</string>
+    <string name="intake_date">Date de naissance</string>
+    <string name="intake_time">Heure de naissance</string>
+    <string name="intake_choose">Choisir</string>
+    <string name="intake_knows_time">Je connais l’heure exacte</string>
+    <string name="intake_estimate_label">À quel moment, à peu près ?</string>
+    <string name="intake_estimate_morning">Matin</string>
+    <string name="intake_estimate_afternoon">Après-midi</string>
+    <string name="intake_estimate_evening">Soir</string>
+    <string name="intake_estimate_unknown">Aucune idée</string>
+    <string name="intake_estimate_note">Le thème utilisera %1$s. L’ascendant et les maisons peuvent changer selon l’heure : prenez-les comme une indication.</string>
+    <string name="intake_place">Lieu de naissance</string>
+    <string name="intake_place_hint">Commencez à taper le nom d’une ville</string>
+    <string name="intake_place_located">Fuseau horaire %1$s, %2$s à cette date.</string>
+    <string name="intake_place_not_found">Aucun lieu de ce nom. Essayez la grande ville la plus proche.</string>
+    <string name="intake_place_failed">La recherche de lieux ne répond pas. Vérifiez votre connexion et réessayez.</string>
+    <string name="intake_tradition">Tradition</string>
+    <string name="intake_ayanamsha">Ayanamsha</string>
+    <string name="intake_houses">Maisons</string>
+    <string name="intake_tradition_note">Lahiri avec les maisons en signes entiers est le choix habituel, et celui par lequel le site commence.</string>
+    <string name="intake_submit">Calculer mon thème</string>
+    <string name="intake_ready">Prêt quand vous l’êtes.</string>
+    <string name="intake_missing_name">Ajoutez un nom d’au moins deux lettres.</string>
+    <string name="intake_missing_date">Ajoutez la date de naissance.</string>
+    <string name="intake_missing_time">Ajoutez l’heure, ou désactivez « Je connais l’heure exacte ».</string>
+    <string name="intake_missing_place">Choisissez le lieu de naissance dans la liste.</string>
+    <string name="intake_ok">OK</string>
+    <string name="intake_cancel">Annuler</string>
+
+    <!-- Casting -->
+    <string name="casting_title">Calcul du thème de %1$s</string>
+    <string name="casting_detail">Placement des planètes pour %1$s, %2$s.</string>
+    <string name="casting_failed_title">Le thème n’a pas pu être obtenu</string>
+    <string name="casting_failed_generic">Vérifiez votre connexion et réessayez.</string>
+    <string name="casting_retry">Réessayer</string>
+    <string name="casting_edit">Modifier les données</string>
+
+    <!-- Reading -->
+    <string name="reading_back">Retour</string>
+    <string name="reading_share">Partager</string>
+    <string name="reading_share_text">Thème natal de %1$s : ascendant %2$s, Lune en %3$s (%4$s), en période %5$s jusqu’au %6$s. La lecture complète sur Lagna Atelier : %7$s</string>
+    <string name="reading_share_subject">Thème natal de %1$s</string>
+    <string name="reading_share_chooser">Partager cette lecture</string>
+    <string name="reading_sample">Thème d’exemple</string>
+    <string name="reading_now_label">Votre chapitre en cours</string>
+    <string name="reading_now_through">écoulé</string>
+    <string name="reading_now_to">jusqu’au %1$s</string>
+    <string name="reading_fact_lagna">Lagna</string>
+    <string name="reading_fact_moon">Signe lunaire</string>
+    <string name="reading_fact_nakshatra">Nakshatra</string>
+    <string name="reading_fact_mahadasha">Mahadasha</string>
+    <string name="reading_pada">pada %1$d · %2$s</string>
+    <string name="reading_until">jusqu’au %1$s</string>
+    <string name="reading_dasha_title">Chronologie Dasha</string>
+    <string name="reading_dasha_maha">Maha</string>
+    <string name="reading_dasha_antar">Antar</string>
+    <string name="reading_chart_title">Thème natal</string>
+    <string name="reading_chart_rasi">Rashi</string>
+    <string name="reading_chart_navamsa">Navamsa</string>
+    <string name="reading_chart_ascendant">Asc</string>
+    <string name="reading_attention_title">Ce qui mérite attention</string>
+    <string name="reading_see_all">Voir les %1$d</string>
+    <string name="reading_see_fewer">Afficher moins</string>
+    <string name="reading_report">Votre rapport</string>
+    <string name="reading_navamsa_missing">Ce thème est revenu sans son navamsa.</string>
+    <string name="reading_time_estimated">Heure de naissance estimée</string>
+
+    <!-- Navigation -->
+    <string name="nav_reading">Lecture</string>
+    <string name="nav_timing">Timing</string>
+    <string name="nav_palm">Paume</string>
+    <string name="nav_account">Compte</string>
+    <string name="nav_soon">%1$s est le prochain écran à construire.</string>
+</resources>

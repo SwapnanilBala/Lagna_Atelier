@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bengali (bn). Terms follow the website's messages/bn.json. -->
+<resources>
+    <string name="timing_offline">আপনি অনলাইনে থাকলে এটি দেখা যাবে।</string>
+    <string name="timing_unreadable">এই মুহূর্তে এটি পড়া গেল না।</string>
+    <string name="timing_retry">আবার চেষ্টা করুন</string>
+    <string name="timing_see_fewer">কম দেখুন</string>
+    <string name="timing_see_all_count">সব %1$dটি দেখুন</string>
+    <string name="timing_range_to">%1$s পর্যন্ত</string>
+    <string name="timing_percent_through">%1$d%% পেরিয়েছে</string>
+    <string name="timing_periods_loading">আপনার দশা পড়া হচ্ছে…</string>
+    <string name="timing_running_now">এখন চলছে · %1$s</string>
+    <string name="timing_level_maha">মহা</string>
+    <string name="timing_level_antar">অন্তর</string>
+    <string name="timing_level_pratyantar">প্রত্যন্তর</string>
+    <string name="timing_next_period">পরবর্তী: %1$s, %2$s থেকে</string>
+    <string name="timing_all_periods">সব দশা</string>
+    <string name="timing_fewer_periods">কম</string>
+    <string name="timing_periods_remaining">এই অন্তর্দশার ভিতরের প্রত্যন্তর্দশা</string>
+    <string name="timing_period_now">এখন</string>
+    <string name="timing_period_row">%1$s থেকে %2$s</string>
+    <string name="timing_week_title">সামনের সপ্তাহ</string>
+    <string name="timing_week_this">এই সপ্তাহ</string>
+    <string name="timing_week_next">পরের</string>
+    <string name="timing_week_loading">সপ্তাহ পড়া হচ্ছে…</string>
+    <string name="timing_band_high">ভরপুর</string>
+    <string name="timing_band_balanced">সমান</string>
+    <string name="timing_band_low">শান্ত</string>
+    <string name="timing_week_average">গড় %1$d</string>
+    <string name="timing_week_chart_description">সপ্তাহের শক্তি, %1$s থেকে %2$s। %3$s। গড় %4$d।</string>
+    <string name="timing_week_day_description">%1$s %2$d, স্কোর %3$d, %4$s</string>
+    <string name="timing_week_day_today">%1$s, আজ</string>
+    <string name="timing_week_card_title">%1$s · %2$s</string>
+    <string name="timing_transits_title">জানার মতো গোচর</string>
+    <string name="timing_transits_loading">গোচর পড়া হচ্ছে…</string>
+    <string name="timing_transits_empty">আজ আপনার কুণ্ডলীতে কাছাকাছি কোনো গোচর নেই।</string>
+    <string name="timing_transit_title">%1$s %2$s আপনার %3$s</string>
+    <string name="timing_aspect_conjunction">যুতি</string>
+    <string name="timing_aspect_opposition">প্রতিযুতি</string>
+    <string name="timing_aspect_trine">ত্রিকোণ</string>
+    <string name="timing_aspect_square">কেন্দ্র</string>
+    <string name="timing_aspect_sextile">সেক্সটাইল</string>
+    <string name="timing_tone_easy">সহজ</string>
+    <string name="timing_tone_testing">কঠিন</string>
+    <string name="timing_transit_exact_today">এক দিনের মধ্যে নিখুঁত</string>
+    <plurals name="timing_transit_exact_in">
+        <item quantity="one">%1$d দিনে নিখুঁত হবে</item>
+        <item quantity="other">%1$d দিনে নিখুঁত হবে</item>
+    </plurals>
+    <string name="timing_transit_separating">নিখুঁত অবস্থা পেরিয়েছে, প্রভাব কমছে</string>
+    <string name="timing_transit_meta">%1$s · অর্ব %2$s</string>
+    <string name="timing_muhurta_title">একটি শুভ সময় খুঁজুন</string>
+    <string name="timing_muhurta_range">আগামী 14 দিন</string>
+    <string name="timing_muhurta_loading">শুভ সময় খোঁজা হচ্ছে…</string>
+    <string name="timing_activity_anything">সাধারণ শুভ</string>
+    <string name="timing_activity_travel">ভ্রমণ</string>
+    <string name="timing_activity_business">ব্যবসার সূচনা</string>
+    <string name="timing_activity_study">অধ্যয়ন</string>
+    <string name="timing_activity_property">সম্পত্তি</string>
+    <string name="timing_activity_interview">চাকরির সাক্ষাৎকার</string>
+    <string name="timing_activity_spiritual">আধ্যাত্মিক সাধনা</string>
+    <string name="timing_best_anything">সামগ্রিকভাবে সেরা সময়</string>
+    <string name="timing_best_travel">ভ্রমণের জন্য সেরা</string>
+    <string name="timing_best_business">ব্যবসা শুরুর জন্য সেরা</string>
+    <string name="timing_best_study">অধ্যয়নের জন্য সেরা</string>
+    <string name="timing_best_property">সম্পত্তির জন্য সেরা</string>
+    <string name="timing_best_interview">চাকরির সাক্ষাৎকারের জন্য সেরা</string>
+    <string name="timing_best_spiritual">আধ্যাত্মিক সাধনার জন্য সেরা</string>
+    <string name="timing_score_of">100-এর মধ্যে</string>
+    <string name="timing_window_range">%1$s থেকে %2$s</string>
+    <string name="timing_window_description">%1$s, %2$s, স্কোর 100-এর মধ্যে %3$d</string>
+    <string name="timing_window_best_description">%1$s। %2$s</string>
+    <string name="timing_no_windows">আগামী 14 দিনে কোনো ভালো সময় নেই। অন্য একটি কাজ বেছে দেখুন।</string>
+    <string name="timing_rahukaala_today">আজ এড়িয়ে চলুন (রাহুকাল)</string>
+    <string name="timing_clock_range">%1$s–%2$s</string>
+    <plurals name="timing_windows_found">
+        <item quantity="one">%1$dটি সময়কাল পাওয়া গেছে</item>
+        <item quantity="other">%1$dটি সময়কাল পাওয়া গেছে</item>
+    </plurals>
+    <string name="timing_see_all">সব দেখুন</string>
+    <string name="timing_show_fewer">কম দেখান</string>
+    <string name="timing_year_title">এই বছরের কুণ্ডলী</string>
+    <string name="timing_year_loading">এই বছর পড়া হচ্ছে…</string>
+    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_rising">বর্ষ লগ্ন</string>
+    <string name="timing_year_lord">বর্ষপতি</string>
+    <string name="timing_year_muntha">মুন্থা</string>
+    <string name="timing_year_profection">প্রোফেকশন</string>
+    <string name="timing_lord_rules_muntha">মুন্থার অধিপতি</string>
+    <string name="timing_lord_rules_year_rising">বর্ষ লগ্নের অধিপতি</string>
+    <string name="timing_lord_rules_birth_rising">আপনার লগ্নের অধিপতি</string>
+    <string name="timing_lord_other">এই বছরের অধিপতি</string>
+    <string name="timing_house">%1$s ভাব</string>
+    <string name="timing_profection_year">বছর %1$d</string>
+    <string name="timing_profection_meta">%1$s · %2$s</string>
+    <string-array name="timing_ordinals">
+        <item>প্রথম</item>
+        <item>দ্বিতীয়</item>
+        <item>তৃতীয়</item>
+        <item>চতুর্থ</item>
+        <item>পঞ্চম</item>
+        <item>ষষ্ঠ</item>
+        <item>সপ্তম</item>
+        <item>অষ্টম</item>
+        <item>নবম</item>
+        <item>দশম</item>
+        <item>একাদশ</item>
+        <item>দ্বাদশ</item>
+    </string-array>
+</resources>

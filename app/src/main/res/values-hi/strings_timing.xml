@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the timing feature; that feature owns this file. -->
+<resources>
+    <!-- Shared states: each panel loads, fails and retries on its own. -->
+    <string name="timing_offline">यह ऑनलाइन होने पर दिखता है।</string>
+    <string name="timing_unreadable">यह अभी पढ़ा नहीं जा सका।</string>
+    <string name="timing_retry">फिर कोशिश करें</string>
+    <string name="timing_see_fewer">कम देखें</string>
+    <string name="timing_see_all_count">सभी %1$d देखें</string>
+    <string name="timing_range_to">%1$s तक</string>
+    <string name="timing_percent_through">%1$d%% बीत चुका</string>
+
+    <!-- Periods -->
+    <string name="timing_periods_loading">आपकी दशाएँ पढ़ी जा रही हैं…</string>
+    <string name="timing_running_now">अभी चल रही है · %1$s</string>
+    <string name="timing_level_maha">महा</string>
+    <string name="timing_level_antar">अंतर</string>
+    <string name="timing_level_pratyantar">प्रत्यंतर</string>
+    <string name="timing_next_period">अगली: %1$s, %2$s से</string>
+    <string name="timing_all_periods">सभी अवधियाँ</string>
+    <string name="timing_fewer_periods">कम</string>
+    <string name="timing_periods_remaining">इस अंतर्दशा की प्रत्यंतर्दशाएँ</string>
+    <string name="timing_period_now">अभी</string>
+    <string name="timing_period_row">%1$s से %2$s</string>
+
+    <!-- The week ahead -->
+    <string name="timing_week_title">आने वाला सप्ताह</string>
+    <string name="timing_week_this">यह सप्ताह</string>
+    <string name="timing_week_next">अगला</string>
+    <string name="timing_week_loading">सप्ताह पढ़ा जा रहा है…</string>
+    <string name="timing_band_high">भरपूर</string>
+    <string name="timing_band_balanced">संतुलित</string>
+    <string name="timing_band_low">शांत</string>
+    <string name="timing_week_average">औसत %1$d</string>
+    <string name="timing_week_chart_description">सप्ताह की ऊर्जा, %1$s से %2$s। %3$s। औसत %4$d।</string>
+    <string name="timing_week_day_description">%1$s %2$d, %3$d, %4$s</string>
+    <string name="timing_week_day_today">%1$s, आज</string>
+    <string name="timing_week_card_title">%1$s · %2$s</string>
+
+    <!-- Transits -->
+    <string name="timing_transits_title">जानने योग्य गोचर</string>
+    <string name="timing_transits_loading">गोचर पढ़े जा रहे हैं…</string>
+    <string name="timing_transits_empty">आज आपकी कुंडली पर कोई निकट गोचर नहीं है।</string>
+    <string name="timing_transit_title">%1$s और आपके %3$s में %2$s</string>
+    <string name="timing_aspect_conjunction">युति</string>
+    <string name="timing_aspect_opposition">प्रतियुति</string>
+    <string name="timing_aspect_trine">त्रिकोण</string>
+    <string name="timing_aspect_square">केंद्र</string>
+    <string name="timing_aspect_sextile">सेक्सटाइल</string>
+    <string name="timing_tone_easy">सहज</string>
+    <string name="timing_tone_testing">चुनौतीपूर्ण</string>
+    <string name="timing_transit_exact_today">एक दिन के भीतर सटीक</string>
+    <plurals name="timing_transit_exact_in">
+        <item quantity="one">%1$d दिन में सटीक</item>
+        <item quantity="other">%1$d दिनों में सटीक</item>
+    </plurals>
+    <string name="timing_transit_separating">सटीक बिंदु बीत चुका, प्रभाव घट रहा है</string>
+    <string name="timing_transit_meta">%1$s · ऑर्ब %2$s</string>
+
+    <!-- Find a good time -->
+    <string name="timing_muhurta_title">शुभ समय खोजें</string>
+    <string name="timing_muhurta_range">अगले 14 दिन</string>
+    <string name="timing_muhurta_loading">शुभ समय खोजे जा रहे हैं…</string>
+    <string name="timing_activity_anything">सामान्य शुभ</string>
+    <string name="timing_activity_travel">यात्रा</string>
+    <string name="timing_activity_business">व्यापार आरंभ</string>
+    <string name="timing_activity_study">अध्ययन</string>
+    <string name="timing_activity_property">संपत्ति</string>
+    <string name="timing_activity_interview">नौकरी का साक्षात्कार</string>
+    <string name="timing_activity_spiritual">आध्यात्मिक साधना</string>
+    <string name="timing_best_anything">कुल मिलाकर सर्वश्रेष्ठ समय</string>
+    <string name="timing_best_travel">यात्रा के लिए सर्वश्रेष्ठ</string>
+    <string name="timing_best_business">व्यापार आरंभ के लिए सर्वश्रेष्ठ</string>
+    <string name="timing_best_study">अध्ययन के लिए सर्वश्रेष्ठ</string>
+    <string name="timing_best_property">संपत्ति के लिए सर्वश्रेष्ठ</string>
+    <string name="timing_best_interview">नौकरी के साक्षात्कार के लिए सर्वश्रेष्ठ</string>
+    <string name="timing_best_spiritual">आध्यात्मिक साधना के लिए सर्वश्रेष्ठ</string>
+    <string name="timing_score_of">100 में से</string>
+    <string name="timing_window_range">%1$s से %2$s</string>
+    <string name="timing_window_description">%1$s, %2$s, स्कोर 100 में से %3$d</string>
+    <string name="timing_window_best_description">%1$s। %2$s</string>
+    <string name="timing_no_windows">अगले 14 दिनों में कोई अच्छी अवधि नहीं। कोई दूसरा कार्य आज़माएँ।</string>
+    <string name="timing_rahukaala_today">आज इससे बचें (राहुकाल)</string>
+    <string name="timing_clock_range">%1$s–%2$s</string>
+    <plurals name="timing_windows_found">
+        <item quantity="one">%1$d अवधि मिली</item>
+        <item quantity="other">%1$d अवधियाँ मिलीं</item>
+    </plurals>
+    <string name="timing_see_all">सभी देखें</string>
+    <string name="timing_show_fewer">कम दिखाएँ</string>
+
+    <!-- This year's chart -->
+    <string name="timing_year_title">इस वर्ष की कुंडली</string>
+    <string name="timing_year_loading">यह वर्ष पढ़ा जा रहा है…</string>
+    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_rising">वर्ष लग्न</string>
+    <string name="timing_year_lord">वर्षपति</string>
+    <string name="timing_year_muntha">मुन्था</string>
+    <string name="timing_year_profection">प्रोफेक्शन</string>
+    <string name="timing_lord_rules_muntha">मुन्था का स्वामी</string>
+    <string name="timing_lord_rules_year_rising">वर्ष लग्न का स्वामी</string>
+    <string name="timing_lord_rules_birth_rising">आपके लग्न का स्वामी</string>
+    <string name="timing_lord_other">इस वर्ष का स्वामी</string>
+    <string name="timing_house">%1$s भाव</string>
+    <string name="timing_profection_year">वर्ष %1$d</string>
+    <string name="timing_profection_meta">%1$s भाव · %2$s</string>
+    <string-array name="timing_ordinals">
+        <item>प्रथम</item>
+        <item>द्वितीय</item>
+        <item>तृतीय</item>
+        <item>चतुर्थ</item>
+        <item>पंचम</item>
+        <item>षष्ठ</item>
+        <item>सप्तम</item>
+        <item>अष्टम</item>
+        <item>नवम</item>
+        <item>दशम</item>
+        <item>एकादश</item>
+        <item>द्वादश</item>
+    </string-array>
+</resources>

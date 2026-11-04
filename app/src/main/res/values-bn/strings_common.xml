@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bengali (bn). Terms follow the website's messages/bn.json. -->
+<resources>
+    <string name="error_too_fast">এই মুহূর্তে অনেক বেশি অনুরোধ এসেছে। এক মিনিট পরে আবার চেষ্টা করুন।</string>
+    <string name="error_daily">এই ফোনে আজকের পাঠ শেষ হয়ে গেছে। কাল আবার চেষ্টা করুন।</string>
+    <string name="error_full_today">আজকের সব পাঠ নেওয়া হয়ে গেছে। কাল আবার চেষ্টা করুন।</string>
+    <string name="error_weekly">এই সপ্তাহের পাঠ শেষ হয়ে গেছে।</string>
+    <string name="error_not_accepted">যা পাঠানো হয়েছে, সাইট তা ব্যবহার করতে পারেনি। বিবরণ দেখে আবার চেষ্টা করুন।</string>
+    <string name="error_unavailable">সাইট এই মুহূর্তে সাড়া দিতে পারেনি। একটু পরে আবার চেষ্টা করুন।</string>
+    <string name="error_generic">কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।</string>
+    <string name="error_offline">আপনি অফলাইনে আছেন। সংযোগ দেখে আবার চেষ্টা করুন।</string>
+</resources>

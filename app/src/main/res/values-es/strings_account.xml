@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the account feature; that feature owns this file. -->
+<resources>
+    <!-- Account tab -->
+    <string name="account_title">Cuenta</string>
+    <string name="account_signed_out">Sin iniciar sesión</string>
+    <string name="account_signin_tag">MUY PRONTO</string>
+    <string name="account_signin_title">Iniciar sesión con Google llegará pronto</string>
+    <string name="account_signin_copy">Todavía no está en la app. Cuando llegue, podrás guardar tus cartas en tu cuenta y verlas también en lagnaatelier.site. Hasta entonces, todo lo que hay aquí se queda en este teléfono.</string>
+    <string name="account_saved_title">Cartas guardadas</string>
+    <string name="account_saved_count">%1$d de %2$d</string>
+    <string name="account_saved_local">Solo en este teléfono</string>
+    <string name="account_manage">Gestionar</string>
+    <string name="account_manage_done">Listo</string>
+    <string name="account_prefs_title">Preferencias</string>
+    <string name="account_language">Idioma</string>
+    <string name="account_chart_style">Estilo de carta</string>
+    <string name="account_new_charts">Las cartas nuevas usan</string>
+    <string name="account_new_charts_note">Puedes elegir otra tradición en el formulario de datos de nacimiento.</string>
+    <string name="account_about_title">Acerca de</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">Sitio web</string>
+    <string name="account_website_note">Las cartas se calculan allí y se guardan solo en este teléfono.</string>
+    <string name="account_website_failed">Ninguna app de este teléfono puede abrir el enlace.</string>
+    <string name="account_licences">Licencias</string>
+    <string name="account_licences_summary">Geist y Geist Mono, SIL Open Font License 1.1. Posiciones planetarias de astronomy-engine, licencia MIT.</string>
+    <string name="account_licences_fonts">Geist y Geist Mono</string>
+    <string name="account_licences_fonts_note">Las tipografías de la app, de The Geist Project Authors, bajo la SIL Open Font License 1.1.</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">De Don Cross, bajo la licencia MIT. El sitio web lo usa para situar los planetas; la app muestra lo que envía el sitio.</string>
+    <string name="account_licences_show">Leer la licencia tipográfica</string>
+    <string name="account_licences_hide">Ocultar la licencia tipográfica</string>
+
+    <!-- Saved charts screen -->
+    <string name="saved_title">Cartas guardadas</string>
+    <string name="saved_count">%1$d de %2$d en este teléfono</string>
+    <string name="saved_opened_last">Abierta por última vez</string>
+    <string name="saved_rising">Ascendente</string>
+    <string name="saved_moon">Luna</string>
+    <string name="saved_open">Abrir</string>
+    <string name="saved_add">Añadir una carta</string>
+    <string name="saved_empty">Aún no hay cartas guardadas. Calcula una y se guardará aquí.</string>
+    <string name="saved_sample">Ver la carta de ejemplo</string>
+    <string name="saved_note">Toca la papelera junto a una carta, o mantenla pulsada, para eliminarla. Puedes guardar cinco; al añadir una sexta se sustituye la que abriste hace más tiempo.</string>
+    <string name="saved_delete_button">Eliminar la carta de %1$s</string>
+    <string name="saved_delete_question">¿Eliminar la carta de %1$s?</string>
+    <string name="saved_delete_detail">Se borra de este teléfono. Puedes volver a añadirla desde los datos de nacimiento.</string>
+    <string name="saved_cancel">Cancelar</string>
+    <string name="saved_delete">Eliminar</string>
+    <string name="saved_open_chart">Abrir la carta de %1$s</string>
+    <string name="saved_time_morning">mañana</string>
+    <string name="saved_time_afternoon">tarde</string>
+    <string name="saved_time_evening">noche</string>
+    <string name="saved_time_unknown">hora desconocida</string>
+    <string name="saved_missing_value">—</string>
+</resources>

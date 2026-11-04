@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lagna Atelier</string>
+
+    <!-- Landing -->
+    <string name="landing_language">IT</string>
+    <string name="landing_headline">Leggi il cielo della tua nascita</string>
+    <string name="landing_copy">Il tuo tema natale in sei tradizioni, il periodo della vita che stai attraversando e una lettura della tua mano.</string>
+    <string name="landing_start">Crea la tua carta</string>
+    <string name="landing_today_label">Il cielo di oggi · %1$s</string>
+    <string name="landing_today_moon">Luna in %1$s</string>
+    <string name="landing_today_detail">%1$s · Sole in %2$s</string>
+    <string name="landing_traditions_title">Tutte le tradizioni di cui ti fidi</string>
+    <string name="landing_traditions_copy">Da Lahiri a Yukteshwar, con sei sistemi di case per ciascuna.</string>
+    <string name="landing_traditions_label">Tradizioni</string>
+    <string name="landing_traditions_count">36</string>
+    <string name="landing_now_label">Al giorno esatto</string>
+    <string name="landing_now_copy">Il capitolo in cui ti trovi e quando cambia</string>
+    <string name="landing_proof">205 yoga verificati</string>
+    <!-- Quoted: Android drops a leading space from an unquoted string. -->
+    <string name="landing_proof_tail">" in ogni carta"</string>
+    <string name="landing_google">Accedi con Google</string>
+    <string name="landing_saved">Carte salvate</string>
+    <string name="landing_traditions_initials_description">Lahiri, Raman, Krishnamurti, Fagan-Bradley, Pushyapaksha e Yukteshwar</string>
+
+    <string name="landing_today_plain">Il cielo di oggi</string>
+    <string name="landing_today_loading">Leggo il cielo…</string>
+    <string name="landing_today_unavailable">Il cielo appare qui quando sei online.</string>
+
+    <!-- Intake -->
+    <string name="intake_title">I tuoi dati di nascita</string>
+    <string name="intake_lead">La carta viene calcolata per questo preciso momento e luogo.</string>
+    <string name="intake_name">Nome</string>
+    <string name="intake_date">Data di nascita</string>
+    <string name="intake_time">Ora di nascita</string>
+    <string name="intake_choose">Scegli</string>
+    <string name="intake_knows_time">Conosco l’ora esatta</string>
+    <string name="intake_estimate_label">Più o meno quando?</string>
+    <string name="intake_estimate_morning">Mattina</string>
+    <string name="intake_estimate_afternoon">Pomeriggio</string>
+    <string name="intake_estimate_evening">Sera</string>
+    <string name="intake_estimate_unknown">Non lo so</string>
+    <string name="intake_estimate_note">La carta userà l’orario %1$s. Il segno ascendente e le case possono cambiare con l’ora, quindi considerali indicativi.</string>
+    <string name="intake_place">Luogo di nascita</string>
+    <string name="intake_place_hint">Inizia a scrivere un paese o una città</string>
+    <string name="intake_place_located">Fuso orario %1$s, %2$s a quella data.</string>
+    <string name="intake_place_not_found">Nessun luogo con questo nome. Prova con la città più grande più vicina.</string>
+    <string name="intake_place_failed">La ricerca dei luoghi non risponde. Controlla la connessione e riprova.</string>
+    <string name="intake_tradition">Tradizione</string>
+    <string name="intake_ayanamsha">Ayanamsha</string>
+    <string name="intake_houses">Case</string>
+    <string name="intake_tradition_note">Lahiri con le case a segno intero è la scelta abituale, ed è quella da cui parte il sito.</string>
+    <string name="intake_submit">Calcola la mia carta</string>
+    <string name="intake_ready">Tutto pronto, quando vuoi.</string>
+    <string name="intake_missing_name">Aggiungi un nome di almeno due lettere.</string>
+    <string name="intake_missing_date">Aggiungi la data di nascita.</string>
+    <string name="intake_missing_time">Aggiungi l’ora, oppure disattiva “Conosco l’ora esatta”.</string>
+    <string name="intake_missing_place">Scegli il luogo di nascita dall’elenco.</string>
+    <string name="intake_ok">OK</string>
+    <string name="intake_cancel">Annulla</string>
+
+    <!-- Casting -->
+    <string name="casting_title">Calcolo della carta di %1$s</string>
+    <string name="casting_detail">Colloco i pianeti per %1$s, %2$s.</string>
+    <string name="casting_failed_title">La carta non è arrivata</string>
+    <string name="casting_failed_generic">Controlla la connessione e riprova.</string>
+    <string name="casting_retry">Riprova</string>
+    <string name="casting_edit">Modifica i dati</string>
+
+    <!-- Reading -->
+    <string name="reading_back">Indietro</string>
+    <string name="reading_share">Condividi</string>
+    <string name="reading_share_text">Tema natale di %1$s: ascendente %2$s, Luna in %3$s (%4$s), in un periodo di %5$s fino al %6$s. La lettura completa su Lagna Atelier: %7$s</string>
+    <string name="reading_share_subject">Tema natale di %1$s</string>
+    <string name="reading_share_chooser">Condividi questa lettura</string>
+    <string name="reading_sample">Carta di esempio</string>
+    <string name="reading_now_label">Il tuo capitolo attuale</string>
+    <string name="reading_now_through">trascorso</string>
+    <string name="reading_now_to">fino al %1$s</string>
+    <string name="reading_fact_lagna">Lagna</string>
+    <string name="reading_fact_moon">Segno lunare</string>
+    <string name="reading_fact_nakshatra">Nakshatra</string>
+    <string name="reading_fact_mahadasha">Mahadasha</string>
+    <string name="reading_pada">pada %1$d · %2$s</string>
+    <string name="reading_until">fino al %1$s</string>
+    <string name="reading_dasha_title">Linea temporale Dasha</string>
+    <string name="reading_dasha_maha">Maha</string>
+    <string name="reading_dasha_antar">Antar</string>
+    <string name="reading_chart_title">Tema natale</string>
+    <string name="reading_chart_rasi">Rashi</string>
+    <string name="reading_chart_navamsa">Navamsa</string>
+    <string name="reading_chart_ascendant">Asc</string>
+    <string name="reading_attention_title">Ciò che merita attenzione</string>
+    <string name="reading_see_all">Vedi tutte (%1$d)</string>
+    <string name="reading_see_fewer">Mostra meno</string>
+    <string name="reading_report">Il tuo rapporto</string>
+    <string name="reading_navamsa_missing">Questa carta è arrivata senza il Navamsa.</string>
+    <string name="reading_time_estimated">Ora di nascita stimata</string>
+
+    <!-- Navigation -->
+    <string name="nav_reading">Lettura</string>
+    <string name="nav_timing">Tempi</string>
+    <string name="nav_palm">Mano</string>
+    <string name="nav_account">Account</string>
+    <string name="nav_soon">%1$s è la prossima schermata da costruire.</string>
+</resources>

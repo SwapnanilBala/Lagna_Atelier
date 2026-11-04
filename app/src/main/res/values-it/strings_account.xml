@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the account feature; that feature owns this file. -->
+<resources>
+    <!-- Account tab -->
+    <string name="account_title">Account</string>
+    <string name="account_signed_out">Accesso non effettuato</string>
+    <string name="account_signin_tag">IN ARRIVO</string>
+    <string name="account_signin_title">L’accesso con Google sta arrivando</string>
+    <string name="account_signin_copy">Non è ancora nell’app. Quando arriverà, potrai conservare le tue carte nel tuo account e vederle anche su lagnaatelier.site. Fino ad allora, tutto quello che c’è qui resta su questo telefono.</string>
+    <string name="account_saved_title">Carte salvate</string>
+    <string name="account_saved_count">%1$d di %2$d</string>
+    <string name="account_saved_local">Conservate solo su questo telefono</string>
+    <string name="account_manage">Gestisci</string>
+    <string name="account_manage_done">Fatto</string>
+    <string name="account_prefs_title">Preferenze</string>
+    <string name="account_language">Lingua</string>
+    <string name="account_chart_style">Stile della carta</string>
+    <string name="account_new_charts">Le nuove carte usano</string>
+    <string name="account_new_charts_note">Puoi scegliere un’altra tradizione nel modulo dei dati di nascita.</string>
+    <string name="account_about_title">Informazioni</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">Sito web</string>
+    <string name="account_website_note">Le carte vengono calcolate lì e salvate solo su questo telefono.</string>
+    <string name="account_website_failed">Nessuna app su questo telefono può aprire il link.</string>
+    <string name="account_licences">Licenze</string>
+    <string name="account_licences_summary">Geist e Geist Mono, SIL Open Font License 1.1. Posizioni dei pianeti di astronomy-engine, licenza MIT.</string>
+    <string name="account_licences_fonts">Geist e Geist Mono</string>
+    <string name="account_licences_fonts_note">I caratteri dell’app, di The Geist Project Authors, con licenza SIL Open Font License 1.1.</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">Di Don Cross, con licenza MIT. Il sito lo usa per collocare i pianeti; l’app mostra ciò che il sito invia.</string>
+    <string name="account_licences_show">Leggi la licenza dei caratteri</string>
+    <string name="account_licences_hide">Nascondi la licenza dei caratteri</string>
+
+    <!-- Saved charts screen -->
+    <string name="saved_title">Carte salvate</string>
+    <string name="saved_count">%1$d di %2$d su questo telefono</string>
+    <string name="saved_opened_last">Aperta per ultima</string>
+    <string name="saved_rising">Ascendente</string>
+    <string name="saved_moon">Luna</string>
+    <string name="saved_open">Apri</string>
+    <string name="saved_add">Aggiungi una carta</string>
+    <string name="saved_empty">Ancora nessuna carta salvata. Calcolane una e verrà conservata qui.</string>
+    <string name="saved_sample">Guarda la carta di esempio</string>
+    <string name="saved_note">Tocca il cestino accanto a una carta, o tienila premuta, per eliminarla. Puoi conservarne cinque; aggiungendone una sesta sostituisci quella aperta meno di recente.</string>
+    <string name="saved_delete_button">Elimina la carta di %1$s</string>
+    <string name="saved_delete_question">Eliminare la carta di %1$s?</string>
+    <string name="saved_delete_detail">Viene tolta da questo telefono. Puoi aggiungerla di nuovo dai dati di nascita.</string>
+    <string name="saved_cancel">Annulla</string>
+    <string name="saved_delete">Elimina</string>
+    <string name="saved_open_chart">Apri la carta di %1$s</string>
+    <string name="saved_time_morning">mattina</string>
+    <string name="saved_time_afternoon">pomeriggio</string>
+    <string name="saved_time_evening">sera</string>
+    <string name="saved_time_unknown">ora sconosciuta</string>
+    <string name="saved_missing_value">—</string>
+</resources>

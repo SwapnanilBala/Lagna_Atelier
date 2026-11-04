@@ -16,6 +16,7 @@ folder is reported as misplaced). Strings marked translatable="false" are
 skipped. Checks on what is translated:
 
   - placeholders: the same %1$s / %2$d set as English (order may change)
+  - string arrays: as many items as English
   - plurals: every quantity English has (Android adds its own for some
     languages; extra ones are fine)
   - keys no longer in English (stale)
@@ -70,6 +71,8 @@ def load(folder):
                 entries[name] = ("string", text_of(element))
             elif element.tag == "plurals":
                 entries[name] = ("plurals", {item.get("quantity"): text_of(item) for item in element})
+            elif element.tag == "string-array":
+                entries[name] = ("array", {str(i): text_of(item) for i, item in enumerate(element)})
         out[path.name] = entries
     return out
 
@@ -117,6 +120,8 @@ def check(language, english, report_missing_only):
                 lost = set(entry[1]) - set(theirs[1])
                 if lost:
                     problems.append(f"{file_name} {key}: no plural for {sorted(lost)}")
+            if entry[0] == "array" and len(theirs[1]) != len(entry[1]):
+                problems.append(f"{file_name} {key}: {len(theirs[1])} items, English has {len(entry[1])}")
             for text in texts(theirs):
                 if language in ("hi", "bn") and unicodedata.normalize("NFC", text) != text:
                     problems.append(f"{file_name} {key}: not NFC-normalised")
@@ -153,7 +158,7 @@ def skeleton(language, file_name):
     target = RES / f"values-{language}" / file_name
     have = set(load(target.parent).get(file_name, {})) if target.exists() else set()
     print('<?xml version="1.0" encoding="utf-8"?>\n<resources>')
-    for line_group in re.finditer(r"(?s)( *<(string|plurals) name=\"([^\"]+)\"(?![^>]*translatable=\"false\").*?</\2>)", source.read_text(encoding="utf-8")):
+    for line_group in re.finditer(r"(?s)( *<(string|plurals|string-array) name=\"([^\"]+)\"(?![^>]*translatable=\"false\").*?</\2>)", source.read_text(encoding="utf-8")):
         if line_group.group(3) not in have:
             print(line_group.group(1))
     print("</resources>")

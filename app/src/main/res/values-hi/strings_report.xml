@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the report feature; that feature owns this file. -->
+<resources>
+    <!-- The screens -->
+    <string name="report_title">आपकी रिपोर्ट</string>
+    <string name="report_back">वापस</string>
+    <plurals name="report_chapters">
+        <item quantity="one">%d अध्याय</item>
+        <item quantity="other">%d अध्याय</item>
+    </plurals>
+    <string name="report_subtitle_working">%1$s · %2$s</string>
+    <string name="report_subtitle_preparing">%1$s · तैयार हो रही है</string>
+    <string name="report_subtitle_ready">तैयार · %1$s</string>
+
+    <!-- Generating -->
+    <string name="report_generating_label">आपका PDF लिखा जा रहा है</string>
+    <string name="report_progress_description">रिपोर्ट की प्रगति, %1$d प्रतिशत</string>
+    <string name="report_percent_sign" formatted="false">%</string>
+    <string name="report_step_calculating">गणना पूरी की जा रही है</string>
+    <string name="report_step_verifying">कुंडली की दोबारा जाँच हो रही है</string>
+    <string name="report_step_writing">आपका पाठ लिखा जा रहा है</string>
+    <string name="report_step_typesetting">PDF के पन्ने सजाए जा रहे हैं</string>
+    <string name="report_step_checks">%2$d में से %1$d</string>
+    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_detail_planning">अध्यायों की योजना बन रही है…</string>
+    <string name="report_detail_introduction">भूमिका लिखी जा रही है…</string>
+    <string name="report_detail_chapter">%2$d में से अध्याय %1$d लिखा जा रहा है</string>
+    <string name="report_note">हर अध्याय आपकी अपनी ग्रह स्थितियों के आधार पर लिखा जाता है। इसमें लगभग एक मिनट लगता है। तैयार होने तक ऐप खुला रखें।</string>
+    <string name="report_chapters_title">अध्याय</string>
+    <string name="report_chapters_label">लिखने से पहले जाँचे गए</string>
+    <string name="report_chapter_done">लिखा गया</string>
+    <string name="report_chapter_now">लिखा जा रहा है</string>
+    <string name="report_stop">लिखना रोकें</string>
+
+    <!-- Ready -->
+    <string name="report_ready_title">आपकी रिपोर्ट तैयार है</string>
+    <string name="report_ready_meta">PDF · %1$s · %2$s</string>
+    <string name="report_ready_verified">सत्यापित</string>
+    <string name="report_ready_qualified">सशर्त</string>
+    <string name="report_cover_description">आपकी रिपोर्ट का मुखपृष्ठ: %1$s, आपकी कहानी।</string>
+    <string name="report_open">खोलें</string>
+    <string name="report_share">साझा करें</string>
+    <string name="report_share_chooser">अपनी रिपोर्ट साझा करें</string>
+    <string name="report_share_subject">Lagna Atelier · %1$s</string>
+    <string name="report_file_kind">PDF</string>
+    <string name="report_file_where">यह इस फ़ोन पर ऐप के भीतर रखी गई है। कहीं और प्रति सहेजने के लिए इसे साझा करें।</string>
+    <string name="report_no_viewer">इस फ़ोन पर कोई ऐप PDF नहीं खोलता। किसी ऐप में भेजने के लिए “साझा करें” का उपयोग करें।</string>
+    <string name="report_checks_passed">%2$d में से %1$d जाँचें सफल</string>
+    <string name="report_checks_qualified">%2$d में से %1$d जाँचें पूरी तरह सफल</string>
+    <string name="report_plain_title">इस प्रति में कुंडली का अपना छोटा पाठ है</string>
+    <string name="report_plain_limit">आज के पठन पूरे हो चुके हैं, इसलिए हर अध्याय में गणना से लिखा गया पाठ ही है, लंबे लिखे हुए संस्करण के बिना। लिखा हुआ संस्करण पाने के लिए कल इसे फिर बनाएँ।</string>
+    <string name="report_plain_timeout">लिखने में अपेक्षा से अधिक समय लगा, इसलिए हर अध्याय में गणना से लिखा गया पाठ ही है, लंबे लिखे हुए संस्करण के बिना।</string>
+    <string name="report_plain_offline">अध्याय लिखे जाते समय कनेक्शन टूट गया, इसलिए हर अध्याय में गणना से लिखा गया पाठ ही है, लंबे लिखे हुए संस्करण के बिना।</string>
+    <string name="report_plain_declined">लिखा हुआ संस्करण नहीं आ पाया, इसलिए हर अध्याय में गणना से लिखा गया पाठ ही है, लंबे लिखे हुए संस्करण के बिना।</string>
+    <string name="report_make_again">इसे फिर बनाएँ</string>
+    <string name="report_close">बंद करें</string>
+
+    <!-- Failed -->
+    <string name="report_failed_title">रिपोर्ट नहीं आ पाई</string>
+    <string name="report_failed_generic">अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+    <string name="report_failed_verification">कुंडली अपनी संगति जाँचों में सफल नहीं हुई, इसलिए उससे कोई रिपोर्ट नहीं बनाई गई।</string>
+    <string name="report_failed_pdf">इस फ़ोन पर PDF नहीं लिखा जा सका। फिर कोशिश करें।</string>
+    <string name="report_retry">फिर कोशिश करें</string>
+
+    <!-- The PDF -->
+    <string name="report_pdf_brand">Lagna Atelier</string>
+    <string name="report_pdf_edition">व्यक्तिगत कहानी संस्करण</string>
+    <string name="report_pdf_cover_kicker">एक व्यक्तिगत ज्योतिषीय चित्र</string>
+    <string name="report_pdf_cover_title">आपकी कहानी</string>
+    <string name="report_pdf_cover_ascendant">%1$s लग्न</string>
+    <string name="report_pdf_cover_prepared">%1$s को तैयार की गई</string>
+    <string name="report_pdf_verified">सत्यापित रिपोर्ट</string>
+    <string name="report_pdf_qualified">सशर्त रिपोर्ट</string>
+    <string name="report_pdf_running_head">Lagna Atelier · व्यक्तिगत पाठ</string>
+    <string name="report_pdf_begin_kicker">यहाँ से शुरू करें</string>
+    <string name="report_pdf_begin_title">आपकी कहानी का आकार</string>
+    <string name="report_pdf_glance">एक नज़र में</string>
+    <string name="report_pdf_threads">ध्यान देने योग्य तीन सूत्र</string>
+    <string name="report_pdf_support_well">भली प्रकार समर्थित</string>
+    <string name="report_pdf_support_supported">समर्थित</string>
+    <string name="report_pdf_support_exploratory">अन्वेषणात्मक</string>
+    <string name="report_pdf_seasons">इस समय सामने के मौसम</string>
+    <string name="report_pdf_carry">इसे आगे साथ रखें</string>
+    <string name="report_pdf_question">मन में रखने के लिए एक प्रश्न</string>
+    <string name="report_pdf_why">यह अध्याय क्यों है</string>
+    <string name="report_pdf_close_kicker">इसे बंद करने से पहले</string>
+    <string name="report_pdf_close_title">इसका उपयोग कैसे करते रहें</string>
+    <string name="report_pdf_close_note1_title">एक बार में एक अध्याय लें</string>
+    <string name="report_pdf_close_note1">हर अध्याय अपने आप में पूरा होने के लिए लिखा गया है। रिपोर्ट कोई तर्क नहीं है जिसे शुरू से अंत तक पढ़ना ज़रूरी हो, और इस वर्ष आपके लिए सबसे अहम अध्याय शायद पहला न हो।</string>
+    <string name="report_pdf_close_note2_title">हर शीर्षक के नीचे की टिप्पणी पर भरोसा करें</string>
+    <string name="report_pdf_close_note2">जहाँ किसी अध्याय पर अन्वेषणात्मक लिखा है, वह कम प्रमाण पर टिका है और उसे अंतिम बात के बजाय एक संभावना की तरह देखना ठीक है। यह लेबल गणना से आता है, संपादक की राय से नहीं, और यह पन्ने की सबसे उपयोगी चीज़ है।</string>
+    <string name="report_pdf_close_note3_title">प्रश्नों पर लौटते रहें</string>
+    <string name="report_pdf_close_note3">हर अध्याय के अंत का प्रश्न वह हिस्सा है जिसका उत्तर केवल आप दे सकते हैं। उन पर लौटना सार्थक है, क्योंकि कुंडली न बदले तब भी उत्तर बदलते रहते हैं।</string>
+    <string name="report_pdf_sign_off">यहाँ कुछ भी अंतिम निर्णय नहीं है। कुंडली उस मौसम का वर्णन करती है जिसमें आप जन्मे, इसका नहीं कि आप उसके साथ क्या करेंगे।</string>
+    <string name="report_pdf_checked">यह कैसे जाँचा गया</string>
+    <string name="report_pdf_provenance">%1$s (%2$s), %3$s अयनांश और %4$s भाव पद्धति से गणना की गई, जिसमें जन्म समय %5$s दर्ज है। %6$s</string>
+    <string name="report_pdf_provenance_clean">सभी %1$d आंतरिक संगति जाँचें सफल रहीं।</string>
+    <string name="report_pdf_provenance_qualified">%2$d में से %1$d आंतरिक संगति जाँचें पूरी तरह सफल रहीं; %3$d में एक शर्त आई, जो उन अध्यायों की समर्थन टिप्पणी में दिखाई गई है जिन पर इसका असर है।</string>
+</resources>
