@@ -1,5 +1,15 @@
 package site.lagnaatelier.app.ui.landing
 
+import androidx.activity.compose.LocalActivity
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import site.lagnaatelier.app.data.AppLanguage
+import site.lagnaatelier.app.ui.account.languageLabel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -7,6 +17,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -90,7 +104,7 @@ fun LandingScreen(
                     stringResource(R.string.app_name),
                     style = MaterialTheme.typography.titleMedium.copy(fontSize = 16.sp),
                 )
-                GhostChip(stringResource(R.string.landing_language))
+                LanguageChip()
             }
 
             Column(
@@ -123,6 +137,37 @@ fun LandingScreen(
     }
 }
 
+/*
+ * The language the app is in, as a chip that opens the same choice as
+ * Account > Look: following the phone, or one of the seven languages.
+ */
+@Composable
+private fun LanguageChip() {
+    val activity = LocalActivity.current
+    val context = LocalContext.current
+    val chosen = remember(context) { AppLanguage.chosen(context) }
+    var open by remember { mutableStateOf(false) }
+    val description = stringResource(R.string.account_language)
+    Box {
+        GhostChip(
+            stringResource(R.string.landing_language),
+            modifier = Modifier.semantics { contentDescription = description },
+            onClick = { open = true },
+        )
+        DropdownMenu(expanded = open, onDismissRequest = { open = false }, containerColor = CardWhite) {
+            (listOf<String?>(null) + AppLanguage.SUPPORTED).forEach { tag ->
+                DropdownMenuItem(
+                    text = { Text(languageLabel(tag), color = if (tag == chosen) Ink else Muted) },
+                    onClick = {
+                        open = false
+                        if (tag != chosen && activity != null) AppLanguage.choose(activity, tag)
+                    },
+                )
+            }
+        }
+    }
+}
+
 @Composable
 private fun MoonDisc() {
     Box(Modifier.size(28.dp).background(Ink, CircleShape), contentAlignment = Alignment.Center) {
@@ -130,88 +175,118 @@ private fun MoonDisc() {
     }
 }
 
-/* Three cards over the glow, overlapping the way the reference's do. */
+/*
+ * Three cards over the glow, overlapping the way the reference's do. Placed
+ * by measure rather than fixed offsets: with the phone's text made larger the
+ * cards grow, the third moves down to clear the first, and the cluster grows
+ * to hold them all, so nothing runs into the line under it.
+ */
 @Composable
 private fun CardCluster(today: TodaySky?, todayUnavailable: Boolean) {
-    Box(
-        Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-            .padding(horizontal = 18.dp),
-    ) {
-        Glow(Modifier.fillMaxSize().padding(top = 6.dp))
+    Layout(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp),
+        content = {
+            Glow(Modifier.fillMaxSize())
+            ClusterCards(today, todayUnavailable)
+        },
+    ) { measurables, constraints ->
+        val loose = constraints.copy(minWidth = 0, minHeight = 0)
+        val today = measurables[1].measure(loose)
+        val traditions = measurables[2].measure(loose)
+        val now = measurables[3].measure(loose)
+        val todayTop = 22.dp.roundToPx()
+        val traditionsTop = 112.dp.roundToPx()
+        val nowTop = maxOf(188.dp.roundToPx(), todayTop + today.height + 14.dp.roundToPx())
+        val bottom = maxOf(todayTop + today.height, traditionsTop + traditions.height, nowTop + now.height)
+        val height = maxOf(300.dp.roundToPx(), bottom + 18.dp.roundToPx())
+        val width = constraints.maxWidth
+        val glowTop = 6.dp.roundToPx()
+        val glow = measurables[0].measure(Constraints.fixed(width, height - glowTop))
+        layout(width, height) {
+            glow.place(0, glowTop)
+            today.place(0, todayTop)
+            traditions.place(width - traditions.width, traditionsTop)
+            now.place(16.dp.roundToPx(), nowTop)
+        }
+    }
+}
 
-        FloatCard(
-            Modifier.width(178.dp).offset(y = 22.dp),
-            spacing = 6.dp,
-        ) {
-            if (today != null) {
-                CardLabel(stringResource(R.string.landing_today_label, today.date.weekdayDayMonth()))
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    MoonDisc()
-                    Text(
-                        stringResource(R.string.landing_today_moon, signName(today.moonSign)),
-                        style = MaterialTheme.typography.titleSmall.copy(fontSize = 17.sp),
-                    )
-                }
+/* The cluster's three cards, in the order CardCluster places them. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ClusterCards(today: TodaySky?, todayUnavailable: Boolean) {
+    FloatCard(
+        Modifier.width(178.dp),
+        spacing = 6.dp,
+    ) {
+        if (today != null) {
+            CardLabel(stringResource(R.string.landing_today_label, today.date.weekdayDayMonth()))
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                MoonDisc()
                 Text(
-                    stringResource(R.string.landing_today_detail, nakshatraName(today.moonNakshatra), signName(today.sunSign)),
+                    stringResource(R.string.landing_today_moon, signName(today.moonSign)),
+                    style = MaterialTheme.typography.titleSmall.copy(fontSize = 17.sp),
+                )
+            }
+            Text(
+                stringResource(R.string.landing_today_detail, nakshatraName(today.moonNakshatra), signName(today.sunSign)),
+                style = MaterialTheme.typography.bodySmall,
+                color = Muted,
+            )
+        } else {
+            /* Never a stale sky: until today's has loaded, the card says so. */
+            CardLabel(stringResource(R.string.landing_today_plain))
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                MoonDisc()
+                Text(
+                    stringResource(if (todayUnavailable) R.string.landing_today_unavailable else R.string.landing_today_loading),
                     style = MaterialTheme.typography.bodySmall,
                     color = Muted,
                 )
-            } else {
-                /* Never a stale sky: until today's has loaded, the card says so. */
-                CardLabel(stringResource(R.string.landing_today_plain))
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    MoonDisc()
-                    Text(
-                        stringResource(if (todayUnavailable) R.string.landing_today_unavailable else R.string.landing_today_loading),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Muted,
-                    )
-                }
             }
         }
+    }
 
-        FloatCard(
-            Modifier.align(Alignment.TopEnd).width(168.dp).offset(y = 112.dp),
-            spacing = 10.dp,
+    FloatCard(
+        Modifier.width(168.dp),
+        spacing = 10.dp,
+    ) {
+        Text(stringResource(R.string.landing_traditions_title), style = MaterialTheme.typography.titleSmall)
+        Text(
+            stringResource(R.string.landing_traditions_copy),
+            style = MaterialTheme.typography.bodySmall.copy(fontSize = 10.5.sp, lineHeight = 14.sp),
+            color = Muted,
+        )
+        CardLabel(stringResource(R.string.landing_traditions_label))
+        /* The coins go under the figure when larger text leaves no room beside it. */
+        FlowRow(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            itemVerticalAlignment = Alignment.Bottom,
         ) {
-            Text(stringResource(R.string.landing_traditions_title), style = MaterialTheme.typography.titleSmall)
-            Text(
-                stringResource(R.string.landing_traditions_copy),
-                style = MaterialTheme.typography.bodySmall.copy(fontSize = 10.5.sp, lineHeight = 14.sp),
-                color = Muted,
-            )
-            CardLabel(stringResource(R.string.landing_traditions_label))
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Bottom,
-            ) {
-                Text(stringResource(R.string.landing_traditions_count), style = LiquidType.figure.copy(fontSize = 38.sp))
-                TraditionCoins()
-            }
+            Text(stringResource(R.string.landing_traditions_count), style = LiquidType.figure.copy(fontSize = 38.sp))
+            TraditionCoins()
         }
+    }
 
-        FloatCard(
-            Modifier.width(170.dp).offset(x = 16.dp, y = 188.dp),
-            spacing = 4.dp,
-            padding = 12.dp,
+    FloatCard(
+        Modifier.width(170.dp),
+        spacing = 4.dp,
+        padding = 12.dp,
+    ) {
+        Row(
+            Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                CardLabel(stringResource(R.string.landing_now_label))
-                TickBadge(18.dp)
-            }
-            Text(
-                stringResource(R.string.landing_now_copy),
-                style = MaterialTheme.typography.titleMedium.copy(fontSize = 13.sp, lineHeight = 17.sp),
-            )
+            CardLabel(stringResource(R.string.landing_now_label))
+            TickBadge(18.dp)
         }
+        Text(
+            stringResource(R.string.landing_now_copy),
+            style = MaterialTheme.typography.titleMedium.copy(fontSize = 13.sp, lineHeight = 17.sp),
+        )
     }
 }
 
