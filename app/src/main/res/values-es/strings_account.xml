@@ -4,9 +4,6 @@
     <!-- Account tab -->
     <string name="account_title">Cuenta</string>
     <string name="account_signed_out">Sin iniciar sesión</string>
-    <string name="account_signin_tag">MUY PRONTO</string>
-    <string name="account_signin_title">Iniciar sesión con Google llegará pronto</string>
-    <string name="account_signin_copy">Todavía no está en la app. Cuando llegue, podrás guardar tus cartas en tu cuenta y verlas también en lagnaatelier.site. Hasta entonces, todo lo que hay aquí se queda en este teléfono.</string>
     <string name="account_saved_title">Cartas guardadas</string>
     <string name="account_saved_count">%1$d de %2$d</string>
     <string name="account_saved_local">Solo en este teléfono</string>

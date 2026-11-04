@@ -4,9 +4,6 @@
     <!-- Account tab -->
     <string name="account_title">खाता</string>
     <string name="account_signed_out">साइन इन नहीं है</string>
-    <string name="account_signin_tag">जल्द आ रहा है</string>
-    <string name="account_signin_title">Google से साइन इन जल्द आ रहा है</string>
-    <string name="account_signin_copy">यह अभी ऐप में नहीं है। आने पर आप अपनी कुंडलियाँ अपने खाते के साथ रख सकेंगे और उन्हें lagnaatelier.site पर भी देख सकेंगे। तब तक, यहाँ सब कुछ इसी फ़ोन पर रहता है।</string>
     <string name="account_saved_title">सहेजी गई कुंडलियाँ</string>
     <string name="account_saved_count">%2$d में से %1$d</string>
     <string name="account_saved_local">केवल इसी फ़ोन पर रखी गई</string>

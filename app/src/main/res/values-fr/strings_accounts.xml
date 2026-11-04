@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sign-in, chart sync and sex at birth, translated; sex at birth in the website's own intake words. -->
+<resources>
+    <string name="accounts_signin_title">Gardez vos cartes avec votre compte Google</string>
+    <string name="accounts_signin_copy">Connectez-vous pour ouvrir vos cartes sur lagnaatelier.site et sur un autre téléphone, et pour obtenir plus de lectures rédigées chaque jour. Se connecter n’envoie aucune carte à soi seul : c’est vous qui le choisissez ensuite.</string>
+    <string name="accounts_signin_button">Se connecter avec Google</string>
+    <string name="accounts_signing_in">Connexion…</string>
+    <string name="accounts_checking">Vérification…</string>
+    <string name="accounts_signed_in_tag">CONNECTÉ</string>
+    <string name="accounts_not_set_up_tag">PAS ENCORE DISPONIBLE</string>
+    <string name="accounts_status_signed_in">Connecté</string>
+    <string name="accounts_signed_in_title">Connecté avec Google</string>
+    <string name="accounts_sign_out">Se déconnecter</string>
+    <string name="accounts_signing_out">Déconnexion…</string>
+    <string name="accounts_sign_out_note">Se déconnecter garde vos cartes enregistrées sur ce téléphone. Pour fermer toutes les sessions à la fois, déconnectez-vous partout depuis le site.</string>
+    <string name="accounts_landing_signed_in">Connecté en tant que %1$s</string>
+    <string name="accounts_not_set_up">La connexion n’est pas encore disponible dans cette copie de l’app. Tout ce qui est ici reste sur ce téléphone.</string>
+    <string name="accounts_not_set_up_site">La connexion pour l’app n’est pas encore activée sur lagnaatelier.site. Veuillez réessayer plus tard.</string>
+    <string name="accounts_no_google_account">Aucun compte Google sur ce téléphone pour se connecter. Ajoutez-en un dans les réglages du téléphone, puis réessayez.</string>
+    <string name="accounts_signin_failed">La connexion n’a pas abouti. Réessayez.</string>
+    <string name="accounts_signin_offline">La connexion demande internet. Vérifiez votre connexion et réessayez.</string>
+    <string name="accounts_signin_busy">Trop de tentatives à l’instant. Attendez une minute, puis réessayez.</string>
+    <string name="accounts_email_unverified">Google n’a pas encore vérifié l’adresse e-mail de ce compte ; elle ne peut donc pas servir à se connecter.</string>
+    <string name="accounts_dismiss">OK</string>
+    <string name="accounts_sync_title">Vos cartes sur votre compte</string>
+    <string name="accounts_sync_off_copy">Vos cartes enregistrées sont uniquement sur ce téléphone.</string>
+    <string name="accounts_sync_prompt">Garder les cartes enregistrées sur ce téléphone avec votre compte Lagna Atelier ? Leurs noms, dates, heures et lieux de naissance sont conservés avec votre compte, pour que vous puissiez les ouvrir sur le site et sur vos autres appareils. Vous pouvez supprimer n’importe laquelle, ici ou sur le site.</string>
+    <string name="accounts_sync_ask">Les garder sur mon compte</string>
+    <string name="accounts_sync_yes">Oui, les garder</string>
+    <string name="accounts_sync_not_now">Pas maintenant</string>
+    <string name="accounts_sync_on_copy">Les cartes que vous enregistrez ici sont aussi gardées sur votre compte, et celles de votre compte arrivent sur ce téléphone tant qu’il reste de la place parmi les cinq. Supprimer une carte ici la supprime de votre compte.</string>
+    <string name="accounts_sync_stop">Arrêter la synchronisation</string>
+    <string name="accounts_sync_stop_note">Ce téléphone cesse d’envoyer et de récupérer des cartes. Celles qui sont déjà sur votre compte y restent ; vous pouvez les supprimer sur le site.</string>
+    <string name="accounts_sync_now">Synchroniser</string>
+    <string name="accounts_sync_syncing">Synchronisation…</string>
+    <string name="accounts_sync_done">À jour</string>
+    <string name="accounts_sync_failed">Impossible de joindre votre compte pour l’instant. Un nouvel essai aura lieu.</string>
+    <string name="accounts_chart_synced">Sur votre compte</string>
+    <string name="accounts_chart_local">Ce téléphone seulement</string>
+    <string name="accounts_chart_waiting">En attente de synchronisation</string>
+    <string name="accounts_saved_synced">Gardées sur ce téléphone et sur votre compte</string>
+    <string name="accounts_delete_synced_detail">Elle disparaît de ce téléphone et de votre compte.</string>
+    <string name="birth_sex_label">Sexe à la naissance</string>
+    <string name="birth_sex_hint">Facultatif. Certaines lectures, comme la planète de votre partenaire, se lisent différemment pour les femmes et pour les hommes.</string>
+    <string name="birth_sex_female">Femme</string>
+    <string name="birth_sex_male">Homme</string>
+    <string name="birth_sex_unspecified">Je préfère ne pas le dire</string>
+</resources>

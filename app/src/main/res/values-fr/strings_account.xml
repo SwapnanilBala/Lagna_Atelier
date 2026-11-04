@@ -4,9 +4,6 @@
     <!-- Account tab -->
     <string name="account_title">Compte</string>
     <string name="account_signed_out">Non connecté</string>
-    <string name="account_signin_tag">BIENTÔT</string>
-    <string name="account_signin_title">La connexion avec Google arrive bientôt</string>
-    <string name="account_signin_copy">Elle n’est pas encore dans l’app. Quand elle arrivera, vous pourrez garder vos cartes avec votre compte et les retrouver aussi sur lagnaatelier.site. D’ici là, tout ce qui est ici reste sur ce téléphone.</string>
     <string name="account_saved_title">Cartes enregistrées</string>
     <string name="account_saved_count">%1$d sur %2$d</string>
     <string name="account_saved_local">Conservées sur ce téléphone uniquement</string>

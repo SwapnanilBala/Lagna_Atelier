@@ -4,9 +4,6 @@
     <!-- Account tab -->
     <string name="account_title">Konto</string>
     <string name="account_signed_out">Nicht angemeldet</string>
-    <string name="account_signin_tag">DEMNÄCHST</string>
-    <string name="account_signin_title">Die Anmeldung mit Google ist unterwegs</string>
-    <string name="account_signin_copy">Sie ist noch nicht in der App. Sobald sie da ist, kannst du deine Horoskope in deinem Konto behalten und sie auch auf lagnaatelier.site sehen. Bis dahin bleibt alles hier auf diesem Handy.</string>
     <string name="account_saved_title">Gespeicherte Horoskope</string>
     <string name="account_saved_count">%1$d von %2$d</string>
     <string name="account_saved_local">Nur auf diesem Handy gespeichert</string>

@@ -3,9 +3,6 @@
 <resources>
     <string name="account_title">অ্যাকাউন্ট</string>
     <string name="account_signed_out">সাইন ইন করা নেই</string>
-    <string name="account_signin_tag">শীঘ্রই আসছে</string>
-    <string name="account_signin_title">Google দিয়ে সাইন ইন শীঘ্রই আসছে</string>
-    <string name="account_signin_copy">এটি এখনও অ্যাপে আসেনি। এলে আপনার কুণ্ডলীগুলি নিজের অ্যাকাউন্টে রাখতে পারবেন, আর lagnaatelier.site-এও দেখতে পাবেন। ততদিন এখানকার সবকিছু এই ফোনেই থাকে।</string>
     <string name="account_saved_title">সংরক্ষিত কুণ্ডলী</string>
     <string name="account_saved_count">%2$dটির মধ্যে %1$dটি</string>
     <string name="account_saved_local">শুধু এই ফোনে রাখা</string>

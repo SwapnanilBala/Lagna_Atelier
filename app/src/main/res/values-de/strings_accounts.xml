@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sign-in, chart sync and sex at birth, translated; sex at birth in the website's own intake words. -->
+<resources>
+    <string name="accounts_signin_title">Behalte deine Horoskope in deinem Google-Konto</string>
+    <string name="accounts_signin_copy">Melde dich an, um deine Horoskope auf lagnaatelier.site und auf einem anderen Handy zu öffnen und jeden Tag mehr geschriebene Deutungen zu bekommen. Die Anmeldung allein sendet keine Horoskope: Das entscheidest du danach.</string>
+    <string name="accounts_signin_button">Mit Google anmelden</string>
+    <string name="accounts_signing_in">Anmeldung läuft…</string>
+    <string name="accounts_checking">Wird geprüft…</string>
+    <string name="accounts_signed_in_tag">ANGEMELDET</string>
+    <string name="accounts_not_set_up_tag">NOCH NICHT EINGERICHTET</string>
+    <string name="accounts_status_signed_in">Angemeldet</string>
+    <string name="accounts_signed_in_title">Mit Google angemeldet</string>
+    <string name="accounts_sign_out">Abmelden</string>
+    <string name="accounts_signing_out">Abmeldung läuft…</string>
+    <string name="accounts_sign_out_note">Beim Abmelden bleiben deine gespeicherten Horoskope auf diesem Handy. Um alle Sitzungen auf einmal zu beenden, melde dich auf der Website überall ab.</string>
+    <string name="accounts_landing_signed_in">Angemeldet als %1$s</string>
+    <string name="accounts_not_set_up">Die Anmeldung ist in dieser Version der App noch nicht eingerichtet. Alles hier bleibt auf diesem Handy.</string>
+    <string name="accounts_not_set_up_site">Die Anmeldung für die App ist auf lagnaatelier.site noch nicht eingeschaltet. Versuch es bitte später noch einmal.</string>
+    <string name="accounts_no_google_account">Auf diesem Handy gibt es kein Google-Konto zum Anmelden. Füge eins in den Einstellungen des Handys hinzu und versuch es dann noch einmal.</string>
+    <string name="accounts_signin_failed">Die Anmeldung hat nicht geklappt. Versuch es noch einmal.</string>
+    <string name="accounts_signin_offline">Für die Anmeldung brauchst du Internet. Prüfe deine Verbindung und versuch es noch einmal.</string>
+    <string name="accounts_signin_busy">Gerade zu viele Versuche. Warte eine Minute und versuch es dann noch einmal.</string>
+    <string name="accounts_email_unverified">Google hat die E-Mail-Adresse dieses Kontos noch nicht bestätigt, daher kann es nicht zur Anmeldung verwendet werden.</string>
+    <string name="accounts_dismiss">OK</string>
+    <string name="accounts_sync_title">Deine Horoskope in deinem Konto</string>
+    <string name="accounts_sync_off_copy">Deine gespeicherten Horoskope sind nur auf diesem Handy.</string>
+    <string name="accounts_sync_prompt">Die auf diesem Handy gespeicherten Horoskope in deinem Lagna-Atelier-Konto behalten? Ihre Namen, Geburtsdaten, -zeiten und -orte werden mit deinem Konto gespeichert, damit du sie auf der Website und auf deinen anderen Geräten öffnen kannst. Du kannst jedes davon löschen, hier oder auf der Website.</string>
+    <string name="accounts_sync_ask">In meinem Konto behalten</string>
+    <string name="accounts_sync_yes">Ja, behalten</string>
+    <string name="accounts_sync_not_now">Nicht jetzt</string>
+    <string name="accounts_sync_on_copy">Horoskope, die du hier speicherst, werden auch in deinem Konto behalten, und Horoskope aus deinem Konto kommen auf dieses Handy, solange unter den fünf Platz ist. Löschst du hier ein Horoskop, wird es auch aus deinem Konto gelöscht.</string>
+    <string name="accounts_sync_stop">Synchronisierung beenden</string>
+    <string name="accounts_sync_stop_note">Dieses Handy sendet und holt keine Horoskope mehr. Was schon in deinem Konto ist, bleibt dort; du kannst es auf der Website löschen.</string>
+    <string name="accounts_sync_now">Jetzt synchronisieren</string>
+    <string name="accounts_sync_syncing">Wird synchronisiert…</string>
+    <string name="accounts_sync_done">Auf dem neuesten Stand</string>
+    <string name="accounts_sync_failed">Dein Konto war gerade nicht erreichbar. Es wird später noch einmal versucht.</string>
+    <string name="accounts_chart_synced">In deinem Konto</string>
+    <string name="accounts_chart_local">Nur auf diesem Handy</string>
+    <string name="accounts_chart_waiting">Wartet auf Synchronisierung</string>
+    <string name="accounts_saved_synced">Auf diesem Handy und in deinem Konto gespeichert</string>
+    <string name="accounts_delete_synced_detail">Es wird von diesem Handy und aus deinem Konto gelöscht.</string>
+    <string name="birth_sex_label">Geschlecht bei der Geburt</string>
+    <string name="birth_sex_hint">Optional. Einiges, etwa der Planet für die Person an deiner Seite, wird bei Frauen und Männern unterschiedlich gedeutet.</string>
+    <string name="birth_sex_female">Frau</string>
+    <string name="birth_sex_male">Mann</string>
+    <string name="birth_sex_unspecified">Keine Angabe</string>
+</resources>

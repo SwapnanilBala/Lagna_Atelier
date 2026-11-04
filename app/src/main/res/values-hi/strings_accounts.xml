@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sign-in, chart sync and sex at birth, translated; sex at birth in the website's own intake words. -->
+<resources>
+    <string name="accounts_signin_title">अपनी कुंडलियाँ अपने Google खाते के साथ रखें</string>
+    <string name="accounts_signin_copy">साइन इन करें ताकि अपनी कुंडलियाँ lagnaatelier.site पर और किसी दूसरे फ़ोन पर खोल सकें, और हर दिन अधिक लिखित पठन पा सकें। साइन इन करने से अपने आप कोई कुंडली नहीं भेजी जाती: यह आप आगे चुनते हैं।</string>
+    <string name="accounts_signin_button">Google से साइन इन करें</string>
+    <string name="accounts_signing_in">साइन इन हो रहा है…</string>
+    <string name="accounts_checking">जाँच हो रही है…</string>
+    <string name="accounts_signed_in_tag">साइन इन</string>
+    <string name="accounts_not_set_up_tag">अभी तैयार नहीं</string>
+    <string name="accounts_status_signed_in">साइन इन</string>
+    <string name="accounts_signed_in_title">Google से साइन इन</string>
+    <string name="accounts_sign_out">साइन आउट</string>
+    <string name="accounts_signing_out">साइन आउट हो रहा है…</string>
+    <string name="accounts_sign_out_note">साइन आउट करने पर आपकी सहेजी गई कुंडलियाँ इसी फ़ोन पर रहती हैं। हर सत्र एक साथ बंद करने के लिए वेबसाइट पर हर जगह से साइन आउट करें।</string>
+    <string name="accounts_landing_signed_in">%1$s के रूप में साइन इन</string>
+    <string name="accounts_not_set_up">ऐप की इस प्रति में साइन इन अभी तैयार नहीं है। यहाँ सब कुछ इसी फ़ोन पर रहता है।</string>
+    <string name="accounts_not_set_up_site">lagnaatelier.site पर ऐप के लिए साइन इन अभी चालू नहीं है। कृपया बाद में फिर कोशिश करें।</string>
+    <string name="accounts_no_google_account">इस फ़ोन पर साइन इन के लिए कोई Google खाता नहीं है। फ़ोन की सेटिंग में एक जोड़ें, फिर कोशिश करें।</string>
+    <string name="accounts_signin_failed">साइन इन पूरा नहीं हुआ। फिर कोशिश करें।</string>
+    <string name="accounts_signin_offline">साइन इन के लिए इंटरनेट चाहिए। अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+    <string name="accounts_signin_busy">अभी बहुत अधिक प्रयास हुए। एक मिनट रुकें, फिर कोशिश करें।</string>
+    <string name="accounts_email_unverified">Google ने उस खाते के ईमेल की अभी पुष्टि नहीं की है, इसलिए उससे साइन इन नहीं हो सकता।</string>
+    <string name="accounts_dismiss">ठीक है</string>
+    <string name="accounts_sync_title">आपके खाते में आपकी कुंडलियाँ</string>
+    <string name="accounts_sync_off_copy">आपकी सहेजी गई कुंडलियाँ केवल इसी फ़ोन पर हैं।</string>
+    <string name="accounts_sync_prompt">इस फ़ोन पर सहेजी गई कुंडलियाँ अपने Lagna Atelier खाते के साथ रखें? उनके नाम, जन्म तिथियाँ, समय और स्थान आपके खाते के साथ रखे जाते हैं, ताकि आप उन्हें वेबसाइट पर और अपने दूसरे उपकरणों पर खोल सकें। आप उनमें से किसी को भी यहाँ या वेबसाइट पर हटा सकते हैं।</string>
+    <string name="accounts_sync_ask">इन्हें मेरे खाते में रखें</string>
+    <string name="accounts_sync_yes">हाँ, रखें</string>
+    <string name="accounts_sync_not_now">अभी नहीं</string>
+    <string name="accounts_sync_on_copy">यहाँ सहेजी गई कुंडलियाँ आपके खाते में भी रखी जाती हैं, और जब तक पाँच में जगह है, आपके खाते की कुंडलियाँ इस फ़ोन पर आती हैं। यहाँ कोई कुंडली हटाने से वह आपके खाते से भी हट जाती है।</string>
+    <string name="accounts_sync_stop">सिंक बंद करें</string>
+    <string name="accounts_sync_stop_note">यह फ़ोन कुंडलियाँ भेजना और लाना बंद कर देता है। जो कुंडलियाँ पहले से आपके खाते में हैं वे वहीं रहती हैं; आप उन्हें वेबसाइट पर हटा सकते हैं।</string>
+    <string name="accounts_sync_now">अभी सिंक करें</string>
+    <string name="accounts_sync_syncing">सिंक हो रहा है…</string>
+    <string name="accounts_sync_done">अद्यतन</string>
+    <string name="accounts_sync_failed">अभी आपके खाते तक नहीं पहुँच सके। यह फिर कोशिश करेगा।</string>
+    <string name="accounts_chart_synced">आपके खाते में</string>
+    <string name="accounts_chart_local">केवल इस फ़ोन पर</string>
+    <string name="accounts_chart_waiting">सिंक की प्रतीक्षा में</string>
+    <string name="accounts_saved_synced">इस फ़ोन पर और आपके खाते में रखी गई</string>
+    <string name="accounts_delete_synced_detail">यह इस फ़ोन से और आपके खाते से हट जाती है।</string>
+    <string name="birth_sex_label">जन्म के समय लिंग</string>
+    <string name="birth_sex_hint">वैकल्पिक। कुछ पाठ, जैसे आपके साथी का ग्रह, स्त्रियों और पुरुषों के लिए अलग ढंग से पढ़े जाते हैं।</string>
+    <string name="birth_sex_female">स्त्री</string>
+    <string name="birth_sex_male">पुरुष</string>
+    <string name="birth_sex_unspecified">बताना नहीं चाहते</string>
+</resources>

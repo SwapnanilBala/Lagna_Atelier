@@ -4,9 +4,6 @@
     <!-- Account tab -->
     <string name="account_title">Account</string>
     <string name="account_signed_out">Accesso non effettuato</string>
-    <string name="account_signin_tag">IN ARRIVO</string>
-    <string name="account_signin_title">L’accesso con Google sta arrivando</string>
-    <string name="account_signin_copy">Non è ancora nell’app. Quando arriverà, potrai conservare le tue carte nel tuo account e vederle anche su lagnaatelier.site. Fino ad allora, tutto quello che c’è qui resta su questo telefono.</string>
     <string name="account_saved_title">Carte salvate</string>
     <string name="account_saved_count">%1$d di %2$d</string>
     <string name="account_saved_local">Conservate solo su questo telefono</string>
