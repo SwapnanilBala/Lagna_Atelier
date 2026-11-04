@@ -20,6 +20,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.core.content.FileProvider
 import site.lagnaatelier.app.data.palm.PalmCaptureFiles
 import androidx.lifecycle.ViewModelProvider
@@ -46,6 +47,8 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, account:
     val activity = LocalActivity.current as ComponentActivity
     val model = remember(activity) { ViewModelProvider(activity)[PalmModel::class.java] }
     val context = LocalContext.current
+    /* Resources, not the context, so a language or configuration change reads afresh. */
+    val resources = LocalResources.current
     val hasChart = details != null
 
     /* A reading and its questions need an account; history and compare do not (see PalmSignInCard). */
@@ -96,7 +99,7 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, account:
         try {
             pickPhoto.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         } catch (_: ActivityNotFoundException) {
-            model.captureError = context.getString(R.string.palm_error_photo)
+            model.captureError = resources.getString(R.string.palm_error_photo)
         }
     }
 

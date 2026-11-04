@@ -22,6 +22,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.AppLanguage
@@ -89,13 +90,15 @@ private fun LagnaApp(model: AppViewModel) {
     val report = rememberReportController()
     val more = rememberMoreController()
     val context = LocalContext.current
+    /* Resources, not the context, so a language or configuration change reads afresh. */
+    val resources = LocalResources.current
     val account = model.account
 
     /* The landing page has no room for the sign-in card's messages; say them briefly. */
     LaunchedEffect(account.message) {
         val text = account.message ?: return@LaunchedEffect
         if (screen == Screen.Landing) {
-            Toast.makeText(context, context.getString(text), Toast.LENGTH_LONG).show()
+            Toast.makeText(context, resources.getString(text), Toast.LENGTH_LONG).show()
             account.dismissMessage()
         }
     }
