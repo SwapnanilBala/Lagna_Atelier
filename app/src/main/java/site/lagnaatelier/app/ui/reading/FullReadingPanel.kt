@@ -101,13 +101,18 @@ private fun FindingItem(finding: FullFinding, open: Boolean, onToggle: () -> Uni
     }
 }
 
+/**
+ * What an open finding shows: its reading, the other side, what it rests on
+ * ("Why this reading") and how common it is. The attention panel's rows open
+ * the same thing, without the body they already print ([withBody] false).
+ */
 @Composable
-private fun FindingDetail(finding: FullFinding) {
+internal fun FindingDetail(finding: FullFinding, withBody: Boolean = true) {
     Column(
         Modifier.fillMaxWidth().padding(start = 32.dp, bottom = 12.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        if (finding.body.isNotBlank()) Text(finding.body, style = MaterialTheme.typography.bodyMedium)
+        if (withBody && finding.body.isNotBlank()) Text(finding.body, style = MaterialTheme.typography.bodyMedium)
         finding.tension?.let {
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 BlockLabel(stringResource(R.string.full_other_side))

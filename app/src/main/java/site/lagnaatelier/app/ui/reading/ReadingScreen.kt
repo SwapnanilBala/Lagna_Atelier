@@ -59,6 +59,7 @@ import androidx.compose.ui.unit.dp
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.Finding
+import site.lagnaatelier.app.data.reading.FullFinding
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.antardashas
 import site.lagnaatelier.app.data.SampleChart
@@ -244,6 +245,7 @@ private fun ReadingContent(
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
+    var attentionOpen by rememberSaveable { mutableStateOf<String?>(null) }
     /* The longer sections' own state, held here so it outlives their items scrolling away. */
     var houseRolesOpen by rememberSaveable { mutableStateOf(false) }
     var fullReadingUi by rememberSaveable { mutableStateOf(FullReadingUi()) }
@@ -345,7 +347,14 @@ private fun ReadingContent(
                 }
                 shown.forEachIndexed { index, finding ->
                     if (index > 0) HorizontalDivider(color = Hairline)
-                    FindingRow(finding)
+                    val evidence = sections.findings.evidenceFor(finding)
+                    val rowKey = finding.key.ifBlank { finding.headline }
+                    FindingRow(
+                        finding,
+                        evidence = evidence,
+                        open = evidence != null && attentionOpen == rowKey,
+                        onToggle = { attentionOpen = if (attentionOpen == rowKey) null else rowKey },
+                    )
                 }
             }
         }
@@ -463,9 +472,15 @@ private fun PanelHead(title: String, trailing: @Composable () -> Unit) {
     }
 }
 
+/*
+ * One of the readings the page leads with. When the full reading carries the
+ * same finding, the row opens like the full reading's rows do, onto what it
+ * rests on and how common it is; a row without that evidence (an older saved
+ * response) stays a plain row.
+ */
 @Composable
-private fun FindingRow(finding: Finding) {
-    Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.Top) {
+private fun FindingRow(finding: Finding, evidence: FullFinding?, open: Boolean, onToggle: () -> Unit) {
+    val body: @Composable RowScope.() -> Unit = {
         Box(Modifier.padding(top = 1.dp)) { TickBadge() }
         Column(Modifier.weight(1f)) {
             Text(finding.headline, style = MaterialTheme.typography.titleMedium.copy(fontSize = MaterialTheme.typography.titleMedium.fontSize * 0.97f))
@@ -475,7 +490,20 @@ private fun FindingRow(finding: Finding) {
             }
         }
     }
+    if (evidence == null) {
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.Top, content = body)
+        return
+    }
+    Column {
+        DisclosureRow(expanded = open, onToggle = onToggle, content = body)
+        if (open) FindingDetail(evidence, withBody = false)
+    }
 }
+
+/* The full reading's copy of a chosen finding: by its rule key, or by headline for one without a key. */
+private fun List<FullFinding>.evidenceFor(finding: Finding): FullFinding? =
+    (if (finding.key.isNotBlank()) firstOrNull { it.key == finding.key } else null)
+        ?: firstOrNull { it.headline == finding.headline }
 
 /* The navigation bar as one floating black pill, as in the mock. */
 @Composable

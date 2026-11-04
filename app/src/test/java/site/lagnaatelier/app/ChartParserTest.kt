@@ -69,6 +69,20 @@ class ChartParserTest {
     }
 
     @Test
+    fun everyChosenFindingFindsItsEvidenceInTheFullReading() {
+        // The attention panel opens a chosen finding onto the full reading's
+        // "Why this reading" and "How common", found by the rule's key.
+        val chart = ChartParser.parse(fixture, details)
+        chart.findings.forEach { chosen ->
+            val full = chart.sections.findings.firstOrNull { it.key == chosen.key }
+            assertTrue("no evidence for ${chosen.key}", chosen.key.isNotBlank() && full != null)
+            assertEquals(chosen.headline, full!!.headline)
+            assertTrue(full.isTop)
+            assertTrue(full.claims.isNotEmpty())
+        }
+    }
+
+    @Test
     fun agreesWithTheBuiltInSample() {
         val chart = ChartParser.parse(fixture, details)
         val sample = SampleChart.chart
