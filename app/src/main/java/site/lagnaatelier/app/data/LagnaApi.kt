@@ -24,6 +24,12 @@ import java.time.format.DateTimeFormatter
  *
  * Plain HttpURLConnection and the platform's org.json, so the app carries no
  * networking library. None of these routes needs a cookie or a header.
+ *
+ * Signed in, every call to the site carries the session as
+ * `Authorization: Bearer <token>` (SIGN_IN.md 2.4): the account routes need
+ * it, and with it the written readings count against the account's
+ * allowance rather than the address's. A 401 on a call that carried it means
+ * the session ended on the server, and [onSessionRejected] is told.
  */
 class LagnaApi(private val baseUrl: String = BASE_URL) {
 
@@ -42,6 +48,29 @@ class LagnaApi(private val baseUrl: String = BASE_URL) {
         val scope: String? = null,
     ) : IOException(message) {
         val problem: ApiProblem get() = ApiProblem.of(status, scope)
+    }
+
+    /** The session token to send, or null when signed out. Set by the account code. */
+    @Volatile
+    var sessionToken: () -> String? = { null }
+
+    /** Called (on the I/O thread) when a call that carried the token was refused with 401. */
+    @Volatile
+    var onSessionRejected: () -> Unit = {}
+
+    /* Never over plain HTTP, except to this machine or the emulator's host, for local testing. */
+    private val mayCarrySession = baseUrl.startsWith("https://") ||
+        Regex("""http://(localhost|127\.0\.0\.1|10\.0\.2\.2)(:\d+)?""").matches(baseUrl)
+
+    /**
+     * Adds the bearer header to [connection] when signed in. True when it did.
+     * Public for the features that open their own connection (the report's prose).
+     */
+    fun authorize(connection: HttpURLConnection): Boolean {
+        if (!mayCarrySession || !connection.url.toString().startsWith(baseUrl)) return false
+        val token = sessionToken()?.takeIf { it.isNotBlank() } ?: return false
+        connection.setRequestProperty("Authorization", "Bearer $token")
+        return true
     }
 
     /** A body larger than the app will hold in memory; treated as a failed call. */
@@ -139,11 +168,22 @@ class LagnaApi(private val baseUrl: String = BASE_URL) {
         request(URL("$baseUrl$path").openConnection() as HttpURLConnection, readTimeoutMs, body = jsonBody, maxBytes)
     }
 
+    /** DELETE [path] with query [params]; returns the body, or throws [ApiException]. */
+    suspend fun deleteJson(path: String, params: Map<String, String> = emptyMap()): String =
+        withContext(Dispatchers.IO) {
+            val query = params.entries.joinToString("&") { (k, v) -> "${encode(k)}=${encode(v)}" }
+            val url = if (query.isEmpty()) "$baseUrl$path" else "$baseUrl$path?$query"
+            val connection = URL(url).openConnection() as HttpURLConnection
+            connection.requestMethod = "DELETE"
+            request(connection, 30_000, body = null, MAX_RESPONSE_BYTES)
+        }
+
     private fun request(connection: HttpURLConnection, readTimeoutMs: Int, body: String?, maxBytes: Int): String {
         try {
             connection.connectTimeout = 15_000
             connection.readTimeout = readTimeoutMs
             connection.setRequestProperty("Accept", "application/json")
+            val carried = authorize(connection)
             if (body != null) {
                 connection.requestMethod = "POST"
                 connection.doOutput = true
@@ -152,6 +192,7 @@ class LagnaApi(private val baseUrl: String = BASE_URL) {
             }
             val status = connection.responseCode
             val stream = if (status in 200..299) connection.inputStream else connection.errorStream
+            if (status == 401 && carried) onSessionRejected()
             if (status !in 200..299) {
                 /* An error body is a few hundred bytes; one past the small cap is not read at all. */
                 val text = runCatching { stream?.let { readCapped(it, MAX_ERROR_BYTES) } }.getOrNull().orEmpty()

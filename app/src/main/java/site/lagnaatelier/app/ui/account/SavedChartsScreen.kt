@@ -65,6 +65,8 @@ import site.lagnaatelier.app.ui.theme.Muted
 @Composable
 fun SavedChartsScreen(
     store: ChartStore,
+    /** Signed in with sync on: each chart says whether it is on the account. */
+    syncing: Boolean,
     onOpen: (SavedChart) -> Unit,
     onStartNew: () -> Unit,
     onSample: () -> Unit,
@@ -101,6 +103,7 @@ fun SavedChartsScreen(
                             )
                             FrontCard(
                                 chart = first,
+                                syncing = syncing,
                                 confirming = confirming == first.key,
                                 onOpen = { onOpen(first) },
                                 onAskDelete = { askDelete(first) },
@@ -118,10 +121,12 @@ fun SavedChartsScreen(
                                     chart = chart,
                                     onOpen = { onOpen(chart) },
                                     onDelete = { askDelete(chart) },
+                                    syncing = syncing,
                                 )
                                 if (confirming == chart.key) {
                                     DeleteConfirm(
                                         name = chart.details.name,
+                                        onAccount = chart.remoteId != null,
                                         onCancel = { confirming = null },
                                         onDelete = { delete(chart) },
                                     )
@@ -190,6 +195,7 @@ private fun Header(count: Int, onBack: () -> Unit) {
 @Composable
 private fun FrontCard(
     chart: SavedChart,
+    syncing: Boolean,
     confirming: Boolean,
     onOpen: () -> Unit,
     onAskDelete: () -> Unit,
@@ -200,7 +206,10 @@ private fun FrontCard(
     FloatCard(Modifier.fillMaxWidth(), spacing = 12.dp, padding = 16.dp) {
         Row(verticalAlignment = Alignment.Top) {
             Column(Modifier.weight(1f)) {
-                CardLabel(stringResource(R.string.saved_opened_last))
+                CardLabel(
+                    if (syncing) "${stringResource(R.string.saved_opened_last)} · ${chart.syncLabel()}"
+                    else stringResource(R.string.saved_opened_last),
+                )
                 Text(
                     details.name,
                     style = MaterialTheme.typography.titleLarge,
@@ -225,7 +234,7 @@ private fun FrontCard(
             )
         }
         if (confirming) {
-            DeleteConfirm(details.name, onCancel = onCancel, onDelete = onDelete)
+            DeleteConfirm(details.name, onCancel = onCancel, onDelete = onDelete, onAccount = chart.remoteId != null)
         }
         Row(
             Modifier.fillMaxWidth(),

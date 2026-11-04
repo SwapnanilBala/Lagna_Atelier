@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Sign-in, chart sync and sex at birth. -->
 <resources>
+    <!-- Sign-in card -->
+    <string name="accounts_signin_title">Keep your charts with your Google account</string>
+    <string name="accounts_signin_copy">Sign in to open your charts on lagnaatelier.site and on another phone, and to get more written readings each day. Signing in sends no charts by itself: you choose that next.</string>
+    <string name="accounts_signin_button">Sign in with Google</string>
+    <string name="accounts_signing_in">Signing in…</string>
+    <string name="accounts_checking">Checking…</string>
+    <string name="accounts_signed_in_tag">SIGNED IN</string>
+    <string name="accounts_not_set_up_tag">NOT SET UP YET</string>
+    <string name="accounts_status_signed_in">Signed in</string>
+    <string name="accounts_signed_in_title">Signed in with Google</string>
+    <string name="accounts_sign_out">Sign out</string>
+    <string name="accounts_signing_out">Signing out…</string>
+    <string name="accounts_sign_out_note">Signing out keeps your saved charts on this phone. To end every session at once, sign out everywhere on the website.</string>
+    <string name="accounts_landing_signed_in">Signed in as %1$s</string>
+
+    <!-- What went wrong, in the app's words -->
+    <string name="accounts_not_set_up">Sign-in is not set up in this copy of the app yet. Everything here stays on this phone.</string>
+    <string name="accounts_not_set_up_site">Sign-in for the app is not switched on at lagnaatelier.site yet. Please try again later.</string>
+    <string name="accounts_no_google_account">There is no Google account on this phone to sign in with. Add one in the phone\'s settings, then try again.</string>
+    <string name="accounts_signin_failed">Sign-in did not go through. Try again.</string>
+    <string name="accounts_signin_offline">Sign-in needs the internet. Check your connection and try again.</string>
+    <string name="accounts_signin_busy">Too many tries just now. Wait a minute, then try again.</string>
+    <string name="accounts_email_unverified">That Google account\'s email address is not verified yet, so it cannot be used to sign in.</string>
+    <string name="accounts_dismiss">OK</string>
+
+    <!-- Keeping charts on the account -->
+    <string name="accounts_sync_title">Your charts on your account</string>
+    <string name="accounts_sync_off_copy">Your saved charts are on this phone only.</string>
+    <!-- Sent to the site word for word, as the record of what the reader agreed to. -->
+    <string name="accounts_sync_prompt">Keep the charts saved on this phone with your Lagna Atelier account? Their names, birth dates, times and places are stored with your account, so you can open them on the website and on your other devices. You can delete any of them, here or on the website.</string>
+    <string name="accounts_sync_ask">Keep them on my account</string>
+    <string name="accounts_sync_yes">Yes, keep them</string>
+    <string name="accounts_sync_not_now">Not now</string>
+    <string name="accounts_sync_on_copy">Charts you save here are kept on your account too, and charts from your account come to this phone while there is room among the five. Deleting a chart here deletes it from your account.</string>
+    <string name="accounts_sync_stop">Stop syncing</string>
+    <string name="accounts_sync_stop_note">This phone stops sending and fetching charts. Charts already on your account stay there; you can delete them on the website.</string>
+    <string name="accounts_sync_now">Sync now</string>
+    <string name="accounts_sync_syncing">Syncing…</string>
+    <string name="accounts_sync_done">Up to date</string>
+    <string name="accounts_sync_failed">Could not reach your account just now. It will try again.</string>
+
+    <!-- Saved charts, per chart -->
+    <string name="accounts_chart_synced">On your account</string>
+    <string name="accounts_chart_local">This phone only</string>
+    <string name="accounts_chart_waiting">Waiting to sync</string>
+    <string name="accounts_saved_synced">Kept on this phone and your account</string>
+    <string name="accounts_delete_synced_detail">It goes from this phone and from your account.</string>
+
     <!-- Sex at birth, as the website asks it -->
     <string name="birth_sex_label">Sex at birth</string>
     <string name="birth_sex_hint">Optional. Some readings, like your partner\'s planet, are read differently for women and men.</string>

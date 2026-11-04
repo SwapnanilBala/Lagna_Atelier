@@ -4,9 +4,6 @@
     <!-- Account tab -->
     <string name="account_title">Account</string>
     <string name="account_signed_out">Not signed in</string>
-    <string name="account_signin_tag">COMING SOON</string>
-    <string name="account_signin_title">Sign in with Google is on its way</string>
-    <string name="account_signin_copy">It is not in the app yet. When it arrives, you can keep your charts with your account and see them on lagnaatelier.site too. Until then, everything here stays on this phone.</string>
     <string name="account_saved_title">Saved charts</string>
     <string name="account_saved_count">%1$d of %2$d</string>
     <string name="account_saved_local">Kept on this phone only</string>
@@ -26,7 +23,7 @@
     <string name="account_website">Website</string>
     <string name="account_website_value" translatable="false">lagnaatelier.site</string>
     <string name="account_website_url" translatable="false">https://lagnaatelier.site</string>
-    <string name="account_website_note">Charts are cast there and saved only on this phone.</string>
+    <string name="account_website_note">Charts are cast there. Signed in, you can keep them on your account and open them there too.</string>
     <string name="account_website_failed">No app on this phone can open the link.</string>
     <string name="account_licences">Licences</string>
     <string name="account_licences_summary">Geist and Geist Mono, SIL Open Font License 1.1. Planet positions by astronomy-engine, MIT licence.</string>

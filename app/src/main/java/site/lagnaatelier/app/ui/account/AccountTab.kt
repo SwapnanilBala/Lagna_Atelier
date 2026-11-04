@@ -50,11 +50,14 @@ import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ChartStore
 import site.lagnaatelier.app.data.SavedChart
 import site.lagnaatelier.app.data.Traditions
+import site.lagnaatelier.app.data.account.AccountSession
+import site.lagnaatelier.app.data.account.ChartSync
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.Glow
 import site.lagnaatelier.app.ui.components.Panel
+import site.lagnaatelier.app.ui.components.PillButton
 import site.lagnaatelier.app.ui.theme.GeistMono
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
@@ -65,12 +68,19 @@ private const val FIRST_SAVED = 3
 
 /*
  * The Account tab (mock screen 05), drawn under the reading screen's top bar
- * and above the floating nav pill. Signed out, said plainly: sign-in is a card
- * with a "coming soon" tag, not a button that pretends to work. SIGN_IN.md at
- * the repository root is the plan for the real thing.
+ * and above the floating nav pill. Sign in with Google (SIGN_IN.md at the
+ * repository root), then, only if the reader says yes, the saved charts kept
+ * on the account too. A build without the web client id says sign-in is not
+ * set up yet rather than offering a button that cannot work.
  */
 @Composable
-fun AccountTab(store: ChartStore, onOpenSaved: (SavedChart) -> Unit, modifier: Modifier = Modifier) {
+fun AccountTab(
+    store: ChartStore,
+    account: AccountSession,
+    sync: ChartSync,
+    onOpenSaved: (SavedChart) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     LazyColumn(
         modifier.fillMaxSize(),
         contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 140.dp),
@@ -87,7 +97,13 @@ fun AccountTab(store: ChartStore, onOpenSaved: (SavedChart) -> Unit, modifier: M
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.semantics { heading() },
                 )
-                CardLabel(stringResource(R.string.account_signed_out), Modifier.padding(bottom = 4.dp))
+                CardLabel(
+                    stringResource(
+                        if (account.status == AccountSession.Status.SignedIn) R.string.accounts_status_signed_in
+                        else R.string.account_signed_out,
+                    ),
+                    Modifier.padding(bottom = 4.dp),
+                )
             }
         }
         item {
@@ -98,17 +114,23 @@ fun AccountTab(store: ChartStore, onOpenSaved: (SavedChart) -> Unit, modifier: M
                         .offset(x = (-40).dp, y = (-10).dp)
                         .requiredSize(width = 400.dp, height = 260.dp),
                 )
-                SignInCard()
+                SignInCard(account)
             }
         }
-        item { SavedPanel(store, onOpenSaved) }
+        if (account.status == AccountSession.Status.SignedIn) {
+            item { SyncPanel(account, sync) }
+        }
+        item { SavedPanel(store, syncing = sync.active, onOpenSaved = onOpenSaved) }
         item { PreferencesPanel() }
         item { AboutPanel() }
     }
 }
 
 @Composable
-private fun SignInCard() {
+private fun SignInCard(account: AccountSession) {
+    val context = LocalContext.current
+    val status = account.status
+    val signedIn = status == AccountSession.Status.SignedIn || status == AccountSession.Status.SigningOut
     FloatCard(Modifier.fillMaxWidth(), spacing = 12.dp, padding = 16.dp) {
         Row(
             Modifier.fillMaxWidth(),
@@ -116,22 +138,108 @@ private fun SignInCard() {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             GoogleMark()
-            SoonTag(stringResource(R.string.account_signin_tag))
+            when {
+                status == AccountSession.Status.NotSetUp -> SoonTag(stringResource(R.string.accounts_not_set_up_tag))
+                signedIn -> SoonTag(stringResource(R.string.accounts_signed_in_tag))
+            }
+        }
+        if (signedIn) {
+            val user = account.user
+            Text(
+                user?.displayName ?: stringResource(R.string.accounts_signed_in_title),
+                style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Normal),
+            )
+            user?.email?.let { Text(it, style = MaterialTheme.typography.bodyMedium, color = Muted) }
+            Text(stringResource(R.string.accounts_sign_out_note), style = MaterialTheme.typography.bodySmall, color = Muted)
+            GhostChip(
+                stringResource(
+                    if (status == AccountSession.Status.SigningOut) R.string.accounts_signing_out else R.string.accounts_sign_out,
+                ),
+                onClick = if (status == AccountSession.Status.SignedIn) ({ account.signOut(context) }) else null,
+            )
+            return@FloatCard
         }
         Text(
-            stringResource(R.string.account_signin_title),
+            stringResource(R.string.accounts_signin_title),
             style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Normal),
         )
         Text(
-            stringResource(R.string.account_signin_copy),
+            stringResource(
+                if (status == AccountSession.Status.NotSetUp) R.string.accounts_not_set_up else R.string.accounts_signin_copy,
+            ),
             style = MaterialTheme.typography.bodyMedium,
             color = Muted,
         )
+        if (status != AccountSession.Status.NotSetUp) {
+            val busy = status == AccountSession.Status.SigningIn || status == AccountSession.Status.Checking
+            PillButton(
+                stringResource(
+                    when (status) {
+                        AccountSession.Status.SigningIn -> R.string.accounts_signing_in
+                        AccountSession.Status.Checking -> R.string.accounts_checking
+                        else -> R.string.accounts_signin_button
+                    },
+                ),
+                onClick = { account.signIn(context) },
+                enabled = !busy,
+            )
+        }
+        account.message?.let { text ->
+            Text(stringResource(text), style = MaterialTheme.typography.bodySmall, color = Ink)
+        }
+    }
+}
+
+/*
+ * Whether this phone's charts are kept on the account. Off until the reader
+ * says yes to the words in accounts_sync_prompt, which go to the site as the
+ * record of what they agreed to, as the website's own consent does.
+ */
+@Composable
+private fun SyncPanel(account: AccountSession, sync: ChartSync) {
+    var asking by rememberSaveable { mutableStateOf(false) }
+    Panel(Modifier.fillMaxWidth()) {
+        PanelHead(stringResource(R.string.accounts_sync_title)) {
+            if (account.syncCharts) {
+                val label = when (sync.status) {
+                    ChartSync.Status.Syncing -> R.string.accounts_sync_syncing
+                    ChartSync.Status.Failed -> null
+                    else -> R.string.accounts_sync_done
+                }
+                if (label != null) Text(stringResource(label), style = MaterialTheme.typography.labelSmall, color = Muted)
+            }
+        }
+        if (account.syncCharts) {
+            Text(stringResource(R.string.accounts_sync_on_copy), style = MaterialTheme.typography.bodySmall, color = Muted)
+            if (sync.status == ChartSync.Status.Failed) {
+                Text(stringResource(R.string.accounts_sync_failed), style = MaterialTheme.typography.bodySmall, color = Ink)
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                GhostChip(stringResource(R.string.accounts_sync_now), onClick = { sync.request() })
+                GhostChip(stringResource(R.string.accounts_sync_stop), onClick = { account.chooseSyncCharts(false) })
+            }
+            Text(stringResource(R.string.accounts_sync_stop_note), style = MaterialTheme.typography.bodySmall, color = Muted)
+        } else if (asking) {
+            Text(stringResource(R.string.accounts_sync_prompt), style = MaterialTheme.typography.bodyMedium, color = Ink)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                GhostChip(stringResource(R.string.accounts_sync_not_now), onClick = { asking = false })
+                PillButton(
+                    stringResource(R.string.accounts_sync_yes),
+                    onClick = {
+                        asking = false
+                        account.chooseSyncCharts(true)
+                    },
+                )
+            }
+        } else {
+            Text(stringResource(R.string.accounts_sync_off_copy), style = MaterialTheme.typography.bodySmall, color = Muted)
+            GhostChip(stringResource(R.string.accounts_sync_ask), onClick = { asking = true })
+        }
     }
 }
 
 @Composable
-private fun SavedPanel(store: ChartStore, onOpenSaved: (SavedChart) -> Unit) {
+private fun SavedPanel(store: ChartStore, syncing: Boolean, onOpenSaved: (SavedChart) -> Unit) {
     val charts = store.saved
     var managing by rememberSaveable { mutableStateOf(false) }
     var confirming by rememberSaveable { mutableStateOf<String?>(null) }
@@ -155,10 +263,12 @@ private fun SavedPanel(store: ChartStore, onOpenSaved: (SavedChart) -> Unit) {
                 onDelete = if (managing) ({ confirming = chart.key }) else null,
                 darkDisc = index == 0,
                 showDegree = false,
+                syncing = syncing,
             )
             if (managing && confirming == chart.key) {
                 DeleteConfirm(
                     name = chart.details.name,
+                    onAccount = chart.remoteId != null,
                     onCancel = { confirming = null },
                     onDelete = {
                         confirming = null
@@ -172,7 +282,7 @@ private fun SavedPanel(store: ChartStore, onOpenSaved: (SavedChart) -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            CardLabel(stringResource(R.string.account_saved_local))
+            CardLabel(stringResource(if (syncing) R.string.accounts_saved_synced else R.string.account_saved_local))
             if (charts.isNotEmpty()) {
                 GhostChip(
                     stringResource(if (managing) R.string.account_manage_done else R.string.account_manage),

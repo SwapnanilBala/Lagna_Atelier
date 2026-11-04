@@ -152,6 +152,8 @@ internal fun SavedChartRow(
     onDelete: (() -> Unit)? = null,
     darkDisc: Boolean = false,
     showDegree: Boolean = true,
+    /** Signed in with sync on: each row says whether it is on the account yet. */
+    syncing: Boolean = false,
 ) {
     val name = chart.details.name
     val openLabel = stringResource(R.string.saved_open_chart, name)
@@ -184,6 +186,9 @@ internal fun SavedChartRow(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
+            if (syncing) {
+                Text(chart.syncLabel(), style = MaterialTheme.typography.labelSmall, color = Muted, maxLines = 1)
+            }
         }
         Column(horizontalAlignment = Alignment.End) {
             Text(
@@ -201,9 +206,19 @@ internal fun SavedChartRow(
     }
 }
 
-/** The inline check before a chart is deleted. */
+/** "On your account", "Waiting to sync" or "This phone only". */
 @Composable
-internal fun DeleteConfirm(name: String, onCancel: () -> Unit, onDelete: () -> Unit) {
+internal fun SavedChart.syncLabel(): String = stringResource(
+    when {
+        synced -> R.string.accounts_chart_synced
+        remoteId != null -> R.string.accounts_chart_waiting
+        else -> R.string.accounts_chart_local
+    },
+)
+
+/** The inline check before a chart is deleted. [onAccount]: it goes from the account too. */
+@Composable
+internal fun DeleteConfirm(name: String, onCancel: () -> Unit, onDelete: () -> Unit, onAccount: Boolean = false) {
     Column(
         Modifier
             .fillMaxWidth()
@@ -217,7 +232,7 @@ internal fun DeleteConfirm(name: String, onCancel: () -> Unit, onDelete: () -> U
                 style = MaterialTheme.typography.titleMedium.copy(fontSize = 13.5.sp),
             )
             Text(
-                stringResource(R.string.saved_delete_detail),
+                stringResource(if (onAccount) R.string.accounts_delete_synced_detail else R.string.saved_delete_detail),
                 style = MaterialTheme.typography.bodySmall,
                 color = Muted,
             )

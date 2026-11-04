@@ -57,6 +57,8 @@ class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaAp
                 connection.doOutput = true
                 connection.setRequestProperty("Content-Type", "application/json; charset=utf-8")
                 connection.setRequestProperty("Accept", "${StoryProseCodec.STREAM_TYPE}, application/json")
+                /* Signed in, the prose counts against the account's allowance, not the address's. */
+                api.authorize(connection)
                 connection.outputStream.use { it.write(StoryProseCodec.requestBody(story).toByteArray(Charsets.UTF_8)) }
 
                 val status = connection.responseCode
