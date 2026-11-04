@@ -9,4 +9,8 @@
     <string name="error_unavailable">Il sito non ha potuto rispondere in questo momento. Riprova tra poco.</string>
     <string name="error_generic">Qualcosa è andato storto. Riprova.</string>
     <string name="error_offline">Sei offline. Controlla la connessione e riprova.</string>
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(fonte %1$s)</item>
+        <item quantity="other">(fonti %1$s)</item>
+    </plurals>
 </resources>

@@ -8,4 +8,9 @@
     <string name="error_unavailable">The site could not answer just now. Try again shortly.</string>
     <string name="error_generic">Something went wrong. Try again.</string>
     <string name="error_offline">You are offline. Check your connection and try again.</string>
+    <!-- A raised source number in a note from the classics, as a screen reader says it. -->
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(source %1$s)</item>
+        <item quantity="other">(sources %1$s)</item>
+    </plurals>
 </resources>

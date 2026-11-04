@@ -20,11 +20,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.BaselineShift
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,13 +30,14 @@ import kotlinx.coroutines.launch
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.reading.ClassicalReading
-import site.lagnaatelier.app.data.reading.ClassicalSegment
 import site.lagnaatelier.app.data.reading.ClassicalSource
 import site.lagnaatelier.app.data.reading.NoteState
 import site.lagnaatelier.app.data.reading.Yoga
 import site.lagnaatelier.app.data.reading.YogaClassics
 import site.lagnaatelier.app.data.reading.YogaClassicsNote
 import site.lagnaatelier.app.ui.components.CardLabel
+import site.lagnaatelier.app.ui.components.CitedParagraph
+import site.lagnaatelier.app.ui.components.CitedRun
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Muted
@@ -97,7 +95,7 @@ private fun ClassicalNoteBody(reading: ClassicalReading) {
     var versesOpen by rememberSaveable { mutableStateOf(false) }
     val marks = SpanStyle(fontSize = MaterialTheme.typography.labelSmall.fontSize * 0.85f, baselineShift = BaselineShift.Superscript, color = Muted)
     reading.paragraphs().forEach { pieces ->
-        Text(citedParagraph(pieces, marks), style = MaterialTheme.typography.bodyMedium)
+        CitedParagraph(pieces.map { CitedRun(it.text, it.sources) }, marks, MaterialTheme.typography.bodyMedium)
     }
     HorizontalDivider(color = Hairline)
     DisclosureRow(expanded = versesOpen, onToggle = { versesOpen = !versesOpen }) {
@@ -111,14 +109,6 @@ private fun ClassicalNoteBody(reading: ClassicalReading) {
         reading.sources.forEach { SourceRow(it) }
     }
     Legend(stringResource(R.string.classics_credit))
-}
-
-/** A paragraph with each run's verse numbers raised after it, as the web prints them. */
-internal fun citedParagraph(pieces: List<ClassicalSegment>, marks: SpanStyle): AnnotatedString = buildAnnotatedString {
-    pieces.forEach { piece ->
-        append(piece.text)
-        if (piece.sources.isNotEmpty()) withStyle(marks) { append(piece.sources.joinToString(",")) }
-    }
 }
 
 @Composable

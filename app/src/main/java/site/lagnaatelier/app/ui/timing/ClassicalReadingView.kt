@@ -13,15 +13,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.BaselineShift
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.periods.ClassicalReading
 import site.lagnaatelier.app.data.periods.ClassicalSource
 import site.lagnaatelier.app.ui.components.CardLabel
+import site.lagnaatelier.app.ui.components.CitedParagraph
+import site.lagnaatelier.app.ui.components.CitedRun
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.Muted
 
@@ -36,17 +36,9 @@ internal fun ClassicalReadingView(reading: ClassicalReading, modifier: Modifier 
     var showSources by rememberSaveable(reading) { mutableStateOf(false) }
     Column(modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {
         reading.paragraphs().forEach { pieces ->
-            Text(
-                buildAnnotatedString {
-                    pieces.forEach { piece ->
-                        append(piece.text)
-                        if (piece.sources.isNotEmpty()) {
-                            withStyle(SpanStyle(baselineShift = BaselineShift.Superscript, fontSize = 0.7.em, color = Muted)) {
-                                append(piece.sources.joinToString(","))
-                            }
-                        }
-                    }
-                },
+            CitedParagraph(
+                pieces.map { CitedRun(it.text, it.sources) },
+                markStyle = SpanStyle(baselineShift = BaselineShift.Superscript, fontSize = 0.7.em, color = Muted),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Ink,
             )

@@ -9,4 +9,8 @@
     <string name="error_unavailable">साइट अभी जवाब नहीं दे सकी। थोड़ी देर बाद फिर कोशिश करें।</string>
     <string name="error_generic">कुछ गलत हो गया। फिर कोशिश करें।</string>
     <string name="error_offline">आप ऑफ़लाइन हैं। अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(स्रोत %1$s)</item>
+        <item quantity="other">(स्रोत %1$s)</item>
+    </plurals>
 </resources>
