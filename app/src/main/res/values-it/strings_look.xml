@@ -12,7 +12,7 @@
     <string name="look_chart_south_note">I segni restano al loro posto; il segno ascendente è il quadrato pieno.</string>
     <string name="look_chart_north_note">Le case restano al loro posto; il segno ascendente è il rombo in alto, e ogni casa mostra il numero del proprio segno, con l’Ariete come 1.</string>
     <string name="look_language_system">Lingua del telefono</string>
-    <string name="look_language_note">Le parole dell’app seguono questa scelta. Le letture scritte per te arrivano ancora in inglese, per ora.</string>
+    <string name="look_language_note">Le parole dell’app seguono questa scelta, e così le letture che il sito scrive per te. Le sintesi delle aree della vita, le letture della mano e i capitoli del rapporto PDF sono ancora scritti in inglese.</string>
 
     <!-- The chart, drawn either way -->
     <string name="chart_sign_aries">Ariete</string>

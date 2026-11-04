@@ -74,6 +74,34 @@ object AppLanguage {
 }
 
 /*
+ * The language the website's written readings are asked for in: the app's
+ * own. Every reading route that writes in a language takes one of the seven
+ * codes and reads anything else as English (lib/varga-commentary.ts
+ * COMMENTARY_LANGUAGES, the table the routes check against):
+ *
+ *   body `language`   current-period, dasha-reading, life-shifts,
+ *                     yoga-classics, varga-commentary, ask-classics (typed)
+ *   query `language`  area-classics, ask-classics (ready-made questions)
+ *
+ * Three write in English only and take no language: domain-brief (the life
+ * areas' briefs), story-prose and story-report (the PDF report), and
+ * palm-reading/ask. The website shows those in English too.
+ *
+ * Anything that holds a written reading keys it by this code as well, so
+ * switching the language never shows the old language's text.
+ */
+object ReadingLanguage {
+    /** What the routes accept: COMMENTARY_LANGUAGES's keys. */
+    val WRITTEN = setOf("en", "hi", "bn", "es", "fr", "it", "de")
+
+    /** [locale]'s language as a route takes it; English for one the routes do not write in. */
+    fun of(locale: Locale): String = locale.language.takeIf { it in WRITTEN } ?: "en"
+
+    /** The app's language now ([AppDates.locale], set as the activity starts). English in unit tests. */
+    val current: String get() = of(AppDates.locale)
+}
+
+/*
  * Dates in the app's language. English keeps the patterns the screens were
  * written with ("Tue 3 Nov"); another language gets the same fields in its
  * own order and words from Android's pattern for it ("3 नव॰, मंगल").

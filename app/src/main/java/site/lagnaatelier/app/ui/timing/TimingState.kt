@@ -35,14 +35,14 @@ sealed interface Load<out T> {
  * the panels read it directly; kept in [TimingHolders] rather than in the
  * composition, so switching tabs and back does not fetch again.
  */
-class TimingHolder(val details: BirthDetails, val today: LocalDate) {
+class TimingHolder(val details: BirthDetails, val today: LocalDate, val language: String = "en") {
     /* The place's offset now, not at birth, and its own today: muhurta times are shown on that clock. */
     val placeOffsetMinutes = TimingQueries.offsetNow(details.place)
     val placeToday: LocalDate = TimingQueries.placeToday(placeOffsetMinutes)
     val targetYear = TimingQueries.varshaphalYear(details.date, today)
 
-    /* The written readings, the life chapters and compatibility (PeriodsState.kt). */
-    val readings = PeriodsHolder(details, today)
+    /* The written readings, the life chapters and compatibility (PeriodsState.kt), in [language]. */
+    val readings = PeriodsHolder(details, today, language)
 
     var forecast by mutableStateOf<Load<Forecast>>(Load.Idle)
         private set
@@ -103,8 +103,10 @@ class TimingHolder(val details: BirthDetails, val today: LocalDate) {
 }
 
 /*
- * A few charts' worth of timing, for the life of the process. Read and written
- * from the main thread only (composition and its effects).
+ * A few charts' worth of timing, for the life of the process, one holder per
+ * chart, day and reading language: the written readings are in the language
+ * they were asked in. Read and written from the main thread only
+ * (composition and its effects).
  */
 object TimingHolders {
     private const val KEEP = 4
@@ -112,6 +114,10 @@ object TimingHolders {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, TimingHolder>?) = size > KEEP
     }
 
-    fun get(details: BirthDetails, today: LocalDate): TimingHolder =
-        holders.getOrPut("${TimingQueries.key(details)}|$today") { TimingHolder(details, today) }
+    /** The key a holder is kept under. */
+    fun key(details: BirthDetails, today: LocalDate, language: String): String =
+        "${TimingQueries.key(details)}|$today|$language"
+
+    fun get(details: BirthDetails, today: LocalDate, language: String): TimingHolder =
+        holders.getOrPut(key(details, today, language)) { TimingHolder(details, today, language) }
 }

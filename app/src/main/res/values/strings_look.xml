@@ -12,7 +12,7 @@
     <string name="look_chart_south_note">Signs keep their places; the rising sign is the filled square.</string>
     <string name="look_chart_north_note">Houses keep their places; the rising sign is the top diamond, and each house shows its sign’s number, Aries as 1.</string>
     <string name="look_language_system">Phone’s language</string>
-    <string name="look_language_note">The app’s own words follow this choice. Readings written for you still arrive in English for now.</string>
+    <string name="look_language_note">The app’s own words follow this choice, and so do the readings the website writes for you. The life-area briefs, palm readings and the PDF report’s chapters are still written in English.</string>
     <!-- Each language in its own words, so a reader can find theirs whatever the app is in. -->
     <string name="look_language_en" translatable="false">English</string>
     <string name="look_language_hi" translatable="false">हिन्दी</string>
