@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Chart vocabulary beyond strings_look.xml: the 27 nakshatras, the ascendant as a row
+     of a table, the houses as an engine claim names them, and the dasha timeline read aloud.
+     Names are the website's own (messages/*.json nakshatraNames, lagnaChart.ascendant,
+     lifeAreas.claims.houses). -->
+<resources>
+    <string name="chart_nakshatra_ashwini">Ashwini</string>
+    <string name="chart_nakshatra_bharani">Bharani</string>
+    <string name="chart_nakshatra_krittika">Krittika</string>
+    <string name="chart_nakshatra_rohini">Rohini</string>
+    <string name="chart_nakshatra_mrigashira">Mrigashira</string>
+    <string name="chart_nakshatra_ardra">Ardra</string>
+    <string name="chart_nakshatra_punarvasu">Punarvasu</string>
+    <string name="chart_nakshatra_pushya">Pushya</string>
+    <string name="chart_nakshatra_ashlesha">Ashlesha</string>
+    <string name="chart_nakshatra_magha">Magha</string>
+    <string name="chart_nakshatra_purva_phalguni">Purva Phalguni</string>
+    <string name="chart_nakshatra_uttara_phalguni">Uttara Phalguni</string>
+    <string name="chart_nakshatra_hasta">Hasta</string>
+    <string name="chart_nakshatra_chitra">Chitra</string>
+    <string name="chart_nakshatra_swati">Swati</string>
+    <string name="chart_nakshatra_vishakha">Vishakha</string>
+    <string name="chart_nakshatra_anuradha">Anuradha</string>
+    <string name="chart_nakshatra_jyeshtha">Jyeshtha</string>
+    <string name="chart_nakshatra_moola">Moola</string>
+    <string name="chart_nakshatra_purva_ashadha">Purva Ashadha</string>
+    <string name="chart_nakshatra_uttara_ashadha">Uttara Ashadha</string>
+    <string name="chart_nakshatra_shravana">Shravana</string>
+    <string name="chart_nakshatra_dhanishta">Dhanishta</string>
+    <string name="chart_nakshatra_shatabhisha">Shatabhisha</string>
+    <string name="chart_nakshatra_purva_bhadrapada">Purva Bhadrapada</string>
+    <string name="chart_nakshatra_uttara_bhadrapada">Uttara Bhadrapada</string>
+    <string name="chart_nakshatra_revati">Revati</string>
+    <string name="chart_point_ascendant">Ascendant</string>
+    <string-array name="chart_house_names">
+        <item>1st house</item>
+        <item>2nd house</item>
+        <item>3rd house</item>
+        <item>4th house</item>
+        <item>5th house</item>
+        <item>6th house</item>
+        <item>7th house</item>
+        <item>8th house</item>
+        <item>9th house</item>
+        <item>10th house</item>
+        <item>11th house</item>
+        <item>12th house</item>
+    </string-array>
+    <string name="dasha_timeline_period">%1$s %2$d to %3$d</string>
+    <string name="dasha_timeline_now">Now in %1$s.</string>
+</resources>

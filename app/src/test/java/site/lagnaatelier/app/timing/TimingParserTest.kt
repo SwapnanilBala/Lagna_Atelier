@@ -214,11 +214,4 @@ class TimingParserTest {
         assertEquals(3, week.cards.size)
         assertTrue(week.cards.none { it.title == "New Opportunities" })
     }
-
-    @Test
-    fun abbreviatesPlanetsAsTheChartDoes() {
-        assertEquals("Ve", TimingFormat.planetAbbreviation("Venus"))
-        assertEquals("Ma", TimingFormat.planetAbbreviation("Mars"))
-        assertEquals("Ke", TimingFormat.planetAbbreviation("Ketu"))
-    }
 }

@@ -33,6 +33,7 @@ import site.lagnaatelier.app.data.report.ReportFiles
 import site.lagnaatelier.app.data.report.ReportPdf
 import site.lagnaatelier.app.data.report.ReportStage
 import site.lagnaatelier.app.data.report.StoryProseCodec
+import site.lagnaatelier.app.ui.reading.signNameRes
 import java.io.File
 import java.io.IOException
 import java.time.Instant
@@ -131,13 +132,14 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
 
         state = ReportState.Working(ReportStage.Typesetting, chart.name, story)
         val preparedOn = preparedDate(report.generatedAtUtc)
+        val app = getApplication<Application>()
         val cover = ReportCover(
             name = chart.name,
-            ascendant = chart.ascendant.label,
+            /* In the same language as the rest of the PDF, which ReportPdf takes from this context. */
+            ascendant = app.getString(signNameRes(chart.ascendant)),
             place = details.place.label,
             preparedOn = preparedOn.format(PREPARED_FORMAT),
         )
-        val app = getApplication<Application>()
         state = try {
             val (file, pages, thumbnail) = withContext(Dispatchers.IO) { typeset(app, story, cover) }
             ReportState.Ready(story, file, pages, prose, thumbnail, preparedOn)

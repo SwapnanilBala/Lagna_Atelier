@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chart_nakshatra_ashwini">अश्विनी</string>
+    <string name="chart_nakshatra_bharani">भरणी</string>
+    <string name="chart_nakshatra_krittika">कृत्तिका</string>
+    <string name="chart_nakshatra_rohini">रोहिणी</string>
+    <string name="chart_nakshatra_mrigashira">मृगशिरा</string>
+    <string name="chart_nakshatra_ardra">आर्द्रा</string>
+    <string name="chart_nakshatra_punarvasu">पुनर्वसु</string>
+    <string name="chart_nakshatra_pushya">पुष्य</string>
+    <string name="chart_nakshatra_ashlesha">आश्लेषा</string>
+    <string name="chart_nakshatra_magha">मघा</string>
+    <string name="chart_nakshatra_purva_phalguni">पूर्वा फाल्गुनी</string>
+    <string name="chart_nakshatra_uttara_phalguni">उत्तरा फाल्गुनी</string>
+    <string name="chart_nakshatra_hasta">हस्त</string>
+    <string name="chart_nakshatra_chitra">चित्रा</string>
+    <string name="chart_nakshatra_swati">स्वाति</string>
+    <string name="chart_nakshatra_vishakha">विशाखा</string>
+    <string name="chart_nakshatra_anuradha">अनुराधा</string>
+    <string name="chart_nakshatra_jyeshtha">ज्येष्ठा</string>
+    <string name="chart_nakshatra_moola">मूल</string>
+    <string name="chart_nakshatra_purva_ashadha">पूर्वाषाढ़ा</string>
+    <string name="chart_nakshatra_uttara_ashadha">उत्तराषाढ़ा</string>
+    <string name="chart_nakshatra_shravana">श्रवण</string>
+    <string name="chart_nakshatra_dhanishta">धनिष्ठा</string>
+    <string name="chart_nakshatra_shatabhisha">शतभिषा</string>
+    <string name="chart_nakshatra_purva_bhadrapada">पूर्वा भाद्रपद</string>
+    <string name="chart_nakshatra_uttara_bhadrapada">उत्तरा भाद्रपद</string>
+    <string name="chart_nakshatra_revati">रेवती</string>
+    <string name="chart_point_ascendant">लग्न</string>
+    <string-array name="chart_house_names">
+        <item>प्रथम भाव</item>
+        <item>द्वितीय भाव</item>
+        <item>तृतीय भाव</item>
+        <item>चतुर्थ भाव</item>
+        <item>पंचम भाव</item>
+        <item>षष्ठ भाव</item>
+        <item>सप्तम भाव</item>
+        <item>अष्टम भाव</item>
+        <item>नवम भाव</item>
+        <item>दशम भाव</item>
+        <item>एकादश भाव</item>
+        <item>द्वादश भाव</item>
+    </string-array>
+    <string name="dasha_timeline_period">%1$s %2$d से %3$d</string>
+    <string name="dasha_timeline_now">अभी %1$s की दशा चल रही है।</string>
+</resources>

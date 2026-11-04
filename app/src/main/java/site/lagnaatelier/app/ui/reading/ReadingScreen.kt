@@ -149,7 +149,7 @@ private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit, s
         chart.name,
         signName(chart.ascendant),
         signName(chart.moonSign),
-        chart.nakshatra,
+        nakshatraName(chart.nakshatra),
         "${planetName(chart.mahadasha.lord)} · ${planetName(chart.antardasha.lord)}",
         chart.antardasha.end.dayMonthYear(),
         shareLink,
@@ -380,7 +380,7 @@ private fun FactTiles(chart: ChartSummary) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FactTile(
                 stringResource(R.string.reading_fact_nakshatra),
-                chart.nakshatra,
+                nakshatraName(chart.nakshatra),
                 stringResource(R.string.reading_pada, chart.pada, planetName(chart.nakshatraLord)),
             )
             FactTile(

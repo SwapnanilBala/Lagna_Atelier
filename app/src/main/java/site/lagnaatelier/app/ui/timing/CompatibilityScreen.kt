@@ -71,6 +71,7 @@ import site.lagnaatelier.app.ui.intake.DateDialog
 import site.lagnaatelier.app.ui.intake.TimeDialog
 import site.lagnaatelier.app.ui.intake.ValueTile
 import site.lagnaatelier.app.ui.intake.utcOffset
+import site.lagnaatelier.app.ui.reading.planetName
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
@@ -450,10 +451,10 @@ private fun Aspects(result: CompatibilityResult) {
                     stringResource(
                         R.string.compat_aspect_pair,
                         result.primaryName,
-                        aspect.primaryPlanet,
+                        planetName(aspect.primaryPlanet),
                         aspectWord(aspect.aspectType),
                         result.partnerName,
-                        aspect.partnerPlanet,
+                        planetName(aspect.partnerPlanet),
                     ),
                     style = MaterialTheme.typography.bodyMedium,
                 )
@@ -477,7 +478,7 @@ private fun aspectWord(type: String): String = when (type.lowercase(Locale.ROOT)
 
 @Composable
 private fun shortAspect(aspect: SynastryAspect): String =
-    stringResource(R.string.compat_aspect_short, aspect.primaryPlanet, aspectWord(aspect.aspectType), aspect.partnerPlanet)
+    stringResource(R.string.compat_aspect_short, planetName(aspect.primaryPlanet), aspectWord(aspect.aspectType), planetName(aspect.partnerPlanet))
 
 @Composable
 private fun orb(value: Double): String = stringResource(R.string.compat_orb, String.format(Locale.ENGLISH, "%.2f", value))

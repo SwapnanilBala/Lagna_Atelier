@@ -35,6 +35,8 @@ import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.LiquidChip
 import site.lagnaatelier.app.ui.components.Panel
 import site.lagnaatelier.app.ui.reading.RasiChart
+import site.lagnaatelier.app.ui.reading.pointName
+import site.lagnaatelier.app.ui.reading.signName
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
@@ -244,11 +246,11 @@ private fun PositionsPanel(varga: Varga) {
         varga.positions.forEach { position ->
             HorizontalDivider(color = Hairline)
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Cell(position.name)
-                Cell(position.rashi.label)
+                Cell(pointName(position.name))
+                Cell(signName(position.rashi))
                 Box(Modifier.weight(1f)) {
                     Column {
-                        Text(position.sign.label, style = MaterialTheme.typography.bodyMedium)
+                        Text(signName(position.sign), style = MaterialTheme.typography.bodyMedium)
                         if (position.repeats) CardLabel(stringResource(R.string.more_varga_repeats))
                     }
                 }

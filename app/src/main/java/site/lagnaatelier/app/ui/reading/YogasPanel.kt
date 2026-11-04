@@ -105,7 +105,7 @@ private fun YogaDetail(yoga: Yoga) {
     ) {
         yoga.sanskrit?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
         if (yoga.planets.isNotEmpty()) {
-            Text(yoga.planets.joinToString("  ·  "), style = MaterialTheme.typography.labelSmall)
+            Text(yoga.planets.map { pointName(it) }.joinToString("  ·  "), style = MaterialTheme.typography.labelSmall)
         }
         Block(R.string.yoga_forms, yoga.description)
         yoga.activationTiming?.let { Block(R.string.yoga_shows, it) }
