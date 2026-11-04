@@ -215,7 +215,7 @@ class ReportPdf(private val context: Context) {
         canvas.drawText(right, pageWidth - marginX - head.measureText(right), y, head)
         hairline(canvas, marginX, y + 7f, contentWidth)
         val folio = paint(8.5f, Palette.FAINT, monospace = true)
-        val number = "$pageNumber / $totalPages"
+        val number = s(R.string.report_pdf_folio, pageNumber, totalPages)
         canvas.drawText(number, pageWidth - marginX - folio.measureText(number), pageHeight - 34f, folio)
     }
 

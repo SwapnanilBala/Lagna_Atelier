@@ -60,7 +60,7 @@
     <string name="more_ask_own_placeholder">কেমন কাজ আমার উপযুক্ত?</string>
     <string name="more_ask_own_submit">জিজ্ঞেস করুন</string>
     <string name="more_ask_own_hint">আপনার নিজের কুণ্ডলী নিয়ে, সর্বাধিক %1$d অক্ষর। প্রতিটি প্রশ্ন আজকের প্রশ্নের মধ্যে গোনা হয়।</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%2$dটির মধ্যে %1$dটি</string>
     <string name="more_ask_pending">আপনার প্রশ্নের জন্য অংশগুলি পড়া হচ্ছে…</string>
     <string name="more_ask_you_asked">আপনি জিজ্ঞেস করেছেন</string>
     <string name="more_ask_empty">আপনার কুণ্ডলীর জন্য এই প্রশ্নে গ্রন্থগুলি কিছু বলে না।</string>

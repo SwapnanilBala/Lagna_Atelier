@@ -10,7 +10,7 @@
     <string name="sections_show">Show</string>
     <string name="sections_hide">Hide</string>
     <string name="sections_see_all">See all %1$d</string>
-    <string name="sections_see_fewer">See fewer</string>
+    <string name="sections_see_fewer">Show fewer</string>
     <string name="sections_retry">Try again</string>
 
     <!-- Planet positions -->

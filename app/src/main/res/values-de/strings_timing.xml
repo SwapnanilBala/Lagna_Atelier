@@ -18,7 +18,7 @@
     <string name="timing_level_pratyantar">Pratyantar</string>
     <string name="timing_next_period">Als Nächstes: %1$s, ab %2$s</string>
     <string name="timing_all_periods">Alle Perioden</string>
-    <string name="timing_fewer_periods">Weniger</string>
+    <string name="timing_fewer_periods">Weniger anzeigen</string>
     <string name="timing_periods_remaining">Pratyantar-Perioden in dieser Antar</string>
     <string name="timing_period_now">jetzt</string>
     <string name="timing_period_row">%1$s bis %2$s</string>
@@ -81,7 +81,7 @@
     <string name="timing_window_best_description">%1$s. %2$s</string>
     <string name="timing_no_windows">Kein gutes Zeitfenster in den nächsten 14 Tagen. Versuche ein anderes Vorhaben.</string>
     <string name="timing_rahukaala_today">Heute meiden (Rahukaala)</string>
-    <string name="timing_clock_range">%1$s–%2$s</string>
+    <string name="timing_clock_range">%1$s bis %2$s</string>
     <plurals name="timing_windows_found">
         <item quantity="one">%1$d Zeitfenster gefunden</item>
         <item quantity="other">%1$d Zeitfenster gefunden</item>
@@ -92,7 +92,7 @@
     <!-- This year's chart -->
     <string name="timing_year_title">Das Horoskop dieses Jahres</string>
     <string name="timing_year_loading">Dieses Jahr wird gedeutet…</string>
-    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_span">%1$s bis %2$s</string>
     <string name="timing_year_rising">Solar-Aszendent</string>
     <string name="timing_year_lord">Jahresherrscher</string>
     <string name="timing_year_muntha">Muntha</string>

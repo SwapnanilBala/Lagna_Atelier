@@ -60,7 +60,7 @@
     <string name="more_ask_own_placeholder">मेरे लिए किस तरह का काम ठीक है?</string>
     <string name="more_ask_own_submit">पूछें</string>
     <string name="more_ask_own_hint">अपनी ही कुंडली के बारे में, अधिकतम %1$d अक्षर। हर प्रश्न आज के प्रश्नों में गिना जाता है।</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%2$d में से %1$d</string>
     <string name="more_ask_pending">आपके प्रश्न के लिए अंश पढ़े जा रहे हैं…</string>
     <string name="more_ask_you_asked">आपने पूछा</string>
     <string name="more_ask_empty">आपकी कुंडली के लिए इस प्रश्न पर ग्रंथ कुछ नहीं कहते।</string>

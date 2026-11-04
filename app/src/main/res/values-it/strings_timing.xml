@@ -18,7 +18,7 @@
     <string name="timing_level_pratyantar">Pratyantar</string>
     <string name="timing_next_period">Prossimo: %1$s, dal %2$s</string>
     <string name="timing_all_periods">Tutti i periodi</string>
-    <string name="timing_fewer_periods">Meno</string>
+    <string name="timing_fewer_periods">Mostra meno</string>
     <string name="timing_periods_remaining">Periodi Pratyantar in questo Antar</string>
     <string name="timing_period_now">ora</string>
     <string name="timing_period_row">dal %1$s al %2$s</string>
@@ -82,7 +82,7 @@
     <string name="timing_window_best_description">%1$s. %2$s</string>
     <string name="timing_no_windows">Nessuna finestra favorevole nei prossimi 14 giorni. Prova un’altra attività.</string>
     <string name="timing_rahukaala_today">Da evitare oggi (Rahukaala)</string>
-    <string name="timing_clock_range">%1$s–%2$s</string>
+    <string name="timing_clock_range">%1$s – %2$s</string>
     <plurals name="timing_windows_found">
         <item quantity="one">%1$d finestra trovata</item>
         <item quantity="many">%1$d finestre trovate</item>

@@ -60,7 +60,7 @@
     <string name="more_ask_own_placeholder">¿Qué tipo de trabajo me va bien?</string>
     <string name="more_ask_own_submit">Preguntar</string>
     <string name="more_ask_own_hint">Sobre tu propia carta, hasta %1$d caracteres. Cada una cuenta para las preguntas de hoy.</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%1$d de %2$d</string>
     <string name="more_ask_pending">Leyendo los pasajes para tu pregunta…</string>
     <string name="more_ask_you_asked">Preguntaste</string>
     <string name="more_ask_empty">Los libros no dicen nada sobre esta pregunta para tu carta.</string>

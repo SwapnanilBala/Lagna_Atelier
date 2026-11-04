@@ -22,7 +22,8 @@
     <string name="report_step_writing">Escribiendo tu lectura</string>
     <string name="report_step_typesetting">Maquetando el PDF</string>
     <string name="report_step_checks">%1$d de %2$d</string>
-    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_pdf_folio">%1$d de %2$d</string>
+    <string name="report_step_chapters">%1$d de %2$d</string>
     <string name="report_detail_planning">Planificando los capítulos…</string>
     <string name="report_detail_introduction">Escribiendo la introducción…</string>
     <string name="report_detail_chapter">Escribiendo el capítulo %1$d de %2$d</string>

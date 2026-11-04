@@ -5,7 +5,7 @@
     <string name="timing_offline">This shows when you are online.</string>
     <string name="timing_unreadable">This could not be read just now.</string>
     <string name="timing_retry">Try again</string>
-    <string name="timing_see_fewer">See fewer</string>
+    <string name="timing_see_fewer">Show fewer</string>
     <string name="timing_see_all_count">See all %1$d</string>
     <string name="timing_range_to">to %1$s</string>
     <string name="timing_percent_through">%1$d%% through</string>
@@ -18,7 +18,7 @@
     <string name="timing_level_pratyantar">Pratyantar</string>
     <string name="timing_next_period">Next: %1$s, from %2$s</string>
     <string name="timing_all_periods">All periods</string>
-    <string name="timing_fewer_periods">Fewer</string>
+    <string name="timing_fewer_periods">Show fewer</string>
     <string name="timing_periods_remaining">Pratyantar periods in this Antar</string>
     <string name="timing_period_now">now</string>
     <string name="timing_period_row">%1$s to %2$s</string>
@@ -81,7 +81,7 @@
     <string name="timing_window_best_description">%1$s. %2$s</string>
     <string name="timing_no_windows">No good window in the next 14 days. Try another activity.</string>
     <string name="timing_rahukaala_today">Avoid today (Rahukaala)</string>
-    <string name="timing_clock_range">%1$s–%2$s</string>
+    <string name="timing_clock_range">%1$s to %2$s</string>
     <plurals name="timing_windows_found">
         <item quantity="one">%1$d window found</item>
         <item quantity="other">%1$d windows found</item>
@@ -92,7 +92,7 @@
     <!-- This year's chart -->
     <string name="timing_year_title">This year\'s chart</string>
     <string name="timing_year_loading">Reading this year…</string>
-    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_span">%1$s to %2$s</string>
     <string name="timing_year_rising">Year rising</string>
     <string name="timing_year_lord">Year lord</string>
     <string name="timing_year_muntha">Muntha</string>

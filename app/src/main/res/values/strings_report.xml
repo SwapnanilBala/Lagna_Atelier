@@ -21,7 +21,8 @@
     <string name="report_step_writing">Writing your reading</string>
     <string name="report_step_typesetting">Typesetting the PDF</string>
     <string name="report_step_checks">%1$d of %2$d</string>
-    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_pdf_folio">%1$d of %2$d</string>
+    <string name="report_step_chapters">%1$d of %2$d</string>
     <string name="report_detail_planning">Planning the chapters…</string>
     <string name="report_detail_introduction">Writing the introduction…</string>
     <string name="report_detail_chapter">Writing chapter %1$d of %2$d</string>

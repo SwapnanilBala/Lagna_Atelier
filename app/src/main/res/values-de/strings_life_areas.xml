@@ -60,7 +60,7 @@
     <string name="more_ask_own_placeholder">Welche Arbeit passt zu mir?</string>
     <string name="more_ask_own_submit">Fragen</string>
     <string name="more_ask_own_hint">Zu deinem eigenen Horoskop, bis zu %1$d Zeichen. Jede Frage zählt zu den heutigen Fragen.</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%1$d von %2$d</string>
     <string name="more_ask_pending">Die Passagen zu deiner Frage werden gelesen…</string>
     <string name="more_ask_you_asked">Deine Frage</string>
     <string name="more_ask_empty">Zu dieser Frage sagen die Bücher für dein Horoskop nichts.</string>

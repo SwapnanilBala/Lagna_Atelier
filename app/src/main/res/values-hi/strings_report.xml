@@ -21,7 +21,8 @@
     <string name="report_step_writing">आपका पाठ लिखा जा रहा है</string>
     <string name="report_step_typesetting">PDF के पन्ने सजाए जा रहे हैं</string>
     <string name="report_step_checks">%2$d में से %1$d</string>
-    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_pdf_folio">%2$d में से %1$d</string>
+    <string name="report_step_chapters">%2$d में से %1$d</string>
     <string name="report_detail_planning">अध्यायों की योजना बन रही है…</string>
     <string name="report_detail_introduction">भूमिका लिखी जा रही है…</string>
     <string name="report_detail_chapter">%2$d में से अध्याय %1$d लिखा जा रहा है</string>

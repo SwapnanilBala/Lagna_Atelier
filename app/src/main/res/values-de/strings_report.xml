@@ -21,7 +21,8 @@
     <string name="report_step_writing">Deine Deutung wird geschrieben</string>
     <string name="report_step_typesetting">Das PDF wird gesetzt</string>
     <string name="report_step_checks">%1$d von %2$d</string>
-    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_pdf_folio">%1$d von %2$d</string>
+    <string name="report_step_chapters">%1$d von %2$d</string>
     <string name="report_detail_planning">Die Kapitel werden geplant…</string>
     <string name="report_detail_introduction">Die Einleitung wird geschrieben…</string>
     <string name="report_detail_chapter">Kapitel %1$d von %2$d wird geschrieben</string>

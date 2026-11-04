@@ -60,7 +60,7 @@
     <string name="more_ask_own_placeholder">Che tipo di lavoro fa per me?</string>
     <string name="more_ask_own_submit">Chiedi</string>
     <string name="more_ask_own_hint">Sulla tua carta, fino a %1$d caratteri. Ogni domanda conta tra quelle di oggi.</string>
-    <string name="more_ask_count">%1$d / %2$d</string>
+    <string name="more_ask_count">%1$d di %2$d</string>
     <string name="more_ask_pending">Lettura dei passi per la tua domanda…</string>
     <string name="more_ask_you_asked">Hai chiesto</string>
     <string name="more_ask_empty">I libri non dicono nulla su questa domanda per il tuo tema natale.</string>
