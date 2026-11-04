@@ -1,5 +1,7 @@
 package site.lagnaatelier.app.ui.palm
 
+import androidx.compose.ui.semantics.Role
+import androidx.compose.foundation.selection.toggleable
 import android.os.SystemClock
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -290,16 +292,20 @@ private fun TipRow(title: String, detail: String? = null) {
 private fun ClassicalPanel(on: Boolean, enabled: Boolean, onChange: (Boolean) -> Unit) {
     val title = stringResource(R.string.palm_classical_title)
     Panel(Modifier.fillMaxWidth()) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        /* The whole row is one switch: one tap target, read out as a switch with its on or off state. */
+        Row(
+            Modifier.toggleable(value = on, enabled = enabled, role = Role.Switch, onValueChange = onChange),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
             Column(Modifier.weight(1f)) {
                 Text(title, style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp))
                 Text(stringResource(R.string.palm_classical_subtitle), style = MaterialTheme.typography.bodySmall, color = Muted)
             }
             Switch(
                 checked = on,
-                onCheckedChange = onChange,
+                onCheckedChange = null,
                 enabled = enabled,
-                modifier = Modifier.semantics { contentDescription = title },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = CardWhite,
                     checkedTrackColor = Ink,

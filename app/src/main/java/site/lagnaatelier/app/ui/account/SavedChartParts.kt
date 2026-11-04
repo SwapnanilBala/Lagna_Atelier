@@ -187,6 +187,14 @@ internal fun SavedChartRow(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
             )
+            /* The same birth in two traditions is two charts; the row says which this is. */
+            Text(
+                chart.traditionText(),
+                style = MaterialTheme.typography.labelSmall,
+                color = Muted,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
             if (syncing) {
                 Text(chart.syncLabel(), style = MaterialTheme.typography.labelSmall, color = Muted, maxLines = 1)
             }
