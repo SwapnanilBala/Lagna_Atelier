@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the look of the app: theme, chart style, language, and the palm compare. -->
+<resources>
+    <!-- Account -> Preferences -->
+    <string name="look_theme">Appearance</string>
+    <string name="look_theme_system">Match phone</string>
+    <string name="look_theme_light">Light</string>
+    <string name="look_theme_dark">Dark</string>
+    <string name="look_theme_note">Match phone follows your phone’s dark theme setting.</string>
+    <string name="look_chart_south">South Indian</string>
+    <string name="look_chart_north">North Indian</string>
+    <string name="look_chart_south_note">Signs keep their places; the rising sign is the filled square.</string>
+    <string name="look_chart_north_note">Houses keep their places; the rising sign is the top diamond, and each house shows its sign’s number, Aries as 1.</string>
+    <string name="look_language_system">Phone’s language</string>
+    <string name="look_language_note">The app’s own words follow this choice. Readings written for you still arrive in English for now.</string>
+    <!-- Each language in its own words, so a reader can find theirs whatever the app is in. -->
+    <string name="look_language_en" translatable="false">English</string>
+    <string name="look_language_hi" translatable="false">हिन्दी</string>
+    <string name="look_language_bn" translatable="false">বাংলা</string>
+    <string name="look_language_es" translatable="false">Español</string>
+    <string name="look_language_fr" translatable="false">Français</string>
+    <string name="look_language_it" translatable="false">Italiano</string>
+    <string name="look_language_de" translatable="false">Deutsch</string>
+
+    <!-- The chart, drawn either way -->
+    <string name="chart_sign_aries">Aries</string>
+    <string name="chart_sign_taurus">Taurus</string>
+    <string name="chart_sign_gemini">Gemini</string>
+    <string name="chart_sign_cancer">Cancer</string>
+    <string name="chart_sign_leo">Leo</string>
+    <string name="chart_sign_virgo">Virgo</string>
+    <string name="chart_sign_libra">Libra</string>
+    <string name="chart_sign_scorpio">Scorpio</string>
+    <string name="chart_sign_sagittarius">Sagittarius</string>
+    <string name="chart_sign_capricorn">Capricorn</string>
+    <string name="chart_sign_aquarius">Aquarius</string>
+    <string name="chart_sign_pisces">Pisces</string>
+    <string name="chart_abbrev_su">Su</string>
+    <string name="chart_abbrev_mo">Mo</string>
+    <string name="chart_abbrev_ma">Ma</string>
+    <string name="chart_abbrev_me">Me</string>
+    <string name="chart_abbrev_ju">Ju</string>
+    <string name="chart_abbrev_ve">Ve</string>
+    <string name="chart_abbrev_sa">Sa</string>
+    <string name="chart_abbrev_ra">Ra</string>
+    <string name="chart_abbrev_ke">Ke</string>
+    <string name="chart_planet_sun">Sun</string>
+    <string name="chart_planet_moon">Moon</string>
+    <string name="chart_planet_mars">Mars</string>
+    <string name="chart_planet_mercury">Mercury</string>
+    <string name="chart_planet_jupiter">Jupiter</string>
+    <string name="chart_planet_venus">Venus</string>
+    <string name="chart_planet_saturn">Saturn</string>
+    <string name="chart_planet_rahu">Rahu</string>
+    <string name="chart_planet_ketu">Ketu</string>
+    <string name="chart_south_description">South Indian chart, %1$s rising.</string>
+    <string name="chart_north_description">North Indian chart with %1$s ascendant. The houses are fixed: the ascendant is the top diamond and the houses run anticlockwise from it.</string>
+    <string name="chart_sign_holds">%1$s: %2$s.</string>
+    <string name="chart_house_holds">House %1$d, %2$s: %3$s.</string>
+
+    <!-- Palm: comparing two saved readings -->
+    <string name="palm_compare_open">Compare two</string>
+    <string name="palm_compare_pick_title">Compare two readings</string>
+    <string name="palm_compare_pick_note">Pick two saved readings to see what changed. Only what is on this phone is used, so nothing is sent and no reading is spent.</string>
+    <string name="palm_compare_picked">%1$d of 2 picked</string>
+    <string name="palm_compare_go">Compare</string>
+    <string name="palm_compare_title">Comparing two readings</string>
+    <string name="palm_compare_same_day">Taken the same day</string>
+    <plurals name="palm_compare_days_apart">
+        <item quantity="one">Taken %1$d day apart</item>
+        <item quantity="other">Taken %1$d days apart</item>
+    </plurals>
+    <string name="palm_compare_dates">%1$s · %2$s</string>
+    <string name="palm_compare_a">Reading A</string>
+    <string name="palm_compare_b">Reading B</string>
+    <string name="palm_compare_open_full">Open full reading</string>
+    <string name="palm_compare_line_strength">Line strength</string>
+    <string name="palm_compare_no_strength">No strength changes across the four major lines.</string>
+    <string name="palm_compare_line_visibility">Line visibility</string>
+    <string name="palm_compare_from_to">%1$s → %2$s</string>
+    <string name="palm_compare_stronger">stronger</string>
+    <string name="palm_compare_weaker">weaker</string>
+    <string name="palm_compare_unchanged">unchanged</string>
+    <string name="palm_compare_not_read">not read</string>
+    <string name="palm_compare_markings">Special markings</string>
+    <string name="palm_compare_newly_visible">Newly visible</string>
+    <string name="palm_compare_no_longer_visible">No longer visible</string>
+    <string name="palm_compare_mounts">Prominent mounts</string>
+    <string name="palm_compare_newly_prominent">Newly prominent</string>
+    <string name="palm_compare_no_longer_prominent">No longer prominent</string>
+    <string name="palm_compare_none">None</string>
+    <string name="palm_compare_summary">Summary contrast</string>
+    <string name="palm_compare_no_summary">(no summary)</string>
+</resources>

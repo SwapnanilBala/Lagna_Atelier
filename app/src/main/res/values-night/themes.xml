@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The window behind the first frame, when the phone is dark: the dark canvas, not a white flash. -->
+    <style name="Theme.LagnaAtelier" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/canvas_dark</item>
+    </style>
+</resources>

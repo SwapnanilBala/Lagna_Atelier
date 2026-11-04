@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the report feature; that feature owns this file. -->
+<resources>
+    <!-- The screens -->
+    <string name="report_title">Il tuo rapporto</string>
+    <string name="report_back">Indietro</string>
+    <plurals name="report_chapters">
+        <item quantity="one">%d capitolo</item>
+        <item quantity="many">%d capitoli</item>
+        <item quantity="other">%d capitoli</item>
+    </plurals>
+    <string name="report_subtitle_working">%1$s · %2$s</string>
+    <string name="report_subtitle_preparing">%1$s · in preparazione</string>
+    <string name="report_subtitle_ready">Pronto · %1$s</string>
+
+    <!-- Generating -->
+    <string name="report_generating_label">Stiamo scrivendo il tuo PDF</string>
+    <string name="report_progress_description">Avanzamento del rapporto, %1$d per cento</string>
+    <string name="report_percent_sign" formatted="false">%</string>
+    <string name="report_step_calculating">Completamento del calcolo</string>
+    <string name="report_step_verifying">Verifica incrociata della carta</string>
+    <string name="report_step_writing">Stesura della tua lettura</string>
+    <string name="report_step_typesetting">Impaginazione del PDF</string>
+    <string name="report_step_checks">%1$d di %2$d</string>
+    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_detail_planning">Pianificazione dei capitoli…</string>
+    <string name="report_detail_introduction">Stesura dell’introduzione…</string>
+    <string name="report_detail_chapter">Stesura del capitolo %1$d di %2$d</string>
+    <string name="report_note">Ogni capitolo viene scritto sulle tue posizioni. Ci vuole circa un minuto. Tieni aperta l’app finché non è pronto.</string>
+    <string name="report_chapters_title">I capitoli</string>
+    <string name="report_chapters_label">Verificati prima della stesura</string>
+    <string name="report_chapter_done">Scritto</string>
+    <string name="report_chapter_now">In stesura</string>
+    <string name="report_stop">Interrompi la stesura</string>
+
+    <!-- Ready -->
+    <string name="report_ready_title">Il tuo rapporto è pronto</string>
+    <string name="report_ready_meta">PDF · %1$s · %2$s</string>
+    <string name="report_ready_verified">verificato</string>
+    <string name="report_ready_qualified">con riserva</string>
+    <string name="report_cover_description">Copertina del tuo rapporto: %1$s, La tua storia.</string>
+    <string name="report_open">Apri</string>
+    <string name="report_share">Condividi</string>
+    <string name="report_share_chooser">Condividi il tuo rapporto</string>
+    <string name="report_share_subject">Lagna Atelier · %1$s</string>
+    <string name="report_file_kind">PDF</string>
+    <string name="report_file_where">Conservato nell’app su questo telefono. Condividilo per salvarne una copia altrove.</string>
+    <string name="report_no_viewer">Nessuna app su questo telefono apre i PDF. Usa Condividi per inviarlo a un’app che li apre.</string>
+    <string name="report_checks_passed">%1$d di %2$d controlli superati</string>
+    <string name="report_checks_qualified">%1$d di %2$d controlli superati senza riserve</string>
+    <string name="report_plain_title">Questa copia usa il testo più breve della carta stessa</string>
+    <string name="report_plain_limit">Le letture di oggi sono esaurite, quindi ogni capitolo mantiene il testo scritto dal calcolo, senza la versione estesa. Rifallo domani per avere quella.</string>
+    <string name="report_plain_timeout">La stesura ha richiesto più tempo del dovuto, quindi ogni capitolo mantiene il testo scritto dal calcolo, senza la versione estesa.</string>
+    <string name="report_plain_offline">La connessione si è interrotta durante la stesura dei capitoli, quindi ogni capitolo mantiene il testo scritto dal calcolo, senza la versione estesa.</string>
+    <string name="report_plain_declined">La versione estesa non è arrivata, quindi ogni capitolo mantiene il testo scritto dal calcolo.</string>
+    <string name="report_make_again">Rifallo</string>
+    <string name="report_close">Chiudi</string>
+
+    <!-- Failed -->
+    <string name="report_failed_title">Il rapporto non è arrivato</string>
+    <string name="report_failed_generic">Controlla la connessione e riprova.</string>
+    <string name="report_failed_verification">La carta non ha superato i controlli di coerenza, quindi non ne è stato ricavato nessun rapporto.</string>
+    <string name="report_failed_pdf">Non è stato possibile scrivere il PDF su questo telefono. Riprova.</string>
+    <string name="report_retry">Riprova</string>
+
+    <!-- The PDF -->
+    <string name="report_pdf_brand">Lagna Atelier</string>
+    <string name="report_pdf_edition">Edizione Storia Personale</string>
+    <string name="report_pdf_cover_kicker">Un ritratto astrologico personale</string>
+    <string name="report_pdf_cover_title">La tua storia</string>
+    <string name="report_pdf_cover_ascendant">Ascendente %1$s</string>
+    <string name="report_pdf_cover_prepared">Preparato il %1$s</string>
+    <string name="report_pdf_verified">Rapporto verificato</string>
+    <string name="report_pdf_qualified">Rapporto con riserva</string>
+    <string name="report_pdf_running_head">Lagna Atelier · Lettura personale</string>
+    <string name="report_pdf_begin_kicker">Inizia da qui</string>
+    <string name="report_pdf_begin_title">La forma della tua storia</string>
+    <string name="report_pdf_glance">In sintesi</string>
+    <string name="report_pdf_threads">Tre fili da notare</string>
+    <string name="report_pdf_support_well">Ben sostenuto</string>
+    <string name="report_pdf_support_supported">Sostenuto</string>
+    <string name="report_pdf_support_exploratory">Esplorativo</string>
+    <string name="report_pdf_seasons">Le stagioni ora in vista</string>
+    <string name="report_pdf_carry">Portalo con te</string>
+    <string name="report_pdf_question">Una domanda su cui riflettere</string>
+    <string name="report_pdf_why">Perché compare questo capitolo</string>
+    <string name="report_pdf_close_kicker">Prima di chiudere</string>
+    <string name="report_pdf_close_title">Come continuare a usarlo</string>
+    <string name="report_pdf_close_note1_title">Un capitolo alla volta</string>
+    <string name="report_pdf_close_note1">Ognuno è stato scritto per reggersi da solo. Il rapporto non è un ragionamento da seguire dall’inizio alla fine, e il capitolo che conta di più per te quest’anno potrebbe non essere il primo.</string>
+    <string name="report_pdf_close_note2_title">Fidati della nota sotto ogni titolo</string>
+    <string name="report_pdf_close_note2">Dove un capitolo è segnato come esplorativo, poggia su prove più deboli e va preso con leggerezza. Quell’etichetta è calcolata, non redazionale, ed è la cosa più utile della pagina.</string>
+    <string name="report_pdf_close_note3_title">Torna sulle domande</string>
+    <string name="report_pdf_close_note3">La domanda alla fine di ogni capitolo è la parte a cui solo tu puoi rispondere. Vale la pena tornarci, perché le risposte cambiano anche quando la carta resta la stessa.</string>
+    <string name="report_pdf_sign_off">Nulla di tutto questo è un verdetto. Una carta descrive il clima della tua nascita, non ciò che ne farai.</string>
+    <string name="report_pdf_checked">Come è stato verificato</string>
+    <string name="report_pdf_provenance">Calcolato con %1$s (%2$s), ayanamsha %3$s, case %4$s, da un’ora di nascita registrata come %5$s. %6$s</string>
+    <string name="report_pdf_provenance_clean">Tutti i %1$d controlli di coerenza interni sono stati superati.</string>
+    <string name="report_pdf_provenance_qualified">%1$d controlli di coerenza interni su %2$d superati senza riserve; per %3$d è emersa una riserva, riportata nella nota di sostegno dei capitoli interessati.</string>
+</resources>

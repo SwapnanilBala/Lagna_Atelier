@@ -139,6 +139,9 @@ internal fun PalmHistoryView(model: PalmModel) {
             }
         }
         PalmDock {
+            if (saved.size >= 2) {
+                GhostChip(stringResource(R.string.palm_compare_open), onClick = { model.view = PalmView.Compare })
+            }
             PillButton(stringResource(R.string.palm_title), onClick = { model.view = PalmView.Capture })
         }
     }

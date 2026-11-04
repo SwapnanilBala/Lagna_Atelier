@@ -45,6 +45,7 @@ import site.lagnaatelier.app.data.TimeAccuracy
 import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.data.formatDegree
 import site.lagnaatelier.app.ui.components.GhostChip
+import site.lagnaatelier.app.ui.reading.signName
 import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.GeistMono
@@ -187,7 +188,7 @@ internal fun SavedChartRow(
         }
         Column(horizontalAlignment = Alignment.End) {
             Text(
-                chart.ascendant.label,
+                signName(chart.ascendant),
                 style = if (showDegree) MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp)
                 else MaterialTheme.typography.labelMedium.copy(color = Muted),
             )

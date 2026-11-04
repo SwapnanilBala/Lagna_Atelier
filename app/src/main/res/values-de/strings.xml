@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lagna Atelier</string>
+
+    <!-- Landing -->
+    <string name="landing_language">DE</string>
+    <string name="landing_headline">Lies den Himmel deiner Geburt</string>
+    <string name="landing_copy">Dein Geburtshoroskop in sechs Traditionen, die Lebensphase, in der du gerade bist, und eine Deutung deiner Hand.</string>
+    <string name="landing_start">Dein Horoskop erstellen</string>
+    <string name="landing_today_label">Der Himmel heute · %1$s</string>
+    <string name="landing_today_moon">Mond in %1$s</string>
+    <string name="landing_today_detail">%1$s · Sonne in %2$s</string>
+    <string name="landing_traditions_title">Jede Tradition, der du vertraust</string>
+    <string name="landing_traditions_copy">Von Lahiri bis Yukteshwar, mit je sechs Häusersystemen.</string>
+    <string name="landing_traditions_label">Traditionen</string>
+    <string name="landing_traditions_count">36</string>
+    <string name="landing_now_label">Auf den Tag genau</string>
+    <string name="landing_now_copy">Das Kapitel, in dem du bist, und wann es wechselt</string>
+    <string name="landing_proof">205 Yogas geprüft</string>
+    <!-- Quoted: Android drops a leading space from an unquoted string. -->
+    <string name="landing_proof_tail">" bei jedem Horoskop"</string>
+    <string name="landing_google">Mit Google anmelden</string>
+    <string name="landing_saved">Gespeicherte Horoskope</string>
+    <string name="landing_traditions_initials_description">Lahiri, Raman, Krishnamurti, Fagan-Bradley, Pushyapaksha und Yukteshwar</string>
+
+    <string name="landing_today_plain">Der Himmel heute</string>
+    <string name="landing_today_loading">Der Himmel wird gelesen…</string>
+    <string name="landing_today_unavailable">Der Himmel erscheint hier, sobald du online bist.</string>
+
+    <!-- Intake -->
+    <string name="intake_title">Deine Geburtsdaten</string>
+    <string name="intake_lead">Das Horoskop wird für genau diesen Moment und Ort berechnet.</string>
+    <string name="intake_name">Name</string>
+    <string name="intake_date">Geburtsdatum</string>
+    <string name="intake_time">Geburtszeit</string>
+    <string name="intake_choose">Auswählen</string>
+    <string name="intake_knows_time">Ich kenne die genaue Uhrzeit</string>
+    <string name="intake_estimate_label">Ungefähr wann?</string>
+    <string name="intake_estimate_morning">Morgen</string>
+    <string name="intake_estimate_afternoon">Nachmittag</string>
+    <string name="intake_estimate_evening">Abend</string>
+    <string name="intake_estimate_unknown">Unbekannt</string>
+    <string name="intake_estimate_note">Das Horoskop verwendet %1$s. Aszendent und Häuser können sich mit der Stunde verschieben, nimm sie daher als Orientierung.</string>
+    <string name="intake_place">Geburtsort</string>
+    <string name="intake_place_hint">Gib einen Ort oder eine Stadt ein</string>
+    <string name="intake_place_located">Zeitzone %1$s, %2$s an diesem Datum.</string>
+    <string name="intake_place_not_found">Kein Ort mit diesem Namen. Versuche es mit der nächstgrößeren Stadt.</string>
+    <string name="intake_place_failed">Die Ortssuche antwortet nicht. Prüfe deine Verbindung und versuche es erneut.</string>
+    <string name="intake_tradition">Tradition</string>
+    <string name="intake_ayanamsha">Ayanamsha</string>
+    <string name="intake_houses">Häuser</string>
+    <string name="intake_tradition_note">Lahiri mit Ganzzeichenhäusern ist die übliche Wahl und auch die, mit der die Website beginnt.</string>
+    <string name="intake_submit">Mein Horoskop erstellen</string>
+    <string name="intake_ready">Bereit, wenn du es bist.</string>
+    <string name="intake_missing_name">Gib einen Namen mit mindestens zwei Buchstaben ein.</string>
+    <string name="intake_missing_date">Gib das Geburtsdatum ein.</string>
+    <string name="intake_missing_time">Gib die Uhrzeit ein oder schalte „Ich kenne die genaue Uhrzeit“ aus.</string>
+    <string name="intake_missing_place">Wähle den Geburtsort aus der Liste.</string>
+    <string name="intake_ok">OK</string>
+    <string name="intake_cancel">Abbrechen</string>
+
+    <!-- Casting -->
+    <string name="casting_title">Horoskop für %1$s wird erstellt</string>
+    <string name="casting_detail">Die Planeten werden für %1$s, %2$s gesetzt.</string>
+    <string name="casting_failed_title">Das Horoskop ist nicht angekommen</string>
+    <string name="casting_failed_generic">Prüfe deine Verbindung und versuche es erneut.</string>
+    <string name="casting_retry">Erneut versuchen</string>
+    <string name="casting_edit">Angaben bearbeiten</string>
+
+    <!-- Reading -->
+    <string name="reading_back">Zurück</string>
+    <string name="reading_share">Teilen</string>
+    <string name="reading_share_text">Geburtshoroskop von %1$s: Aszendent %2$s, Mond in %3$s (%4$s), in der Mahadasha %5$s bis %6$s. Die vollständige Deutung auf Lagna Atelier: %7$s</string>
+    <string name="reading_share_subject">Geburtshoroskop von %1$s</string>
+    <string name="reading_share_chooser">Diese Deutung teilen</string>
+    <string name="reading_sample">Beispielhoroskop</string>
+    <string name="reading_now_label">Dein aktuelles Kapitel</string>
+    <string name="reading_now_through">vergangen</string>
+    <string name="reading_now_to">bis %1$s</string>
+    <string name="reading_fact_lagna">Lagna</string>
+    <string name="reading_fact_moon">Mondzeichen</string>
+    <string name="reading_fact_nakshatra">Nakshatra</string>
+    <string name="reading_fact_mahadasha">Mahadasha</string>
+    <string name="reading_pada">Pada %1$d · %2$s</string>
+    <string name="reading_until">bis %1$s</string>
+    <string name="reading_dasha_title">Dasha-Zeitleiste</string>
+    <string name="reading_dasha_maha">Maha</string>
+    <string name="reading_dasha_antar">Antar</string>
+    <string name="reading_chart_title">Geburtshoroskop</string>
+    <string name="reading_chart_rasi">Rashi</string>
+    <string name="reading_chart_navamsa">Navamsa</string>
+    <string name="reading_chart_ascendant">AC</string>
+    <string name="reading_attention_title">Was Aufmerksamkeit verdient</string>
+    <string name="reading_see_all">Alle %1$d ansehen</string>
+    <string name="reading_see_fewer">Weniger anzeigen</string>
+    <string name="reading_report">Dein Bericht</string>
+    <string name="reading_navamsa_missing">Dieses Horoskop kam ohne sein Navamsa zurück.</string>
+    <string name="reading_time_estimated">Geburtszeit geschätzt</string>
+
+    <!-- Navigation -->
+    <string name="nav_reading">Deutung</string>
+    <string name="nav_timing">Timing</string>
+    <string name="nav_palm">Hand</string>
+    <string name="nav_account">Konto</string>
+    <string name="nav_soon">%1$s ist der nächste Bildschirm, der gebaut wird.</string>
+</resources>

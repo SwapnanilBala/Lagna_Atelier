@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the account feature; that feature owns this file. -->
+<resources>
+    <!-- Account tab -->
+    <string name="account_title">खाता</string>
+    <string name="account_signed_out">साइन इन नहीं है</string>
+    <string name="account_signin_tag">जल्द आ रहा है</string>
+    <string name="account_signin_title">Google से साइन इन जल्द आ रहा है</string>
+    <string name="account_signin_copy">यह अभी ऐप में नहीं है। आने पर आप अपनी कुंडलियाँ अपने खाते के साथ रख सकेंगे और उन्हें lagnaatelier.site पर भी देख सकेंगे। तब तक, यहाँ सब कुछ इसी फ़ोन पर रहता है।</string>
+    <string name="account_saved_title">सहेजी गई कुंडलियाँ</string>
+    <string name="account_saved_count">%2$d में से %1$d</string>
+    <string name="account_saved_local">केवल इसी फ़ोन पर रखी गई</string>
+    <string name="account_manage">प्रबंधित करें</string>
+    <string name="account_manage_done">हो गया</string>
+    <string name="account_prefs_title">प्राथमिकताएँ</string>
+    <string name="account_language">भाषा</string>
+    <string name="account_chart_style">कुंडली शैली</string>
+    <string name="account_new_charts">नई कुंडलियाँ इससे बनेंगी</string>
+    <string name="account_new_charts_note">जन्म विवरण वाले फ़ॉर्म पर आप कोई दूसरी परंपरा चुन सकते हैं।</string>
+    <string name="account_about_title">परिचय</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">वेबसाइट</string>
+    <string name="account_website_note">कुंडलियाँ वहाँ बनती हैं और केवल इसी फ़ोन पर सहेजी जाती हैं।</string>
+    <string name="account_website_failed">इस फ़ोन पर कोई ऐप यह लिंक नहीं खोल सकता।</string>
+    <string name="account_licences">लाइसेंस</string>
+    <string name="account_licences_summary">Geist और Geist Mono, SIL Open Font License 1.1। ग्रहों की स्थिति astronomy-engine से, MIT लाइसेंस।</string>
+    <string name="account_licences_fonts">Geist और Geist Mono</string>
+    <string name="account_licences_fonts_note">ऐप के टाइपफ़ेस, The Geist Project Authors द्वारा, SIL Open Font License 1.1 के अंतर्गत।</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">Don Cross द्वारा, MIT लाइसेंस के अंतर्गत। वेबसाइट ग्रहों की स्थिति निकालने के लिए इसका उपयोग करती है; ऐप वही दिखाता है जो साइट भेजती है।</string>
+    <string name="account_licences_show">फ़ॉन्ट लाइसेंस पढ़ें</string>
+    <string name="account_licences_hide">फ़ॉन्ट लाइसेंस छुपाएँ</string>
+
+    <!-- Saved charts screen -->
+    <string name="saved_title">सहेजी गई कुंडलियाँ</string>
+    <string name="saved_count">इस फ़ोन पर %2$d में से %1$d</string>
+    <string name="saved_opened_last">सबसे हाल में खोली गई</string>
+    <string name="saved_rising">लग्न</string>
+    <string name="saved_moon">चंद्र</string>
+    <string name="saved_open">खोलें</string>
+    <string name="saved_add">कुंडली जोड़ें</string>
+    <string name="saved_empty">अभी कोई सहेजी गई कुंडली नहीं है। एक बनाइए, वह यहाँ रखी जाएगी।</string>
+    <string name="saved_sample">नमूना कुंडली देखें</string>
+    <string name="saved_note">किसी कुंडली को मिटाने के लिए उसके पास के कूड़ेदान पर टैप करें, या उसे देर तक दबाएँ। आप पाँच रख सकते हैं; छठी जोड़ने पर वह कुंडली हट जाती है जो सबसे लंबे समय से नहीं खोली गई।</string>
+    <string name="saved_delete_button">%1$s की कुंडली मिटाएँ</string>
+    <string name="saved_delete_question">%1$s की कुंडली मिटानी है?</string>
+    <string name="saved_delete_detail">यह इस फ़ोन से हट जाएगी। आप इसे जन्म विवरण से फिर जोड़ सकते हैं।</string>
+    <string name="saved_cancel">रद्द करें</string>
+    <string name="saved_delete">मिटाएँ</string>
+    <string name="saved_open_chart">%1$s की कुंडली खोलें</string>
+    <string name="saved_time_morning">सुबह</string>
+    <string name="saved_time_afternoon">दोपहर</string>
+    <string name="saved_time_evening">शाम</string>
+    <string name="saved_time_unknown">समय अज्ञात</string>
+    <string name="saved_missing_value">—</string>
+</resources>

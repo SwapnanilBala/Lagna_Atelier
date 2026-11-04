@@ -71,7 +71,7 @@ import site.lagnaatelier.app.ui.components.Segmented
 import site.lagnaatelier.app.ui.components.TickBadge
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Canvas
-import site.lagnaatelier.app.ui.theme.GlowHoney
+import site.lagnaatelier.app.ui.theme.GlowOnInk
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.LagnaAtelierTheme
@@ -147,10 +147,10 @@ private fun TopBar(chart: ChartSummary, isSample: Boolean, onBack: () -> Unit, s
     val shareText = stringResource(
         R.string.reading_share_text,
         chart.name,
-        chart.ascendant.label,
-        chart.moonSign.label,
+        signName(chart.ascendant),
+        signName(chart.moonSign),
         chart.nakshatra,
-        "${chart.mahadasha.lord} · ${chart.antardasha.lord}",
+        "${planetName(chart.mahadasha.lord)} · ${planetName(chart.antardasha.lord)}",
         chart.antardasha.end.dayMonthYear(),
         shareLink,
     )
@@ -255,13 +255,13 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
                 }
                 val navamsaAscendant = chart.navamsaAscendant
                 when {
-                    chartView == 0 -> SouthIndianChart(
+                    chartView == 0 -> RasiChart(
                         chart.placements,
                         ascendant = chart.ascendant,
                         title = stringResource(R.string.reading_chart_rasi),
                         subtitle = chart.tradition,
                     )
-                    chart.navamsa.isNotEmpty() && navamsaAscendant != null -> SouthIndianChart(
+                    chart.navamsa.isNotEmpty() && navamsaAscendant != null -> RasiChart(
                         chart.navamsa,
                         ascendant = navamsaAscendant,
                         title = stringResource(R.string.reading_chart_navamsa),
@@ -325,9 +325,9 @@ private fun NowCard(chart: ChartSummary, today: LocalDate) {
                 CardLabel(stringResource(R.string.reading_now_label))
                 Text(
                     buildAnnotatedString {
-                        append(chart.mahadasha.lord)
+                        append(planetName(chart.mahadasha.lord))
                         withStyle(SpanStyle(color = Muted)) { append(" · ") }
-                        append(period.lord)
+                        append(planetName(period.lord))
                     },
                     style = MaterialTheme.typography.titleLarge,
                 )
@@ -374,18 +374,18 @@ private fun ProgressLine(fraction: Float) {
 private fun FactTiles(chart: ChartSummary) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            FactTile(stringResource(R.string.reading_fact_lagna), chart.ascendant.label, formatDegree(chart.ascendantDegree))
-            FactTile(stringResource(R.string.reading_fact_moon), chart.moonSign.label, formatDegree(chart.moonDegree))
+            FactTile(stringResource(R.string.reading_fact_lagna), signName(chart.ascendant), formatDegree(chart.ascendantDegree))
+            FactTile(stringResource(R.string.reading_fact_moon), signName(chart.moonSign), formatDegree(chart.moonDegree))
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             FactTile(
                 stringResource(R.string.reading_fact_nakshatra),
                 chart.nakshatra,
-                stringResource(R.string.reading_pada, chart.pada, chart.nakshatraLord),
+                stringResource(R.string.reading_pada, chart.pada, planetName(chart.nakshatraLord)),
             )
             FactTile(
                 stringResource(R.string.reading_fact_mahadasha),
-                chart.mahadasha.lord,
+                planetName(chart.mahadasha.lord),
                 stringResource(R.string.reading_until, chart.mahadasha.end.monthYear()),
             )
         }
@@ -468,7 +468,7 @@ private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
-                Icon(tab.icon, contentDescription = null, tint = if (on) GlowHoney else CardWhite, modifier = Modifier.size(22.dp))
+                Icon(tab.icon, contentDescription = null, tint = if (on) GlowOnInk else CardWhite, modifier = Modifier.size(22.dp))
                 Text(label, style = MaterialTheme.typography.labelMedium.copy(fontSize = MaterialTheme.typography.labelMedium.fontSize * 0.92f), color = CardWhite)
             }
         }

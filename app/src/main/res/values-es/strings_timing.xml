@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the timing feature; that feature owns this file. -->
+<resources>
+    <!-- Shared states: each panel loads, fails and retries on its own. -->
+    <string name="timing_offline">Esto aparece cuando tienes conexión.</string>
+    <string name="timing_unreadable">No se pudo leer esto ahora mismo.</string>
+    <string name="timing_retry">Reintentar</string>
+    <string name="timing_see_fewer">Ver menos</string>
+    <string name="timing_see_all_count">Ver todo (%1$d)</string>
+    <string name="timing_range_to">hasta %1$s</string>
+    <string name="timing_percent_through">%1$d%% recorrido</string>
+
+    <!-- Periods -->
+    <string name="timing_periods_loading">Leyendo tus periodos…</string>
+    <string name="timing_running_now">En curso · %1$s</string>
+    <string name="timing_level_maha">Maha</string>
+    <string name="timing_level_antar">Antar</string>
+    <string name="timing_level_pratyantar">Pratyantar</string>
+    <string name="timing_next_period">Siguiente: %1$s, desde %2$s</string>
+    <string name="timing_all_periods">Todos los periodos</string>
+    <string name="timing_fewer_periods">Menos</string>
+    <string name="timing_periods_remaining">Periodos Pratyantar en esta Antar</string>
+    <string name="timing_period_now">ahora</string>
+    <string name="timing_period_row">%1$s a %2$s</string>
+
+    <!-- The week ahead -->
+    <string name="timing_week_title">La semana que viene</string>
+    <string name="timing_week_this">Esta semana</string>
+    <string name="timing_week_next">Siguiente</string>
+    <string name="timing_week_loading">Leyendo la semana…</string>
+    <string name="timing_band_high">Plena</string>
+    <string name="timing_band_balanced">Estable</string>
+    <string name="timing_band_low">Tranquila</string>
+    <string name="timing_week_average">media %1$d</string>
+    <string name="timing_week_chart_description">Energía de la semana, del %1$s al %2$s. %3$s. Media %4$d.</string>
+    <string name="timing_week_day_description">%1$s %2$d, %3$d, %4$s</string>
+    <string name="timing_week_day_today">%1$s, hoy</string>
+    <string name="timing_week_card_title">%1$s · %2$s</string>
+
+    <!-- Transits -->
+    <string name="timing_transits_title">Tránsitos que conviene conocer</string>
+    <string name="timing_transits_loading">Leyendo los tránsitos…</string>
+    <string name="timing_transits_empty">Hoy no hay tránsitos cercanos a tu carta.</string>
+    <string name="timing_transit_title">%1$s en %2$s con tu %3$s</string>
+    <string name="timing_aspect_conjunction">conjunción</string>
+    <string name="timing_aspect_opposition">oposición</string>
+    <string name="timing_aspect_trine">trígono</string>
+    <string name="timing_aspect_square">cuadratura</string>
+    <string name="timing_aspect_sextile">sextil</string>
+    <string name="timing_tone_easy">Fluido</string>
+    <string name="timing_tone_testing">Exigente</string>
+    <string name="timing_transit_exact_today">Exacto en menos de un día</string>
+    <plurals name="timing_transit_exact_in">
+        <item quantity="one">Exacto en %1$d día</item>
+        <item quantity="many">Exacto en %1$d días</item>
+        <item quantity="other">Exacto en %1$d días</item>
+    </plurals>
+    <string name="timing_transit_separating">Ya pasó el punto exacto, va perdiendo fuerza</string>
+    <string name="timing_transit_meta">%1$s · orbe %2$s</string>
+
+    <!-- Find a good time -->
+    <string name="timing_muhurta_title">Encuentra un buen momento</string>
+    <string name="timing_muhurta_range">Próximos 14 días</string>
+    <string name="timing_muhurta_loading">Buscando buenos momentos…</string>
+    <string name="timing_activity_anything">Cualquier cosa</string>
+    <string name="timing_activity_travel">Viaje</string>
+    <string name="timing_activity_business">Empezar un negocio</string>
+    <string name="timing_activity_study">Estudio</string>
+    <string name="timing_activity_property">Propiedad</string>
+    <string name="timing_activity_interview">Entrevista de trabajo</string>
+    <string name="timing_activity_spiritual">Práctica espiritual</string>
+    <string name="timing_best_anything">Mejor momento en general</string>
+    <string name="timing_best_travel">Mejor para viajar</string>
+    <string name="timing_best_business">Mejor para empezar un negocio</string>
+    <string name="timing_best_study">Mejor para estudiar</string>
+    <string name="timing_best_property">Mejor para asuntos de propiedad</string>
+    <string name="timing_best_interview">Mejor para una entrevista de trabajo</string>
+    <string name="timing_best_spiritual">Mejor para la práctica espiritual</string>
+    <string name="timing_score_of">sobre 100</string>
+    <string name="timing_window_range">%1$s a %2$s</string>
+    <string name="timing_window_description">%1$s, %2$s, puntuación %3$d sobre 100</string>
+    <string name="timing_window_best_description">%1$s. %2$s</string>
+    <string name="timing_no_windows">No hay ninguna buena ventana en los próximos 14 días. Prueba con otra actividad.</string>
+    <string name="timing_rahukaala_today">Evitar hoy (Rahukaala)</string>
+    <string name="timing_clock_range">%1$s–%2$s</string>
+    <plurals name="timing_windows_found">
+        <item quantity="one">%1$d ventana encontrada</item>
+        <item quantity="many">%1$d ventanas encontradas</item>
+        <item quantity="other">%1$d ventanas encontradas</item>
+    </plurals>
+    <string name="timing_see_all">Ver todo</string>
+    <string name="timing_show_fewer">Mostrar menos</string>
+
+    <!-- This year's chart -->
+    <string name="timing_year_title">La carta de este año</string>
+    <string name="timing_year_loading">Leyendo este año…</string>
+    <string name="timing_year_span">%1$s – %2$s</string>
+    <string name="timing_year_rising">Ascendente del año</string>
+    <string name="timing_year_lord">Señor del año</string>
+    <string name="timing_year_muntha">Muntha</string>
+    <string name="timing_year_profection">Profección</string>
+    <string name="timing_lord_rules_muntha">rige la Muntha</string>
+    <string name="timing_lord_rules_year_rising">rige el ascendente del año</string>
+    <string name="timing_lord_rules_birth_rising">rige tu ascendente</string>
+    <string name="timing_lord_other">señor de este año</string>
+    <string name="timing_house">%1$s casa</string>
+    <string name="timing_profection_year">Año %1$d</string>
+    <string name="timing_profection_meta">%1$s · %2$s</string>
+    <!-- Feminine ordinals: they name a house (la casa). -->
+    <string-array name="timing_ordinals">
+        <item>1.ª</item>
+        <item>2.ª</item>
+        <item>3.ª</item>
+        <item>4.ª</item>
+        <item>5.ª</item>
+        <item>6.ª</item>
+        <item>7.ª</item>
+        <item>8.ª</item>
+        <item>9.ª</item>
+        <item>10.ª</item>
+        <item>11.ª</item>
+        <item>12.ª</item>
+    </string-array>
+</resources>

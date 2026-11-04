@@ -197,17 +197,7 @@ private fun SavedPanel(store: ChartStore, onOpenSaved: (SavedChart) -> Unit) {
 private fun PreferencesPanel() {
     Panel(Modifier.fillMaxWidth()) {
         PanelHead(stringResource(R.string.account_prefs_title)) {}
-        Setting(
-            stringResource(R.string.account_language),
-            stringResource(R.string.account_language_value),
-            stringResource(R.string.account_language_note),
-        )
-        HorizontalDivider(color = Hairline)
-        Setting(
-            stringResource(R.string.account_chart_style),
-            stringResource(R.string.account_chart_style_value),
-            stringResource(R.string.account_chart_style_note),
-        )
+        LookSettings()
         HorizontalDivider(color = Hairline)
         Setting(
             stringResource(R.string.account_new_charts),

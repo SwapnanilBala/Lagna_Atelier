@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
@@ -44,11 +45,9 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.time.Instant
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /** Which of the tab's three views is showing. */
-enum class PalmView { Capture, Reading, History }
+enum class PalmView { Capture, Reading, History, Compare }
 
 /** A reading on screen: one just read, or one opened from the history. */
 class ShownReading(
@@ -276,12 +275,12 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun weeklyMessage(): String {
-        val opens = PalmWeek.nextWeekStart(Instant.now()).format(WEEKDAY_DATE)
+        val opens = nextOpening()
         return text(R.string.palm_error_weekly, PalmWeek.READINGS_PER_WEEK, opens)
     }
 
     /** The Monday the week's readings open again, for the allowance panel. */
-    fun nextOpening(): String = PalmWeek.nextWeekStart(Instant.now()).format(WEEKDAY_DATE)
+    fun nextOpening(): String = PalmWeek.nextWeekStart(Instant.now()).format(AppDates.formatter("EEEE d MMMM", "EEEEdMMMM"))
 
     private fun show(reading: ShownReading) {
         shown = reading
@@ -429,8 +428,4 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
 
     private fun decode(jpeg: ByteArray): ImageBitmap? =
         BitmapFactory.decodeByteArray(jpeg, 0, jpeg.size)?.asImageBitmap()
-
-    private companion object {
-        val WEEKDAY_DATE: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.ENGLISH)
-    }
 }

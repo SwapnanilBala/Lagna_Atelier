@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the look of the app: theme, chart style, language, and the palm compare. -->
+<resources>
+    <!-- Account -> Preferences -->
+    <string name="look_theme">Apariencia</string>
+    <string name="look_theme_system">Igual que el teléfono</string>
+    <string name="look_theme_light">Claro</string>
+    <string name="look_theme_dark">Oscuro</string>
+    <string name="look_theme_note">“Igual que el teléfono” sigue el ajuste de tema oscuro de tu teléfono.</string>
+    <string name="look_chart_south">India del Sur</string>
+    <string name="look_chart_north">India del Norte</string>
+    <string name="look_chart_south_note">Los signos mantienen su lugar; el signo ascendente es el cuadro relleno.</string>
+    <string name="look_chart_north_note">Las casas mantienen su lugar; el signo ascendente es el rombo superior, y cada casa muestra el número de su signo, con Aries como 1.</string>
+    <string name="look_language_system">Idioma del teléfono</string>
+    <string name="look_language_note">Los textos propios de la app siguen esta elección. De momento, las lecturas escritas para ti siguen llegando en inglés.</string>
+
+    <!-- The chart, drawn either way -->
+    <string name="chart_sign_aries">Aries</string>
+    <string name="chart_sign_taurus">Tauro</string>
+    <string name="chart_sign_gemini">Géminis</string>
+    <string name="chart_sign_cancer">Cáncer</string>
+    <string name="chart_sign_leo">Leo</string>
+    <string name="chart_sign_virgo">Virgo</string>
+    <string name="chart_sign_libra">Libra</string>
+    <string name="chart_sign_scorpio">Escorpio</string>
+    <string name="chart_sign_sagittarius">Sagitario</string>
+    <string name="chart_sign_capricorn">Capricornio</string>
+    <string name="chart_sign_aquarius">Acuario</string>
+    <string name="chart_sign_pisces">Piscis</string>
+    <string name="chart_abbrev_su">So</string>
+    <string name="chart_abbrev_mo">Lu</string>
+    <string name="chart_abbrev_ma">Ma</string>
+    <string name="chart_abbrev_me">Me</string>
+    <string name="chart_abbrev_ju">Jú</string>
+    <string name="chart_abbrev_ve">Ve</string>
+    <string name="chart_abbrev_sa">Sa</string>
+    <string name="chart_abbrev_ra">Ra</string>
+    <string name="chart_abbrev_ke">Ke</string>
+    <string name="chart_planet_sun">Sol</string>
+    <string name="chart_planet_moon">Luna</string>
+    <string name="chart_planet_mars">Marte</string>
+    <string name="chart_planet_mercury">Mercurio</string>
+    <string name="chart_planet_jupiter">Júpiter</string>
+    <string name="chart_planet_venus">Venus</string>
+    <string name="chart_planet_saturn">Saturno</string>
+    <string name="chart_planet_rahu">Rahu</string>
+    <string name="chart_planet_ketu">Ketu</string>
+    <string name="chart_south_description">Carta del sur de la India, ascendente %1$s.</string>
+    <string name="chart_north_description">Carta del norte de la India con ascendente en %1$s. Las casas son fijas: el ascendente es el rombo superior y las casas avanzan desde él en sentido antihorario.</string>
+    <string name="chart_sign_holds">%1$s: %2$s.</string>
+    <string name="chart_house_holds">Casa %1$d, %2$s: %3$s.</string>
+
+    <!-- Palm: comparing two saved readings -->
+    <string name="palm_compare_open">Comparar dos</string>
+    <string name="palm_compare_pick_title">Comparar dos lecturas</string>
+    <string name="palm_compare_pick_note">Elige dos lecturas guardadas para ver qué cambió. Solo se usa lo que hay en este teléfono, así que no se envía nada y no se gasta ninguna lectura.</string>
+    <string name="palm_compare_picked">%1$d de 2 elegidas</string>
+    <string name="palm_compare_go">Comparar</string>
+    <string name="palm_compare_title">Comparando dos lecturas</string>
+    <string name="palm_compare_same_day">Tomadas el mismo día</string>
+    <plurals name="palm_compare_days_apart">
+        <item quantity="one">Tomadas con %1$d día de diferencia</item>
+        <item quantity="many">Tomadas con %1$d días de diferencia</item>
+        <item quantity="other">Tomadas con %1$d días de diferencia</item>
+    </plurals>
+    <string name="palm_compare_dates">%1$s · %2$s</string>
+    <string name="palm_compare_a">Lectura A</string>
+    <string name="palm_compare_b">Lectura B</string>
+    <string name="palm_compare_open_full">Abrir la lectura completa</string>
+    <string name="palm_compare_line_strength">Fuerza de las líneas</string>
+    <string name="palm_compare_no_strength">Sin cambios de fuerza en las cuatro líneas principales.</string>
+    <string name="palm_compare_line_visibility">Visibilidad de las líneas</string>
+    <string name="palm_compare_from_to">%1$s → %2$s</string>
+    <string name="palm_compare_stronger">más fuerte</string>
+    <string name="palm_compare_weaker">más débil</string>
+    <string name="palm_compare_unchanged">sin cambios</string>
+    <string name="palm_compare_not_read">sin leer</string>
+    <string name="palm_compare_markings">Marcas especiales</string>
+    <string name="palm_compare_newly_visible">Recién visibles</string>
+    <string name="palm_compare_no_longer_visible">Ya no visibles</string>
+    <string name="palm_compare_mounts">Montes prominentes</string>
+    <string name="palm_compare_newly_prominent">Recién prominentes</string>
+    <string name="palm_compare_no_longer_prominent">Ya no prominentes</string>
+    <string name="palm_compare_none">Ninguna</string>
+    <string name="palm_compare_summary">Contraste de resúmenes</string>
+    <string name="palm_compare_no_summary">(sin resumen)</string>
+</resources>

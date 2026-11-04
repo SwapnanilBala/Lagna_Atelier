@@ -78,7 +78,7 @@ fun DashaTimeline(
                 ) {
                     if (barWidth >= 20.dp) {
                         Text(
-                            if (barWidth < 44.dp) period.lord.take(2) else period.lord,
+                            if (barWidth < 44.dp) planetAbbreviation(period.lord) else planetName(period.lord),
                             style = MaterialTheme.typography.labelMedium,
                             color = if (isCurrent) CardWhite else Ink,
                             maxLines = 1,

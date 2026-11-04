@@ -2,9 +2,7 @@ package site.lagnaatelier.app.data
 
 import site.lagnaatelier.app.data.reading.ReadingSections
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import java.util.Locale
 import kotlin.math.roundToInt
 
 /*
@@ -60,13 +58,10 @@ data class ChartSummary(
 
 data class TodaySky(val date: LocalDate, val moonSign: Sign, val moonNakshatra: String, val sunSign: Sign)
 
-private val dayMonthYear = DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH)
-private val monthYear = DateTimeFormatter.ofPattern("MMM yyyy", Locale.ENGLISH)
-private val weekdayDayMonth = DateTimeFormatter.ofPattern("EEE d MMM", Locale.ENGLISH)
-
-fun LocalDate.dayMonthYear(): String = format(dayMonthYear)
-fun LocalDate.monthYear(): String = format(monthYear)
-fun LocalDate.weekdayDayMonth(): String = format(weekdayDayMonth)
+/* In the app's language: "15 Jun 1990" in English, the language's own order otherwise. */
+fun LocalDate.dayMonthYear(): String = format(AppDates.formatter("d MMM yyyy", "dMMMyyyy"))
+fun LocalDate.monthYear(): String = format(AppDates.formatter("MMM yyyy", "MMMyyyy"))
+fun LocalDate.weekdayDayMonth(): String = format(AppDates.formatter("EEE d MMM", "EEEdMMM"))
 
 /** Degrees within a sign as the web app prints them: 28.7507 -> 28°45′. */
 fun formatDegree(degreeInSign: Double): String {

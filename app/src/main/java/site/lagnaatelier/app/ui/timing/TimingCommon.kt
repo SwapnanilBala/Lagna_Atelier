@@ -37,11 +37,12 @@ import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Canvas
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
+import site.lagnaatelier.app.ui.theme.MidTone
 import site.lagnaatelier.app.ui.theme.Muted
 import kotlin.math.roundToInt
 
 /* The mock's --grey: even days in the week chart, and the outline of quiet ones. */
-internal val BarGrey = Color(0xFFC9CDD6)
+internal val BarGrey: Color get() = MidTone
 
 /*
  * A hairline track with a black fill and a ringed dot at today. Copied from

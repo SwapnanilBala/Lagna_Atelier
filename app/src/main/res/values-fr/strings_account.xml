@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the account feature; that feature owns this file. -->
+<resources>
+    <!-- Account tab -->
+    <string name="account_title">Compte</string>
+    <string name="account_signed_out">Non connecté</string>
+    <string name="account_signin_tag">BIENTÔT</string>
+    <string name="account_signin_title">La connexion avec Google arrive bientôt</string>
+    <string name="account_signin_copy">Elle n’est pas encore dans l’app. Quand elle arrivera, vous pourrez garder vos cartes avec votre compte et les retrouver aussi sur lagnaatelier.site. D’ici là, tout ce qui est ici reste sur ce téléphone.</string>
+    <string name="account_saved_title">Cartes enregistrées</string>
+    <string name="account_saved_count">%1$d sur %2$d</string>
+    <string name="account_saved_local">Conservées sur ce téléphone uniquement</string>
+    <string name="account_manage">Gérer</string>
+    <string name="account_manage_done">Terminé</string>
+    <string name="account_prefs_title">Préférences</string>
+    <string name="account_language">Langue</string>
+    <string name="account_chart_style">Style de carte</string>
+    <string name="account_new_charts">Les nouvelles cartes utilisent</string>
+    <string name="account_new_charts_note">Vous pouvez choisir une autre tradition dans le formulaire des données de naissance.</string>
+    <string name="account_about_title">À propos</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">Site web</string>
+    <string name="account_website_note">Les thèmes y sont calculés, et enregistrés uniquement sur ce téléphone.</string>
+    <string name="account_website_failed">Aucune app de ce téléphone ne peut ouvrir le lien.</string>
+    <string name="account_licences">Licences</string>
+    <string name="account_licences_summary">Geist et Geist Mono, SIL Open Font License 1.1. Positions des planètes par astronomy-engine, licence MIT.</string>
+    <string name="account_licences_fonts">Geist et Geist Mono</string>
+    <string name="account_licences_fonts_note">Les polices de l’app, par The Geist Project Authors, sous licence SIL Open Font License 1.1.</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">Par Don Cross, sous licence MIT. Le site l’utilise pour placer les planètes ; l’app affiche ce que le site envoie.</string>
+    <string name="account_licences_show">Lire la licence des polices</string>
+    <string name="account_licences_hide">Masquer la licence des polices</string>
+
+    <!-- Saved charts screen -->
+    <string name="saved_title">Cartes enregistrées</string>
+    <string name="saved_count">%1$d sur %2$d sur ce téléphone</string>
+    <string name="saved_opened_last">Ouverte en dernier</string>
+    <string name="saved_rising">Ascendant</string>
+    <string name="saved_moon">Lune</string>
+    <string name="saved_open">Ouvrir</string>
+    <string name="saved_add">Ajouter une carte</string>
+    <string name="saved_empty">Aucune carte enregistrée pour l’instant. Calculez-en une et elle sera conservée ici.</string>
+    <string name="saved_sample">Voir le thème d’exemple</string>
+    <string name="saved_note">Touchez la corbeille à côté d’une carte, ou appuyez longuement dessus, pour la supprimer. Vous pouvez en garder cinq ; en ajouter une sixième remplace celle ouverte il y a le plus longtemps.</string>
+    <string name="saved_delete_button">Supprimer la carte de %1$s</string>
+    <string name="saved_delete_question">Supprimer la carte de %1$s ?</string>
+    <string name="saved_delete_detail">Elle sera retirée de ce téléphone. Vous pourrez l’ajouter à nouveau depuis les données de naissance.</string>
+    <string name="saved_cancel">Annuler</string>
+    <string name="saved_delete">Supprimer</string>
+    <string name="saved_open_chart">Ouvrir la carte de %1$s</string>
+    <string name="saved_time_morning">matin</string>
+    <string name="saved_time_afternoon">après-midi</string>
+    <string name="saved_time_evening">soir</string>
+    <string name="saved_time_unknown">heure inconnue</string>
+    <string name="saved_missing_value">—</string>
+</resources>

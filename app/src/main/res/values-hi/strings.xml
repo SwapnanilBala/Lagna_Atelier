@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lagna Atelier</string>
+
+    <!-- Landing -->
+    <string name="landing_language">HI</string>
+    <string name="landing_headline">जिस आकाश के नीचे आप जन्मे, उसे पढ़ें</string>
+    <string name="landing_copy">छह परंपराओं में आपकी जन्म कुंडली, जीवन की वह अवधि जिसमें आप अभी हैं, और आपकी हथेली का पठन।</string>
+    <string name="landing_start">अपनी कुंडली बनाएँ</string>
+    <string name="landing_today_label">आज का आकाश · %1$s</string>
+    <string name="landing_today_moon">चंद्र %1$s में</string>
+    <string name="landing_today_detail">%1$s · सूर्य %2$s में</string>
+    <string name="landing_traditions_title">हर परंपरा, जिस पर आप भरोसा करते हैं</string>
+    <string name="landing_traditions_copy">लाहिड़ी से युक्तेश्वर तक, हर एक के साथ छह भाव पद्धतियाँ।</string>
+    <string name="landing_traditions_label">परंपराएँ</string>
+    <string name="landing_traditions_count">36</string>
+    <string name="landing_now_label">दिन तक सटीक</string>
+    <string name="landing_now_copy">जिस अध्याय में आप हैं, और वह कब बदलता है</string>
+    <string name="landing_proof">205 योग</string>
+    <!-- Quoted: Android drops a leading space from an unquoted string. -->
+    <string name="landing_proof_tail">" हर कुंडली पर जाँचे जाते हैं"</string>
+    <string name="landing_google">Google से साइन इन करें</string>
+    <string name="landing_saved">सहेजी गई कुंडलियाँ</string>
+    <string name="landing_traditions_initials_description">लाहिड़ी, रमन, कृष्णमूर्ति, Fagan-Bradley, Pushyapaksha और Yukteshwar</string>
+
+    <string name="landing_today_plain">आज का आकाश</string>
+    <string name="landing_today_loading">आकाश पढ़ा जा रहा है…</string>
+    <string name="landing_today_unavailable">ऑनलाइन होने पर आकाश यहाँ दिखता है।</string>
+
+    <!-- Intake -->
+    <string name="intake_title">आपका जन्म विवरण</string>
+    <string name="intake_lead">कुंडली ठीक इसी क्षण और इसी स्थान के लिए बनाई जाती है।</string>
+    <string name="intake_name">नाम</string>
+    <string name="intake_date">जन्म तिथि</string>
+    <string name="intake_time">जन्म समय</string>
+    <string name="intake_choose">चुनें</string>
+    <string name="intake_knows_time">मुझे सटीक समय पता है</string>
+    <string name="intake_estimate_label">लगभग कब?</string>
+    <string name="intake_estimate_morning">सुबह</string>
+    <string name="intake_estimate_afternoon">दोपहर</string>
+    <string name="intake_estimate_evening">शाम</string>
+    <string name="intake_estimate_unknown">पता नहीं</string>
+    <string name="intake_estimate_note">कुंडली में %1$s का समय लिया जाएगा। लग्न और भाव घंटे के साथ बदल सकते हैं, इसलिए उन्हें केवल संकेत मानें।</string>
+    <string name="intake_place">जन्म स्थान</string>
+    <string name="intake_place_hint">किसी कस्बे या शहर का नाम लिखना शुरू करें</string>
+    <string name="intake_place_located">समय क्षेत्र %1$s, उस तारीख को %2$s।</string>
+    <string name="intake_place_not_found">इस नाम का कोई स्थान नहीं मिला। पास का कोई बड़ा शहर आज़माएँ।</string>
+    <string name="intake_place_failed">स्थान की खोज जवाब नहीं दे रही है। अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+    <string name="intake_tradition">परंपरा</string>
+    <string name="intake_ayanamsha">अयनांश</string>
+    <string name="intake_houses">भाव</string>
+    <string name="intake_tradition_note">पूर्ण राशि भावों के साथ लाहिड़ी सामान्य विकल्प है, और वेबसाइट भी इसी से शुरू होती है।</string>
+    <string name="intake_submit">मेरी कुंडली बनाएँ</string>
+    <string name="intake_ready">जब आप तैयार हों, सब तैयार है।</string>
+    <string name="intake_missing_name">कम से कम दो अक्षरों का नाम जोड़ें।</string>
+    <string name="intake_missing_date">जन्म तिथि जोड़ें।</string>
+    <string name="intake_missing_time">समय जोड़ें, या “मुझे सटीक समय पता है” बंद करें।</string>
+    <string name="intake_missing_place">सूची से जन्म स्थान चुनें।</string>
+    <string name="intake_ok">ठीक है</string>
+    <string name="intake_cancel">रद्द करें</string>
+
+    <!-- Casting -->
+    <string name="casting_title">%1$s की कुंडली बन रही है</string>
+    <string name="casting_detail">%1$s, %2$s के लिए ग्रहों की स्थिति निकाली जा रही है।</string>
+    <string name="casting_failed_title">कुंडली नहीं आ पाई</string>
+    <string name="casting_failed_generic">अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+    <string name="casting_retry">फिर कोशिश करें</string>
+    <string name="casting_edit">विवरण बदलें</string>
+
+    <!-- Reading -->
+    <string name="reading_back">वापस</string>
+    <string name="reading_share">साझा करें</string>
+    <string name="reading_share_text">%1$s की जन्म कुंडली: %2$s लग्न, चंद्र %3$s (%4$s) में, %6$s तक %5$s की दशा। पूरा पठन Lagna Atelier पर: %7$s</string>
+    <string name="reading_share_subject">%1$s की जन्म कुंडली</string>
+    <string name="reading_share_chooser">यह पठन साझा करें</string>
+    <string name="reading_sample">नमूना कुंडली</string>
+    <string name="reading_now_label">आपका वर्तमान अध्याय</string>
+    <string name="reading_now_through">बीत चुका</string>
+    <string name="reading_now_to">%1$s तक</string>
+    <string name="reading_fact_lagna">लग्न</string>
+    <string name="reading_fact_moon">चंद्र राशि</string>
+    <string name="reading_fact_nakshatra">नक्षत्र</string>
+    <string name="reading_fact_mahadasha">महादशा</string>
+    <string name="reading_pada">पद %1$d · %2$s</string>
+    <string name="reading_until">%1$s तक</string>
+    <string name="reading_dasha_title">दशा समयरेखा</string>
+    <string name="reading_dasha_maha">महा</string>
+    <string name="reading_dasha_antar">अंतर</string>
+    <string name="reading_chart_title">जन्म कुंडली</string>
+    <string name="reading_chart_rasi">राशि</string>
+    <string name="reading_chart_navamsa">नवांश</string>
+    <string name="reading_chart_ascendant">ल</string>
+    <string name="reading_attention_title">जो ध्यान देने योग्य है</string>
+    <string name="reading_see_all">सभी %1$d देखें</string>
+    <string name="reading_see_fewer">कम दिखाएँ</string>
+    <string name="reading_report">आपकी रिपोर्ट</string>
+    <string name="reading_navamsa_missing">यह कुंडली अपने नवांश के बिना लौटी।</string>
+    <string name="reading_time_estimated">जन्म समय अनुमानित</string>
+
+    <!-- Navigation -->
+    <string name="nav_reading">पठन</string>
+    <string name="nav_timing">समय</string>
+    <string name="nav_palm">हस्तरेखा</string>
+    <string name="nav_account">खाता</string>
+    <string name="nav_soon">%1$s अगली स्क्रीन है जो बनाई जाएगी।</string>
+</resources>

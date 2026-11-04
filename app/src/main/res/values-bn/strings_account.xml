@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Bengali (bn). Terms follow the website's messages/bn.json. -->
+<resources>
+    <string name="account_title">অ্যাকাউন্ট</string>
+    <string name="account_signed_out">সাইন ইন করা নেই</string>
+    <string name="account_signin_tag">শীঘ্রই আসছে</string>
+    <string name="account_signin_title">Google দিয়ে সাইন ইন শীঘ্রই আসছে</string>
+    <string name="account_signin_copy">এটি এখনও অ্যাপে আসেনি। এলে আপনার কুণ্ডলীগুলি নিজের অ্যাকাউন্টে রাখতে পারবেন, আর lagnaatelier.site-এও দেখতে পাবেন। ততদিন এখানকার সবকিছু এই ফোনেই থাকে।</string>
+    <string name="account_saved_title">সংরক্ষিত কুণ্ডলী</string>
+    <string name="account_saved_count">%2$dটির মধ্যে %1$dটি</string>
+    <string name="account_saved_local">শুধু এই ফোনে রাখা</string>
+    <string name="account_manage">পরিচালনা করুন</string>
+    <string name="account_manage_done">হয়ে গেছে</string>
+    <string name="account_prefs_title">পছন্দ</string>
+    <string name="account_language">ভাষা</string>
+    <string name="account_chart_style">ছকের ধরন</string>
+    <string name="account_new_charts">নতুন কুণ্ডলীতে ব্যবহার হয়</string>
+    <string name="account_new_charts_note">জন্ম বিবরণের ফর্মে অন্য ঐতিহ্য বেছে নিতে পারেন।</string>
+    <string name="account_about_title">সম্পর্কে</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">ওয়েবসাইট</string>
+    <string name="account_website_note">কুণ্ডলী সেখানে তৈরি হয়, আর সংরক্ষিত থাকে শুধু এই ফোনে।</string>
+    <string name="account_website_failed">এই ফোনের কোনো অ্যাপ লিংকটি খুলতে পারছে না।</string>
+    <string name="account_licences">লাইসেন্স</string>
+    <string name="account_licences_summary">Geist ও Geist Mono, SIL Open Font License 1.1। গ্রহের অবস্থান astronomy-engine দিয়ে, MIT লাইসেন্স।</string>
+    <string name="account_licences_fonts">Geist ও Geist Mono</string>
+    <string name="account_licences_fonts_note">অ্যাপের টাইপফেস, The Geist Project Authors-এর তৈরি, SIL Open Font License 1.1-এর অধীনে।</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">Don Cross-এর তৈরি, MIT লাইসেন্সের অধীনে। ওয়েবসাইট গ্রহ বসাতে এটি ব্যবহার করে; সাইট যা পাঠায়, অ্যাপ তা-ই দেখায়।</string>
+    <string name="account_licences_show">ফন্ট লাইসেন্স পড়ুন</string>
+    <string name="account_licences_hide">ফন্ট লাইসেন্স লুকান</string>
+    <string name="saved_title">সংরক্ষিত কুণ্ডলী</string>
+    <string name="saved_count">এই ফোনে %2$dটির মধ্যে %1$dটি</string>
+    <string name="saved_opened_last">সর্বশেষ খোলা</string>
+    <string name="saved_rising">লগ্ন</string>
+    <string name="saved_moon">চন্দ্র</string>
+    <string name="saved_open">খুলুন</string>
+    <string name="saved_add">একটি কুণ্ডলী যোগ করুন</string>
+    <string name="saved_empty">এখনও কোনো সংরক্ষিত কুণ্ডলী নেই। একটি তৈরি করুন, সেটি এখানে রাখা হবে।</string>
+    <string name="saved_sample">নমুনা কুণ্ডলী দেখুন</string>
+    <string name="saved_note">কোনো কুণ্ডলী মুছতে তার পাশের ডাস্টবিনে ট্যাপ করুন, বা কুণ্ডলীটি চেপে ধরে রাখুন। পাঁচটি রাখা যায়; ষষ্ঠটি যোগ করলে যেটি সবচেয়ে আগে খোলা হয়েছিল, সেটির জায়গা নেয়।</string>
+    <string name="saved_delete_button">%1$s-এর কুণ্ডলী মুছুন</string>
+    <string name="saved_delete_question">%1$s-এর কুণ্ডলী মুছবেন?</string>
+    <string name="saved_delete_detail">এটি এই ফোন থেকে মুছে যাবে। জন্ম বিবরণ থেকে আবার যোগ করতে পারবেন।</string>
+    <string name="saved_cancel">বাতিল</string>
+    <string name="saved_delete">মুছুন</string>
+    <string name="saved_open_chart">%1$s-এর কুণ্ডলী খুলুন</string>
+    <string name="saved_time_morning">সকাল</string>
+    <string name="saved_time_afternoon">দুপুর</string>
+    <string name="saved_time_evening">সন্ধ্যা</string>
+    <string name="saved_time_unknown">সময় অজানা</string>
+    <string name="saved_missing_value">—</string>
+</resources>

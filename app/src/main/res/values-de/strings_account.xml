@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the account feature; that feature owns this file. -->
+<resources>
+    <!-- Account tab -->
+    <string name="account_title">Konto</string>
+    <string name="account_signed_out">Nicht angemeldet</string>
+    <string name="account_signin_tag">DEMNÄCHST</string>
+    <string name="account_signin_title">Die Anmeldung mit Google ist unterwegs</string>
+    <string name="account_signin_copy">Sie ist noch nicht in der App. Sobald sie da ist, kannst du deine Horoskope in deinem Konto behalten und sie auch auf lagnaatelier.site sehen. Bis dahin bleibt alles hier auf diesem Handy.</string>
+    <string name="account_saved_title">Gespeicherte Horoskope</string>
+    <string name="account_saved_count">%1$d von %2$d</string>
+    <string name="account_saved_local">Nur auf diesem Handy gespeichert</string>
+    <string name="account_manage">Verwalten</string>
+    <string name="account_manage_done">Fertig</string>
+    <string name="account_prefs_title">Einstellungen</string>
+    <string name="account_language">Sprache</string>
+    <string name="account_chart_style">Horoskopstil</string>
+    <string name="account_new_charts">Neue Horoskope verwenden</string>
+    <string name="account_new_charts_note">Eine andere Tradition kannst du im Formular für die Geburtsdaten wählen.</string>
+    <string name="account_about_title">Über die App</string>
+    <string name="account_version">%1$s (%2$d)</string>
+    <string name="account_website">Website</string>
+    <string name="account_website_note">Die Horoskope werden dort berechnet und nur auf diesem Handy gespeichert.</string>
+    <string name="account_website_failed">Keine App auf diesem Handy kann den Link öffnen.</string>
+    <string name="account_licences">Lizenzen</string>
+    <string name="account_licences_summary">Geist und Geist Mono, SIL Open Font License 1.1. Planetenpositionen von astronomy-engine, MIT-Lizenz.</string>
+    <string name="account_licences_fonts">Geist und Geist Mono</string>
+    <string name="account_licences_fonts_note">Die Schriften der App, von The Geist Project Authors, unter der SIL Open Font License 1.1.</string>
+    <string name="account_licences_engine">astronomy-engine</string>
+    <string name="account_licences_engine_note">Von Don Cross, unter der MIT-Lizenz. Die Website setzt damit die Planeten; die App zeigt, was die Website sendet.</string>
+    <string name="account_licences_show">Schriftlizenz lesen</string>
+    <string name="account_licences_hide">Schriftlizenz ausblenden</string>
+
+    <!-- Saved charts screen -->
+    <string name="saved_title">Gespeicherte Horoskope</string>
+    <string name="saved_count">%1$d von %2$d auf diesem Handy</string>
+    <string name="saved_opened_last">Zuletzt geöffnet</string>
+    <string name="saved_rising">Aszendent</string>
+    <string name="saved_moon">Mond</string>
+    <string name="saved_open">Öffnen</string>
+    <string name="saved_add">Horoskop hinzufügen</string>
+    <string name="saved_empty">Noch keine gespeicherten Horoskope. Erstelle eines, und es wird hier aufbewahrt.</string>
+    <string name="saved_sample">Beispielhoroskop ansehen</string>
+    <string name="saved_note">Tippe auf den Papierkorb neben einem Horoskop oder drücke lange darauf, um es zu löschen. Du kannst fünf behalten; ein sechstes ersetzt das, das am längsten nicht geöffnet wurde.</string>
+    <string name="saved_delete_button">Horoskop von %1$s löschen</string>
+    <string name="saved_delete_question">Horoskop von %1$s löschen?</string>
+    <string name="saved_delete_detail">Es wird von diesem Handy entfernt. Du kannst es über die Geburtsdaten wieder hinzufügen.</string>
+    <string name="saved_cancel">Abbrechen</string>
+    <string name="saved_delete">Löschen</string>
+    <string name="saved_open_chart">Horoskop von %1$s öffnen</string>
+    <string name="saved_time_morning">morgens</string>
+    <string name="saved_time_afternoon">nachmittags</string>
+    <string name="saved_time_evening">abends</string>
+    <string name="saved_time_unknown">Zeit unbekannt</string>
+    <string name="saved_missing_value">—</string>
+</resources>

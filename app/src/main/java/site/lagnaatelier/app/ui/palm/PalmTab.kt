@@ -93,6 +93,7 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier
         when {
             model.view == PalmView.Reading && shown != null -> PalmReadingView(model, shown, onAsk = { model.ask(api, it) })
             model.view == PalmView.History -> PalmHistoryView(model)
+            model.view == PalmView.Compare -> PalmCompareView(model)
             else -> PalmCaptureView(
                 model = model,
                 hasChart = hasChart,

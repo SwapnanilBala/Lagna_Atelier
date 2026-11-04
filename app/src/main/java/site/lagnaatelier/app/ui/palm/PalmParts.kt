@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.palm.LineKey
 import site.lagnaatelier.app.data.palm.PalmReader
 import site.lagnaatelier.app.data.palm.PalmReading
@@ -67,11 +68,11 @@ import site.lagnaatelier.app.ui.theme.GeistMono
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
 import site.lagnaatelier.app.ui.theme.LiquidType
+import site.lagnaatelier.app.ui.theme.MidTone
 import site.lagnaatelier.app.ui.theme.Muted
+import site.lagnaatelier.app.ui.theme.PhotoGround
 import java.time.Instant
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /* Pieces the three palm views share. Copied in look from ui/reading, not imported from it. */
 
@@ -81,13 +82,9 @@ internal val NavRoom = 140.dp
 /** Room for the nav pill and the palm dock above it. */
 internal val DockRoom = 210.dp
 
-/* The warm ground the mock puts behind a palm photo. */
-private val PhotoGround = Color(0xFFE6E1DA)
-
-private val DayLabel = DateTimeFormatter.ofPattern("EEE d MMM yyyy", Locale.ENGLISH)
-
 internal fun dayLabel(millis: Long): String =
-    Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate().format(DayLabel)
+    Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalDate()
+        .format(AppDates.formatter("EEE d MMM yyyy", "EEEdMMMyyyy"))
 
 @Composable
 internal fun handLabel(reader: PalmReader): String = stringResource(
@@ -282,7 +279,7 @@ internal fun HandOutline(modifier: Modifier = Modifier) {
             floatArrayOf(108f, 46f, 16f, 60f, 8f),
         )
         val outline = Stroke(width = 5f * s, join = StrokeJoin.Round)
-        val edge = Color(0xFFC9CDD6)
+        val edge = MidTone
         fun bar(b: FloatArray, fill: Boolean) {
             val topLeft = Offset(ox + b[0] * s, oy + b[1] * s)
             val sz = Size(b[2] * s, b[3] * s)

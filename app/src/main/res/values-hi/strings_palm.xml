@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the palm feature; that feature owns this file.
+     Wording follows the web's palm namespace in messages/hi.json where the web has it. -->
+<resources>
+    <!-- Capture -->
+    <string name="palm_title">अपनी हथेली पढ़वाएँ</string>
+    <string name="palm_lead_chart">आपकी हथेली की एक तस्वीर, जिसकी रेखाएँ, पर्वत और चिह्न पढ़े जाते हैं और आपकी कुंडली के साथ तौले जाते हैं।</string>
+    <string name="palm_lead_plain">आपकी हथेली की एक तस्वीर, जिसकी रेखाएँ, पर्वत और चिह्न पढ़े जाते हैं।</string>
+    <string name="palm_reader_legend">यह किसका हाथ है?</string>
+    <string name="palm_reader_woman">स्त्री का</string>
+    <string name="palm_reader_man">पुरुष का</string>
+    <string name="palm_reader_unspecified">बताना नहीं चाहते</string>
+    <string name="palm_reader_hint_woman">बाएँ हाथ की तस्वीर लें: शास्त्रीय हस्तरेखा विद्या में स्त्री का बायाँ हाथ देखा जाता है।</string>
+    <string name="palm_reader_hint_man">दाएँ हाथ की तस्वीर लें: शास्त्रीय हस्तरेखा विद्या में पुरुष का दायाँ हाथ देखा जाता है।</string>
+    <string name="palm_reader_hint_unspecified">जिस हाथ से आप लिखते हैं, उसकी तस्वीर लें।</string>
+    <string name="palm_finder_left">बायाँ हाथ · हथेली कैमरे की ओर</string>
+    <string name="palm_finder_right">दायाँ हाथ · हथेली कैमरे की ओर</string>
+    <string name="palm_finder_writing">लिखने वाला हाथ · हथेली कैमरे की ओर</string>
+    <string name="palm_take_photo">तस्वीर लें</string>
+    <string name="palm_choose_photo">तस्वीर चुनें</string>
+    <string name="palm_retake">फिर से लें</string>
+    <string name="palm_choose_another">दूसरी चुनें</string>
+    <string name="palm_analyze">मेरी हथेली पढ़ें</string>
+    <string name="palm_preparing">तस्वीर तैयार की जा रही है…</string>
+    <string name="palm_photo_description">आपकी हथेली की तस्वीर</string>
+    <string name="palm_back_to_reading">अपनी रीडिंग पर वापस जाएं</string>
+
+    <string name="palm_tips_title">साफ़ तस्वीर के लिए</string>
+    <string name="palm_tip_flat">हाथ सीधा रखें, हथेली कैमरे की ओर</string>
+    <string name="palm_tip_light">समान रोशनी, कोई तेज़ छाया नहीं</string>
+    <string name="palm_tip_light_detail">खिड़की से आती दिन की रोशनी सबसे अच्छी रहती है। फ़्लैश न लगाएँ।</string>
+    <string name="palm_tip_fingers">उंगलियाँ थोड़ी फैली हुई</string>
+    <string name="palm_tip_frame">पूरी हथेली फ़्रेम में, कलाई तक</string>
+
+    <string name="palm_classical_title">शास्त्रीय मोड</string>
+    <string name="palm_classical_subtitle">केवल हस्त सामुद्रिक शास्त्र</string>
+
+    <plurals name="palm_allowance_left">
+        <item quantity="one">पठन इस सप्ताह शेष</item>
+        <item quantity="other">पठन इस सप्ताह शेष</item>
+    </plurals>
+    <string name="palm_allowance_note">आप एक सप्ताह में दो हस्तरेखा पठन ले सकते हैं। गिनती हर सोमवार फिर से शुरू होती है।</string>
+    <string name="palm_allowance_opens">अगले दो पठन %1$s को खुलेंगे।</string>
+    <string name="palm_history_link">आपके पठन · %1$d</string>
+    <string name="palm_history_link_empty">आपके पठन</string>
+
+    <!-- Analysing: the web's stage lines, paced for a reading of about a minute -->
+    <string name="palm_stage_start">आपकी हथेली पढ़ी जा रही है</string>
+    <string name="palm_stage_lines">मुख्य रेखाओं का अनुसरण</string>
+    <string name="palm_stage_mounts">पर्वतों और उंगलियों का अध्ययन</string>
+    <string name="palm_stage_weighing">रेखाएँ किस पर सहमत हैं, यह तौला जा रहा है</string>
+    <string name="palm_stage_writing">आपकी रीडिंग लिखी जा रही है</string>
+    <string name="palm_stage_finishing">अंतिम भाग पूरे किए जा रहे हैं</string>
+    <string name="palm_patience">पूरी रीडिंग में लगभग एक मिनट लगता है। यह आपके हाथ के लिए लिखी जा रही है, कहीं से उठाई नहीं गई।</string>
+
+    <!-- Errors -->
+    <string name="palm_error_camera">कोई कैमरा उपलब्ध नहीं है। इसके बजाय कोई तस्वीर चुनें।</string>
+    <string name="palm_error_photo">वह तस्वीर खुल नहीं सकी। दूसरी चुनें।</string>
+    <string name="palm_error_weekly">आप इस सप्ताह के %1$d हस्तरेखा पठन ले चुके हैं। आपका अगला पठन %2$s को खुलेगा।</string>
+    <string name="palm_error_generic">कुछ गलत हो गया। कृपया फिर प्रयास करें।</string>
+    <string name="palm_error_offline">साइट तक पहुँचा नहीं जा सका। अपना कनेक्शन जाँचें और फिर कोशिश करें।</string>
+    <string name="palm_error_timeout">पठन लौटने में बहुत देर लगी। कृपया फिर प्रयास करें।</string>
+    <string name="palm_error_not_reading">कोई पठन नहीं लौटा।</string>
+    <string name="palm_error_save">पठन सहेजा नहीं जा सका</string>
+
+    <!-- Reading -->
+    <string name="palm_reading_title">हस्तरेखा पठन</string>
+    <string name="palm_back">वापस</string>
+    <string name="palm_quality_title">तस्वीर की गुणवत्ता: %1$s</string>
+    <string name="palm_quality_excellent">उत्कृष्ट</string>
+    <string name="palm_quality_good">अच्छी</string>
+    <string name="palm_quality_marginal">सीमांत</string>
+    <string name="palm_quality_poor">कमज़ोर</string>
+    <string name="palm_quality_hard">तस्वीर की गुणवत्ता सटीकता को प्रभावित कर सकती है</string>
+    <string name="palm_quality_soft">तस्वीर सीमांत गुणवत्ता की है — सावधानी से समझें</string>
+    <string name="palm_traced_description">रेखाएँ अंकित की हुई आपकी तस्वीर</string>
+    <string name="palm_in_short">संक्षेप में</string>
+    <string name="palm_lines_title">चार रेखाएँ</string>
+    <string name="palm_lines_label">हर रेखा कितनी स्पष्ट दिखी</string>
+    <string name="palm_line_heart">हृदय रेखा</string>
+    <string name="palm_line_head">मस्तिष्क रेखा</string>
+    <string name="palm_line_life">जीवन रेखा</string>
+    <string name="palm_line_fate">भाग्य रेखा</string>
+    <string name="palm_trace_heart">हृदय</string>
+    <string name="palm_trace_head">मस्तिष्क</string>
+    <string name="palm_trace_life">जीवन</string>
+    <string name="palm_trace_fate">भाग्य</string>
+    <string name="palm_visibility_clear">स्पष्ट</string>
+    <string name="palm_visibility_partial">आंशिक</string>
+    <string name="palm_visibility_faint">धुँधली</string>
+    <string name="palm_visibility_not_detected">नहीं मिली</string>
+    <string name="palm_line_confidence">%1$s · %2$d%%</string>
+    <string name="palm_strength_strong">मज़बूत</string>
+    <string name="palm_strength_moderate">मध्यम</string>
+    <string name="palm_strength_faint">धुँधली</string>
+    <string name="palm_strength_absent">अनुपस्थित</string>
+    <string name="palm_mounts_title">पर्वत</string>
+    <string name="palm_mounts_label">सबसे विकसित</string>
+    <string name="palm_reinforcement_strong">प्रबल</string>
+    <string name="palm_reinforcement_moderate">मध्यम</string>
+    <string name="palm_reinforcement_contradictory">भिन्न</string>
+    <string name="palm_reinforcement_neutral">तटस्थ</string>
+    <string name="palm_more_title">आपके पठन में और</string>
+    <string name="palm_more_show">सभी देखें</string>
+    <string name="palm_more_hide">कम देखें</string>
+    <string name="palm_more_current">वर्तमान चरण</string>
+    <string name="palm_more_near">निकट भविष्य</string>
+    <string name="palm_more_long">दीर्घकालिक मार्ग</string>
+    <string name="palm_more_challenges">चुनौतियाँ</string>
+    <string name="palm_more_opportunities">अवसर</string>
+    <string name="palm_more_talents">स्वाभाविक प्रतिभाएँ</string>
+    <string name="palm_more_career">करियर की दिशा</string>
+    <string name="palm_more_purpose">उद्देश्य के साथ तालमेल</string>
+    <string name="palm_more_emotional">भावनात्मक स्थिति</string>
+    <string name="palm_more_relationships">संबंधों की गतिशीलता</string>
+    <string name="palm_more_connection">जुड़ाव की शैली</string>
+    <string name="palm_more_fingers">उंगलियाँ</string>
+    <string name="palm_more_markings">विशेष चिह्न</string>
+    <string name="palm_more_dasha">सक्रिय दशा दृष्टि</string>
+    <string name="palm_more_guidance">मार्गदर्शन</string>
+    <string name="palm_new_reading">नया पठन</string>
+    <string name="palm_save">पठन सहेजें</string>
+    <string name="palm_saving">सहेजा जा रहा है…</string>
+    <string name="palm_saved">सहेजा गया</string>
+
+    <!-- Ask about this reading -->
+    <string name="palm_qa_title">इस रीडिंग के बारे में पूछें</string>
+    <plurals name="palm_qa_left">
+        <item quantity="one">%1$d प्रश्न</item>
+        <item quantity="other">%1$d प्रश्न</item>
+    </plurals>
+    <string name="palm_qa_lead">उत्तर इसी रीडिंग और आपकी कुंडली से आते हैं, कहीं और से नहीं।</string>
+    <string name="palm_qa_starter_career">मेरी हथेली मेरे काम की दिशा के बारे में क्या कहती है?</string>
+    <string name="palm_qa_starter_timing">अगले वर्ष मुझे किस बात पर ध्यान देना चाहिए?</string>
+    <string name="palm_qa_starter_strength">मेरे हाथ की सबसे मजबूत रेखा कौन सी है, और उसका क्या अर्थ है?</string>
+    <string name="palm_qa_label">आपका प्रश्न</string>
+    <string name="palm_qa_placeholder">किसी रेखा, समय के बारे में पूछिए…</string>
+    <string name="palm_qa_send">पूछें</string>
+    <string name="palm_qa_thinking">आपकी हथेली फिर से देखी जा रही है…</string>
+    <string name="palm_qa_full">इस रीडिंग के लिए इतने ही प्रश्न। आगे बढ़ने के लिए नई रीडिंग लें।</string>
+    <string name="palm_qa_error">इस प्रश्न का उत्तर नहीं मिल सका। कृपया फिर प्रयास करें।</string>
+    <string name="palm_qa_footnote">प्रवृत्तियाँ और संभावनाएँ, निश्चित भाग्य कभी नहीं।</string>
+
+    <!-- History -->
+    <string name="palm_history_title">हस्तरेखा पठन</string>
+    <plurals name="palm_history_count">
+        <item quantity="one">इस फ़ोन पर %1$d सहेजा गया</item>
+        <item quantity="other">इस फ़ोन पर %1$d सहेजे गए</item>
+    </plurals>
+    <string name="palm_history_latest">नवीनतम</string>
+    <string name="palm_history_earlier">पहले के</string>
+    <string name="palm_history_meta">%1$s · %2$s</string>
+    <string name="palm_history_meta_hand_quality">%1$s · %2$s तस्वीर</string>
+    <string name="palm_history_meta_quality">%1$s · %2$s · %3$s तस्वीर</string>
+    <string name="palm_hand_left">बायाँ हाथ</string>
+    <string name="palm_hand_right">दायाँ हाथ</string>
+    <string name="palm_hand_writing">लिखने वाला हाथ</string>
+    <string name="palm_history_empty">आपने अभी तक कोई हस्तरेखा पठन नहीं सहेजा है।</string>
+    <string name="palm_history_note">पठन केवल इसी फ़ोन पर रखे जाते हैं। किसी पठन को मिटाने से उसकी तस्वीर भी हट जाती है।</string>
+    <string name="palm_delete">मिटाएँ</string>
+    <string name="palm_delete_confirm">यह पठन मिटाना है?</string>
+    <string name="palm_delete_yes">हाँ, मिटाएँ</string>
+    <string name="palm_cancel">रद्द करें</string>
+</resources>

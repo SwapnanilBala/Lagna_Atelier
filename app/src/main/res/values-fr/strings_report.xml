@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the report feature; that feature owns this file. -->
+<resources>
+    <!-- The screens -->
+    <string name="report_title">Votre rapport</string>
+    <string name="report_back">Retour</string>
+    <plurals name="report_chapters">
+        <item quantity="one">%d chapitre</item>
+        <item quantity="many">%d chapitres</item>
+        <item quantity="other">%d chapitres</item>
+    </plurals>
+    <string name="report_subtitle_working">%1$s · %2$s</string>
+    <string name="report_subtitle_preparing">%1$s · en préparation</string>
+    <string name="report_subtitle_ready">Prêt · %1$s</string>
+
+    <!-- Generating -->
+    <string name="report_generating_label">Votre PDF est en cours de rédaction</string>
+    <string name="report_progress_description">Progression du rapport, %1$d pour cent</string>
+    <string name="report_percent_sign" formatted="false">%</string>
+    <string name="report_step_calculating">Finalisation du calcul</string>
+    <string name="report_step_verifying">Vérification croisée de la carte</string>
+    <string name="report_step_writing">Rédaction de votre lecture</string>
+    <string name="report_step_typesetting">Mise en page du PDF</string>
+    <string name="report_step_checks">%1$d sur %2$d</string>
+    <string name="report_step_chapters">%1$d / %2$d</string>
+    <string name="report_detail_planning">Préparation des chapitres…</string>
+    <string name="report_detail_introduction">Rédaction de l’introduction…</string>
+    <string name="report_detail_chapter">Rédaction du chapitre %1$d sur %2$d</string>
+    <string name="report_note">Chaque chapitre est rédigé d’après vos propres positions. Cela prend environ une minute. Gardez l’app ouverte jusqu’à ce que le rapport soit prêt.</string>
+    <string name="report_chapters_title">Les chapitres</string>
+    <string name="report_chapters_label">Vérifiés avant la rédaction</string>
+    <string name="report_chapter_done">Rédigé</string>
+    <string name="report_chapter_now">En cours de rédaction</string>
+    <string name="report_stop">Arrêter la rédaction</string>
+
+    <!-- Ready -->
+    <string name="report_ready_title">Votre rapport est prêt</string>
+    <string name="report_ready_meta">PDF · %1$s · %2$s</string>
+    <string name="report_ready_verified">vérifié</string>
+    <string name="report_ready_qualified">sous réserve</string>
+    <string name="report_cover_description">Page de couverture de votre rapport : %1$s, Votre histoire.</string>
+    <string name="report_open">Ouvrir</string>
+    <string name="report_share">Partager</string>
+    <string name="report_share_chooser">Partager votre rapport</string>
+    <string name="report_share_subject">Lagna Atelier · %1$s</string>
+    <string name="report_file_kind">PDF</string>
+    <string name="report_file_where">Conservé dans l’app sur ce téléphone. Partagez-le pour en enregistrer une copie ailleurs.</string>
+    <string name="report_no_viewer">Aucune app de ce téléphone n’ouvre les PDF. Utilisez Partager pour l’envoyer vers une app qui le peut.</string>
+    <string name="report_checks_passed">%1$d vérifications réussies sur %2$d</string>
+    <string name="report_checks_qualified">%1$d vérifications réussies sans réserve sur %2$d</string>
+    <string name="report_plain_title">Cette copie utilise le texte plus court du thème lui-même</string>
+    <string name="report_plain_limit">Les lectures du jour sont épuisées : chaque chapitre garde donc le texte écrit par le calcul, sans la version rédigée plus longue. Refaites-le demain pour obtenir la version rédigée.</string>
+    <string name="report_plain_timeout">La rédaction a pris plus de temps que prévu : chaque chapitre garde donc le texte écrit par le calcul, sans la version rédigée plus longue.</string>
+    <string name="report_plain_offline">La connexion a été coupée pendant la rédaction des chapitres : chaque chapitre garde donc le texte écrit par le calcul, sans la version rédigée plus longue.</string>
+    <string name="report_plain_declined">La version rédigée n’est pas arrivée : chaque chapitre garde donc le texte écrit par le calcul, sans la version rédigée plus longue.</string>
+    <string name="report_make_again">Le refaire</string>
+    <string name="report_close">Fermer</string>
+
+    <!-- Failed -->
+    <string name="report_failed_title">Le rapport n’a pas pu être obtenu</string>
+    <string name="report_failed_generic">Vérifiez votre connexion et réessayez.</string>
+    <string name="report_failed_verification">Le thème n’a pas passé ses vérifications de cohérence, aucun rapport n’en a donc été tiré.</string>
+    <string name="report_failed_pdf">Le PDF n’a pas pu être créé sur ce téléphone. Réessayez.</string>
+    <string name="report_retry">Réessayer</string>
+
+    <!-- The PDF -->
+    <string name="report_pdf_brand">Lagna Atelier</string>
+    <string name="report_pdf_edition">Édition Histoire personnelle</string>
+    <string name="report_pdf_cover_kicker">Un portrait astrologique personnel</string>
+    <string name="report_pdf_cover_title">Votre histoire</string>
+    <string name="report_pdf_cover_ascendant">Ascendant %1$s</string>
+    <string name="report_pdf_cover_prepared">Préparé le %1$s</string>
+    <string name="report_pdf_verified">Rapport vérifié</string>
+    <string name="report_pdf_qualified">Rapport sous réserve</string>
+    <string name="report_pdf_running_head">Lagna Atelier · Lecture personnelle</string>
+    <string name="report_pdf_begin_kicker">Commencez ici</string>
+    <string name="report_pdf_begin_title">La forme de votre histoire</string>
+    <string name="report_pdf_glance">En bref</string>
+    <string name="report_pdf_threads">Trois fils à remarquer</string>
+    <string name="report_pdf_support_well">Bien étayé</string>
+    <string name="report_pdf_support_supported">Étayé</string>
+    <string name="report_pdf_support_exploratory">Exploratoire</string>
+    <string name="report_pdf_seasons">Les saisons actuellement en vue</string>
+    <string name="report_pdf_carry">À garder avec vous</string>
+    <string name="report_pdf_question">Une question à méditer</string>
+    <string name="report_pdf_why">Pourquoi ce chapitre apparaît</string>
+    <string name="report_pdf_close_kicker">Avant de refermer ce rapport</string>
+    <string name="report_pdf_close_title">Comment continuer à l’utiliser</string>
+    <string name="report_pdf_close_note1_title">Un chapitre à la fois</string>
+    <string name="report_pdf_close_note1">Chacun a été écrit pour se suffire à lui-même. Le rapport n’est pas un argument à suivre du début à la fin, et le chapitre qui compte le plus pour vous cette année n’est peut-être pas le premier.</string>
+    <string name="report_pdf_close_note2_title">Fiez-vous à la note sous chaque titre</string>
+    <string name="report_pdf_close_note2">Lorsqu’un chapitre est marqué exploratoire, il repose sur des indices plus minces et mérite d’être pris avec légèreté. Cette mention est calculée, non éditoriale, et c’est l’élément le plus utile de la page.</string>
+    <string name="report_pdf_close_note3_title">Revenez aux questions</string>
+    <string name="report_pdf_close_note3">La question à la fin de chaque chapitre est la part dont la réponse n’appartient qu’à vous. Elles méritent qu’on y revienne, car les réponses évoluent même quand le thème, lui, ne bouge pas.</string>
+    <string name="report_pdf_sign_off">Rien ici n’est un verdict. Un thème décrit le temps qu’il faisait à votre naissance, pas ce que vous en ferez.</string>
+    <string name="report_pdf_checked">Comment ce rapport a été vérifié</string>
+    <string name="report_pdf_provenance">Calculé avec %1$s (%2$s), ayanamsha %3$s, maisons %4$s, à partir d’une heure de naissance enregistrée comme %5$s. %6$s</string>
+    <string name="report_pdf_provenance_clean">Les %1$d vérifications internes de cohérence ont toutes réussi.</string>
+    <string name="report_pdf_provenance_qualified">%1$d vérifications internes de cohérence sur %2$d ont réussi sans réserve ; %3$d ont renvoyé une réserve, reflétée dans la note de soutien des chapitres concernés.</string>
+</resources>
