@@ -26,6 +26,21 @@ data class ProseProgress(
     val chapters: Int,
 ) {
     val planning: Boolean get() = phase != "writing"
+
+    /**
+     * This progress moved on by [next], never back: the route's fraction and
+     * chapter count can dip between lines (a chapter retried, a phase
+     * re-estimated), and a bar or a count that goes backwards reads as broken.
+     */
+    fun advancedBy(next: ProseProgress): ProseProgress {
+        val chapters = maxOf(chapters, next.chapters)
+        return ProseProgress(
+            phase = if (!planning || !next.planning) "writing" else next.phase,
+            fraction = maxOf(fraction, next.fraction),
+            chaptersStarted = maxOf(chaptersStarted, next.chaptersStarted).coerceAtMost(chapters),
+            chapters = chapters,
+        )
+    }
 }
 
 object StoryProseCodec {
