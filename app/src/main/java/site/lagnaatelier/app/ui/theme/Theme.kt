@@ -10,6 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 import site.lagnaatelier.app.data.LookPreferences
 
 /*
@@ -39,6 +42,25 @@ private fun schemeFor(palette: LiquidPalette): ColorScheme {
     )
 }
 
+/*
+ * Devanagari and Bengali take no tracking: the big styles' negative letter
+ * spacing cuts the headline stroke and, on Android, breaks words between
+ * letters ("कन् / या"). The web does the same under :lang(hi) and :lang(bn).
+ */
+private val UNTRACKED_SCRIPTS = setOf("hi", "bn")
+
+private fun untracked(style: TextStyle) = style.copy(letterSpacing = 0.sp)
+
+private val UntrackedTypography = Typography.run {
+    copy(
+        displaySmall = untracked(displaySmall), headlineLarge = untracked(headlineLarge),
+        headlineSmall = untracked(headlineSmall), titleLarge = untracked(titleLarge),
+        titleMedium = untracked(titleMedium), titleSmall = untracked(titleSmall),
+        bodyLarge = untracked(bodyLarge), bodyMedium = untracked(bodyMedium), bodySmall = untracked(bodySmall),
+        labelLarge = untracked(labelLarge), labelMedium = untracked(labelMedium), labelSmall = untracked(labelSmall),
+    )
+}
+
 /** Whether the app is drawing dark right now, from the choice and the phone's setting. */
 @Composable
 fun isLiquidDark(): Boolean = LookPreferences.theme.isDark(isSystemInDarkTheme())
@@ -50,7 +72,9 @@ fun LagnaAtelierTheme(dark: Boolean = isLiquidDark(), content: @Composable () ->
     LiquidTheme.palette = palette
     SideEffect { LiquidTheme.palette = palette }
     val scheme = remember(palette) { schemeFor(palette) }
-    MaterialTheme(colorScheme = scheme, typography = Typography) {
+    val language = LocalConfiguration.current.locales[0].language
+    val typography = if (language in UNTRACKED_SCRIPTS) UntrackedTypography else Typography
+    MaterialTheme(colorScheme = scheme, typography = typography) {
         /* Text with no colour of its own takes this, which Material leaves black outside a Surface. */
         CompositionLocalProvider(LocalContentColor provides palette.ink, content = content)
     }
