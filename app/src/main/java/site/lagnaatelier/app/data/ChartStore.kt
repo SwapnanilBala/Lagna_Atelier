@@ -1,13 +1,15 @@
 package site.lagnaatelier.app.data
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import org.json.JSONArray
 import org.json.JSONObject
 import java.time.LocalDate
-import java.util.concurrent.CountDownLatch
+import kotlinx.coroutines.CompletableDeferred
 
 /**
  * A chart the reader cast on this phone: enough to cast it again, plus the
@@ -50,16 +52,25 @@ fun chartKey(details: BirthDetails): String =
  * at most; casting a sixth replaces the one opened longest ago.
  *
  * Stored as one JSON document in SharedPreferences (see [SavedChartsCodec]).
- * It is read once, on a background thread, as the store is made; [save] and
- * [delete] wait for that read, so a chart cast in the first moments after
- * launch cannot be overwritten by the stored list arriving late. Writes use
- * `apply()`, which updates memory at once and the disk shortly after; Android
- * flushes pending writes before the process is let go.
+ * It is read once, on a background thread, as the store is made, and handed
+ * to the main thread, where the list (Compose state) is only ever changed, so
+ * the screens see it arrive. Nothing blocks on that read: a [save] or
+ * [delete] made before it lands shows at once, and is applied again on top
+ * of the stored list when it arrives, so a chart cast in the first moments
+ * after launch is neither lost nor allowed to overwrite the list. The sync
+ * waits for it with [awaitLoaded], suspending rather than blocking. Writes
+ * use `apply()`, which updates memory at once and the disk shortly after;
+ * Android flushes pending writes before the process is let go.
+ *
+ * Main thread only, as every caller is (the view model, the screens, and the
+ * sync, which runs in the view model's scope).
  */
 class ChartStore internal constructor(
     private val storage: ChartStorage,
     private val clock: () -> Long = System::currentTimeMillis,
     runLoad: (() -> Unit) -> Unit = { task -> Thread({ task() }, "chart-store-load").start() },
+    /** Runs a task on the main thread; the tests run it in place. */
+    deliver: (() -> Unit) -> Unit = { task -> Handler(Looper.getMainLooper()).post(task) },
 ) {
     constructor(context: Context) : this(PreferencesStorage(context))
 
@@ -78,8 +89,12 @@ class ChartStore internal constructor(
     @Volatile
     var onChanged: () -> Unit = {}
 
-    private val lock = Any()
-    private val loaded = CountDownLatch(1)
+    /** False until the stored list has arrived; changes made before then wait in [early]. */
+    var loaded by mutableStateOf(false)
+        private set
+
+    private val arrived = CompletableDeferred<Unit>()
+    private val early = mutableListOf<(List<SavedChart>, List<String>) -> Pair<List<SavedChart>, List<String>>>()
 
     init {
         runLoad {
@@ -89,13 +104,23 @@ class ChartStore internal constructor(
                 // Storage that cannot be read is treated as empty, never as a crash.
                 SavedChartsCodec.Document(emptyList(), emptyList())
             }
-            synchronized(lock) {
-                saved = stored.charts
-                pendingDeletes = stored.pendingDeletes
-            }
-            loaded.countDown()
+            deliver { arrive(stored) }
         }
     }
+
+    private fun arrive(stored: SavedChartsCodec.Document) {
+        val changes = early.toList()
+        early.clear()
+        val (charts, deletes) = changes.fold(stored.charts to stored.pendingDeletes) { (list, gone), change -> change(list, gone) }
+        saved = charts
+        pendingDeletes = deletes
+        loaded = true
+        if (changes.isNotEmpty()) persist(charts, deletes)
+        arrived.complete(Unit)
+    }
+
+    /** Suspends until the stored list is in, for the sync; never blocks a thread. */
+    suspend fun awaitLoaded() = arrived.await()
 
     /** Records a chart the site just cast; called by AppViewModel on success. */
     fun save(details: BirthDetails, chart: ChartSummary) {
@@ -123,17 +148,14 @@ class ChartStore internal constructor(
         onChanged()
     }
 
-    /** The list and the pending deletes as they stand, once the stored list has loaded. */
-    fun snapshot(): Pair<List<SavedChart>, List<String>> {
-        loaded.await()
-        synchronized(lock) { return saved to pendingDeletes }
-    }
+    /** The list and the pending deletes as they stand; call [awaitLoaded] first. */
+    fun snapshot(): Pair<List<SavedChart>, List<String>> = saved to pendingDeletes
 
     /**
      * A change the sync works out from what the account said. [change] runs
-     * under the lock on the list as it is now, so a chart cast while the sync
-     * was on the network is not lost. Does not call [onChanged]: the sync is
-     * not a change made here.
+     * on the list as it is now, so a chart cast while the sync was on the
+     * network is not lost. Does not call [onChanged]: the sync is not a
+     * change made here.
      */
     fun applySync(change: (List<SavedChart>, List<String>) -> Pair<List<SavedChart>, List<String>>) {
         updateAll(change)
@@ -152,16 +174,18 @@ class ChartStore internal constructor(
     }
 
     private fun updateAll(change: (List<SavedChart>, List<String>) -> Pair<List<SavedChart>, List<String>>) {
-        loaded.await()
-        synchronized(lock) {
-            val (next, deletes) = change(saved, pendingDeletes)
-            saved = next
-            pendingDeletes = deletes
-            try {
-                storage.write(SavedChartsCodec.encode(next, deletes))
-            } catch (e: Exception) {
-                // A full disk loses the write, not the list on screen.
-            }
+        val (next, deletes) = change(saved, pendingDeletes)
+        saved = next
+        pendingDeletes = deletes
+        /* Before the stored list is in, writing would overwrite it: the change waits and is replayed. */
+        if (loaded) persist(next, deletes) else early += change
+    }
+
+    private fun persist(charts: List<SavedChart>, deletes: List<String>) {
+        try {
+            storage.write(SavedChartsCodec.encode(charts, deletes))
+        } catch (e: Exception) {
+            // A full disk loses the write, not the list on screen.
         }
     }
 
@@ -323,16 +347,17 @@ internal object SavedChartsCodec {
         put("accuracy", details.accuracy.apiValue)
         put("engineId", details.engineId)
         details.sex?.let { put("sex", it.apiValue) }
-        put("place", JSONObject().apply {
-            val place = details.place
-            put("city", place.city)
-            put("state", place.state)
-            put("country", place.country)
-            put("latitude", place.latitude)
-            put("longitude", place.longitude)
-            put("timeZoneId", place.timeZoneId)
-            put("timezoneOffsetMinutes", place.timezoneOffsetMinutes)
-        })
+        put("place", encodePlace(details.place))
+    }
+
+    fun encodePlace(place: Place): JSONObject = JSONObject().apply {
+        put("city", place.city)
+        put("state", place.state)
+        put("country", place.country)
+        put("latitude", place.latitude)
+        put("longitude", place.longitude)
+        put("timeZoneId", place.timeZoneId)
+        put("timezoneOffsetMinutes", place.timezoneOffsetMinutes)
     }
 
     fun decodeDetails(json: JSONObject): BirthDetails? {
@@ -348,7 +373,7 @@ internal object SavedChartsCodec {
         return BirthDetails(name, date, exactTime, accuracy, place, engineId, sex)
     }
 
-    private fun decodePlace(json: JSONObject): Place? {
+    fun decodePlace(json: JSONObject): Place? {
         val latitude = json.double("latitude")?.takeIf { it in -90.0..90.0 } ?: return null
         val longitude = json.double("longitude")?.takeIf { it in -180.0..180.0 } ?: return null
         val timeZoneId = json.string("timeZoneId")?.takeIf { it.isNotBlank() } ?: return null

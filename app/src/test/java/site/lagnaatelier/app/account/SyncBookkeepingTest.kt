@@ -50,7 +50,7 @@ class SyncBookkeepingTest {
         }
     }
 
-    private fun store(memory: Memory) = ChartStore(memory, clock = { 100L }, runLoad = { it() })
+    private fun store(memory: Memory) = ChartStore(memory, clock = { 100L }, runLoad = { it() }, deliver = { it() })
 
     @Test
     fun theStoredDocumentKeepsSexAccountIdsAndDeletesOwed() {
