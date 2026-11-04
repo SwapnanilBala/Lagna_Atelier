@@ -1,5 +1,8 @@
 package site.lagnaatelier.app.ui.intake
 
+import java.util.Locale
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -85,7 +88,7 @@ import site.lagnaatelier.app.data.Traditions
 import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
-import site.lagnaatelier.app.ui.components.Glow
+import site.lagnaatelier.app.ui.components.GlowBehind
 import site.lagnaatelier.app.ui.components.LiquidChip
 import site.lagnaatelier.app.ui.components.LiquidIcons
 import site.lagnaatelier.app.ui.components.LiquidTextField
@@ -134,11 +137,7 @@ fun IntakeScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 Box {
-                    Glow(
-                        Modifier
-                            .offset(x = (-40).dp, y = 10.dp)
-                            .requiredSize(width = 400.dp, height = 260.dp),
-                    )
+                    GlowBehind(height = 260.dp)
                     FloatCard(Modifier.fillMaxWidth(), spacing = 12.dp, padding = 16.dp) {
                         LiquidTextField(
                             value = draft.name,
@@ -477,16 +476,30 @@ internal fun DateDialog(current: LocalDate?, onDismiss: () -> Unit, onPick: (Loc
             override fun isSelectableDate(utcTimeMillis: Long) = utcTimeMillis <= todayMillis
         },
     )
-    DatePickerDialog(
-        onDismissRequest = onDismiss,
-        confirmButton = {
-            TextButton(onClick = {
-                state.selectedDateMillis?.let { onPick(Instant.ofEpochMilli(it).atZone(ZoneOffset.UTC).toLocalDate()) }
-            }) { Text(stringResource(R.string.intake_ok), color = Ink) }
-        },
-        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.intake_cancel), color = Muted) } },
-    ) {
-        DatePicker(state = state)
+    val colors = DatePickerDefaults.colors(containerColor = CardWhite)
+    /*
+     * The picker formats and starts its weeks by the configuration's locale.
+     * In English that is the phone's, often en-US ("Jan 1, 1990", Sunday
+     * first) while the app writes "1 Jan 1990": English is shown as en-GB,
+     * day first and Monday first. Other languages keep their own.
+     */
+    val configuration = LocalConfiguration.current
+    val pickerConfiguration = remember(configuration) {
+        if (configuration.locales[0].language == "en") Configuration(configuration).apply { setLocale(Locale.UK) } else configuration
+    }
+    CompositionLocalProvider(LocalConfiguration provides pickerConfiguration) {
+        DatePickerDialog(
+            onDismissRequest = onDismiss,
+            confirmButton = {
+                TextButton(onClick = {
+                    state.selectedDateMillis?.let { onPick(Instant.ofEpochMilli(it).atZone(ZoneOffset.UTC).toLocalDate()) }
+                }) { Text(stringResource(R.string.intake_ok), color = Ink) }
+            },
+            dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.intake_cancel), color = Muted) } },
+            colors = colors,
+        ) {
+            DatePicker(state = state, colors = colors)
+        }
     }
 }
 
