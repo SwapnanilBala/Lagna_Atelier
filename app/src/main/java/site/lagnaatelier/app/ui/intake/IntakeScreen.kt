@@ -65,6 +65,7 @@ import site.lagnaatelier.app.AppViewModel
 import site.lagnaatelier.app.PlaceStatus
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.BirthDetails
+import site.lagnaatelier.app.data.BirthSex
 import site.lagnaatelier.app.data.TimeAccuracy
 import site.lagnaatelier.app.data.Traditions
 import site.lagnaatelier.app.data.dayMonthYear
@@ -147,6 +148,7 @@ fun IntakeScreen(
                 }
 
                 PlacePanel(draft)
+                BirthSexPanel(draft)
                 TraditionPanel(draft)
             }
 
@@ -322,6 +324,24 @@ private fun utcOffset(minutes: Int): String {
     val sign = if (minutes < 0) "−" else "+"
     val abs = kotlin.math.abs(minutes)
     return "UTC$sign${abs / 60}:${(abs % 60).toString().padStart(2, '0')}"
+}
+
+/* The website's question, in its order: Woman, Man, Prefer not to say (where it starts). */
+@Composable
+private fun BirthSexPanel(draft: AppViewModel.IntakeDraft) {
+    Panel {
+        Text(stringResource(R.string.birth_sex_label), style = MaterialTheme.typography.titleMedium)
+        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            listOf(
+                BirthSex.Female to R.string.birth_sex_female,
+                BirthSex.Male to R.string.birth_sex_male,
+                null to R.string.birth_sex_unspecified,
+            ).forEach { (sex, label) ->
+                LiquidChip(stringResource(label), selected = draft.sex == sex, onClick = { draft.sex = sex })
+            }
+        }
+        Text(stringResource(R.string.birth_sex_hint), style = MaterialTheme.typography.bodySmall, color = Muted)
+    }
 }
 
 @Composable

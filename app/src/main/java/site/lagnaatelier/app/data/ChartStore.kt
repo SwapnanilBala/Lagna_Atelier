@@ -227,6 +227,7 @@ internal object SavedChartsCodec {
         details.exactTime?.let { put("exactTime", it) }
         put("accuracy", details.accuracy.apiValue)
         put("engineId", details.engineId)
+        details.sex?.let { put("sex", it.apiValue) }
         put("place", JSONObject().apply {
             val place = details.place
             put("city", place.city)
@@ -248,7 +249,8 @@ internal object SavedChartsCodec {
         if (accuracy == TimeAccuracy.Exact && exactTime == null) return null
         val place = json.optJSONObject("place")?.let(::decodePlace) ?: return null
         val engineId = json.string("engineId")?.takeIf { it.isNotBlank() } ?: Traditions.DEFAULT_ENGINE_ID
-        return BirthDetails(name, date, exactTime, accuracy, place, engineId)
+        val sex = BirthSex.from(json.string("sex"))
+        return BirthDetails(name, date, exactTime, accuracy, place, engineId, sex)
     }
 
     private fun decodePlace(json: JSONObject): Place? {

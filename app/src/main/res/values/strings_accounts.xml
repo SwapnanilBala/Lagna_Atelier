@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sign-in, chart sync and sex at birth. -->
+<resources>
+    <!-- Sex at birth, as the website asks it -->
+    <string name="birth_sex_label">Sex at birth</string>
+    <string name="birth_sex_hint">Optional. Some readings, like your partner\'s planet, are read differently for women and men.</string>
+    <string name="birth_sex_female">Woman</string>
+    <string name="birth_sex_male">Man</string>
+    <string name="birth_sex_unspecified">Prefer not to say</string>
+</resources>

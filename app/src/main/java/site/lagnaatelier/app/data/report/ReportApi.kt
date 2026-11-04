@@ -104,10 +104,12 @@ class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaAp
          * snake_case. Name, date, time, offset, coordinates, country, state
          * and city are all required; a place with no state sends its country
          * there, which only labels the chart and changes no position.
+         * Sex at birth goes as birthSex when given: the story's life-area
+         * readings take the partner's planet from it.
          */
         fun storyReportQuery(details: BirthDetails): Map<String, String> {
             val place = details.place
-            return linkedMapOf(
+            return details.withBirthSex(linkedMapOf(
                 "name" to details.name.trim(),
                 "birthDate" to details.date.toString(),
                 "birthTime" to details.time,
@@ -122,7 +124,7 @@ class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaAp
                 "birthTimeAccuracy" to details.accuracy.apiValue,
                 "birthTimeSource" to if (details.accuracy == TimeAccuracy.Exact) "exact" else "fallback",
                 "birthTimeFallback" to (details.accuracy != TimeAccuracy.Exact).toString(),
-            )
+            ))
         }
 
         /*

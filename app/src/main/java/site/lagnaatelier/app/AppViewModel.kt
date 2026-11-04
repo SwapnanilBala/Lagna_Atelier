@@ -12,6 +12,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
+import site.lagnaatelier.app.data.BirthSex
 import site.lagnaatelier.app.data.ChartStore
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.ErrorText
@@ -116,6 +117,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
         var estimate by mutableStateOf(TimeAccuracy.Unknown)
         var ayanamsha by mutableStateOf(Traditions.Ayanamsha.Lahiri)
         var houses by mutableStateOf(Traditions.HouseSystem.WholeSign)
+        /** Sex at birth; null is "Prefer not to say", where the choice starts. */
+        var sex by mutableStateOf<BirthSex?>(null)
 
         var placeQuery by mutableStateOf("")
             private set
@@ -191,6 +194,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 accuracy = accuracy,
                 place = place!!,
                 engineId = Traditions.engineId(ayanamsha, houses),
+                sex = sex,
             )
         }
     }
