@@ -3,6 +3,7 @@ package site.lagnaatelier.app.ui.intake
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.isImeVisible
@@ -60,6 +61,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
@@ -99,6 +101,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneOffset
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun IntakeScreen(
     draft: AppViewModel.IntakeDraft,
@@ -107,6 +110,13 @@ fun IntakeScreen(
 ) {
     var askDate by rememberSaveable { mutableStateOf(false) }
     var askTime by rememberSaveable { mutableStateOf(false) }
+    /*
+     * A phone on its side with the keyboard up has about a third of its
+     * height left: the header and the footer would take all of it and hide
+     * the field being typed in. They fold away until the keyboard goes.
+     */
+    val folded = WindowInsets.isImeVisible &&
+        LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(
@@ -115,7 +125,7 @@ fun IntakeScreen(
                 .statusBarsPadding()
                 .imePadding(),
         ) {
-            Header(onBack)
+            if (!folded) Header(onBack)
             Column(
                 Modifier
                     .weight(1f)
@@ -164,7 +174,7 @@ fun IntakeScreen(
                 TraditionPanel(draft)
             }
 
-            Footer(draft, onSubmit)
+            if (!folded) Footer(draft, onSubmit)
         }
     }
 
