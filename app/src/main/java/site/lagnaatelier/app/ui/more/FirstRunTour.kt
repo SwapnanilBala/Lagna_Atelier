@@ -31,7 +31,7 @@ import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.PillButton
 import site.lagnaatelier.app.ui.reading.AppTab
-import site.lagnaatelier.app.ui.theme.Ink
+import site.lagnaatelier.app.ui.theme.Veil
 
 /*
  * A short first-run tour of the tabs, the app's version of the website's
@@ -87,7 +87,7 @@ fun FirstRunTour(controller: MoreController, onTab: (AppTab) -> Unit) {
     Box(
         Modifier
             .fillMaxSize()
-            .background(Ink.copy(alpha = 0.18f))
+            .background(Veil)
             /* Holds touches: the tour is left with Skip or Done. */
             .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null, onClick = {}),
     ) {

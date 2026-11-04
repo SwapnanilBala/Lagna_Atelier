@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The reading tab's longer sections, translated; the website's own wording where it has one. -->
+<resources>
+    <string name="sections_show">Afficher</string>
+    <string name="sections_hide">Masquer</string>
+    <string name="sections_see_all">Tout voir (%1$d)</string>
+    <string name="sections_see_fewer">Voir moins</string>
+    <string name="sections_retry">Réessayer</string>
+    <string name="positions_title">Positions planétaires</string>
+    <string name="positions_count">%1$d grahas</string>
+    <string name="positions_col_graha">Graha</string>
+    <string name="positions_col_sign">Signe</string>
+    <string name="positions_col_degree">Deg</string>
+    <string name="positions_col_house">Mais.</string>
+    <string name="positions_col_bhava">Bhava</string>
+    <string name="positions_flag_retrograde">Rx</string>
+    <string name="positions_flag_combust">Cmb</string>
+    <string name="positions_retrograde_description">en mouvement rétrograde</string>
+    <string name="positions_combust_description">trop près du Soleil</string>
+    <string name="positions_row_description">%1$s en %2$s à %3$s, maison %4$d</string>
+    <string name="positions_row_bhava_description">%1$s en %2$s à %3$s, maison %4$d par signe, bhava %5$d</string>
+    <string name="positions_flag_legend">Rx = recule à partir d’ici · Cmb = trop près du Soleil pour agir librement</string>
+    <string name="positions_bhava_legend">Mais. compte les maisons par signe, comme la carte. Bhava est la maison selon %1$s, le système qu’utilisent les lectures.</string>
+    <string name="house_system_equal">Maisons égales</string>
+    <string name="house_system_placidus">Placidus</string>
+    <string name="house_system_koch">Koch</string>
+    <string name="house_system_campanus">Campanus</string>
+    <string name="house_system_regiomontanus">Regiomontanus</string>
+    <string name="house_system_porphyry">Porphyre</string>
+    <string name="houses_title">Quelle maison répond de quoi</string>
+    <string name="houses_subtitle">Les douze, et le soutien que chacune détient</string>
+    <string name="houses_bindus_legend">Les bindus sont le score de soutien de l’Ashtakavarga pour le signe qui occupe cette maison, sur un total fixe de 337. La moyenne exacte est de 28,1, une maison se lit donc par rapport à cette valeur et non par rapport à un maximum.</string>
+    <string name="houses_self_label">Le soutien au soi</string>
+    <string name="houses_self_value">%1$d %%</string>
+    <string name="houses_self_meta">de la moyenne · %1$d bindus en %2$s</string>
+    <string name="houses_best">La mieux soutenue</string>
+    <string name="houses_least">La moins soutenue</string>
+    <string name="houses_readout_house">Maison %1$d · %2$s · %3$d</string>
+    <string name="houses_above_average">%1$d maisons sur 12 au-dessus de la moyenne</string>
+    <string name="houses_bars_description">Bindus dans chacune des douze maisons, face à la moyenne de 28.1.</string>
+    <string name="houses_band_strong">28+ bindus</string>
+    <string name="houses_band_neutral">26–27</string>
+    <string name="houses_band_weak">25 ou moins</string>
+    <string name="houses_show_roles">De quoi répond chaque maison</string>
+    <string name="houses_bhava">%1$s Bhava</string>
+    <string name="houses_readout">%1$s · %2$d</string>
+    <string name="houses_row_description">Maison %1$d, %2$s Bhava : %3$s, %4$d bindus. %5$s.</string>
+    <string name="houses_peak_best">La mieux soutenue</string>
+    <string name="houses_peak_least">La moins soutenue</string>
+    <string name="houses_group_legend">Les Kendra sont les quatre angles sur lesquels repose le thème ; Panaphara et Apoklima sont les maisons qui les suivent et celles qui s’en éloignent. Par ailleurs, les maisons Trikona se lisent comme celles où arrive le mérite, les Upachaya comme celles qui s’améliorent avec l’âge et l’effort, et les Dusthana comme celles qui demandent d’abord quelque chose. Une maison peut être plusieurs choses : la 6e est à la fois Upachaya et Dusthana.</string>
+    <string name="houses_caveat">Le système de maisons de ce thème place un signe sur deux cuspides et en laisse un autre sans aucune, si bien que les douze maisons totalisent %1$d au lieu de 337 tout rond. Le chiffre de chaque maison reste valable ; le total reflète autant le découpage des maisons que le thème.</string>
+    <string name="house_group_kendra">Kendra</string>
+    <string name="house_group_panaphara">Panaphara</string>
+    <string name="house_group_apoklima">Apoklima</string>
+    <string name="house_group_trikona">Trikona</string>
+    <string name="house_group_upachaya">Upachaya</string>
+    <string name="house_group_dusthana">Dusthana</string>
+    <string-array name="bhava_names">
+        <item>Tanu</item>
+        <item>Dhana</item>
+        <item>Sahaja</item>
+        <item>Bandhu</item>
+        <item>Putra</item>
+        <item>Ari</item>
+        <item>Yuvati</item>
+        <item>Randhra</item>
+        <item>Dharma</item>
+        <item>Karma</item>
+        <item>Labha</item>
+        <item>Vyaya</item>
+    </string-array>
+    <string-array name="house_themes">
+        <item>identité, apparence et direction</item>
+        <item>biens, revenus et valeurs</item>
+        <item>communication, apprentissage et fratrie</item>
+        <item>foyer, racines et fondations émotionnelles</item>
+        <item>créativité, amour et enfants</item>
+        <item>service, routines et santé</item>
+        <item>partenariats et accords</item>
+        <item>ressources partagées et transformation</item>
+        <item>croyances, sagesse et voyages lointains</item>
+        <item>carrière, autorité et position publique</item>
+        <item>communauté, réseaux et objectifs lointains</item>
+        <item>retrait, subconscient et clôture spirituelle</item>
+    </string-array>
+    <string name="full_title">La lecture complète</string>
+    <string name="full_subtitle">%1$d constats, chacun avec ce sur quoi il repose</string>
+    <string name="full_filter_all">Tous</string>
+    <string name="full_filter_top">Priorités principales</string>
+    <string name="full_theme_core">Qui vous êtes</string>
+    <string name="full_theme_career">Travail</string>
+    <string name="full_theme_love">Amour</string>
+    <string name="full_rare">Rare</string>
+    <string name="full_top_priority">Priorité n° %1$d</string>
+    <string name="full_other_side">Le revers</string>
+    <string name="full_why">Pourquoi cette lecture</string>
+    <string name="full_how_common">Fréquence</string>
+    <string name="yogas_title">Yogas</string>
+    <string name="yogas_subtitle">%1$d combinaisons, les plus fortes d’abord</string>
+    <string name="yogas_intro">Les yogas sont des combinaisons classiques de planètes. Chacun ci-dessous a été trouvé dans ce thème d’après la place de ses planètes, les signes qu’elles gouvernent et les maisons qu’elles occupent.</string>
+    <string name="yoga_strength_strong">Forte</string>
+    <string name="yoga_strength_moderate">Modérée</string>
+    <string name="yoga_strength_weak">Faible</string>
+    <string name="yoga_family_mahapurusha">Mahapurusha</string>
+    <string name="yoga_family_wealth">Richesse et Raja</string>
+    <string name="yoga_family_benefic">Bénéfiques</string>
+    <string name="yoga_family_viparita">Viparita Raja</string>
+    <string name="yoga_family_nabhasa">Nabhasa</string>
+    <string name="yoga_family_challenging">Difficile</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">Ce que cela signifie</string>
+    <string name="yoga_forms">Ce qui le forme</string>
+    <string name="yoga_shows">Quand il se manifeste</string>
+    <string name="yoga_softened">Ce qui l’atténue</string>
+    <string name="yoga_source">Source : %1$s</string>
+    <string name="classics_kicker">Selon les classiques</string>
+    <string name="classics_heading">Ce que dit le Brihat Jataka de vos yogas</string>
+    <string name="classics_ask">Lire ce que dit le livre</string>
+    <string name="classics_pending">Lecture du Brihat Jataka pour vos yogas…</string>
+    <string name="classics_empty">Le Brihat Jataka n’a pas de verset sur les yogas de ce thème, il n’y a donc pas de note à afficher.</string>
+    <string name="classics_sources">Les versets (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">Brihat Jataka %1$s</string>
+    <string name="classics_ref_brihat_samhita">Brihat Samhita %1$s</string>
+    <string name="classics_ref_strijataka">Strijataka, ch. %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">note du traducteur</string>
+    <string name="classics_credit">Les numéros renvoient aux versets dont ils sont tirés, cités tels qu’ils sont imprimés dans la traduction anglaise du Brihat Jataka de Varahamihira par N. Chidambaram Iyer (1885). Les mots entre crochets sont de nous, pas du livre.</string>
+</resources>

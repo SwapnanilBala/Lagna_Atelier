@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The reading tab's longer sections, translated; the website's own wording where it has one. -->
+<resources>
+    <string name="sections_show">दिखाएँ</string>
+    <string name="sections_hide">छिपाएँ</string>
+    <string name="sections_see_all">सभी %1$d देखें</string>
+    <string name="sections_see_fewer">कम देखें</string>
+    <string name="sections_retry">फिर कोशिश करें</string>
+    <string name="positions_title">ग्रहों की स्थिति</string>
+    <string name="positions_count">%1$d ग्रह</string>
+    <string name="positions_col_graha">ग्रह</string>
+    <string name="positions_col_sign">राशि</string>
+    <string name="positions_col_degree">अंश</string>
+    <string name="positions_col_house">भाव</string>
+    <string name="positions_col_bhava">चलित</string>
+    <string name="positions_flag_retrograde">वक्री</string>
+    <string name="positions_flag_combust">अस्त</string>
+    <string name="positions_retrograde_description">पीछे की ओर चल रहा है</string>
+    <string name="positions_combust_description">सूर्य के बहुत निकट</string>
+    <string name="positions_row_description">%1$s, %2$s में %3$s पर, भाव %4$d</string>
+    <string name="positions_row_bhava_description">%1$s, %2$s में %3$s पर, राशि से भाव %4$d, चलित भाव %5$d</string>
+    <string name="positions_flag_legend">वक्री = यहाँ से पीछे की ओर चल रहा है · अस्त = सूर्य के इतने निकट कि स्वतंत्र रूप से कार्य नहीं कर सकता</string>
+    <string name="positions_bhava_legend">भाव: राशि से गिना गया, जैसा कुंडली में है। चलित: %1$s पद्धति में भाव, जिस पर रीडिंग आधारित है।</string>
+    <string name="house_system_equal">Equal Houses</string>
+    <string name="house_system_placidus">Placidus</string>
+    <string name="house_system_koch">Koch</string>
+    <string name="house_system_campanus">Campanus</string>
+    <string name="house_system_regiomontanus">Regiomontanus</string>
+    <string name="house_system_porphyry">Porphyry</string>
+    <string name="houses_title">कौन सा भाव किसके लिए उत्तरदायी है</string>
+    <string name="houses_subtitle">सभी बारह, और प्रत्येक को मिला सहारा</string>
+    <string name="houses_bindus_legend">बिंदु उस भाव पर बैठी राशि के लिए अष्टकवर्ग का सहारा-अंक है, 337 के एक निश्चित कोष में से। ठीक औसत मान 28.1 है, इसलिए किसी भाव को अधिकतम के मुकाबले नहीं, उसी मान के मुकाबले पढ़ा जाता है।</string>
+    <string name="houses_self_label">स्वयं के लिए समर्थन</string>
+    <string name="houses_self_value">%1$d%%</string>
+    <string name="houses_self_meta">औसत का · %2$s में %1$d बिंदु</string>
+    <string name="houses_best">सर्वाधिक समर्थित</string>
+    <string name="houses_least">न्यूनतम समर्थित</string>
+    <string name="houses_readout_house">भाव %1$d · %2$s · %3$d</string>
+    <string name="houses_above_average">12 में से %1$d भाव औसत से ऊपर</string>
+    <string name="houses_bars_description">बारह भावों में से हर एक के बिंदु, 28.1 औसत के सामने।</string>
+    <string name="houses_band_strong">28+ बिंदु</string>
+    <string name="houses_band_neutral">26–27</string>
+    <string name="houses_band_weak">25 या कम</string>
+    <string name="houses_show_roles">कौन भाव किस बात के लिए ज़िम्मेदार है</string>
+    <string name="houses_bhava">%1$s भाव</string>
+    <string name="houses_readout">%1$s · %2$d</string>
+    <string name="houses_row_description">भाव %1$d, %2$s भाव: %3$s, %4$d बिंदु। %5$s।</string>
+    <string name="houses_peak_best">सर्वाधिक समर्थित</string>
+    <string name="houses_peak_least">न्यूनतम समर्थित</string>
+    <string name="houses_group_legend">केंद्र वे चार कोण हैं जिन पर कुंडली टिकी है; पणफर और आपोक्लिम उनके बाद आने वाले और उनसे हटते हुए भाव हैं। इसके ऊपर, त्रिकोण भावों को वहाँ पढ़ा जाता है जहाँ पुण्य फल देता है, उपचय को वे भाव जो उम्र और प्रयास से सुधरते हैं, और दुःस्थान को वे जो पहले कुछ माँगते हैं। एक भाव एक से अधिक हो सकता है: छठा भाव उपचय भी है और दुःस्थान भी।</string>
+    <string name="houses_caveat">इस कुंडली की भाव पद्धति एक राशि को दो भावारंभों पर रखती है और दूसरी को किसी पर नहीं, इसलिए बारह भावों का जोड़ ठीक 337 नहीं, %1$d आता है। हर भाव का अंक सही है; कुल योग कुंडली के साथ भाव-विभाजन को भी दिखा रहा है।</string>
+    <string name="house_group_kendra">केंद्र</string>
+    <string name="house_group_panaphara">पणफर</string>
+    <string name="house_group_apoklima">आपोक्लिम</string>
+    <string name="house_group_trikona">त्रिकोण</string>
+    <string name="house_group_upachaya">उपचय</string>
+    <string name="house_group_dusthana">दुःस्थान</string>
+    <string-array name="bhava_names">
+        <item>तनु</item>
+        <item>धन</item>
+        <item>सहज</item>
+        <item>बंधु</item>
+        <item>पुत्र</item>
+        <item>अरि</item>
+        <item>युवति</item>
+        <item>रंध्र</item>
+        <item>धर्म</item>
+        <item>कर्म</item>
+        <item>लाभ</item>
+        <item>व्यय</item>
+    </string-array>
+    <string-array name="house_themes">
+        <item>पहचान, रूप और दिशा</item>
+        <item>संपत्ति, आय और मूल्य</item>
+        <item>संवाद, सीखना और भाई-बहन</item>
+        <item>घर, जड़ें और भावनात्मक नींव</item>
+        <item>सृजनशीलता, प्रेम और संतान</item>
+        <item>सेवा, दिनचर्या और स्वास्थ्य</item>
+        <item>साझेदारी और अनुबंध</item>
+        <item>साझा संसाधन और रूपांतरण</item>
+        <item>आस्था, प्रज्ञा और दूर की यात्राएं</item>
+        <item>करियर, अधिकार और सामाजिक प्रतिष्ठा</item>
+        <item>समुदाय, संपर्क और दीर्घ लक्ष्य</item>
+        <item>एकांत, अवचेतन और आध्यात्मिक समाप्ति</item>
+    </string-array>
+    <string name="full_title">पूरा पठन</string>
+    <string name="full_subtitle">%1$d निष्कर्ष, हर एक के साथ उसका आधार</string>
+    <string name="full_filter_all">सभी</string>
+    <string name="full_filter_top">शीर्ष प्राथमिकताएँ</string>
+    <string name="full_theme_core">आप कौन हैं</string>
+    <string name="full_theme_career">कार्य</string>
+    <string name="full_theme_love">प्रेम</string>
+    <string name="full_rare">दुर्लभ</string>
+    <string name="full_top_priority">शीर्ष प्राथमिकता %1$d</string>
+    <string name="full_other_side">दूसरा पहलू</string>
+    <string name="full_why">यह पाठ क्यों</string>
+    <string name="full_how_common">कितना सामान्य</string>
+    <string name="yogas_title">योग</string>
+    <string name="yogas_subtitle">%1$d योग, सबसे प्रबल पहले</string>
+    <string name="yogas_intro">योग ग्रहों के शास्त्रीय संयोग हैं। नीचे दिया हर योग इस कुंडली में इस आधार पर मिला कि उसके ग्रह कहाँ बैठे हैं, किन राशियों के स्वामी हैं और किन भावों में हैं।</string>
+    <string name="yoga_strength_strong">प्रबल</string>
+    <string name="yoga_strength_moderate">मध्यम</string>
+    <string name="yoga_strength_weak">दुर्बल</string>
+    <string name="yoga_family_mahapurusha">महापुरुष</string>
+    <string name="yoga_family_wealth">धन एवं राज</string>
+    <string name="yoga_family_benefic">शुभ</string>
+    <string name="yoga_family_viparita">विपरीत राज</string>
+    <string name="yoga_family_nabhasa">नाभस</string>
+    <string name="yoga_family_challenging">चुनौतीपूर्ण</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">इसका अर्थ</string>
+    <string name="yoga_forms">यह कैसे बनता है</string>
+    <string name="yoga_shows">यह कब प्रकट होता है</string>
+    <string name="yoga_softened">इसे क्या नरम करता है</string>
+    <string name="yoga_source">स्रोत: %1$s</string>
+    <string name="classics_kicker">शास्त्रों से</string>
+    <string name="classics_heading">आपके योगों के बारे में बृहत् जातक क्या कहता है</string>
+    <string name="classics_ask">पढ़ें कि ग्रंथ क्या कहता है</string>
+    <string name="classics_pending">आपके योगों के लिए बृहत् जातक पढ़ा जा रहा है…</string>
+    <string name="classics_empty">बृहत् जातक में इस कुंडली के योगों पर कोई श्लोक नहीं है, इसलिए दिखाने को कोई टिप्पणी नहीं है।</string>
+    <string name="classics_sources">श्लोक (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">बृहत् जातक %1$s</string>
+    <string name="classics_ref_brihat_samhita">बृहत् संहिता %1$s</string>
+    <string name="classics_ref_strijataka">स्त्रीजातक, अध्याय %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">अनुवादक की टिप्पणी</string>
+    <string name="classics_credit">अंक उन श्लोकों की ओर संकेत करते हैं जिनसे बात ली गई है। श्लोक वराहमिहिर के बृहत् जातक के, एन. चिदंबरम अय्यर द्वारा 1885 में किए गए अंग्रेज़ी अनुवाद से ज्यों के त्यों उद्धृत हैं। वर्गाकार कोष्ठकों के शब्द हमारे हैं, ग्रंथ के नहीं।</string>
+</resources>

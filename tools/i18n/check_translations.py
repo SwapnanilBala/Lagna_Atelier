@@ -39,17 +39,23 @@ RES = ROOT / "app" / "src" / "main" / "res"
 LANGUAGES = ["hi", "bn", "es", "fr", "it", "de"]
 PLACEHOLDER = re.compile(r"%(?:\d+\$)?[sdf]")
 
-# Whole words, case-insensitive. The owner's rules: never "AI" in reader-facing
+# Whole words, case-insensitive except acronyms. The owner's rules: never "AI" in reader-facing
 # copy, never paid / free / expensive.
 BANNED = {
     "en": [r"\bAI\b", r"\bpaid\b", r"\bfree\b", r"\bexpensive\b"],
     "hi": [r"एआई", r"\bAI\b", r"मुफ़?्त", r"सशुल्क", r"महँगा", r"महंगा"],
     "bn": [r"এআই", r"\bAI\b", r"বিনামূল্যে", r"ফ্রি", r"দামি"],
-    "es": [r"\bIA\b", r"\bAI\b", r"\bgratis\b", r"\bgratuit[oa]s?\b", r"\bde pago\b", r"\bcar[oa]s?\b"],
+    "es": [r"\bIA\b", r"\bAI\b", r"\bgratis\b", r"\bgratuit[oa]s?\b", r"\bde pago\b", r"\bcaros?\b"],  # not "cara": the site's "La otra cara" is a face, not a price
     "fr": [r"\bIA\b", r"\bAI\b", r"\bgratuit(e|s|es)?\b", r"\bpayant(e|s|es)?\b", r"\bcher\b", r"\bchère\b"],
     "it": [r"\bIA\b", r"\bAI\b", r"\bgratis\b", r"\bgratuit[oaie]\b", r"\ba pagamento\b", r"\bcostos[oaie]\b"],
     "de": [r"\bKI\b", r"\bAI\b", r"\bkostenlos\b", r"\bgratis\b", r"\bkostenpflichtig\b", r"\bteuer\b"],
 }
+ACRONYM = re.compile(r"\\b[A-Z]+\\b")
+
+
+def banned(pattern, text):
+    """Words match in any case; acronyms (AI, IA, KI) only in capitals, so Italian "ai" is not "AI"."""
+    return re.search(pattern, text, 0 if ACRONYM.fullmatch(pattern) else re.IGNORECASE) is not None
 
 
 def text_of(element):
@@ -128,7 +134,7 @@ def check(language, english, report_missing_only):
                 if bare_apostrophe(text):
                     problems.append(f"{file_name} {key}: bare apostrophe (write \\' or ’)")
                 for pattern in BANNED.get(language, []):
-                    if re.search(pattern, text, re.IGNORECASE):
+                    if banned(pattern, text):
                         problems.append(f"{file_name} {key}: uses a word the copy never uses ({pattern})")
 
     english_keys = {key for entries in english.values() for key in entries}
@@ -176,7 +182,7 @@ def main(argv):
         for key, entry in entries.items():
             for text in texts(entry):
                 for pattern in BANNED["en"]:
-                    if re.search(pattern, text, re.IGNORECASE):
+                    if banned(pattern, text):
                         print(f"! English {file_name} {key}: uses a word the copy never uses ({pattern})")
     failed = False
     for language in languages:

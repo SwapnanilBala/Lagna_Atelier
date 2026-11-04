@@ -42,6 +42,8 @@ data class LiquidPalette(
     val midTone: Color,
     /** The warm ground behind a palm photo. */
     val photoGround: Color,
+    /** The veil laid over a screen behind a card on top of it. Darkens in both themes. */
+    val veil: Color,
 )
 
 val GlowHoney = Color(0xFFFFD59A)
@@ -68,6 +70,7 @@ val LightPalette = LiquidPalette(
     glowOnInk = GlowHoney,
     midTone = Color(0xFFC9CDD6),
     photoGround = Color(0xFFE6E1DA),
+    veil = Color(0x2E0B0B0F),
 )
 
 val DarkPalette = LiquidPalette(
@@ -83,6 +86,8 @@ val DarkPalette = LiquidPalette(
     glowOnInk = Color(0xFFA24A12),
     midTone = Color(0xFF57525C),
     photoGround = Color(0xFF2A2523),
+    /* Ink at the same strength would lighten a dark screen, so the dark veil is black and heavier. */
+    veil = Color(0x8C000000),
 )
 
 /** The palette in use. Set by [LagnaAtelierTheme]; light until it runs. */
@@ -100,6 +105,7 @@ val CardShadow: Color get() = LiquidTheme.palette.cardShadow
 val GlowOnInk: Color get() = LiquidTheme.palette.glowOnInk
 val MidTone: Color get() = LiquidTheme.palette.midTone
 val PhotoGround: Color get() = LiquidTheme.palette.photoGround
+val Veil: Color get() = LiquidTheme.palette.veil
 
 /* In draw order: the largest, warmest patch first. */
 val GoldenGlow: List<Color> get() = LiquidTheme.palette.glow

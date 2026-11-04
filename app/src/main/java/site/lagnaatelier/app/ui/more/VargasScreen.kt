@@ -34,7 +34,7 @@ import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.LiquidChip
 import site.lagnaatelier.app.ui.components.Panel
-import site.lagnaatelier.app.ui.reading.SouthIndianChart
+import site.lagnaatelier.app.ui.reading.RasiChart
 import site.lagnaatelier.app.ui.theme.CardWhite
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Ink
@@ -163,7 +163,7 @@ private fun VargaDetail(
                 CardLabel(if (key != null) stringResource(key.focus) else varga.description)
                 val ascendant = varga.ascendant
                 if (ascendant != null) {
-                    SouthIndianChart(
+                    RasiChart(
                         varga.placements,
                         ascendant = ascendant,
                         title = name ?: varga.label,
