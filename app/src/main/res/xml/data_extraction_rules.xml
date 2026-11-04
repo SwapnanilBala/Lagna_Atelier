@@ -5,7 +5,8 @@
 
    On these versions allowBackup="false" stops cloud backup but not device
    transfer, so both are excluded here explicitly. Saved charts and palm
-   readings are promised to stay on this phone.
+   readings are promised to stay on this phone, and so is the signed-in
+   session (lagna_session), whose Keystore key is never backed up.
 -->
 <data-extraction-rules>
     <cloud-backup>

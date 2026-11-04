@@ -1,4 +1,101 @@
-# Sign in with Google on Android: the plan
+# Sign in with Google on Android
+
+The plan below has now been built, in both repos. This first part says what
+exists and what you (the owner) still have to do before it works on a real
+phone. The plan as written follows, unchanged except where a note says so.
+
+## What you still have to do
+
+1. **Google Cloud Console**, same project as the web client: make the
+   Android OAuth clients described in 1.1 (package `site.lagnaatelier.app`,
+   the debug SHA-1, later the release and Play app-signing SHA-1s). No new
+   web client, and nothing secret comes out of this step.
+2. **Vercel**, Production (and Preview if you test there): add
+   `AUTH_GOOGLE_ANDROID_IDS` = the Android client ids, comma-separated.
+   `AUTH_GOOGLE_ID` stays as it is. Until the new variable is set, the two
+   new routes answer 503 `not_configured` and the app says sign-in is not
+   switched on yet.
+3. **Neon**: apply migration `drizzle/0013_android_sign_in_nonces.sql`
+   (`npm run db:migrate` with `DATABASE_URL_UNPOOLED`). It adds one table,
+   `auth_nonces`. It has not been applied. Without it the nonce route
+   answers 503 and nothing else is affected.
+4. **Deploy** the website branch `feat/android-sign-in`.
+5. **Build the app with the web client id.** It is public, not a secret,
+   but it is not in the repo. Put this line in `~/.gradle/gradle.properties`
+   (your user folder, not the project):
+
+   ```
+   lagna.googleWebClientId=<the value of AUTH_GOOGLE_ID>.apps.googleusercontent.com
+   ```
+
+   or pass `-Plagna.googleWebClientId=...` to Gradle, or set the
+   environment variable `LAGNA_GOOGLE_WEB_CLIENT_ID`. It becomes
+   `BuildConfig.GOOGLE_WEB_CLIENT_ID`. A build without it works and its
+   Account tab says "Sign-in is not set up in this copy of the app yet".
+   A value that is not a `...apps.googleusercontent.com` id fails the build.
+6. **The consent screen**: while the Google Cloud project is in Testing,
+   only listed test users can sign in on the phone too.
+
+## What was built
+
+**Website** (branch `feat/android-sign-in`):
+
+- `verifyGoogleIdToken` in `lib/identity/google-oauth.ts`: the one id_token
+  check for the web callback and the app (RS256 only, issuer, audience,
+  exp/iat/sub required, nonce in constant time, optional `azp` list).
+- `POST /api/auth/google/android/nonce` and `POST /api/auth/google/android`
+  as in 3.1 and 3.2. Nonces are kept hashed in `auth_nonces` and used once.
+  The session is the same `auth_sessions` row as the web's (only its SHA-256
+  stored), returned in the body, never as a cookie. Ten a minute per caller
+  for each route (`ROUTE_LIMITS`).
+- `sessionTokenFromRequest` in `lib/identity/require-session.ts`: a bearer
+  header or the cookie, used by `/api/auth/session`, `/api/auth/signout`,
+  `findRequestAccount` (so `/api/sync/charts` and `/api/account/preferences`)
+  and the LLM budget's `resolveLlmCaller`. Cookies work as before.
+- `DELETE /api/sync/charts?chartId=<uuid>`: withdraws consent for the person
+  that chart is about (their birth details and every chart over them), so a
+  delete on the phone reaches the account. Without `chartId` it does what it
+  always did.
+
+**App** (branch `feat/accounts-and-sync`):
+
+- `data/account/`: `GoogleIdTokens` (Credential Manager, Sign in with Google
+  sheet, the web client id as `serverClientId`, the server's nonce),
+  `AccountApi` (the routes), `SessionVault` (AES-GCM, key in the Android
+  Keystore, ciphertext in the private `lagna_session` prefs file, which the
+  backup rules already exclude), `AccountSession` (sign in, sign out on the
+  server then here, any 401 on a call that carried the token ends the
+  session here), `ChartSync` and `ChartQueryString` (below).
+- `LagnaApi` sends `Authorization: Bearer` on every call to the site when
+  signed in (never over plain HTTP), and the report prose call does too, so
+  the signed-in allowance applies.
+- The Account tab's sign-in card is real; the landing page's button signs
+  in, and once signed in names the account and opens the saved charts.
+- **Chart sync**, only after the reader says yes to the wording in
+  `accounts_sync_prompt` (sent to the site word for word as the consent's
+  evidence, capture source `settings`). Each pass checks the session first
+  (the list route answers a lapsed session with an empty list), sends
+  deletes made here, reads the account's list, drops charts deleted
+  elsewhere, matches charts both sides have by their key so none is kept
+  twice, brings down the account's charts while there is room in the five
+  (none is pushed out for one), and sends up what the account lacks.
+  Pushing a sixth chart off the phone is not a delete. Signing out, or the
+  session ending, makes every chart this phone's only again; nothing is
+  deleted. The Saved charts screen and the Account tab say per chart "On
+  your account", "Waiting to sync" or "This phone only".
+- **Sex at birth** on the birth form (Woman / Man / Prefer not to say,
+  optional), stored with the saved chart, sent as `birthSex` to
+  story-report and weekly-energy, and presetting the Palm tab's "whose
+  hand". It is not part of a chart's key and not sent to `GET /api/chart`.
+
+**Not built**: RISC events (3.4), a per-session list on the website, and a
+"stop syncing and delete from the account" button in the app (the website's
+settings already has one).
+
+---
+
+# The plan as written
+
 
 The app is signed out today. The Account tab says so, and the sign-in card is
 marked "Coming soon". This file is what has to happen for real sign-in. It is
@@ -12,7 +109,7 @@ creates the `auth_users` row exactly as the web callback does, and returns a
 header. It is the same session row the web uses, so signing out and revoking
 work the same way.
 
-Nothing below has been built. The web repo has not been changed.
+This was written before anything was built; see the top of the file for what now exists.
 
 ---
 
@@ -70,7 +167,7 @@ For the release fingerprint, run the same `keytool -list -v` command against
 the release keystore and its alias. Keep that keystore and its passwords out of
 the repo.
 
-### 1.2 Two new Vercel environment variables
+### 1.2 One new Vercel environment variable
 
 | Variable | Value |
 |---|---|

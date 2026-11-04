@@ -4,7 +4,9 @@
 
    Saved charts (names, birth details) and palm readings with their photos are
    promised to stay on this phone, so every domain is excluded. allowBackup is
-   also false in the manifest; this file is the belt to that brace.
+   also false in the manifest; this file is the belt to that brace. The
+   signed-in session (lagna_session) is excluded too: its Keystore key is
+   never backed up, so a restored copy could not be read anyway.
 -->
 <full-backup-content>
     <exclude domain="root" path="." />
