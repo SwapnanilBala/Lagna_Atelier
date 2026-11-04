@@ -44,4 +44,5 @@
     </string-array>
     <string name="dasha_timeline_period">%1$s de %2$d a %3$d</string>
     <string name="dasha_timeline_now">Ahora en %1$s.</string>
+    <string name="dasha_timeline_description">%1$s. %2$s</string>
 </resources>
