@@ -110,7 +110,15 @@ private fun LagnaApp(model: AppViewModel) {
     }
 
     BackHandler(enabled = screen != Screen.Landing) {
-        screen = if (screen == Screen.Reading) readingOrigin else Screen.Landing
+        screen = when {
+            /* Back from Timing, Palm or Account goes to the Reading tab first, as a tab bar's back does. */
+            screen == Screen.Reading && tab != AppTab.Reading -> {
+                tab = AppTab.Reading
+                Screen.Reading
+            }
+            screen == Screen.Reading -> readingOrigin
+            else -> Screen.Landing
+        }
     }
 
     when (screen) {

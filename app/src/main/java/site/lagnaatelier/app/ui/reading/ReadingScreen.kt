@@ -1,5 +1,10 @@
 package site.lagnaatelier.app.ui.reading
 
+import androidx.compose.ui.unit.Dp
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import android.content.res.Configuration
 import android.content.Context
 import android.content.Intent
 import androidx.compose.foundation.background
@@ -114,29 +119,52 @@ fun ReadingScreen(
     /* The "More readings" card at the foot of the reading (ui/more). */
     moreReadings: @Composable () -> Unit = {},
 ) {
+    /* Each tab keeps its own remembered state (its scroll position above all) while another is shown. */
+    val tabStates = rememberSaveableStateHolder()
+    /* On its side the phone has little height: the report pill sits beside the nav pill, not over it. */
+    val landscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
     Box(Modifier.fillMaxSize().background(Canvas)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(chart, isSample, onBack, shareLink)
-            if (tab == AppTab.Reading) {
-                ReadingContent(chart, today, isSample, api, moreReadings)
-            } else {
-                Box(Modifier.weight(1f)) { otherTab(tab) }
+            tabStates.SaveableStateProvider(tab.name) {
+                if (tab == AppTab.Reading) {
+                    ReadingContent(chart, today, isSample, api, moreReadings, bottomRoom = if (landscape) 96.dp else 160.dp)
+                } else {
+                    Box(Modifier.weight(1f)) { otherTab(tab) }
+                }
             }
         }
 
-        Column(
-            Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .navigationBarsPadding()
-                .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
-            horizontalAlignment = Alignment.End,
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
-            if (tab == AppTab.Reading) {
-                PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+        if (landscape) {
+            Row(
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.End),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                if (tab == AppTab.Reading) {
+                    PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+                }
+                NavPill(tab, onTab, Modifier.widthIn(max = 440.dp))
             }
-            NavPill(tab, onTab)
+        } else {
+            Column(
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .fillMaxWidth()
+                    .navigationBarsPadding()
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                if (tab == AppTab.Reading) {
+                    PillButton(stringResource(R.string.reading_report), onClick = onReport, icon = LiquidIcons.ArrowDown)
+                }
+                NavPill(tab, onTab)
+            }
         }
     }
 }
@@ -205,7 +233,14 @@ private fun shareReading(context: Context, text: String, subject: String, choose
 }
 
 @Composable
-private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Boolean, api: LagnaApi?, moreReadings: @Composable () -> Unit) {
+private fun ReadingContent(
+    chart: ChartSummary,
+    today: LocalDate,
+    isSample: Boolean,
+    api: LagnaApi?,
+    moreReadings: @Composable () -> Unit,
+    bottomRoom: Dp,
+) {
     var chartView by rememberSaveable { mutableIntStateOf(0) }
     var dashaView by rememberSaveable { mutableIntStateOf(0) }
     var showAllFindings by rememberSaveable { mutableStateOf(false) }
@@ -216,7 +251,7 @@ private fun ReadingContent(chart: ChartSummary, today: LocalDate, isSample: Bool
     val sections = if (isSample) rememberSampleSections() else chart.sections
 
     LazyColumn(
-        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 160.dp),
+        contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = bottomRoom),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         item {
@@ -459,9 +494,9 @@ private fun ComingNext(tab: AppTab) {
 
 /* The navigation bar as one floating black pill, as in the mock. */
 @Composable
-private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit) {
+private fun NavPill(selected: AppTab, onSelect: (AppTab) -> Unit, modifier: Modifier = Modifier) {
     Row(
-        Modifier
+        modifier
             .fillMaxWidth()
             .height(60.dp)
             .clip(CircleShape)
