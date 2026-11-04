@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The reading tab's longer sections, translated; the website's own wording where it has one. -->
+<resources>
+    <string name="sections_show">Mostra</string>
+    <string name="sections_hide">Nascondi</string>
+    <string name="sections_see_all">Vedi tutto (%1$d)</string>
+    <string name="sections_see_fewer">Vedi meno</string>
+    <string name="sections_retry">Riprova</string>
+    <string name="positions_title">Posizioni planetarie</string>
+    <string name="positions_count">%1$d graha</string>
+    <string name="positions_col_graha">Graha</string>
+    <string name="positions_col_sign">Segno</string>
+    <string name="positions_col_degree">Gr.</string>
+    <string name="positions_col_house">Casa</string>
+    <string name="positions_col_bhava">Bhava</string>
+    <string name="positions_flag_retrograde">Rx</string>
+    <string name="positions_flag_combust">Cmb</string>
+    <string name="positions_retrograde_description">in moto retrogrado</string>
+    <string name="positions_combust_description">troppo vicino al Sole</string>
+    <string name="positions_row_description">%1$s in %2$s a %3$s, casa %4$d</string>
+    <string name="positions_row_bhava_description">%1$s in %2$s a %3$s, casa %4$d per segno, bhava %5$d</string>
+    <string name="positions_flag_legend">Rx = si muove all’indietro da qui · Cmb = troppo vicino al Sole per agire liberamente</string>
+    <string name="positions_bhava_legend">Casa conta le case per segno, come la carta. Bhava è la casa secondo %1$s, il sistema usato dalle letture.</string>
+    <string name="house_system_equal">Case uguali</string>
+    <string name="house_system_placidus">Placidus</string>
+    <string name="house_system_koch">Koch</string>
+    <string name="house_system_campanus">Campanus</string>
+    <string name="house_system_regiomontanus">Regiomontanus</string>
+    <string name="house_system_porphyry">Porfirio</string>
+    <string name="houses_title">Quale casa risponde di cosa</string>
+    <string name="houses_subtitle">Tutte e dodici, e il sostegno che ciascuna ha</string>
+    <string name="houses_bindus_legend">I bindu sono il punteggio di sostegno dell’Ashtakavarga per il segno che occupa quella casa, su un totale fisso di 337. La media esatta è 28,1, quindi una casa si legge rispetto a quel valore e non rispetto a un massimo.</string>
+    <string name="houses_self_label">Il sostegno al sé</string>
+    <string name="houses_self_value">%1$d%%</string>
+    <string name="houses_self_meta">della media · %1$d bindu in %2$s</string>
+    <string name="houses_best">Più sostenuta</string>
+    <string name="houses_least">Meno sostenuta</string>
+    <string name="houses_readout_house">Casa %1$d · %2$s · %3$d</string>
+    <string name="houses_above_average">%1$d case su 12 sopra la media</string>
+    <string name="houses_bars_description">Bindu in ciascuna delle dodici case, rispetto alla media di 28.1.</string>
+    <string name="houses_band_strong">28+ bindu</string>
+    <string name="houses_band_neutral">26–27</string>
+    <string name="houses_band_weak">25 o meno</string>
+    <string name="houses_show_roles">Di cosa risponde ogni casa</string>
+    <string name="houses_bhava">%1$s Bhava</string>
+    <string name="houses_readout">%1$s · %2$d</string>
+    <string name="houses_row_description">Casa %1$d, %2$s Bhava: %3$s, %4$d bindu. %5$s.</string>
+    <string name="houses_peak_best">Più sostenuta</string>
+    <string name="houses_peak_least">Meno sostenuta</string>
+    <string name="houses_group_legend">Le Kendra sono i quattro angoli su cui poggia la carta; Panaphara e Apoklima sono le case che li seguono e quelle che se ne allontanano. In più, le case Trikona si leggono come quelle in cui arriva il merito, le Upachaya come quelle che migliorano con l’età e l’impegno, e le Dusthana come quelle che prima chiedono qualcosa. Una casa può essere più cose insieme: la 6ª è sia Upachaya sia Dusthana.</string>
+    <string name="houses_caveat">Il sistema di case di questa carta mette un segno su due cuspidi e ne lascia un altro senza, quindi le dodici case sommano %1$d invece di 337 tondi. Il valore di ogni casa resta valido; il totale riflette la divisione delle case tanto quanto la carta.</string>
+    <string name="house_group_kendra">Kendra</string>
+    <string name="house_group_panaphara">Panaphara</string>
+    <string name="house_group_apoklima">Apoklima</string>
+    <string name="house_group_trikona">Trikona</string>
+    <string name="house_group_upachaya">Upachaya</string>
+    <string name="house_group_dusthana">Dusthana</string>
+    <string-array name="bhava_names">
+        <item>Tanu</item>
+        <item>Dhana</item>
+        <item>Sahaja</item>
+        <item>Bandhu</item>
+        <item>Putra</item>
+        <item>Ari</item>
+        <item>Yuvati</item>
+        <item>Randhra</item>
+        <item>Dharma</item>
+        <item>Karma</item>
+        <item>Labha</item>
+        <item>Vyaya</item>
+    </string-array>
+    <string-array name="house_themes">
+        <item>identità, aspetto e direzione</item>
+        <item>beni, entrate e valori</item>
+        <item>comunicazione, apprendimento e fratelli</item>
+        <item>casa, radici e fondamenta emotive</item>
+        <item>creatività, amore e figli</item>
+        <item>servizio, routine e salute</item>
+        <item>unioni e accordi</item>
+        <item>risorse condivise e trasformazione</item>
+        <item>credenze, saggezza e viaggi lontani</item>
+        <item>carriera, autorità e posizione pubblica</item>
+        <item>comunità, reti e obiettivi lunghi</item>
+        <item>ritiro, subconscio e chiusura spirituale</item>
+    </string-array>
+    <string name="full_title">La lettura completa</string>
+    <string name="full_subtitle">%1$d risultati, ciascuno con ciò su cui si basa</string>
+    <string name="full_filter_all">Tutti</string>
+    <string name="full_filter_top">Priorità principali</string>
+    <string name="full_theme_core">Chi sei</string>
+    <string name="full_theme_career">Lavoro</string>
+    <string name="full_theme_love">Amore</string>
+    <string name="full_rare">Raro</string>
+    <string name="full_top_priority">Priorità n. %1$d</string>
+    <string name="full_other_side">L’altra faccia</string>
+    <string name="full_why">Perché questa lettura</string>
+    <string name="full_how_common">Quanto è comune</string>
+    <string name="yogas_title">Yoga</string>
+    <string name="yogas_subtitle">%1$d combinazioni, le più forti prima</string>
+    <string name="yogas_intro">Gli yoga sono combinazioni classiche di pianeti. Ognuno di quelli qui sotto è stato trovato in questa carta in base a dove stanno i suoi pianeti, quali segni governano e quali case occupano.</string>
+    <string name="yoga_strength_strong">Forte</string>
+    <string name="yoga_strength_moderate">Moderato</string>
+    <string name="yoga_strength_weak">Debole</string>
+    <string name="yoga_family_mahapurusha">Mahapurusha</string>
+    <string name="yoga_family_wealth">Ricchezza e Raja</string>
+    <string name="yoga_family_benefic">Benefici</string>
+    <string name="yoga_family_viparita">Viparita Raja</string>
+    <string name="yoga_family_nabhasa">Nabhasa</string>
+    <string name="yoga_family_challenging">Impegnativa</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">Che cosa significa</string>
+    <string name="yoga_forms">Che cosa lo forma</string>
+    <string name="yoga_shows">Quando si manifesta</string>
+    <string name="yoga_softened">Che cosa lo attenua</string>
+    <string name="yoga_source">Fonte: %1$s</string>
+    <string name="classics_kicker">Dai classici</string>
+    <string name="classics_heading">Che cosa dice il Brihat Jataka dei tuoi yoga</string>
+    <string name="classics_ask">Leggi che cosa dice il libro</string>
+    <string name="classics_pending">Lettura del Brihat Jataka per i tuoi yoga…</string>
+    <string name="classics_empty">Il Brihat Jataka non ha versi sugli yoga di questa carta, quindi non c’è nessuna nota da mostrare.</string>
+    <string name="classics_sources">I versi (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">Brihat Jataka %1$s</string>
+    <string name="classics_ref_brihat_samhita">Brihat Samhita %1$s</string>
+    <string name="classics_ref_strijataka">Strijataka, cap. %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">nota del traduttore</string>
+    <string name="classics_credit">I numeri rimandano ai versi da cui sono tratti, citati come sono stampati nella traduzione inglese del Brihat Jataka di Varahamihira curata da N. Chidambaram Iyer nel 1885. Le parole tra parentesi quadre sono nostre, non del libro.</string>
+</resources>

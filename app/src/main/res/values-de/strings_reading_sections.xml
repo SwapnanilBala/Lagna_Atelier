@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The reading tab's longer sections, translated; the website's own wording where it has one. -->
+<resources>
+    <string name="sections_show">Anzeigen</string>
+    <string name="sections_hide">Ausblenden</string>
+    <string name="sections_see_all">Alle %1$d ansehen</string>
+    <string name="sections_see_fewer">Weniger ansehen</string>
+    <string name="sections_retry">Erneut versuchen</string>
+    <string name="positions_title">Planetenpositionen</string>
+    <string name="positions_count">%1$d Grahas</string>
+    <string name="positions_col_graha">Graha</string>
+    <string name="positions_col_sign">Zeichen</string>
+    <string name="positions_col_degree">Grad</string>
+    <string name="positions_col_house">Haus</string>
+    <string name="positions_col_bhava">Bhava</string>
+    <string name="positions_flag_retrograde">Rx</string>
+    <string name="positions_flag_combust">Cmb</string>
+    <string name="positions_retrograde_description">läuft rückwärts</string>
+    <string name="positions_combust_description">zu nah an der Sonne</string>
+    <string name="positions_row_description">%1$s in %2$s bei %3$s, Haus %4$d</string>
+    <string name="positions_row_bhava_description">%1$s in %2$s bei %3$s, Haus %4$d nach Zeichen, Bhava %5$d</string>
+    <string name="positions_flag_legend">Rx = bewegt sich von hier aus gesehen rückwärts · Cmb = zu nah an der Sonne, um frei zu wirken</string>
+    <string name="positions_bhava_legend">„Haus“ zählt die Häuser nach Zeichen, wie das Horoskop. „Bhava“ ist das Haus nach dem Häusersystem %1$s, das die Deutungen verwenden.</string>
+    <string name="house_system_equal">Äquale Häuser</string>
+    <string name="house_system_placidus">Placidus</string>
+    <string name="house_system_koch">Koch</string>
+    <string name="house_system_campanus">Campanus</string>
+    <string name="house_system_regiomontanus">Regiomontanus</string>
+    <string name="house_system_porphyry">Porphyrius</string>
+    <string name="houses_title">Welches Haus wofür zuständig ist</string>
+    <string name="houses_subtitle">Alle zwölf und die Unterstützung, die jedes hat</string>
+    <string name="houses_bindus_legend">Bindus sind der Unterstützungswert des Ashtakavarga für das Zeichen in diesem Haus, bei einer festen Gesamtsumme von 337. Der genaue Durchschnitt liegt bei 28,1, deshalb wird ein Haus an diesem Wert gemessen und nicht an einem Maximum.</string>
+    <string name="houses_self_label">Unterstützung für das Selbst</string>
+    <string name="houses_self_value">%1$d %%</string>
+    <string name="houses_self_meta">des Durchschnitts · %1$d Bindus in %2$s</string>
+    <string name="houses_best">Am besten unterstützt</string>
+    <string name="houses_least">Am wenigsten unterstützt</string>
+    <string name="houses_readout_house">Haus %1$d · %2$s · %3$d</string>
+    <string name="houses_above_average">%1$d von 12 Häusern über dem Durchschnitt</string>
+    <string name="houses_bars_description">Bindus in jedem der zwölf Häuser, gemessen am Durchschnitt von 28.1.</string>
+    <string name="houses_band_strong">28+ Bindus</string>
+    <string name="houses_band_neutral">26–27</string>
+    <string name="houses_band_weak">25 oder weniger</string>
+    <string name="houses_show_roles">Wofür jedes Haus steht</string>
+    <string name="houses_bhava">%1$s Bhava</string>
+    <string name="houses_readout">%1$s · %2$d</string>
+    <string name="houses_row_description">Haus %1$d, %2$s Bhava: %3$s, %4$d Bindus. %5$s.</string>
+    <string name="houses_peak_best">Am besten unterstützt</string>
+    <string name="houses_peak_least">Am wenigsten unterstützt</string>
+    <string name="houses_group_legend">Kendra sind die vier Winkel, auf denen das Horoskop ruht; Panaphara und Apoklima sind die Häuser, die ihnen folgen und von ihnen wegfallen. Darüber hinaus werden Trikona-Häuser als Orte gelesen, an denen Verdienst ankommt, Upachaya als die, die mit Alter und Mühe besser werden, und Dusthana als die, die zuerst etwas verlangen. Ein Haus kann mehreres sein: Das 6. ist Upachaya und Dusthana zugleich.</string>
+    <string name="houses_caveat">Das Häusersystem dieses Horoskops legt ein Zeichen auf zwei Spitzen und lässt ein anderes ohne, deshalb ergeben die zwölf Häuser zusammen %1$d statt glatter 337. Der Wert jedes Hauses gilt; die Summe zeigt die Häusereinteilung ebenso wie das Horoskop.</string>
+    <string name="house_group_kendra">Kendra</string>
+    <string name="house_group_panaphara">Panaphara</string>
+    <string name="house_group_apoklima">Apoklima</string>
+    <string name="house_group_trikona">Trikona</string>
+    <string name="house_group_upachaya">Upachaya</string>
+    <string name="house_group_dusthana">Dusthana</string>
+    <string-array name="bhava_names">
+        <item>Tanu</item>
+        <item>Dhana</item>
+        <item>Sahaja</item>
+        <item>Bandhu</item>
+        <item>Putra</item>
+        <item>Ari</item>
+        <item>Yuvati</item>
+        <item>Randhra</item>
+        <item>Dharma</item>
+        <item>Karma</item>
+        <item>Labha</item>
+        <item>Vyaya</item>
+    </string-array>
+    <string-array name="house_themes">
+        <item>Identität, Erscheinungsbild und Ausrichtung</item>
+        <item>Besitz, Einkommen und Werte</item>
+        <item>Kommunikation, Lernen und Geschwister</item>
+        <item>Zuhause, Wurzeln und emotionale Grundlagen</item>
+        <item>Kreativität, Romantik und Kinder</item>
+        <item>Dienst, Routinen und Gesundheit</item>
+        <item>Partnerschaften und Vereinbarungen</item>
+        <item>gemeinsame Ressourcen und Wandlung</item>
+        <item>Überzeugungen, Weisheit und Fernreisen</item>
+        <item>Karriere, Autorität und öffentliches Ansehen</item>
+        <item>Gemeinschaft, Netzwerke und langfristige Ziele</item>
+        <item>Rückzug, Unterbewusstsein und spiritueller Abschluss</item>
+    </string-array>
+    <string name="full_title">Die ganze Deutung</string>
+    <string name="full_subtitle">%1$d Befunde, jeder mit dem, worauf er beruht</string>
+    <string name="full_filter_all">Alle</string>
+    <string name="full_filter_top">Top-Prioritäten</string>
+    <string name="full_theme_core">Wer du bist</string>
+    <string name="full_theme_career">Beruf</string>
+    <string name="full_theme_love">Liebe</string>
+    <string name="full_rare">Selten</string>
+    <string name="full_top_priority">Top-Priorität %1$d</string>
+    <string name="full_other_side">Die Kehrseite</string>
+    <string name="full_why">Warum diese Deutung</string>
+    <string name="full_how_common">Wie häufig</string>
+    <string name="yogas_title">Yogas</string>
+    <string name="yogas_subtitle">%1$d Kombinationen, die stärksten zuerst</string>
+    <string name="yogas_intro">Yogas sind klassische Kombinationen von Planeten. Jedes unten wurde in diesem Horoskop gefunden, danach, wo seine Planeten stehen, welche Zeichen sie beherrschen und welche Häuser sie besetzen.</string>
+    <string name="yoga_strength_strong">Stark</string>
+    <string name="yoga_strength_moderate">Mittel</string>
+    <string name="yoga_strength_weak">Schwach</string>
+    <string name="yoga_family_mahapurusha">Mahapurusha</string>
+    <string name="yoga_family_wealth">Wohlstand &amp; Raja</string>
+    <string name="yoga_family_benefic">Wohltätig</string>
+    <string name="yoga_family_viparita">Viparita Raja</string>
+    <string name="yoga_family_nabhasa">Nabhasa</string>
+    <string name="yoga_family_challenging">Herausfordernd</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">Was es bedeutet</string>
+    <string name="yoga_forms">Wodurch es entsteht</string>
+    <string name="yoga_shows">Wann es sich zeigt</string>
+    <string name="yoga_softened">Was es abmildert</string>
+    <string name="yoga_source">Quelle: %1$s</string>
+    <string name="classics_kicker">Aus den Klassikern</string>
+    <string name="classics_heading">Was das Brihat Jataka über deine Yogas sagt</string>
+    <string name="classics_ask">Lies, was das Buch sagt</string>
+    <string name="classics_pending">Deine Yogas werden im Brihat Jataka nachgeschlagen…</string>
+    <string name="classics_empty">Das Brihat Jataka hat keine Verse zu den Yogas dieses Horoskops, also gibt es keine Notiz.</string>
+    <string name="classics_sources">Die Verse (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">Brihat Jataka %1$s</string>
+    <string name="classics_ref_brihat_samhita">Brihat Samhita %1$s</string>
+    <string name="classics_ref_strijataka">Strijataka, Kap. %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">Anmerkung des Übersetzers</string>
+    <string name="classics_credit">Die Zahlen verweisen auf die Verse, aus denen die Aussagen stammen, zitiert im gedruckten Wortlaut der englischen Übersetzung des Brihat Jataka von Varahamihira, die N. Chidambaram Iyer 1885 vorlegte. Wörter in eckigen Klammern sind von uns, nicht aus dem Buch.</string>
+</resources>

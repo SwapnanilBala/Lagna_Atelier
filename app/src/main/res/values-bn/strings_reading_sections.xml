@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The reading tab's longer sections, translated; the website's own wording where it has one. -->
+<resources>
+    <string name="sections_show">দেখান</string>
+    <string name="sections_hide">লুকান</string>
+    <string name="sections_see_all">সবগুলি দেখুন (%1$d)</string>
+    <string name="sections_see_fewer">কম দেখুন</string>
+    <string name="sections_retry">আবার চেষ্টা করুন</string>
+    <string name="positions_title">গ্রহের অবস্থান</string>
+    <string name="positions_count">%1$dটি গ্রহ</string>
+    <string name="positions_col_graha">গ্রহ</string>
+    <string name="positions_col_sign">রাশি</string>
+    <string name="positions_col_degree">ডিগ্রি</string>
+    <string name="positions_col_house">ভাব</string>
+    <string name="positions_col_bhava">চলিত</string>
+    <string name="positions_flag_retrograde">বক্রী</string>
+    <string name="positions_flag_combust">অস্ত</string>
+    <string name="positions_retrograde_description">পিছনের দিকে চলছে</string>
+    <string name="positions_combust_description">সূর্যের খুব কাছে</string>
+    <string name="positions_row_description">%1$s, %2$s-এ %3$s-এ, ভাব %4$d</string>
+    <string name="positions_row_bhava_description">%1$s, %2$s-এ %3$s-এ, রাশি অনুযায়ী ভাব %4$d, চলিত ভাব %5$d</string>
+    <string name="positions_flag_legend">বক্রী = এখান থেকে পিছনে চলছে · অস্ত = সূর্যের এত কাছে যে স্বাধীনভাবে কাজ করতে পারে না</string>
+    <string name="positions_bhava_legend">ভাব: রাশি থেকে গোনা, চক্রের মতোই। চলিত: %1$s পদ্ধতিতে ভাব, যার ভিত্তিতে রিডিং লেখা হয়েছে।</string>
+    <string name="house_system_equal">Equal Houses</string>
+    <string name="house_system_placidus">Placidus</string>
+    <string name="house_system_koch">Koch</string>
+    <string name="house_system_campanus">Campanus</string>
+    <string name="house_system_regiomontanus">Regiomontanus</string>
+    <string name="house_system_porphyry">Porphyry</string>
+    <string name="houses_title">কোন ভাব কিসের দায়িত্বে</string>
+    <string name="houses_subtitle">বারোটিই, এবং প্রতিটি যতটা সহায়তা ধরে রাখে</string>
+    <string name="houses_bindus_legend">বিন্দু হল সেই ভাবে বসা রাশির জন্য অষ্টকবর্গের সহায়তা-স্কোর, নির্দিষ্ট 337-এর একটি ভাণ্ডার থেকে। ঠিক মাঝামাঝি মান 28.1, তাই একটি ভাবকে সর্বোচ্চ মানের বিপরীতে নয়, ওই মানের বিপরীতেই পড়া হয়।</string>
+    <string name="houses_self_label">নিজের সত্তার জন্য সমর্থন</string>
+    <string name="houses_self_value">%1$d%%</string>
+    <string name="houses_self_meta">গড়ের · %2$s-এ %1$d বিন্দু</string>
+    <string name="houses_best">সর্বাধিক সমর্থিত</string>
+    <string name="houses_least">সর্বনিম্ন সমর্থিত</string>
+    <string name="houses_readout_house">ভাব %1$d · %2$s · %3$d</string>
+    <string name="houses_above_average">12টির মধ্যে %1$dটি ভাব গড়ের উপরে</string>
+    <string name="houses_bars_description">বারোটি ভাবের প্রত্যেকটিতে বিন্দু, 28.1 গড়ের সাপেক্ষে।</string>
+    <string name="houses_band_strong">28+ বিন্দু</string>
+    <string name="houses_band_neutral">26–27</string>
+    <string name="houses_band_weak">25 বা কম</string>
+    <string name="houses_show_roles">কোন ভাব কী বিষয়ের জন্য দায়ী</string>
+    <string name="houses_bhava">%1$s ভাব</string>
+    <string name="houses_readout">%1$s · %2$d</string>
+    <string name="houses_row_description">ভাব %1$d, %2$s ভাব: %3$s, %4$d বিন্দু। %5$s।</string>
+    <string name="houses_peak_best">সর্বাধিক সমর্থিত</string>
+    <string name="houses_peak_least">সর্বনিম্ন সমর্থিত</string>
+    <string name="houses_group_legend">কেন্দ্র হল সেই চারটি কোণ যার উপর কুণ্ডলী দাঁড়িয়ে; পণফর ও আপোক্লিম হল তাদের পরে আসা এবং তাদের থেকে সরে যাওয়া ভাব। তার উপরে, ত্রিকোণ ভাবকে পড়া হয় যেখানে পুণ্য ফল দেয়, উপচয়কে সেই ভাব যা বয়স ও চেষ্টায় উন্নত হয়, আর দুঃস্থানকে সেই ভাব যা আগে কিছু চায়। একটি ভাব একাধিক হতে পারে: ষষ্ঠ ভাব উপচয়ও, দুঃস্থানও।</string>
+    <string name="houses_caveat">এই কুণ্ডলীর ভাব পদ্ধতি একটি রাশিকে দুটি ভাবারম্ভে রাখে আর আরেকটিকে কোনোটিতেই নয়, তাই বারোটি ভাবের যোগফল ঠিক 337 নয়, %1$d হয়। প্রতিটি ভাবের সংখ্যা ঠিক আছে; মোট যোগফল কুণ্ডলীর সঙ্গে ভাব-বিভাজনকেও দেখাচ্ছে।</string>
+    <string name="house_group_kendra">কেন্দ্র</string>
+    <string name="house_group_panaphara">পণফর</string>
+    <string name="house_group_apoklima">আপোক্লিম</string>
+    <string name="house_group_trikona">ত্রিকোণ</string>
+    <string name="house_group_upachaya">উপচয়</string>
+    <string name="house_group_dusthana">দুঃস্থান</string>
+    <string-array name="bhava_names">
+        <item>তনু</item>
+        <item>ধন</item>
+        <item>সহজ</item>
+        <item>বন্ধু</item>
+        <item>পুত্র</item>
+        <item>অরি</item>
+        <item>যুবতি</item>
+        <item>রন্ধ্র</item>
+        <item>ধর্ম</item>
+        <item>কর্ম</item>
+        <item>লাভ</item>
+        <item>ব্যয়</item>
+    </string-array>
+    <string-array name="house_themes">
+        <item>পরিচয়, চেহারা ও দিশা</item>
+        <item>সম্পদ, আয় ও মূল্যবোধ</item>
+        <item>যোগাযোগ, শিক্ষা ও ভাইবোন</item>
+        <item>গৃহ, শিকড় ও আবেগের ভিত্তি</item>
+        <item>সৃষ্টিশীলতা, প্রেম ও সন্তান</item>
+        <item>সেবা, নিত্যকর্ম ও স্বাস্থ্য</item>
+        <item>সঙ্গ ও চুক্তি</item>
+        <item>ভাগ করা সম্পদ ও রূপান্তর</item>
+        <item>বিশ্বাস, প্রজ্ঞা ও দূরযাত্রা</item>
+        <item>পেশা, অধিকার ও সামাজিক প্রতিষ্ঠা</item>
+        <item>সমাজ, নেটওয়ার্ক ও দীর্ঘ লক্ষ্য</item>
+        <item>নিবৃত্তি, অবচেতন ও আধ্যাত্মিক সমাপ্তি</item>
+    </string-array>
+    <string name="full_title">সম্পূর্ণ পাঠ</string>
+    <string name="full_subtitle">%1$dটি সিদ্ধান্ত, প্রতিটির সঙ্গে তার ভিত্তি</string>
+    <string name="full_filter_all">সব</string>
+    <string name="full_filter_top">শীর্ষ অগ্রাধিকার</string>
+    <string name="full_theme_core">আপনি কে</string>
+    <string name="full_theme_career">কাজ</string>
+    <string name="full_theme_love">প্রেম</string>
+    <string name="full_rare">বিরল</string>
+    <string name="full_top_priority">শীর্ষ অগ্রাধিকার %1$d</string>
+    <string name="full_other_side">অন্য দিক</string>
+    <string name="full_why">কেন এই পাঠ</string>
+    <string name="full_how_common">কতটা সাধারণ</string>
+    <string name="yogas_title">যোগ</string>
+    <string name="yogas_subtitle">%1$dটি যোগ, সবচেয়ে প্রবলটি আগে</string>
+    <string name="yogas_intro">যোগ হল গ্রহের শাস্ত্রীয় সংযোগ। নিচের প্রতিটি যোগ এই কুণ্ডলীতে পাওয়া গেছে তার গ্রহগুলি কোথায় বসে, কোন রাশির অধিপতি এবং কোন ভাবে আছে তা থেকে।</string>
+    <string name="yoga_strength_strong">প্রবল</string>
+    <string name="yoga_strength_moderate">মধ্যম</string>
+    <string name="yoga_strength_weak">দুর্বল</string>
+    <string name="yoga_family_mahapurusha">মহাপুরুষ</string>
+    <string name="yoga_family_wealth">ধন ও রাজ</string>
+    <string name="yoga_family_benefic">শুভ</string>
+    <string name="yoga_family_viparita">বিপরীত রাজ</string>
+    <string name="yoga_family_nabhasa">নাভস</string>
+    <string name="yoga_family_challenging">চ্যালেঞ্জপূর্ণ</string>
+    <string name="yoga_meta">%1$s · %2$s</string>
+    <string name="yoga_means">এর অর্থ</string>
+    <string name="yoga_forms">এটি কীভাবে গঠিত হয়</string>
+    <string name="yoga_shows">এটি কখন প্রকাশ পায়</string>
+    <string name="yoga_softened">কী এটিকে নরম করে</string>
+    <string name="yoga_source">উৎস: %1$s</string>
+    <string name="classics_kicker">শাস্ত্র থেকে</string>
+    <string name="classics_heading">আপনার যোগগুলি নিয়ে বৃহৎ জাতক কী বলে</string>
+    <string name="classics_ask">গ্রন্থ কী বলে পড়ুন</string>
+    <string name="classics_pending">আপনার যোগগুলির জন্য বৃহৎ জাতক পড়া হচ্ছে…</string>
+    <string name="classics_empty">বৃহৎ জাতকে এই কুণ্ডলীর যোগ নিয়ে কোনো শ্লোক নেই, তাই দেখানোর মতো কোনো টীকা নেই।</string>
+    <string name="classics_sources">শ্লোক (%1$d)</string>
+    <string name="classics_ref_brihat_jataka">বৃহৎ জাতক %1$s</string>
+    <string name="classics_ref_brihat_samhita">বৃহৎ সংহিতা %1$s</string>
+    <string name="classics_ref_strijataka">স্ত্রীজাতক, অধ্যায় %1$s</string>
+    <string name="classics_ref_other">%1$s</string>
+    <string name="classics_translator_note">অনুবাদকের টীকা</string>
+    <string name="classics_credit">সংখ্যাগুলি সেই শ্লোকগুলির দিকে নির্দেশ করে, যেখান থেকে কথাগুলি নেওয়া। শ্লোকগুলি বরাহমিহিরের বৃহৎ জাতকের, এন. চিদম্বরম আইয়ারের 1885 সালের ইংরেজি অনুবাদ থেকে হুবহু উদ্ধৃত। বন্ধনীর ভিতরের শব্দগুলি আমাদের, গ্রন্থের নয়।</string>
+</resources>
