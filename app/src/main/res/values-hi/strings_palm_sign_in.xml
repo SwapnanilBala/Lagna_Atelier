@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the Palm tab's sign-in card and the photo check's refusals;
+     the palm feature owns this file. -->
+<resources>
+    <string name="palm_sign_in_title">हस्तरेखा पठन के लिए खाता चाहिए</string>
+    <string name="palm_sign_in_copy">हर खाते को सप्ताह में दो पठन मिलते हैं, इसलिए हस्तरेखा पठन के लिए साइन इन करना होता है। आपके सहेजे गए पठन और तुलना का दृश्य बिना साइन इन के भी इसी फ़ोन पर खुले रहते हैं।</string>
+    <string name="palm_sign_in_not_set_up">ऐप की इस प्रति में साइन इन अभी तैयार नहीं है, इसलिए यहाँ नया हस्तरेखा पठन नहीं हो सकता। आपके सहेजे गए पठन इसी फ़ोन पर खुले रहते हैं।</string>
+    <string name="palm_sign_in_ended">आप साइन आउट हो गए थे। अपनी हथेली पढ़वाने के लिए फिर से साइन इन करें।</string>
+    <string name="palm_sign_in_ask">किसी पठन के बारे में प्रश्न पूछने के लिए खाता चाहिए। हस्तरेखा टैब पर लौटकर साइन इन करें।</string>
+    <string name="palm_refused_not_a_palm">यह हथेली जैसी नहीं लगती। अपने हाथ के भीतरी हिस्से की तस्वीर लें, उँगलियाँ फैलाकर।</string>
+    <string name="palm_refused_back_of_hand">यह हाथ का पिछला हिस्सा लगता है — हाथ पलटकर अपनी हथेली की तस्वीर लें।</string>
+    <string name="palm_refused_unclear">तस्वीर बहुत अँधेरी या धुँधली है, इसे पढ़ा नहीं जा सकता। अच्छी रोशनी में फ़ोन स्थिर रखकर फिर कोशिश करें।</string>
+    <string name="palm_refused_not_counted">इससे इस सप्ताह का कोई पठन खर्च नहीं हुआ।</string>
+</resources>

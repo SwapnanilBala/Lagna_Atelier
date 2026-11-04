@@ -46,6 +46,8 @@ class LagnaApi(private val baseUrl: String = BASE_URL) {
         val status: Int? = null,
         val code: String? = null,
         val scope: String? = null,
+        /** error.details.reason, which the palm route's photo check names (not_a_palm, back_of_hand, unclear). */
+        val reason: String? = null,
     ) : IOException(message) {
         val problem: ApiProblem get() = ApiProblem.of(status, scope)
     }
@@ -258,8 +260,10 @@ class LagnaApi(private val baseUrl: String = BASE_URL) {
         fun apiException(status: Int, body: String): ApiException {
             val error = runCatching { JSONObject(body) }.getOrNull()?.optJSONObject("error")
             val code = (error?.opt("code") as? String)?.takeIf { it.isNotBlank() }
-            val scope = (error?.optJSONObject("details")?.opt("scope") as? String)?.takeIf { it.isNotBlank() }
-            return ApiException(errorMessage(status, body), status, code, scope)
+            val details = error?.optJSONObject("details")
+            val scope = (details?.opt("scope") as? String)?.takeIf { it.isNotBlank() }
+            val reason = (details?.opt("reason") as? String)?.takeIf { it.isNotBlank() }
+            return ApiException(errorMessage(status, body), status, code, scope, reason)
         }
 
         /*

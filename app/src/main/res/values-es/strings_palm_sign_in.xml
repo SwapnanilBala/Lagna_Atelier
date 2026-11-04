@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the Palm tab's sign-in card and the photo check's refusals;
+     the palm feature owns this file. -->
+<resources>
+    <string name="palm_sign_in_title">Las lecturas de la palma necesitan una cuenta</string>
+    <string name="palm_sign_in_copy">Cada cuenta tiene dos lecturas por semana, así que la lectura de la palma te pide iniciar sesión. Tus lecturas guardadas y la comparación siguen abiertas en este teléfono sin hacerlo.</string>
+    <string name="palm_sign_in_not_set_up">El inicio de sesión aún no está disponible en esta copia de la app, así que aquí no se pueden hacer lecturas nuevas de la palma. Tus lecturas guardadas siguen abiertas en este teléfono.</string>
+    <string name="palm_sign_in_ended">Se cerró tu sesión. Vuelve a iniciar sesión para leer tu palma.</string>
+    <string name="palm_sign_in_ask">Las preguntas sobre una lectura necesitan una cuenta. Vuelve a la pestaña Palma e inicia sesión para hacer una.</string>
+    <string name="palm_refused_not_a_palm">Eso no parece una palma. Haz una foto del interior de tu mano, con los dedos separados.</string>
+    <string name="palm_refused_back_of_hand">Eso parece el dorso de una mano — dale la vuelta y fotografía tu palma.</string>
+    <string name="palm_refused_unclear">La foto está demasiado oscura o borrosa para leerla. Inténtalo de nuevo con buena luz y el teléfono quieto.</string>
+    <string name="palm_refused_not_counted">Esto no ha gastado ninguna de las lecturas de esta semana.</string>
+</resources>

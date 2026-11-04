@@ -172,7 +172,7 @@ private fun LagnaApp(model: AppViewModel) {
                         otherTab = { other ->
                             when (other) {
                                 AppTab.Timing -> TimingTab(chart, details, model.api)
-                                AppTab.Palm -> PalmTab(chart, details, model.api)
+                                AppTab.Palm -> PalmTab(chart, details, model.api, model.account)
                                 AppTab.Account -> AccountTab(
                                     store = model.store,
                                     account = model.account,

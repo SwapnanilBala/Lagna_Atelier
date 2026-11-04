@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the Palm tab's sign-in card and the photo check's refusals;
+     the palm feature owns this file. -->
+<resources>
+    <string name="palm_sign_in_title">Les lectures de la paume demandent un compte</string>
+    <string name="palm_sign_in_copy">Chaque compte a droit à deux lectures par semaine, c’est pourquoi la lecture de la paume vous demande de vous connecter. Vos lectures enregistrées et la comparaison restent ouvertes sur ce téléphone sans connexion.</string>
+    <string name="palm_sign_in_not_set_up">La connexion n’est pas encore disponible dans cette copie de l’app, donc aucune nouvelle lecture de la paume n’est possible ici. Vos lectures enregistrées restent ouvertes sur ce téléphone.</string>
+    <string name="palm_sign_in_ended">Vous avez été déconnecté. Reconnectez-vous pour faire lire votre paume.</string>
+    <string name="palm_sign_in_ask">Les questions sur une lecture demandent un compte. Revenez à l’onglet Paume et connectez-vous pour en poser une.</string>
+    <string name="palm_refused_not_a_palm">Cela ne ressemble pas à une paume. Photographiez l’intérieur de votre main, les doigts écartés.</string>
+    <string name="palm_refused_back_of_hand">Cela ressemble au dos d’une main — retournez-la et photographiez votre paume.</string>
+    <string name="palm_refused_unclear">La photo est trop sombre ou trop floue pour être lue. Réessayez avec une bonne lumière, en tenant le téléphone immobile.</string>
+    <string name="palm_refused_not_counted">Cela n’a utilisé aucune des lectures de cette semaine.</string>
+</resources>

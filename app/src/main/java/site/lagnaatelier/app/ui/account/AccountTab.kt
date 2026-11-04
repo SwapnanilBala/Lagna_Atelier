@@ -173,23 +173,35 @@ private fun SignInCard(account: AccountSession) {
             style = MaterialTheme.typography.bodyMedium,
             color = Muted,
         )
-        if (status != AccountSession.Status.NotSetUp) {
-            val busy = status == AccountSession.Status.SigningIn || status == AccountSession.Status.Checking
-            PillButton(
-                stringResource(
-                    when (status) {
-                        AccountSession.Status.SigningIn -> R.string.accounts_signing_in
-                        AccountSession.Status.Checking -> R.string.accounts_checking
-                        else -> R.string.accounts_signin_button
-                    },
-                ),
-                onClick = { account.signIn(context) },
-                enabled = !busy,
-            )
-        }
-        account.message?.let { text ->
-            Text(stringResource(text), style = MaterialTheme.typography.bodySmall, color = Ink)
-        }
+        SignInAction(account)
+    }
+}
+
+/**
+ * "Sign in with Google" and what went wrong last time, for any card that
+ * asks for an account (this tab's, and the Palm tab's). Nothing at all when
+ * the build has no client id: the card says "not set up" in its own words.
+ */
+@Composable
+internal fun SignInAction(account: AccountSession) {
+    val context = LocalContext.current
+    val status = account.status
+    if (status != AccountSession.Status.NotSetUp) {
+        val busy = status == AccountSession.Status.SigningIn || status == AccountSession.Status.Checking
+        PillButton(
+            stringResource(
+                when (status) {
+                    AccountSession.Status.SigningIn -> R.string.accounts_signing_in
+                    AccountSession.Status.Checking -> R.string.accounts_checking
+                    else -> R.string.accounts_signin_button
+                },
+            ),
+            onClick = { account.signIn(context) },
+            enabled = !busy,
+        )
+    }
+    account.message?.let { text ->
+        Text(stringResource(text), style = MaterialTheme.typography.bodySmall, color = Ink)
     }
 }
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the Palm tab's sign-in card and the photo check's refusals;
+     the palm feature owns this file. -->
+<resources>
+    <string name="palm_sign_in_title">Handdeutungen brauchen ein Konto</string>
+    <string name="palm_sign_in_copy">Jedes Konto bekommt zwei Deutungen pro Woche, deshalb bittet dich die Handdeutung, dich anzumelden. Deine gespeicherten Deutungen und der Vergleich bleiben auf diesem Handy auch ohne Anmeldung offen.</string>
+    <string name="palm_sign_in_not_set_up">Die Anmeldung ist in dieser Version der App noch nicht eingerichtet, deshalb sind hier keine neuen Handdeutungen möglich. Deine gespeicherten Deutungen bleiben auf diesem Handy offen.</string>
+    <string name="palm_sign_in_ended">Du wurdest abgemeldet. Melde dich wieder an, um deine Hand deuten zu lassen.</string>
+    <string name="palm_sign_in_ask">Fragen zu einer Deutung brauchen ein Konto. Geh zurück zum Tab Hand und melde dich an, um eine zu stellen.</string>
+    <string name="palm_refused_not_a_palm">Das sieht nicht nach einer Handfläche aus. Fotografiere die Innenseite deiner Hand mit gespreizten Fingern.</string>
+    <string name="palm_refused_back_of_hand">Das sieht nach einem Handrücken aus — dreh die Hand um und fotografiere deine Handfläche.</string>
+    <string name="palm_refused_unclear">Das Foto ist zu dunkel oder zu verschwommen, um es zu lesen. Versuch es noch einmal bei gutem Licht und halte das Handy ruhig.</string>
+    <string name="palm_refused_not_counted">Dafür wurde keine der Deutungen dieser Woche verbraucht.</string>
+</resources>

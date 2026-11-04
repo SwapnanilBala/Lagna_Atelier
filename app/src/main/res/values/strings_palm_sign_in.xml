@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the Palm tab's sign-in card and the photo check's refusals;
+     the palm feature owns this file. -->
+<resources>
+    <string name="palm_sign_in_title">Palm readings need an account</string>
+    <string name="palm_sign_in_copy">Each reading is kept to two a week for one account, so palm reading asks you to sign in. Your saved readings and the compare view stay open on this phone without it.</string>
+    <string name="palm_sign_in_not_set_up">Sign-in is not set up in this copy of the app yet, so new palm readings cannot be had here. Your saved readings stay open on this phone.</string>
+    <string name="palm_sign_in_ended">You were signed out. Sign in again to read your palm.</string>
+    <string name="palm_sign_in_ask">Questions about a reading need an account. Go back to the Palm tab and sign in to ask one.</string>
+    <string name="palm_refused_not_a_palm">That doesn\'t look like a palm. Take a photo of the inside of your hand, fingers spread.</string>
+    <string name="palm_refused_back_of_hand">That looks like the back of a hand — turn it over and photograph your palm.</string>
+    <string name="palm_refused_unclear">The photo is too dark or blurred to read. Try again in good light, holding the phone steady.</string>
+    <string name="palm_refused_not_counted">This didn\'t use one of this week\'s readings.</string>
+</resources>

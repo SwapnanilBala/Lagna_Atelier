@@ -1,7 +1,9 @@
 package site.lagnaatelier.app.data.palm
 
+import androidx.annotation.StringRes
 import org.json.JSONArray
 import org.json.JSONObject
+import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.ApiProblem
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
@@ -18,7 +20,10 @@ import kotlin.math.roundToLong
  *   POST /api/palm-reading      { image, mediaType, classicalMode?, reader?, jyotishContext? }
  *   POST /api/palm-reading/ask  { reading, jyotishContext?, classicalMode, history, question }
  *
- * Both run a model the site pays for, and the reading is capped at two a week.
+ * Both run a model the site pays for, need an account (401 with
+ * details.scope "sign_in" otherwise), and the reading is capped at two a
+ * week. A photo the route's check turns away is a 422 VALIDATION_FAILED
+ * with details.reason, and is not one of the week's two.
  */
 
 /** Whose hand it is (lib/palm-readings/reader.ts), and so which hand the tradition reads. */
@@ -148,6 +153,28 @@ object PalmQa {
     }
 }
 
+/** The photo check's reasons (error.details.reason on a 422), each with the app's own words. */
+enum class PhotoRefusal(val apiValue: String, @param:StringRes @get:StringRes val message: Int) {
+    NotAPalm("not_a_palm", R.string.palm_refused_not_a_palm),
+    BackOfHand("back_of_hand", R.string.palm_refused_back_of_hand),
+    Unclear("unclear", R.string.palm_refused_unclear),
+}
+
+/** A refused reading, sorted: each kind is shown differently on the Palm tab. */
+sealed interface ReadingRefusal {
+    /** 401: the sign-in card, in the camera's place. */
+    data object SignIn : ReadingRefusal
+
+    /** The week's two are spent: the date the next one opens. */
+    data object Weekly : ReadingRefusal
+
+    /** The photo check turned the photo away: what to change, and that it cost nothing. */
+    data class Photo(val refusal: PhotoRefusal) : ReadingRefusal
+
+    /** Anything else: the shared wording (ErrorText). */
+    data object Other : ReadingRefusal
+}
+
 class PalmApi(private val api: LagnaApi) {
     /** Reads a palm. Throws [LagnaApi.ApiException] or an IOException; null body means "not a reading". */
     suspend fun read(body: String): PalmReading? =
@@ -171,8 +198,24 @@ class PalmApi(private val api: LagnaApi) {
          */
         fun counted(status: Int?): Boolean = when (status) {
             null -> true
-            400, 413, 429, 503 -> false
+            400, 401, 413, 422, 429, 503 -> false
             else -> true
+        }
+
+        /** Signed out, or the session ended: the route reads palms for an account only. */
+        fun needsSignIn(error: LagnaApi.ApiException): Boolean = error.status == 401
+
+        /** What the Palm tab does with a refused reading; see [ReadingRefusal]. */
+        fun readingRefusal(error: LagnaApi.ApiException): ReadingRefusal {
+            if (needsSignIn(error)) return ReadingRefusal.SignIn
+            if (isWeeklyCap(error)) return ReadingRefusal.Weekly
+            return photoRefusal(error)?.let(ReadingRefusal::Photo) ?: ReadingRefusal.Other
+        }
+
+        /** Why the route's photo check turned the photo away, or null when it was some other refusal. */
+        fun photoRefusal(error: LagnaApi.ApiException): PhotoRefusal? {
+            if (error.status != 422 || error.code != "VALIDATION_FAILED") return null
+            return PhotoRefusal.entries.firstOrNull { it.apiValue == error.reason }
         }
 
         /** The weekly refusal, told by the scope the route names (error.details.scope), not its English. */
