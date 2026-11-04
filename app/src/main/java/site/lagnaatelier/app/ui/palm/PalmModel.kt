@@ -37,6 +37,8 @@ import site.lagnaatelier.app.data.palm.PalmReading
 import site.lagnaatelier.app.data.palm.PalmReadingParser
 import site.lagnaatelier.app.data.palm.PalmRequests
 import site.lagnaatelier.app.data.palm.PalmWeek
+import site.lagnaatelier.app.data.palm.PhotoRefusal
+import site.lagnaatelier.app.data.palm.ReadingRefusal
 import site.lagnaatelier.app.data.palm.PreparedPhoto
 import site.lagnaatelier.app.data.palm.QaRole
 import site.lagnaatelier.app.data.palm.QaTurn
@@ -133,6 +135,18 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
         private set
     var qaError by mutableStateOf<String?>(null)
         private set
+
+    /**
+     * The site answered 401: whatever the phone thought, it is not signed in
+     * there. Shows the sign-in card until the account says it is signed in
+     * again ([signedIn]).
+     */
+    var sessionEnded by mutableStateOf(false)
+        private set
+
+    fun signedIn() {
+        sessionEnded = false
+    }
 
     var saved by mutableStateOf<List<SavedPalmReading>>(emptyList())
         private set
@@ -267,11 +281,18 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
                 throw e
             } catch (e: LagnaApi.ApiException) {
                 if (!PalmApi.counted(e.status)) rollBack()
-                captureError = if (PalmApi.isWeeklyCap(e)) {
-                    allowanceStore.recordWeeklyCap()
-                    weeklyMessage()
-                } else {
-                    text(ErrorText.of(e))
+                captureError = when (val refusal = PalmApi.readingRefusal(e)) {
+                    ReadingRefusal.SignIn -> {
+                        sessionEnded = true
+                        null
+                    }
+                    ReadingRefusal.Weekly -> {
+                        allowanceStore.recordWeeklyCap()
+                        weeklyMessage()
+                    }
+                    /* The photo is kept: the reader may want to see what was turned away before taking another. */
+                    is ReadingRefusal.Photo -> refusedMessage(refusal.refusal)
+                    ReadingRefusal.Other -> text(ErrorText.of(e))
                 }
             } catch (_: SocketTimeoutException) {
                 captureError = text(R.string.palm_error_timeout)
@@ -295,6 +316,10 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    /** A refused photo's words, and that it cost none of the week's readings. */
+    private fun refusedMessage(refusal: PhotoRefusal): String =
+        "${text(refusal.message)} ${text(R.string.palm_refused_not_counted)}"
 
     private fun weeklyMessage(): String {
         val opens = nextOpening()
@@ -431,7 +456,15 @@ class PalmModel(application: Application) : AndroidViewModel(application) {
                     /* Take the question back out, as the web does: unanswered, it reads as ignored. */
                     if (turns.lastOrNull()?.role == QaRole.User) turns.removeAt(turns.lastIndex)
                     draft = question
-                    qaError = text(if (e is LagnaApi.ApiException) ErrorText.of(e) else R.string.palm_qa_error)
+                    val signIn = e is LagnaApi.ApiException && PalmApi.needsSignIn(e)
+                    if (signIn) sessionEnded = true
+                    qaError = text(
+                        when {
+                            signIn -> R.string.palm_sign_in_ask
+                            e is LagnaApi.ApiException -> ErrorText.of(e)
+                            else -> R.string.palm_qa_error
+                        },
+                    )
                 }
             } finally {
                 asking = false

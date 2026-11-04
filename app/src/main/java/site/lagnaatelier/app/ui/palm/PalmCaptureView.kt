@@ -78,6 +78,8 @@ internal fun PalmCaptureView(
     onTakePhoto: () -> Unit,
     onChoosePhoto: () -> Unit,
     onAnalyse: () -> Unit,
+    /** The sign-in card, shown in the camera's place when there is no account; null when signed in. */
+    signIn: (@Composable () -> Unit)? = null,
 ) {
     val analysing = model.analysingSince != null
     LazyColumn(
@@ -100,8 +102,19 @@ internal fun PalmCaptureView(
         }
         item {
             Box {
-                Glow(Modifier.offset(x = (-40).dp, y = (-10).dp).requiredSize(width = 400.dp, height = 320.dp))
+                /* The glow sets the slot's least height; the sign-in card is shorter than the camera's, as on the Account tab. */
+                Glow(
+                    Modifier.offset(x = (-40).dp, y = (-10).dp)
+                        .requiredSize(width = 400.dp, height = if (signIn != null) 260.dp else 320.dp),
+                )
                 FloatCard(Modifier.fillMaxWidth(), spacing = 14.dp) {
+                    if (signIn != null) {
+                        signIn()
+                        if (model.shown != null) {
+                            GhostChip(stringResource(R.string.palm_back_to_reading), onClick = { model.view = PalmView.Reading })
+                        }
+                        return@FloatCard
+                    }
                     Finder(model.photoBitmap, model.reader, model.preparing)
                     WhoseHand(model.reader, enabled = !analysing) { model.reader = it }
                     if (analysing) {
@@ -116,8 +129,11 @@ internal fun PalmCaptureView(
                 }
             }
         }
-        item { Tips() }
-        item { ClassicalPanel(model.classicalMode, enabled = !analysing) { model.classicalMode = it } }
+        /* How to take the photo, and how it will be read: nothing to act on until there is an account. */
+        if (signIn == null) {
+            item { Tips() }
+            item { ClassicalPanel(model.classicalMode, enabled = !analysing) { model.classicalMode = it } }
+        }
         item {
             AllowancePanel(
                 remaining = model.remaining,

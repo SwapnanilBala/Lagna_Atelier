@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings for the Palm tab's sign-in card and the photo check's refusals;
+     the palm feature owns this file. -->
+<resources>
+    <string name="palm_sign_in_title">হস্তরেখা পাঠের জন্য অ্যাকাউন্ট লাগে</string>
+    <string name="palm_sign_in_copy">প্রতিটি অ্যাকাউন্ট সপ্তাহে দুটি পাঠ পায়, তাই হস্তরেখা পাঠের জন্য সাইন ইন করতে হয়। আপনার সংরক্ষিত পাঠ আর তুলনার দৃশ্য সাইন ইন ছাড়াও এই ফোনে খোলা থাকে।</string>
+    <string name="palm_sign_in_not_set_up">অ্যাপের এই কপিতে সাইন ইন এখনও চালু হয়নি, তাই এখানে নতুন হস্তরেখা পাঠ হবে না। আপনার সংরক্ষিত পাঠ এই ফোনে খোলা থাকে।</string>
+    <string name="palm_sign_in_ended">আপনি সাইন আউট হয়ে গিয়েছিলেন। হস্তরেখা পড়াতে আবার সাইন ইন করুন।</string>
+    <string name="palm_sign_in_ask">কোনো পাঠ নিয়ে প্রশ্ন করতে অ্যাকাউন্ট লাগে। হস্তরেখা ট্যাবে ফিরে সাইন ইন করুন।</string>
+    <string name="palm_refused_not_a_palm">এটি হাতের তালু বলে মনে হচ্ছে না। আঙুল ছড়িয়ে হাতের ভেতরের দিকের ছবি তুলুন।</string>
+    <string name="palm_refused_back_of_hand">এটি হাতের পিঠ বলে মনে হচ্ছে — হাত উল্টে তালুর ছবি তুলুন।</string>
+    <string name="palm_refused_unclear">ছবিটি এত অন্ধকার বা ঝাপসা যে পড়া যাচ্ছে না। ভালো আলোয় ফোন স্থির রেখে আবার চেষ্টা করুন।</string>
+    <string name="palm_refused_not_counted">এতে এই সপ্তাহের কোনো পাঠ খরচ হয়নি।</string>
+</resources>

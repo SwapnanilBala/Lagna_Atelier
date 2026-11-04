@@ -74,7 +74,7 @@ import kotlin.math.roundToInt
  * section is never shown.
  */
 @Composable
-internal fun PalmReadingView(model: PalmModel, shown: ShownReading, onAsk: (String) -> Unit) {
+internal fun PalmReadingView(model: PalmModel, shown: ShownReading, canAsk: Boolean, onAsk: (String) -> Unit) {
     val reading = shown.reading
     Box(Modifier.fillMaxSize()) {
         LazyColumn(
@@ -96,7 +96,7 @@ internal fun PalmReadingView(model: PalmModel, shown: ShownReading, onAsk: (Stri
                 item { MountsPanel(reading) }
             }
             item { MorePanel(reading) }
-            item { AskPanel(model, onAsk) }
+            item { AskPanel(model, canAsk, onAsk) }
             model.saveError?.let { item { Note(it, error = true) } }
         }
         PalmDock {
@@ -293,7 +293,7 @@ private fun MorePanel(reading: PalmReading) {
 }
 
 @Composable
-private fun AskPanel(model: PalmModel, onAsk: (String) -> Unit) {
+private fun AskPanel(model: PalmModel, canAsk: Boolean, onAsk: (String) -> Unit) {
     val turns = model.turns
     val full = PalmQa.atLimit(turns)
     Panel(Modifier.fillMaxWidth()) {
@@ -322,7 +322,10 @@ private fun AskPanel(model: PalmModel, onAsk: (String) -> Unit) {
         }
         if (model.asking) Note(stringResource(R.string.palm_qa_thinking))
 
-        if (turns.isEmpty() && !model.asking) {
+        if (!canAsk) {
+            /* A saved reading opens signed out; asking about it needs the account. */
+            if (model.qaError == null) Note(stringResource(R.string.palm_sign_in_ask))
+        } else if (turns.isEmpty() && !model.asking) {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 listOf(
                     R.string.palm_qa_starter_career,
@@ -347,7 +350,9 @@ private fun AskPanel(model: PalmModel, onAsk: (String) -> Unit) {
             }
         }
 
-        if (full) {
+        if (!canAsk) {
+            /* Nothing to type into: the note above says why. */
+        } else if (full) {
             Note(stringResource(R.string.palm_qa_full))
         } else {
             val sendLabel = stringResource(R.string.palm_qa_send)

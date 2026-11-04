@@ -28,21 +28,31 @@ import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.chartKey
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.account.AccountSession
 
 /*
  * The Palm tab: capture, reading and history, as a small state machine of
  * its own under the shared top bar. Back from the reading or the history
  * returns to the capture card; back from there leaves the tab as usual.
  *
+ * A new reading needs an account; signed out, the camera's card becomes the
+ * sign-in card, and the saved readings and their comparison stay open.
+ *
  * Palm works without a chart. [details] is null for the sample chart, and
  * then no chart facts are sent with the reading: the sample is somebody else's.
  */
 @Composable
-fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier: Modifier = Modifier) {
+fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, account: AccountSession, modifier: Modifier = Modifier) {
     val activity = LocalActivity.current as ComponentActivity
     val model = remember(activity) { ViewModelProvider(activity)[PalmModel::class.java] }
     val context = LocalContext.current
     val hasChart = details != null
+
+    /* A reading and its questions need an account; history and compare do not (see PalmSignInCard). */
+    val needsSignIn = palmNeedsSignIn(account.status, model.sessionEnded)
+    LaunchedEffect(account.status) {
+        if (account.status == AccountSession.Status.SignedIn) model.signedIn()
+    }
 
     LaunchedEffect(Unit) { model.refreshAllowance() }
     /* The sample chart is somebody else's, so it presets nothing. */
@@ -95,7 +105,8 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier
     Box(modifier.fillMaxSize()) {
         val shown = model.shown
         when {
-            model.view == PalmView.Reading && shown != null -> PalmReadingView(model, shown, onAsk = { model.ask(api, it) })
+            model.view == PalmView.Reading && shown != null ->
+                PalmReadingView(model, shown, canAsk = !needsSignIn, onAsk = { model.ask(api, it) })
             model.view == PalmView.History -> PalmHistoryView(model)
             model.view == PalmView.Compare -> PalmCompareView(model)
             else -> PalmCaptureView(
@@ -104,6 +115,7 @@ fun PalmTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier
                 onTakePhoto = ::launchCamera,
                 onChoosePhoto = ::choosePhoto,
                 onAnalyse = { model.analyse(api, chart, hasRealChart = hasChart) },
+                signIn = if (needsSignIn) ({ PalmSignInCard(account, model.sessionEnded) }) else null,
             )
         }
     }
