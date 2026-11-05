@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapters_label_mahadasha">%1$s মহাদশা শুরু</string>
+    <string name="chapters_label_saturn_return">শনির %1$s প্রত্যাবর্তন</string>
+    <string name="chapters_label_jupiter_return">বৃহস্পতির %1$s প্রত্যাবর্তন</string>
+    <string name="chapters_label_nodal_return">রাহু-কেতুর %1$s প্রত্যাবর্তন</string>
+    <string-array name="chapters_ordinals">
+        <item>প্রথম</item>
+        <item>দ্বিতীয়</item>
+        <item>তৃতীয়</item>
+        <item>চতুর্থ</item>
+        <item>পঞ্চম</item>
+        <item>ষষ্ঠ</item>
+        <item>সপ্তম</item>
+        <item>অষ্টম</item>
+    </string-array>
+    <string name="chapters_theme_sun">কর্তৃত্ব, পরিচয় ও দৃশ্যমানতা</string>
+    <string name="chapters_theme_moon">আবেগের ভিত্তি, পরিবার ও অন্তরের নিরাপত্তা</string>
+    <string name="chapters_theme_mars">সাহস, সংঘাত ও দ্বিধাহীন পদক্ষেপ</string>
+    <string name="chapters_theme_mercury">যোগাযোগ, অধ্যয়ন ও নমনীয় চিন্তা</string>
+    <string name="chapters_theme_jupiter">প্রসার, বিশ্বাস, শিক্ষাদান ও নৈতিক বিকাশ</string>
+    <string name="chapters_theme_venus">প্রেম, সঙ্গীসম্পর্ক, অর্থকড়ি ও আনন্দ</string>
+    <string name="chapters_theme_saturn">শৃঙ্খলা, দায়িত্ব ও কর্মফলের হিসাব</string>
+    <string name="chapters_theme_rahu">উচ্চাকাঙ্ক্ষা, তৃষ্ণা ও অচেনা জগৎ</string>
+    <string name="chapters_theme_ketu">ছেড়ে দেওয়া, নিবৃত্তি ও আত্মজয়</string>
+    <string name="chapters_theme_saturn_return">কাঠামো, দায়িত্ব ও সিদ্ধান্তের মূল্য</string>
+    <string name="chapters_theme_jupiter_return">প্রসার, তাৎপর্য ও আরও বড় পরিসর</string>
+    <string name="chapters_theme_nodal_return">নিয়তির অক্ষ — আপনি কীসের দিকে হাত বাড়ান আর কী ছেড়ে দেন</string>
+    <string name="chapters_fact_lord">মহাদশার অধিপতি: %1$s</string>
+    <string name="chapters_fact_lasts">স্থায়িত্ব প্রায় %1$s বছর</string>
+    <string name="chapters_fact_cycle">চক্র: প্রায় %1$s বছর</string>
+    <string name="chapters_fact_natal">জন্মছকে %1$s: %2$s</string>
+    <string name="chapters_fact_node">%1$s: %2$s</string>
+    <string name="chapters_fact_placement">%1$s / ভাব %2$d</string>
+</resources>

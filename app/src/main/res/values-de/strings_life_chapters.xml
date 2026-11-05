@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapters_label_mahadasha">Beginn der Mahadasha %1$s</string>
+    <string name="chapters_label_saturn_return">%1$s Saturnrückkehr</string>
+    <string name="chapters_label_jupiter_return">%1$s Jupiterrückkehr</string>
+    <string name="chapters_label_nodal_return">%1$s Rückkehr der Mondknoten</string>
+    <string-array name="chapters_ordinals">
+        <item>Erste</item>
+        <item>Zweite</item>
+        <item>Dritte</item>
+        <item>Vierte</item>
+        <item>Fünfte</item>
+        <item>Sechste</item>
+        <item>Siebte</item>
+        <item>Achte</item>
+    </string-array>
+    <string name="chapters_theme_sun">Autorität, Identität und Sichtbarkeit</string>
+    <string name="chapters_theme_moon">Emotionale Grundlagen, Familie und innere Sicherheit</string>
+    <string name="chapters_theme_mars">Mut, Konflikt und entschlossenes Handeln</string>
+    <string name="chapters_theme_mercury">Kommunikation, Studium und anpassungsfähiges Denken</string>
+    <string name="chapters_theme_jupiter">Erweiterung, Glaube, Lehre und ethisches Wachstum</string>
+    <string name="chapters_theme_venus">Liebe, Partnerschaft, Geld und Genuss</string>
+    <string name="chapters_theme_saturn">Disziplin, Verantwortung und karmische Abrechnung</string>
+    <string name="chapters_theme_rahu">Ehrgeiz, Hunger und unbekanntes Terrain</string>
+    <string name="chapters_theme_ketu">Loslassen, Rückzug und innere Meisterschaft</string>
+    <string name="chapters_theme_saturn_return">Struktur, Verantwortung und der Preis von Entscheidungen</string>
+    <string name="chapters_theme_jupiter_return">Erweiterung, Sinn und ein größeres Spielfeld</string>
+    <string name="chapters_theme_nodal_return">Schicksalsachse – wonach du greifst und was du loslässt</string>
+    <string name="chapters_fact_lord">Herrscher der Mahadasha: %1$s</string>
+    <string name="chapters_fact_lasts">Dauert etwa %1$s Jahre</string>
+    <string name="chapters_fact_cycle">Zyklus: etwa %1$s Jahre</string>
+    <string name="chapters_fact_natal">%1$s im Geburtshoroskop: %2$s</string>
+    <string name="chapters_fact_node">%1$s: %2$s</string>
+    <string name="chapters_fact_placement">%1$s / Haus %2$d</string>
+</resources>

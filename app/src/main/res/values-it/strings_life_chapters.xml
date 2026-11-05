@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapters_label_mahadasha">Inizia la Mahadasha di %1$s</string>
+    <string name="chapters_label_saturn_return">Ritorno di Saturno (%1$s)</string>
+    <string name="chapters_label_jupiter_return">Ritorno di Giove (%1$s)</string>
+    <string name="chapters_label_nodal_return">Ritorno nodale (%1$s)</string>
+    <string-array name="chapters_ordinals">
+        <item>primo</item>
+        <item>secondo</item>
+        <item>terzo</item>
+        <item>quarto</item>
+        <item>quinto</item>
+        <item>sesto</item>
+        <item>settimo</item>
+        <item>ottavo</item>
+    </string-array>
+    <string name="chapters_theme_sun">Autorità, identità e visibilità</string>
+    <string name="chapters_theme_moon">Fondamenta emotive, famiglia e sicurezza interiore</string>
+    <string name="chapters_theme_mars">Coraggio, conflitto e azione decisa</string>
+    <string name="chapters_theme_mercury">Comunicazione, studio e pensiero flessibile</string>
+    <string name="chapters_theme_jupiter">Espansione, fede, insegnamento e crescita etica</string>
+    <string name="chapters_theme_venus">Amore, coppia, denaro e piacere</string>
+    <string name="chapters_theme_saturn">Disciplina, responsabilità e resa dei conti karmica</string>
+    <string name="chapters_theme_rahu">Ambizione, brama e terreni inesplorati</string>
+    <string name="chapters_theme_ketu">Liberazione, ritiro e padronanza interiore</string>
+    <string name="chapters_theme_saturn_return">Struttura, responsabilità e il prezzo delle scelte</string>
+    <string name="chapters_theme_jupiter_return">Espansione, significato e un campo d’azione più ampio</string>
+    <string name="chapters_theme_nodal_return">L’asse del destino — ciò che cerchi e ciò che lasci andare</string>
+    <string name="chapters_fact_lord">Signore della mahadasha: %1$s</string>
+    <string name="chapters_fact_lasts">Dura circa %1$s anni</string>
+    <string name="chapters_fact_cycle">Ciclo: circa %1$s anni</string>
+    <string name="chapters_fact_natal">%1$s natale: %2$s</string>
+    <string name="chapters_fact_node">%1$s: %2$s</string>
+    <string name="chapters_fact_placement">%1$s / casa %2$d</string>
+</resources>

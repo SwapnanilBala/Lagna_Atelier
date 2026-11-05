@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapters_label_mahadasha">%1$s महादशा का आरंभ</string>
+    <string name="chapters_label_saturn_return">शनि वापसी (%1$s)</string>
+    <string name="chapters_label_jupiter_return">बृहस्पति वापसी (%1$s)</string>
+    <string name="chapters_label_nodal_return">राहु-केतु वापसी (%1$s)</string>
+    <string-array name="chapters_ordinals">
+        <item>पहली</item>
+        <item>दूसरी</item>
+        <item>तीसरी</item>
+        <item>चौथी</item>
+        <item>पाँचवीं</item>
+        <item>छठी</item>
+        <item>सातवीं</item>
+        <item>आठवीं</item>
+    </string-array>
+    <string name="chapters_theme_sun">अधिकार, पहचान और दृश्यता</string>
+    <string name="chapters_theme_moon">भावनात्मक नींव, परिवार और भीतरी सुरक्षा</string>
+    <string name="chapters_theme_mars">साहस, संघर्ष और निर्णायक कदम</string>
+    <string name="chapters_theme_mercury">संवाद, अध्ययन और लचीली सोच</string>
+    <string name="chapters_theme_jupiter">विस्तार, आस्था, शिक्षण और नैतिक विकास</string>
+    <string name="chapters_theme_venus">प्रेम, साझेदारी, धन और आनंद</string>
+    <string name="chapters_theme_saturn">अनुशासन, ज़िम्मेदारी और कर्मों का हिसाब</string>
+    <string name="chapters_theme_rahu">महत्वाकांक्षा, भूख और अनजानी ज़मीन</string>
+    <string name="chapters_theme_ketu">मुक्ति, विरक्ति और भीतरी सिद्धि</string>
+    <string name="chapters_theme_saturn_return">ढाँचा, ज़िम्मेदारी और निर्णयों की कीमत</string>
+    <string name="chapters_theme_jupiter_return">विस्तार, अर्थ और व्यापक दायरा</string>
+    <string name="chapters_theme_nodal_return">भाग्य की धुरी — आप किसकी ओर हाथ बढ़ाते हैं और क्या छोड़ते हैं</string>
+    <string name="chapters_fact_lord">महादशा स्वामी: %1$s</string>
+    <string name="chapters_fact_lasts">अवधि लगभग %1$s वर्ष</string>
+    <string name="chapters_fact_cycle">चक्र: लगभग %1$s वर्ष</string>
+    <string name="chapters_fact_natal">जन्म कुंडली में %1$s: %2$s</string>
+    <string name="chapters_fact_node">%1$s: %2$s</string>
+    <string name="chapters_fact_placement">%1$s / भाव %2$d</string>
+</resources>

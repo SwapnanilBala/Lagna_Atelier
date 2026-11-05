@@ -118,6 +118,7 @@ internal fun LifeChaptersScreen(readings: PeriodsHolder, api: PeriodsApi, onBack
 
 @Composable
 private fun ChapterCard(shift: LifeShift, reading: ClassicalReading?, writing: Boolean) {
+    val words = rememberChapterWords()
     FloatCard(Modifier.fillMaxWidth(), spacing = 10.dp, padding = 16.dp) {
         Row(
             Modifier.fillMaxWidth(),
@@ -136,8 +137,8 @@ private fun ChapterCard(shift: LifeShift, reading: ClassicalReading?, writing: B
             )
         }
         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-            CardLabel(shift.label)
-            Text(shift.theme.replaceFirstChar { it.uppercase() }, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
+            CardLabel(LifeChapterText.label(shift, words))
+            Text(LifeChapterText.theme(shift, words).replaceFirstChar { it.uppercase() }, style = MaterialTheme.typography.titleSmall, modifier = Modifier.semantics { heading() })
         }
         Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Meta(stringResource(R.string.chapters_pivot, LifeShifts.pivotLabel(shift), shift.ageAtPivot), color = Ink)
@@ -152,6 +153,6 @@ private fun ChapterCard(shift: LifeShift, reading: ClassicalReading?, writing: B
             }
             else -> Text(shift.narrative, style = MaterialTheme.typography.bodyMedium, color = Ink)
         }
-        if (shift.evidence.isNotBlank()) Meta(shift.evidence)
+        if (shift.evidence.isNotBlank()) Meta(LifeChapterText.evidence(shift, words))
     }
 }

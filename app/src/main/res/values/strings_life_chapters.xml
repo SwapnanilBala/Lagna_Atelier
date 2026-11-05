@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The life chapters' labels, themes and evidence lines in the app's language
+    (ui/timing/LifeChapterText.kt). The labels, ordinals and themes are the
+    website's own (messages/*.json insights.shifts: labels, ordinals, themes),
+    so the two read alike; English matches the engine's words exactly, which
+    LifeChapterTextTest checks. The fifth to eighth ordinals and the evidence
+    lines are the app’s: the website prints those in English.
+-->
+<resources>
+    <string name="chapters_label_mahadasha">%1$s mahadasha begins</string>
+    <string name="chapters_label_saturn_return">Saturn return (%1$s)</string>
+    <string name="chapters_label_jupiter_return">Jupiter return (%1$s)</string>
+    <string name="chapters_label_nodal_return">Nodal return (%1$s)</string>
+    <string-array name="chapters_ordinals">
+        <item>first</item>
+        <item>second</item>
+        <item>third</item>
+        <item>fourth</item>
+        <item>5th</item>
+        <item>6th</item>
+        <item>7th</item>
+        <item>8th</item>
+    </string-array>
+    <string name="chapters_theme_sun">authority, identity, and visibility</string>
+    <string name="chapters_theme_moon">emotional foundations, family, and inner safety</string>
+    <string name="chapters_theme_mars">courage, conflict, and decisive action</string>
+    <string name="chapters_theme_mercury">communication, study, and adaptive thinking</string>
+    <string name="chapters_theme_jupiter">expansion, faith, teaching, and ethical growth</string>
+    <string name="chapters_theme_venus">love, partnership, money, and pleasure</string>
+    <string name="chapters_theme_saturn">discipline, responsibility, and karmic reckoning</string>
+    <string name="chapters_theme_rahu">ambition, hunger, and unfamiliar terrain</string>
+    <string name="chapters_theme_ketu">release, withdrawal, and inward mastery</string>
+    <string name="chapters_theme_saturn_return">structure, responsibility, and the cost of choices</string>
+    <string name="chapters_theme_jupiter_return">expansion, meaning, and a wider field of play</string>
+    <string name="chapters_theme_nodal_return">fate axis — what you reach for and what you release</string>
+    <string name="chapters_fact_lord">Mahadasha lord: %1$s</string>
+    <string name="chapters_fact_lasts">Lasts ~%1$s years</string>
+    <string name="chapters_fact_cycle">Cycle: ~%1$s years</string>
+    <string name="chapters_fact_natal">Natal %1$s: %2$s</string>
+    <string name="chapters_fact_node">%1$s: %2$s</string>
+    <string name="chapters_fact_placement">%1$s / H%2$d</string>
+</resources>
