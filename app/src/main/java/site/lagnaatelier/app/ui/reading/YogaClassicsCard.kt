@@ -28,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.reading.ClassicalReading
 import site.lagnaatelier.app.data.reading.ClassicalSource
@@ -83,7 +84,7 @@ internal fun YogaClassicsCard(yogas: List<Yoga>, api: LagnaApi) {
             NoteState.Empty -> Text(stringResource(R.string.classics_empty), style = MaterialTheme.typography.bodyMedium, color = Muted)
             is NoteState.Failed -> {
                 Text(stringResource(state.message), style = MaterialTheme.typography.bodyMedium, color = Muted)
-                GhostChip(stringResource(R.string.sections_retry), onClick = ask)
+                if (ErrorText.offersRetry(state.message)) GhostChip(stringResource(R.string.sections_retry), onClick = ask)
             }
             is NoteState.Ready -> ClassicalNoteBody(state.reading)
         }

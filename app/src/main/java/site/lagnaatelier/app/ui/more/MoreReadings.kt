@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
@@ -269,7 +270,7 @@ internal fun <T> FetchState(fetch: Fetch<T>, loading: String, onRetry: () -> Uni
         is Fetch.Ready -> content(fetch.value)
         is Fetch.Failed -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(stringResource(fetch.message), style = MaterialTheme.typography.bodyMedium, color = Muted)
-            GhostChip(stringResource(R.string.more_retry), onClick = onRetry)
+            if (ErrorText.offersRetry(fetch.message)) GhostChip(stringResource(R.string.more_retry), onClick = onRetry)
         }
         Fetch.Idle, Fetch.Loading -> CardLabel(loading, Modifier.padding(vertical = 8.dp))
     }

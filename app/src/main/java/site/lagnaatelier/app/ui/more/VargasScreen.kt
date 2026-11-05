@@ -31,6 +31,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.vargas.KeyVarga
 import site.lagnaatelier.app.data.vargas.Varga
 import site.lagnaatelier.app.ui.components.CardLabel
@@ -218,7 +219,7 @@ private fun NotePanel(division: Int, holder: MoreHolder) {
             }
             is Fetch.Failed -> Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(stringResource(notes.message), style = MaterialTheme.typography.bodyMedium, color = Muted)
-                GhostChip(stringResource(R.string.more_retry), onClick = { holder.retryNotes() })
+                if (ErrorText.offersRetry(notes.message)) GhostChip(stringResource(R.string.more_retry), onClick = { holder.retryNotes() })
             }
             Fetch.Idle, Fetch.Loading -> CardLabel(stringResource(R.string.more_varga_note_pending))
         }
