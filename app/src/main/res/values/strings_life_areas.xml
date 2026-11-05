@@ -229,4 +229,25 @@
     <string name="guide_tour_palm_body">Photograph a palm and read its lines, two readings a week.</string>
     <string name="guide_tour_account_title">Account</string>
     <string name="guide_tour_account_body">Your saved charts, and Help whenever a word is unfamiliar. The tour can be taken again from there.</string>
+    <!-- Each varga's theme, the site's divisional.panel.themes, in place of the engine's English description. -->
+    <string name="more_varga_theme_d1">Overall life, identity, and the natal foundation</string>
+    <string name="more_varga_theme_d2">Wealth and financial capacity</string>
+    <string name="more_varga_theme_d3">Siblings, courage, and initiative</string>
+    <string name="more_varga_theme_d4">Property, fortune, and fixed assets</string>
+    <string name="more_varga_theme_d5">Authority, influence, and recognition</string>
+    <string name="more_varga_theme_d6">Health patterns, routines, and everyday obstacles</string>
+    <string name="more_varga_theme_d7">Children and progeny</string>
+    <string name="more_varga_theme_d8">Sudden change, transformation, and vulnerabilities</string>
+    <string name="more_varga_theme_d9">Marriage, dharma, and inner nature</string>
+    <string name="more_varga_theme_d10">Career, profession, and public life</string>
+    <string name="more_varga_theme_d11">Gains, networks, and the fulfillment of ambitions</string>
+    <string name="more_varga_theme_d12">Parents and ancestral lineage</string>
+    <string name="more_varga_theme_d16">Vehicles, comforts, and happiness</string>
+    <string name="more_varga_theme_d20">Spiritual progress and worship</string>
+    <string name="more_varga_theme_d24">Education, learning, and knowledge</string>
+    <string name="more_varga_theme_d27">Strengths and weaknesses</string>
+    <string name="more_varga_theme_d30">Misfortune, disease, and challenges</string>
+    <string name="more_varga_theme_d40">Auspicious and inauspicious effects</string>
+    <string name="more_varga_theme_d45">General indications and character</string>
+    <string name="more_varga_theme_d60">Past life karma and general matters</string>
 </resources>

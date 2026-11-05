@@ -6,10 +6,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -106,8 +109,12 @@ private fun GroupHead(title: String, lead: String) {
 }
 
 @Composable
+private fun Varga.themeText(): String = theme?.let { stringResource(it) } ?: description
+
+/* Both tiles of a row as tall as the taller one, so a theme that wraps further does not leave a ragged pair. */
+@Composable
 private fun TileRow(pair: List<Varga>, onDivision: (Int?) -> Unit) {
-    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row(Modifier.height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         pair.forEach { VargaTile(it, onClick = { onDivision(it.division) }) }
         if (pair.size == 1) Spacer(Modifier.weight(1f))
     }
@@ -120,6 +127,7 @@ private fun RowScope.VargaTile(varga: Varga, onClick: () -> Unit) {
     Column(
         Modifier
             .weight(1f)
+            .fillMaxHeight()
             .background(CardWhite, shape)
             .border(1.dp, Hairline, shape)
             .clickable(role = Role.Button, onClick = onClick)
@@ -127,11 +135,11 @@ private fun RowScope.VargaTile(varga: Varga, onClick: () -> Unit) {
         verticalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         Text(varga.label, style = MaterialTheme.typography.titleSmall)
+        /* Wraps as far as it needs: a longer theme (D8's, or any in German) is never cut off. */
         Text(
-            if (key != null) stringResource(key.title) else varga.description,
+            if (key != null) stringResource(key.title) else varga.themeText(),
             style = MaterialTheme.typography.bodySmall,
             color = Ink,
-            maxLines = 2,
         )
         if (key != null) Text(stringResource(key.sensitivity.label), style = MaterialTheme.typography.labelSmall, color = Muted)
     }
@@ -162,7 +170,7 @@ private fun VargaDetail(
         }
         item {
             Panel(Modifier.fillMaxWidth()) {
-                CardLabel(if (key != null) stringResource(key.focus) else varga.description)
+                CardLabel(if (key != null) stringResource(key.focus) else varga.themeText())
                 val ascendant = varga.ascendant
                 if (ascendant != null) {
                     RasiChart(

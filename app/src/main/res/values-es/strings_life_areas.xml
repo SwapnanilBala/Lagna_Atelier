@@ -210,4 +210,24 @@
     <string name="guide_tour_palm_body">Fotografía una palma y lee sus líneas, dos lecturas a la semana.</string>
     <string name="guide_tour_account_title">Cuenta</string>
     <string name="guide_tour_account_body">Tus cartas guardadas, y la ayuda cuando una palabra no te suene. Desde ahí puedes volver a ver el recorrido.</string>
+    <string name="more_varga_theme_d1">Vida en general, identidad y el fundamento natal</string>
+    <string name="more_varga_theme_d2">Riqueza y capacidad financiera</string>
+    <string name="more_varga_theme_d3">Hermanos, valor e iniciativa</string>
+    <string name="more_varga_theme_d4">Propiedad, fortuna y bienes inmuebles</string>
+    <string name="more_varga_theme_d5">Autoridad, influencia y reconocimiento</string>
+    <string name="more_varga_theme_d6">Patrones de salud, rutinas y obstáculos cotidianos</string>
+    <string name="more_varga_theme_d7">Hijos y descendencia</string>
+    <string name="more_varga_theme_d8">Cambio repentino, transformación y vulnerabilidades</string>
+    <string name="more_varga_theme_d9">Matrimonio, dharma y naturaleza interior</string>
+    <string name="more_varga_theme_d10">Carrera, profesión y vida pública</string>
+    <string name="more_varga_theme_d11">Ganancias, redes y el cumplimiento de las ambiciones</string>
+    <string name="more_varga_theme_d12">Padres y linaje ancestral</string>
+    <string name="more_varga_theme_d16">Vehículos, comodidades y felicidad</string>
+    <string name="more_varga_theme_d20">Progreso espiritual y devoción</string>
+    <string name="more_varga_theme_d24">Educación, aprendizaje y conocimiento</string>
+    <string name="more_varga_theme_d27">Fortalezas y debilidades</string>
+    <string name="more_varga_theme_d30">Desgracia, enfermedad y desafíos</string>
+    <string name="more_varga_theme_d40">Efectos auspiciosos e inauspiciosos</string>
+    <string name="more_varga_theme_d45">Indicaciones generales y carácter</string>
+    <string name="more_varga_theme_d60">Karma de vidas pasadas y asuntos generales</string>
 </resources>

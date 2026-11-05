@@ -210,4 +210,24 @@
     <string name="guide_tour_palm_body">Photographiez une paume et lisez ses lignes, deux lectures par semaine.</string>
     <string name="guide_tour_account_title">Compte</string>
     <string name="guide_tour_account_body">Vos thèmes enregistrés, et l’aide quand un mot ne vous dit rien. La visite peut être refaite depuis là.</string>
+    <string name="more_varga_theme_d1">La vie dans son ensemble, l\'identité et le fondement natal</string>
+    <string name="more_varga_theme_d2">Richesse et capacité financière</string>
+    <string name="more_varga_theme_d3">Fratrie, courage et initiative</string>
+    <string name="more_varga_theme_d4">Propriété, fortune et biens immobiliers</string>
+    <string name="more_varga_theme_d5">Autorité, influence et reconnaissance</string>
+    <string name="more_varga_theme_d6">Schémas de santé, routines et obstacles quotidiens</string>
+    <string name="more_varga_theme_d7">Enfants et descendance</string>
+    <string name="more_varga_theme_d8">Changement soudain, transformation et vulnérabilités</string>
+    <string name="more_varga_theme_d9">Mariage, dharma et nature intérieure</string>
+    <string name="more_varga_theme_d10">Carrière, profession et vie publique</string>
+    <string name="more_varga_theme_d11">Gains, réseaux et réalisation des ambitions</string>
+    <string name="more_varga_theme_d12">Parents et lignée ancestrale</string>
+    <string name="more_varga_theme_d16">Véhicules, conforts et bonheur</string>
+    <string name="more_varga_theme_d20">Progrès spirituel et dévotion</string>
+    <string name="more_varga_theme_d24">Éducation, apprentissage et connaissance</string>
+    <string name="more_varga_theme_d27">Forces et faiblesses</string>
+    <string name="more_varga_theme_d30">Malheur, maladie et épreuves</string>
+    <string name="more_varga_theme_d40">Effets favorables et défavorables</string>
+    <string name="more_varga_theme_d45">Indications générales et caractère</string>
+    <string name="more_varga_theme_d60">Karma des vies passées et questions générales</string>
 </resources>

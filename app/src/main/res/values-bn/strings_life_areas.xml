@@ -210,4 +210,24 @@
     <string name="guide_tour_palm_body">হাতের তালুর ছবি তুলুন আর তার রেখা পড়ুন, সপ্তাহে দুটি পাঠ।</string>
     <string name="guide_tour_account_title">অ্যাকাউন্ট</string>
     <string name="guide_tour_account_body">আপনার রাখা কুণ্ডলী, আর কোনো শব্দ অচেনা লাগলে সাহায্য। পরিচিতি সেখান থেকে আবার দেখা যায়।</string>
+    <string name="more_varga_theme_d1">সমগ্র জীবন, পরিচয় এবং জন্মকুণ্ডলীর ভিত্তি</string>
+    <string name="more_varga_theme_d2">সম্পদ ও আর্থিক সামর্থ্য</string>
+    <string name="more_varga_theme_d3">ভাইবোন, সাহস ও উদ্যোগ</string>
+    <string name="more_varga_theme_d4">সম্পত্তি, ভাগ্য ও স্থাবর সম্পদ</string>
+    <string name="more_varga_theme_d5">অধিকার, প্রভাব ও স্বীকৃতি</string>
+    <string name="more_varga_theme_d6">স্বাস্থ্যের ধরন, দৈনন্দিন রুটিন ও প্রতিদিনের বাধা</string>
+    <string name="more_varga_theme_d7">সন্তান ও বংশধর</string>
+    <string name="more_varga_theme_d8">আকস্মিক পরিবর্তন, রূপান্তর ও দুর্বলতা</string>
+    <string name="more_varga_theme_d9">বিবাহ, ধর্ম ও অন্তঃপ্রকৃতি</string>
+    <string name="more_varga_theme_d10">কর্মজীবন, পেশা ও সামাজিক জীবন</string>
+    <string name="more_varga_theme_d11">লাভ, সংযোগ ও আকাঙ্ক্ষার পূর্ণতা</string>
+    <string name="more_varga_theme_d12">পিতামাতা ও পূর্বপুরুষের ধারা</string>
+    <string name="more_varga_theme_d16">যানবাহন, আরাম ও সুখ</string>
+    <string name="more_varga_theme_d20">আধ্যাত্মিক অগ্রগতি ও উপাসনা</string>
+    <string name="more_varga_theme_d24">শিক্ষা, অধ্যয়ন ও জ্ঞান</string>
+    <string name="more_varga_theme_d27">শক্তি ও দুর্বলতা</string>
+    <string name="more_varga_theme_d30">দুর্ভাগ্য, রোগ ও প্রতিকূলতা</string>
+    <string name="more_varga_theme_d40">শুভ ও অশুভ ফল</string>
+    <string name="more_varga_theme_d45">সাধারণ সংকেত ও চরিত্র</string>
+    <string name="more_varga_theme_d60">পূর্বজন্মের কর্ম ও সাধারণ বিষয়</string>
 </resources>

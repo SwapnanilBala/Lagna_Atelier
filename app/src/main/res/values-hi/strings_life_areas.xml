@@ -210,4 +210,24 @@
     <string name="guide_tour_palm_body">हथेली की फ़ोटो लें और उसकी रेखाएँ पढ़ें, सप्ताह में दो पठन।</string>
     <string name="guide_tour_account_title">खाता</string>
     <string name="guide_tour_account_body">आपकी सहेजी गई कुंडलियाँ, और जब कोई शब्द अनजाना लगे तो सहायता। परिचय वहीं से फिर देखा जा सकता है।</string>
+    <string name="more_varga_theme_d1">समग्र जीवन, पहचान और जन्म कुंडली का आधार</string>
+    <string name="more_varga_theme_d2">धन और आर्थिक सामर्थ्य</string>
+    <string name="more_varga_theme_d3">भाई-बहन, साहस और पहल</string>
+    <string name="more_varga_theme_d4">संपत्ति, भाग्य और अचल संपदा</string>
+    <string name="more_varga_theme_d5">अधिकार, प्रभाव और मान्यता</string>
+    <string name="more_varga_theme_d6">स्वास्थ्य के स्वरूप, दिनचर्या और रोज़मर्रा की बाधाएँ</string>
+    <string name="more_varga_theme_d7">संतान और वंश</string>
+    <string name="more_varga_theme_d8">आकस्मिक परिवर्तन, रूपांतरण और दुर्बलताएँ</string>
+    <string name="more_varga_theme_d9">विवाह, धर्म और अंतःप्रकृति</string>
+    <string name="more_varga_theme_d10">करियर, व्यवसाय और सार्वजनिक जीवन</string>
+    <string name="more_varga_theme_d11">लाभ, संपर्क और महत्वाकांक्षाओं की पूर्ति</string>
+    <string name="more_varga_theme_d12">माता-पिता और पितृ वंश</string>
+    <string name="more_varga_theme_d16">वाहन, सुख-सुविधाएँ और प्रसन्नता</string>
+    <string name="more_varga_theme_d20">आध्यात्मिक प्रगति और उपासना</string>
+    <string name="more_varga_theme_d24">शिक्षा, अध्ययन और ज्ञान</string>
+    <string name="more_varga_theme_d27">शक्तियाँ और दुर्बलताएँ</string>
+    <string name="more_varga_theme_d30">दुर्भाग्य, रोग और चुनौतियाँ</string>
+    <string name="more_varga_theme_d40">शुभ और अशुभ प्रभाव</string>
+    <string name="more_varga_theme_d45">सामान्य संकेत और चरित्र</string>
+    <string name="more_varga_theme_d60">पूर्वजन्म का कर्म और सामान्य विषय</string>
 </resources>

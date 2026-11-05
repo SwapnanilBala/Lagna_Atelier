@@ -210,4 +210,24 @@
     <string name="guide_tour_palm_body">Fotografa un palmo e leggine le linee, due letture alla settimana.</string>
     <string name="guide_tour_account_title">Account</string>
     <string name="guide_tour_account_body">Le tue carte salvate, e l’aiuto quando una parola non ti è chiara. Da lì puoi rifare il giro.</string>
+    <string name="more_varga_theme_d1">Vita nel complesso, identità e fondamento natale</string>
+    <string name="more_varga_theme_d2">Ricchezza e capacità finanziaria</string>
+    <string name="more_varga_theme_d3">Fratelli, coraggio e iniziativa</string>
+    <string name="more_varga_theme_d4">Proprietà, fortuna e beni immobili</string>
+    <string name="more_varga_theme_d5">Autorità, influenza e riconoscimento</string>
+    <string name="more_varga_theme_d6">Schemi di salute, routine e ostacoli quotidiani</string>
+    <string name="more_varga_theme_d7">Figli e discendenza</string>
+    <string name="more_varga_theme_d8">Cambiamento improvviso, trasformazione e vulnerabilità</string>
+    <string name="more_varga_theme_d9">Matrimonio, dharma e natura interiore</string>
+    <string name="more_varga_theme_d10">Carriera, professione e vita pubblica</string>
+    <string name="more_varga_theme_d11">Guadagni, reti e realizzazione delle ambizioni</string>
+    <string name="more_varga_theme_d12">Genitori e lignaggio ancestrale</string>
+    <string name="more_varga_theme_d16">Veicoli, comfort e felicità</string>
+    <string name="more_varga_theme_d20">Progresso spirituale e devozione</string>
+    <string name="more_varga_theme_d24">Istruzione, apprendimento e conoscenza</string>
+    <string name="more_varga_theme_d27">Punti di forza e di debolezza</string>
+    <string name="more_varga_theme_d30">Sventura, malattia e difficoltà</string>
+    <string name="more_varga_theme_d40">Effetti auspicali e inauspicali</string>
+    <string name="more_varga_theme_d45">Indicazioni generali e carattere</string>
+    <string name="more_varga_theme_d60">Karma delle vite passate e questioni generali</string>
 </resources>
