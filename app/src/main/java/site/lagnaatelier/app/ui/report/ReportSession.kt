@@ -1,6 +1,9 @@
 package site.lagnaatelier.app.ui.report
 
 import android.app.Application
+import android.content.Context
+import android.content.res.Configuration
+import android.os.LocaleList
 import androidx.annotation.StringRes
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -20,10 +23,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.R
+import site.lagnaatelier.app.data.AppDates
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.ErrorText
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.Place
+import site.lagnaatelier.app.data.ReadingLanguage
 import site.lagnaatelier.app.data.TimeAccuracy
 import site.lagnaatelier.app.data.report.PersonalStory
 import site.lagnaatelier.app.data.report.ProseProgress
@@ -39,7 +44,6 @@ import java.io.IOException
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 
 /** Where the report is, from the first call to the finished file. */
@@ -63,6 +67,8 @@ sealed interface ReportState {
         /** Page 1, rendered back from the file; null if the renderer could not. */
         val cover: Bitmap?,
         val preparedOn: LocalDate,
+        /** The app's language when the PDF was typeset (ReadingLanguage): a report in another is made again. */
+        val language: String = "en",
     ) : ReportState
 
     data class Failed(val reason: Reason, @param:StringRes @get:StringRes val message: Int? = null) : ReportState {
@@ -82,6 +88,8 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
     private var job: Job? = null
 
     fun start(chart: ChartSummary, details: BirthDetails?, api: LagnaApi) {
+        /* A report typeset in another language is not this one: the reader switched since. */
+        (state as? ReportState.Ready)?.let { if (it.language != ReadingLanguage.current) reset() }
         if (job?.isActive == true || state is ReportState.Ready) return
         val birth = details ?: SAMPLE_DETAILS
         val reportApi = ReportApi(api)
@@ -135,16 +143,26 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
         state = ReportState.Working(ReportStage.Typesetting, chart.name, story)
         val preparedOn = preparedDate(report.generatedAtUtc)
         val app = getApplication<Application>()
+        /*
+         * The PDF's own words, its date and the cover's sign in the app's
+         * language. The application's context follows the phone before
+         * Android 13, where the app keeps its language itself, so the PDF
+         * gets a context in the app's language on every version.
+         */
+        val locale = AppDates.locale
+        val language = ReadingLanguage.of(locale)
+        val words = inLanguage(app, locale)
         val cover = ReportCover(
             name = chart.name,
-            /* In the same language as the rest of the PDF, which ReportPdf takes from this context. */
-            ascendant = app.getString(signNameRes(chart.ascendant)),
+            ascendant = words.getString(signNameRes(chart.ascendant)),
             place = details.place.label,
-            preparedOn = preparedOn.format(PREPARED_FORMAT),
+            preparedOn = preparedOn.format(AppDates.formatter("d MMMM yyyy", "dMMMMyyyy", locale)),
+            /* The chapters are the story routes' English; a report in another language says so. */
+            languageNote = if (language == ReportApi.WRITTEN_IN) null else words.getString(R.string.report_pdf_language_note),
         )
         state = try {
-            val (file, pages, thumbnail) = withContext(Dispatchers.IO) { typeset(app, story, cover) }
-            ReportState.Ready(story, file, pages, prose, thumbnail, preparedOn)
+            val (file, pages, thumbnail) = withContext(Dispatchers.IO) { typeset(app, words, story, cover) }
+            ReportState.Ready(story, file, pages, prose, thumbnail, preparedOn, language)
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (error: Exception) {
@@ -154,13 +172,13 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    private fun typeset(app: Application, story: PersonalStory, cover: ReportCover): Triple<File, Int, Bitmap?> {
+    private fun typeset(app: Application, words: Context, story: PersonalStory, cover: ReportCover): Triple<File, Int, Bitmap?> {
         val folder = File(app.cacheDir, REPORTS_FOLDER).apply { mkdirs() }
         val name = ReportFiles.fileName(story)
         /* Only the latest report is kept; older ones are in whatever the reader shared them to. */
         folder.listFiles()?.filter { it.name != name }?.forEach { it.delete() }
         val partial = File(folder, "$name.part")
-        val pages = ReportPdf(app).write(story, cover, partial)
+        val pages = ReportPdf(words).write(story, cover, partial)
         val file = File(folder, name)
         if (file.exists()) file.delete()
         if (!partial.renameTo(file)) throw IOException("Could not move the finished PDF into place.")
@@ -182,6 +200,11 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
             }
         }
 
+    private fun inLanguage(app: Application, locale: Locale): Context {
+        val configuration = Configuration(app.resources.configuration).apply { setLocales(LocaleList(locale)) }
+        return app.createConfigurationContext(configuration)
+    }
+
     private fun preparedDate(generatedAtUtc: String): LocalDate =
         runCatching { Instant.parse(generatedAtUtc).atZone(ZoneId.systemDefault()).toLocalDate() }
             .getOrElse { LocalDate.now() }
@@ -193,8 +216,6 @@ class ReportSession(application: Application) : AndroidViewModel(application) {
         /* The route's own ceiling is 300 s; past this the PDF goes ahead with the engine's text. */
         private const val PROSE_DEADLINE_MS = 330_000L
         private const val COVER_WIDTH_PX = 600
-
-        private val PREPARED_FORMAT = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.ENGLISH)
 
         /** The sample chart's birth details, for a report on the sample (details are null then). */
         val SAMPLE_DETAILS = BirthDetails(

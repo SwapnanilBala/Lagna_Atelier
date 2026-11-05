@@ -92,6 +92,13 @@ class ReportApi(private val api: LagnaApi, private val baseUrl: String = LagnaAp
         }
 
     companion object {
+        /**
+         * The language the story and its prose come back in. Neither route
+         * takes a language (the website's report is English too), so a
+         * report made in another language says so.
+         */
+        const val WRITTEN_IN = "en"
+
         const val STORY_REPORT_PATH = "/api/chart/story-report"
         const val STORY_PROSE_PATH = "/api/chart/story-prose"
         const val PROSE_READ_TIMEOUT_MS = 300_000

@@ -98,4 +98,5 @@
     <string name="report_pdf_provenance">Calculé avec %1$s (%2$s), ayanamsha %3$s, maisons %4$s, à partir d’une heure de naissance enregistrée comme %5$s. %6$s</string>
     <string name="report_pdf_provenance_clean">Les %1$d vérifications internes de cohérence ont toutes réussi.</string>
     <string name="report_pdf_provenance_qualified">%1$d vérifications internes de cohérence sur %2$d ont réussi sans réserve ; %3$d ont renvoyé une réserve, reflétée dans la note de soutien des chapitres concernés.</string>
+    <string name="report_pdf_language_note">Les chapitres de ce rapport sont rédigés en anglais : pour l’instant, le site ne rédige ses rapports qu’en anglais.</string>
 </resources>

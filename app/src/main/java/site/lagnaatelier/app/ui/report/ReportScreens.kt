@@ -391,6 +391,15 @@ internal fun ReadyScreen(state: ReportState.Ready, chart: ChartSummary, onBack: 
                     style = MaterialTheme.typography.labelSmall,
                     color = Muted,
                 )
+                /* The chapters are English whatever the app's language; the PDF says so too. */
+                if (state.language != ReportApi.WRITTEN_IN) {
+                    Text(
+                        stringResource(R.string.report_pdf_language_note),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = Muted,
+                        textAlign = TextAlign.Center,
+                    )
+                }
             }
 
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {

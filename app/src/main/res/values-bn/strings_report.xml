@@ -88,4 +88,5 @@
     <string name="report_pdf_provenance">%1$s (%2$s) দিয়ে গণনা করা, %3$s অয়নাংশ, %4$s ভাব, জন্মসময় যেভাবে লেখা আছে: %5$s। %6$s</string>
     <string name="report_pdf_provenance_clean">সব %1$dটি অভ্যন্তরীণ সামঞ্জস্য যাচাই উত্তীর্ণ হয়েছে।</string>
     <string name="report_pdf_provenance_qualified">%2$dটির মধ্যে %1$dটি অভ্যন্তরীণ সামঞ্জস্য যাচাই পুরোপুরি উত্তীর্ণ হয়েছে; %3$dটিতে একটি শর্ত এসেছে, যা সংশ্লিষ্ট অধ্যায়গুলির সমর্থন-টীকায় দেখানো হয়েছে।</string>
+    <string name="report_pdf_language_note">এই প্রতিবেদনের অধ্যায়গুলি ইংরেজিতে লেখা: ওয়েবসাইট আপাতত তার প্রতিবেদন কেবল ইংরেজিতেই লেখে।</string>
 </resources>

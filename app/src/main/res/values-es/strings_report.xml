@@ -98,4 +98,5 @@
     <string name="report_pdf_provenance">Calculado con %1$s (%2$s), ayanamsha %3$s, casas %4$s, a partir de una hora de nacimiento registrada como %5$s. %6$s</string>
     <string name="report_pdf_provenance_clean">Se superaron las %1$d comprobaciones internas de coherencia.</string>
     <string name="report_pdf_provenance_qualified">%1$d de %2$d comprobaciones internas de coherencia se superaron sin reservas; las que llevan una reserva (%3$d) se reflejan en la nota de respaldo de los capítulos a los que afectan.</string>
+    <string name="report_pdf_language_note">Los capítulos de este informe están escritos en inglés: por ahora, la web escribe sus informes solo en inglés.</string>
 </resources>

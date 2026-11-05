@@ -98,4 +98,5 @@
     <string name="report_pdf_provenance">Calcolato con %1$s (%2$s), ayanamsha %3$s, case %4$s, da un’ora di nascita registrata come %5$s. %6$s</string>
     <string name="report_pdf_provenance_clean">Tutti i %1$d controlli di coerenza interni sono stati superati.</string>
     <string name="report_pdf_provenance_qualified">%1$d controlli di coerenza interni su %2$d superati senza riserve; per %3$d è emersa una riserva, riportata nella nota di sostegno dei capitoli interessati.</string>
+    <string name="report_pdf_language_note">I capitoli di questo rapporto sono scritti in inglese: per ora il sito scrive i suoi rapporti solo in inglese.</string>
 </resources>
