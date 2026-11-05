@@ -9,4 +9,8 @@
     <string name="error_unavailable">El sitio no pudo responder ahora mismo. Inténtalo de nuevo en un rato.</string>
     <string name="error_generic">Algo salió mal. Inténtalo de nuevo.</string>
     <string name="error_offline">Estás sin conexión. Revisa tu conexión e inténtalo de nuevo.</string>
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(fuente %1$s)</item>
+        <item quantity="other">(fuentes %1$s)</item>
+    </plurals>
 </resources>

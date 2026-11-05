@@ -210,4 +210,24 @@
     <string name="guide_tour_palm_body">Fotografiere eine Handfläche und lies ihre Linien, zwei Deutungen pro Woche.</string>
     <string name="guide_tour_account_title">Konto</string>
     <string name="guide_tour_account_body">Deine gespeicherten Horoskope und die Hilfe, wenn dir ein Wort fremd ist. Von dort kannst du den Rundgang noch einmal machen.</string>
+    <string name="more_varga_theme_d1">Leben im Ganzen, Identität und die Grundanlage von Geburt an</string>
+    <string name="more_varga_theme_d2">Wohlstand und finanzielle Leistungsfähigkeit</string>
+    <string name="more_varga_theme_d3">Geschwister, Mut und Initiative</string>
+    <string name="more_varga_theme_d4">Eigentum, Glück und Immobilien</string>
+    <string name="more_varga_theme_d5">Autorität, Einfluss und Anerkennung</string>
+    <string name="more_varga_theme_d6">Gesundheitsmuster, Routinen und Hindernisse im Alltag</string>
+    <string name="more_varga_theme_d7">Kinder und Nachkommen</string>
+    <string name="more_varga_theme_d8">Plötzlicher Wandel, Transformation und Verletzlichkeit</string>
+    <string name="more_varga_theme_d9">Ehe, Dharma und inneres Wesen</string>
+    <string name="more_varga_theme_d10">Karriere, Beruf und öffentliches Leben</string>
+    <string name="more_varga_theme_d11">Gewinne, Netzwerke und die Erfüllung von Ambitionen</string>
+    <string name="more_varga_theme_d12">Eltern und Ahnenlinie</string>
+    <string name="more_varga_theme_d16">Fahrzeuge, Annehmlichkeiten und Glück</string>
+    <string name="more_varga_theme_d20">Spiritueller Fortschritt und Andacht</string>
+    <string name="more_varga_theme_d24">Bildung, Lernen und Wissen</string>
+    <string name="more_varga_theme_d27">Stärken und Schwächen</string>
+    <string name="more_varga_theme_d30">Unglück, Krankheit und Herausforderungen</string>
+    <string name="more_varga_theme_d40">Günstige und ungünstige Wirkungen</string>
+    <string name="more_varga_theme_d45">Allgemeine Hinweise und Charakter</string>
+    <string name="more_varga_theme_d60">Karma aus früheren Leben und allgemeine Belange</string>
 </resources>

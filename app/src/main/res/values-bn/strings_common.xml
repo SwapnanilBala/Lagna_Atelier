@@ -9,4 +9,8 @@
     <string name="error_unavailable">সাইট এই মুহূর্তে সাড়া দিতে পারেনি। একটু পরে আবার চেষ্টা করুন।</string>
     <string name="error_generic">কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।</string>
     <string name="error_offline">আপনি অফলাইনে আছেন। সংযোগ দেখে আবার চেষ্টা করুন।</string>
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(সূত্র %1$s)</item>
+        <item quantity="other">(সূত্র %1$s)</item>
+    </plurals>
 </resources>

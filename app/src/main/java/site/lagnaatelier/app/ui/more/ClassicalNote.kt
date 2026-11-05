@@ -13,18 +13,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.BaselineShift
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.lifeareas.ClassicalReading
-import site.lagnaatelier.app.data.lifeareas.ClassicalSegment
 import site.lagnaatelier.app.ui.components.CardLabel
+import site.lagnaatelier.app.ui.components.CitedParagraph
+import site.lagnaatelier.app.ui.components.CitedRun
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.theme.Hairline
 import site.lagnaatelier.app.ui.theme.Muted
@@ -40,7 +38,7 @@ internal fun ClassicalNoteBody(reading: ClassicalReading, stateKey: String) {
     val markStyle = SpanStyle(baselineShift = BaselineShift.Superscript, fontSize = 0.7.em, color = Muted)
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
         reading.paragraphs().forEach { pieces ->
-            Text(paragraph(pieces, markStyle), style = MaterialTheme.typography.bodyMedium)
+            CitedParagraph(pieces.map { CitedRun(it.text, it.sources) }, markStyle, MaterialTheme.typography.bodyMedium)
         }
         GhostChip(
             if (open) stringResource(R.string.more_classics_hide) else stringResource(R.string.more_classics_show, reading.sources.size),
@@ -74,13 +72,5 @@ internal fun ClassicalNoteBody(reading: ClassicalReading, stateKey: String) {
                 Text(stringResource(R.string.more_classics_credit_women), style = MaterialTheme.typography.bodySmall, color = Muted)
             }
         }
-    }
-}
-
-/** One paragraph, each cited piece followed by its source numbers, raised. */
-private fun paragraph(pieces: List<ClassicalSegment>, markStyle: SpanStyle): AnnotatedString = buildAnnotatedString {
-    pieces.forEach { piece ->
-        append(piece.text)
-        if (piece.sources.isNotEmpty()) withStyle(markStyle) { append(piece.sources.joinToString(",")) }
     }
 }

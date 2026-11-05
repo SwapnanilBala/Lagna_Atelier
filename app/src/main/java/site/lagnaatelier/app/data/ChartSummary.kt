@@ -38,7 +38,12 @@ data class Period(
     fun sameAs(other: Period): Boolean = lord == other.lord && start == other.start
 }
 
-data class Finding(val category: String, val headline: String, val body: String? = null)
+/**
+ * One of the readings the engine chose for the page. [key] is the rule's
+ * instance key, which finds the same reading's evidence in the full reading
+ * (ReadingSections.findings); blank for a reading built by hand.
+ */
+data class Finding(val category: String, val headline: String, val body: String? = null, val key: String = "")
 
 data class ChartSummary(
     val name: String,

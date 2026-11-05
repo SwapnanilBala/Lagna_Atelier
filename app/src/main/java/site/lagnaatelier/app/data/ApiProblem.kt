@@ -64,4 +64,12 @@ object ErrorText {
         is IOException -> R.string.error_offline
         else -> R.string.error_generic
     }
+
+    /**
+     * Whether a failure worded [message] is worth a "Try again". A spent
+     * allowance only clears tomorrow, so it is said as such with no button
+     * that would just be refused again (as the timing tab already does).
+     */
+    fun offersRetry(@StringRes message: Int): Boolean =
+        message != R.string.error_daily && message != R.string.error_full_today
 }

@@ -101,6 +101,7 @@ object ChartParser {
                 category = tierLabels[rule.optString("tier")] ?: rule.optString("category").replaceFirstChar { it.uppercase() },
                 headline = display.getString("headline"),
                 body = display.optString("body").ifBlank { null },
+                key = rule.optString("instance_key"),
             )
         }
     }

@@ -9,4 +9,8 @@
     <string name="error_unavailable">Die Website konnte gerade nicht antworten. Versuche es gleich noch einmal.</string>
     <string name="error_generic">Etwas ist schiefgelaufen. Versuche es erneut.</string>
     <string name="error_offline">Du bist offline. Prüfe deine Verbindung und versuche es erneut.</string>
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(Quelle %1$s)</item>
+        <item quantity="other">(Quellen %1$s)</item>
+    </plurals>
 </resources>

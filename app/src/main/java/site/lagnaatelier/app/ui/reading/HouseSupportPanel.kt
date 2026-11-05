@@ -8,11 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,12 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.reading.HouseGroup
 import site.lagnaatelier.app.data.reading.HouseRow
@@ -136,32 +136,7 @@ private fun HouseBars(houses: List<HouseRow>) {
     val description = stringResource(R.string.houses_bars_description) + " " +
         houses.joinToString(", ") { "${it.house}: ${it.bindus}" }
     Column(Modifier.fillMaxWidth().clearAndSetSemantics { contentDescription = description }) {
-        Box(Modifier.fillMaxWidth().height(BAR_HEIGHT + 16.dp)) {
-            /* The average, as a hairline across all twelve, drawn first so the bars sit over it. */
-            val averageFromBottom = BAR_HEIGHT * (HouseSupport.AVERAGE.toFloat() / BAR_MAX_BINDUS)
-            Box(
-                Modifier
-                    .align(Alignment.BottomStart)
-                    .offset(y = -averageFromBottom)
-                    .fillMaxWidth()
-                    .height(1.dp)
-                    .background(Ink.copy(alpha = 0.5f)),
-            )
-            Row(Modifier.fillMaxWidth().height(BAR_HEIGHT + 16.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                houses.forEach { house ->
-                    Column(Modifier.weight(1f).fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
-                        Text("${house.bindus}", style = LiquidType.gridLabel, color = Muted)
-                        Spacer(Modifier.height(2.dp))
-                        Box(
-                            Modifier
-                                .fillMaxWidth(0.7f)
-                                .height(BAR_HEIGHT * (house.bindus.coerceAtMost(BAR_MAX_BINDUS.toInt()) / BAR_MAX_BINDUS))
-                                .background(house.band.fill(), RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp)),
-                        )
-                    }
-                }
-            }
-        }
+        BarPlot(houses)
         HorizontalDivider(color = Hairline)
         Row(Modifier.fillMaxWidth().padding(top = 4.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             houses.forEach { house ->
@@ -169,6 +144,66 @@ private fun HouseBars(houses: List<HouseRow>) {
                     Text("${house.house}", style = LiquidType.gridLabel, textAlign = TextAlign.Center)
                     Text(signAbbreviation(house.sign), style = LiquidType.gridLabel, color = Muted, textAlign = TextAlign.Center, maxLines = 1)
                 }
+            }
+        }
+    }
+}
+
+/*
+ * The bars over the average hairline, each with its count above it. A count
+ * whose bar ends near the average would sit right on the line, so that count
+ * moves to just above the line instead: the line then runs between the bar
+ * and its number, never through the digits, whatever the theme or font size.
+ * A custom layout, since where a label goes depends on its measured height.
+ */
+@Composable
+private fun BarPlot(houses: List<HouseRow>) {
+    Layout(
+        content = {
+            Box(Modifier.background(Ink.copy(alpha = 0.5f)))
+            houses.forEach { house ->
+                Box(Modifier.background(house.band.fill(), RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp)))
+            }
+            houses.forEach { house -> Text("${house.bindus}", style = LiquidType.gridLabel, color = Muted, maxLines = 1) }
+        },
+        modifier = Modifier.fillMaxWidth(),
+    ) { measurables, constraints ->
+        val count = houses.size
+        val width = constraints.maxWidth
+        val gap = 4.dp.roundToPx()
+        val slot = (width - gap * (count - 1)).toFloat() / count
+        val plot = BAR_HEIGHT.toPx()
+        val line = 1.dp.roundToPx().coerceAtLeast(1)
+        val clearance = 2.dp.roundToPx()
+        val labelGap = 2.dp.roundToPx()
+        /* Distances from the bottom edge, as the bars grow. */
+        val lineBottom = (plot * (HouseSupport.AVERAGE.toFloat() / BAR_MAX_BINDUS)).roundToInt()
+
+        val bars = houses.mapIndexed { index, house ->
+            val height = (plot * (house.bindus.coerceAtMost(BAR_MAX_BINDUS.toInt()) / BAR_MAX_BINDUS)).roundToInt()
+            measurables[1 + index].measure(Constraints.fixed((slot * 0.7f).roundToInt(), height))
+        }
+        val labels = houses.indices.map { index ->
+            measurables[1 + count + index].measure(Constraints(maxWidth = (slot + gap).roundToInt()))
+        }
+        val labelBottoms = houses.indices.map { index ->
+            val natural = bars[index].height + labelGap
+            val top = natural + labels[index].height
+            val crosses = natural < lineBottom + line + clearance && top > lineBottom - clearance
+            if (crosses) lineBottom + line + clearance else natural
+        }
+        val height = maxOf(plot.roundToInt(), houses.indices.maxOf { labelBottoms[it] + labels[it].height })
+        val rule = measurables[0].measure(Constraints.fixed(width, line))
+
+        layout(width, height) {
+            rule.place(0, height - lineBottom - line)
+            houses.indices.forEach { index ->
+                val left = index * (slot + gap)
+                bars[index].place((left + (slot - bars[index].width) / 2).roundToInt(), height - bars[index].height)
+                labels[index].place(
+                    (left + (slot - labels[index].width) / 2).roundToInt(),
+                    height - labelBottoms[index] - labels[index].height,
+                )
             }
         }
     }

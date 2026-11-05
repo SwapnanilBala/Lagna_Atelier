@@ -41,8 +41,26 @@ data class Varga(
 
     val key: KeyVarga? get() = KeyVarga.of(division)
 
+    /**
+     * The theme in the reader's language: the site's divisional.panel.themes
+     * line for this division. [description] is the engine's English and stays
+     * the fallback for a division the site does not list.
+     */
+    @get:StringRes
+    val theme: Int? get() = THEMES[division]
+
     companion object {
         const val ASCENDANT = "Ascendant"
+
+        private val THEMES = mapOf(
+            1 to R.string.more_varga_theme_d1, 2 to R.string.more_varga_theme_d2, 3 to R.string.more_varga_theme_d3,
+            4 to R.string.more_varga_theme_d4, 5 to R.string.more_varga_theme_d5, 6 to R.string.more_varga_theme_d6,
+            7 to R.string.more_varga_theme_d7, 8 to R.string.more_varga_theme_d8, 9 to R.string.more_varga_theme_d9,
+            10 to R.string.more_varga_theme_d10, 11 to R.string.more_varga_theme_d11, 12 to R.string.more_varga_theme_d12,
+            16 to R.string.more_varga_theme_d16, 20 to R.string.more_varga_theme_d20, 24 to R.string.more_varga_theme_d24,
+            27 to R.string.more_varga_theme_d27, 30 to R.string.more_varga_theme_d30, 40 to R.string.more_varga_theme_d40,
+            45 to R.string.more_varga_theme_d45, 60 to R.string.more_varga_theme_d60,
+        )
 
         /* The same two letters ChartParser uses for the D1. */
         val GRAHA_ABBREVIATIONS = linkedMapOf(

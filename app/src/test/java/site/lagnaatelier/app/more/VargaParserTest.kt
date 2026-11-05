@@ -34,6 +34,13 @@ class VargaParserTest {
     }
 
     @Test
+    fun everyVargaTheEngineSendsHasATranslatedTheme() {
+        // The engine's description is English only; each tile and detail prints the theme string instead.
+        assertTrue(vargas.all { it.theme != null })
+        assertEquals(vargas.size, vargas.mapNotNull { it.theme }.toSet().size)
+    }
+
+    @Test
     fun agreesWithTheNavamsaTheReadingAlreadyDraws() {
         val delhi = Place("New Delhi", "Delhi", "India", 28.6139, 77.209, "Asia/Kolkata", 330)
         val chart = ChartParser.parse(chartJson, BirthDetails("Ananya Mehra", LocalDate.of(1990, 6, 15), "14:30", TimeAccuracy.Exact, delhi))

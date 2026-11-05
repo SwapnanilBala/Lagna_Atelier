@@ -9,4 +9,8 @@
     <string name="error_unavailable">Le site n’a pas pu répondre pour le moment. Réessayez dans un instant.</string>
     <string name="error_generic">Une erreur est survenue. Réessayez.</string>
     <string name="error_offline">Vous êtes hors ligne. Vérifiez votre connexion et réessayez.</string>
+    <plurals name="classics_mark_spoken">
+        <item quantity="one">(source %1$s)</item>
+        <item quantity="other">(sources %1$s)</item>
+    </plurals>
 </resources>
