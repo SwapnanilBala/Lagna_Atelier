@@ -97,4 +97,5 @@
     <string name="report_pdf_provenance">Berechnet mit %1$s (%2$s), Ayanamsha %3$s, Häusersystem %4$s, nach einer als %5$s erfassten Geburtszeit. %6$s</string>
     <string name="report_pdf_provenance_clean">Alle %1$d internen Konsistenzprüfungen bestanden.</string>
     <string name="report_pdf_provenance_qualified">%1$d von %2$d internen Konsistenzprüfungen ohne Vorbehalt bestanden; bei %3$d gab es einen Vorbehalt, der in der Anmerkung der betroffenen Kapitel berücksichtigt ist.</string>
+    <string name="report_pdf_language_note">Die Kapitel dieses Berichts sind auf Englisch geschrieben: Die Website schreibt ihre Berichte vorerst nur auf Englisch.</string>
 </resources>

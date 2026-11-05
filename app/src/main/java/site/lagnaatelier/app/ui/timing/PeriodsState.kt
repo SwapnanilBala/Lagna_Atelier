@@ -62,9 +62,13 @@ enum class TimingPage { Panels, Chapters, Compatibility }
  * reading already asked for (and counted against the allowance) still lands
  * when the reader switches tabs while it is written.
  *
+ * Every reading is asked for in [language], and a holder is kept per language
+ * (TimingHolders), so a switch of language asks again rather than showing the
+ * old language's text.
+ *
  * Read and written from the main thread only.
  */
-class PeriodsHolder(val details: BirthDetails, val today: LocalDate) {
+class PeriodsHolder(val details: BirthDetails, val today: LocalDate, val language: String = "en") {
     private val scope = MainScope()
 
     var page by mutableStateOf(TimingPage.Panels)
@@ -136,7 +140,7 @@ class PeriodsHolder(val details: BirthDetails, val today: LocalDate) {
             currentPeriod = null
             return
         }
-        val body = CurrentPeriod.requestBody(natal, CurrentPeriod.progressPercent(running, today))
+        val body = CurrentPeriod.requestBody(natal, CurrentPeriod.progressPercent(running, today), language)
         currentPeriod = if (body == null) {
             Written.Ready(null)
         } else {
@@ -161,7 +165,7 @@ class PeriodsHolder(val details: BirthDetails, val today: LocalDate) {
         periodReadings[chain.key] = Written.Writing
         scope.launch {
             periodReadings[chain.key] = try {
-                when (val answer = api.dashaReading(details, chain)) {
+                when (val answer = api.dashaReading(details, chain, language)) {
                     is DashaReading.Answer.Written -> Written.Ready(answer.reading)
                     DashaReading.Answer.NothingInTheBooks -> Written.Empty
                 }
@@ -200,7 +204,7 @@ class PeriodsHolder(val details: BirthDetails, val today: LocalDate) {
             return
         }
         chaptersWritten = try {
-            val readings = api.lifeShifts(details, shown.map { it.id }) { batch -> chapterReadings.putAll(batch) }
+            val readings = api.lifeShifts(details, shown.map { it.id }, language) { batch -> chapterReadings.putAll(batch) }
             chapterReadings.putAll(readings)
             Written.Ready(Unit)
         } catch (e: CancellationException) {

@@ -23,7 +23,8 @@ import java.net.URLEncoder
  *   POST /api/compatibility          two charts read together (no language model)
  *
  * The three reading routes are written by a language model with a daily
- * allowance per caller; each is called only when the screen needs it, and a
+ * allowance per caller, in the language they are asked for (ReadingLanguage):
+ * current-period's is in the body its caller builds, the other two take it here; each is called only when the screen needs it, and a
  * 429 that names its scope comes back as ApiException, worded by ErrorText.
  */
 class PeriodsApi(private val api: LagnaApi, private val baseUrl: String = LagnaApi.BASE_URL) {
@@ -38,10 +39,10 @@ class PeriodsApi(private val api: LagnaApi, private val baseUrl: String = LagnaA
     suspend fun currentPeriod(requestBody: String): String? =
         CurrentPeriod.parseReading(api.postJson(CURRENT_PERIOD_PATH, requestBody, readTimeoutMs = 40_000))
 
-    suspend fun dashaReading(details: BirthDetails, chain: PeriodChain): DashaReading.Answer {
+    suspend fun dashaReading(details: BirthDetails, chain: PeriodChain, language: String = "en"): DashaReading.Answer {
         val body = api.postJson(
             "$DASHA_READING_PATH?${query(details)}",
-            DashaReading.requestBody(chain),
+            DashaReading.requestBody(chain, language),
             /* The route allows itself a minute, a retry included. */
             readTimeoutMs = 75_000,
         )
@@ -63,6 +64,7 @@ class PeriodsApi(private val api: LagnaApi, private val baseUrl: String = LagnaA
     suspend fun lifeShifts(
         details: BirthDetails,
         ids: List<String>,
+        language: String = "en",
         onBatch: (Map<String, ClassicalReading>) -> Unit,
     ): Map<String, ClassicalReading> = withContext(Dispatchers.IO) {
         val connection = URL("$baseUrl$LIFE_SHIFTS_PATH?${query(details)}").openConnection() as HttpURLConnection
@@ -74,7 +76,7 @@ class PeriodsApi(private val api: LagnaApi, private val baseUrl: String = LagnaA
             connection.doOutput = true
             connection.setRequestProperty("Content-Type", "application/json; charset=utf-8")
             connection.setRequestProperty("Accept", "$STREAM_TYPE, application/json")
-            connection.outputStream.use { it.write(LifeShifts.requestBody(ids).toByteArray(Charsets.UTF_8)) }
+            connection.outputStream.use { it.write(LifeShifts.requestBody(ids, language).toByteArray(Charsets.UTF_8)) }
 
             val status = connection.responseCode
             if (status !in 200..299) {

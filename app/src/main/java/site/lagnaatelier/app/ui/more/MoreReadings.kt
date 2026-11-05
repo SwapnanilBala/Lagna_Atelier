@@ -50,7 +50,9 @@ import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.ReadingLanguage
 import site.lagnaatelier.app.data.timing.TimingQueries
+import site.lagnaatelier.app.ui.account.traditionName
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.LiquidIcons
@@ -197,7 +199,9 @@ internal fun LinkRow(title: String, note: String, onClick: () -> Unit) {
 fun MoreOverlay(controller: MoreController, chart: ChartSummary, details: BirthDetails?, api: LagnaApi) {
     val screen = controller.screen ?: return
     val birth = details ?: TimingQueries.sampleDetails
-    val holder = remember(birth, api) { MoreHolders.get(birth, api) }
+    /* The activity is recreated in a new language, so this is read afresh when it changes. */
+    val language = ReadingLanguage.current
+    val holder = remember(birth, api, language) { MoreHolders.get(birth, api, language) }
     BackHandler(onBack = controller::back)
 
     Box(
@@ -214,7 +218,7 @@ fun MoreOverlay(controller: MoreController, chart: ChartSummary, details: BirthD
                 holder = holder,
                 cast = chart.vargas,
                 timeIsEstimated = chart.timeIsEstimated,
-                tradition = chart.tradition,
+                tradition = traditionName(chart.engineId, chart.tradition),
                 division = controller.division,
                 onDivision = { controller.division = it },
                 onBack = controller::back,

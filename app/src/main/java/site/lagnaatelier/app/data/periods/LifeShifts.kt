@@ -2,6 +2,7 @@ package site.lagnaatelier.app.data.periods
 
 import org.json.JSONArray
 import org.json.JSONObject
+import site.lagnaatelier.app.data.AppDates
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -26,6 +27,12 @@ import kotlin.math.roundToLong
  * returns; the five nearest to now are kept, in date order. The engine's
  * English narrative is what a chapter shows until its written reading lands,
  * and instead of it when none does.
+ *
+ * The label, the theme and the evidence are the engine's English too, which
+ * is what an id and the tests compare against; the screen prints them in the
+ * app's language from [LifeShift.kind], [LifeShift.occurrence] and
+ * [LifeShift.facts] (ui/timing/LifeChapterText.kt), as the web's
+ * life-shift-labels.ts does for the label and the theme.
  */
 
 enum class ShiftKind(val apiValue: String) {
@@ -51,9 +58,31 @@ data class LifeShift(
     val theme: String,
     val narrative: String,
     val evidence: String,
+    /** Which return this is, 1 for the first; 0 for a Maha Dasha opening. */
+    val occurrence: Int = 0,
+    /** [evidence]'s parts, in its order, for printing in another language. */
+    val facts: List<ShiftFact> = emptyList(),
 ) {
     /** The id the route files the chapter's reading under (lifeShiftId). */
     val id: String get() = "${kind.apiValue}-${LifeShifts.isoString(pivot)}"
+}
+
+/** One part of a chapter's evidence line, as the engine words it in English. */
+sealed interface ShiftFact {
+    /** "Mahadasha lord: Saturn". */
+    data class Lord(val planet: String) : ShiftFact
+
+    /** "Lasts ~19 years". */
+    data class Lasts(val years: Double) : ShiftFact
+
+    /** "Cycle: ~29.5 years". */
+    data class Cycle(val years: Double) : ShiftFact
+
+    /** "Natal Saturn: Leo / H5". */
+    data class Natal(val planet: String, val sign: String, val house: Int) : ShiftFact
+
+    /** A node's own placement on the nodal return: "Rahu: Leo / H5". */
+    data class Node(val planet: String, val sign: String, val house: Int) : ShiftFact
 }
 
 object LifeShifts {
@@ -142,6 +171,8 @@ object LifeShifts {
                 theme = candidate.theme,
                 narrative = candidate.narrative,
                 evidence = candidate.evidence,
+                occurrence = candidate.occurrence,
+                facts = candidate.facts,
             )
         }
     }
@@ -211,6 +242,8 @@ object LifeShifts {
         val theme: String,
         val narrative: String,
         val evidence: String,
+        val occurrence: Int,
+        val facts: List<ShiftFact>,
     )
 
     /*
@@ -249,6 +282,13 @@ object LifeShifts {
     private fun tag(planet: String, natal: NatalChart): String =
         natal.planet(planet)?.let { "${it.sign} / H${it.house}" }.orEmpty()
 
+    /* The same placement as [tag], kept apart; null where [tag] is empty. */
+    private fun natalFact(planet: String, natal: NatalChart): ShiftFact.Natal? =
+        natal.planet(planet)?.let { ShiftFact.Natal(planet, it.sign, it.house) }
+
+    private fun nodeFact(planet: String, natal: NatalChart): ShiftFact.Node? =
+        natal.planet(planet)?.let { ShiftFact.Node(planet, it.sign, it.house) }
+
     private fun mahadasha(period: MahaPeriod, pivot: Double, birth: Double, natal: NatalChart): Candidate {
         val planet = period.planet
         val age = maxOf(0L, jsRound(diffYears(pivot, birth))).toInt()
@@ -273,6 +313,8 @@ object LifeShifts {
                 "Lasts ~${jsNumber(period.years)} years",
                 if (placement.isNotEmpty()) "Natal $planet: $placement" else "",
             ).filter { it.isNotEmpty() }.joinToString(" | "),
+            occurrence = 0,
+            facts = listOfNotNull(ShiftFact.Lord(planet), ShiftFact.Lasts(period.years), natalFact(planet, natal)),
         )
     }
 
@@ -292,6 +334,7 @@ object LifeShifts {
         val halfWidth: Int
         val narrative: String
         val evidence: String
+        val facts: List<ShiftFact>
         when (kind) {
             ShiftKind.SaturnReturn -> {
                 planet = "Saturn"
@@ -305,6 +348,7 @@ object LifeShifts {
                     "demands a more honest version. Expect a 9 to 18 month rebuild, not an event."
                 evidence = listOf("Cycle: ~29.5 years", if (placement.isNotEmpty()) "Natal Saturn: $placement" else "")
                     .filter { it.isNotEmpty() }.joinToString(" | ")
+                facts = listOfNotNull(ShiftFact.Cycle(29.5), natalFact("Saturn", natal))
             }
             ShiftKind.JupiterReturn -> {
                 planet = "Jupiter"
@@ -318,6 +362,7 @@ object LifeShifts {
                     "the room that gets enlarged."
                 evidence = listOf("Cycle: ~11.9 years", if (placement.isNotEmpty()) "Natal Jupiter: $placement" else "")
                     .filter { it.isNotEmpty() }.joinToString(" | ")
+                facts = listOfNotNull(ShiftFact.Cycle(11.9), natalFact("Jupiter", natal))
             }
             else -> {
                 planet = "Rahu / Ketu"
@@ -335,6 +380,7 @@ object LifeShifts {
                     if (rahu.isNotEmpty()) "Rahu: $rahu" else "",
                     if (ketu.isNotEmpty()) "Ketu: $ketu" else "",
                 ).filter { it.isNotEmpty() }.joinToString(" | ")
+                facts = listOfNotNull(ShiftFact.Cycle(18.6), nodeFact("Rahu", natal), nodeFact("Ketu", natal))
             }
         }
         return Candidate(
@@ -348,6 +394,8 @@ object LifeShifts {
             theme = theme,
             narrative = narrative,
             evidence = evidence,
+            occurrence = occurrence,
+            facts = facts,
         )
     }
 
@@ -357,13 +405,15 @@ object LifeShifts {
 
     /* ── Dates on the cards ──────────────────────────────────────────────── */
 
-    private val MONTH_YEAR = DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH).withZone(ZoneOffset.UTC)
-    private val SHORT_MONTH_YEAR = DateTimeFormatter.ofPattern("MMM yyyy", Locale.ENGLISH).withZone(ZoneOffset.UTC)
+    private fun monthYear(locale: Locale) = AppDates.formatter("MMMM yyyy", "MMMMyyyy", locale).withZone(ZoneOffset.UTC)
+    private fun shortMonthYear(locale: Locale) = AppDates.formatter("MMM yyyy", "MMMyyyy", locale).withZone(ZoneOffset.UTC)
 
-    /** "September 2027", in UTC as the engine counts (formatShiftPivot). */
-    fun pivotLabel(shift: LifeShift): String = MONTH_YEAR.format(shift.pivot)
+    /** "September 2027" in English, in UTC as the engine counts (formatShiftPivot); the app's language otherwise. */
+    fun pivotLabel(shift: LifeShift, locale: Locale = AppDates.locale): String = monthYear(locale).format(shift.pivot)
 
     /** "Dec 2026 → Jun 2028" (formatShiftWindow). */
-    fun windowLabel(shift: LifeShift): String =
-        "${SHORT_MONTH_YEAR.format(shift.windowStart)} → ${SHORT_MONTH_YEAR.format(shift.windowEnd)}"
+    fun windowLabel(shift: LifeShift, locale: Locale = AppDates.locale): String {
+        val format = shortMonthYear(locale)
+        return "${format.format(shift.windowStart)} → ${format.format(shift.windowEnd)}"
+    }
 }

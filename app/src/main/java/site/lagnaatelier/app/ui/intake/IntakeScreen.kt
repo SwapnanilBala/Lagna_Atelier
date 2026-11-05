@@ -86,6 +86,7 @@ import site.lagnaatelier.app.data.Place
 import site.lagnaatelier.app.data.TimeAccuracy
 import site.lagnaatelier.app.data.Traditions
 import site.lagnaatelier.app.data.dayMonthYear
+import site.lagnaatelier.app.ui.account.nameRes
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GlowBehind
@@ -419,13 +420,13 @@ private fun TraditionPanel(draft: AppViewModel.IntakeDraft) {
         CardLabel(stringResource(R.string.intake_ayanamsha))
         Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Traditions.Ayanamsha.entries.forEach { option ->
-                LiquidChip(option.label, selected = draft.ayanamsha == option, onClick = { draft.ayanamsha = option })
+                LiquidChip(stringResource(option.nameRes), selected = draft.ayanamsha == option, onClick = { draft.ayanamsha = option })
             }
         }
         CardLabel(stringResource(R.string.intake_houses))
         Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             Traditions.HouseSystem.entries.forEach { option ->
-                LiquidChip(option.label, selected = draft.houses == option, onClick = { draft.houses = option })
+                LiquidChip(stringResource(option.nameRes), selected = draft.houses == option, onClick = { draft.houses = option })
             }
         }
         Text(stringResource(R.string.intake_tradition_note), style = MaterialTheme.typography.bodySmall, color = Muted)

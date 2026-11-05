@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tradition_ayanamsha_lahiri">Lahiri</string>
+    <string name="tradition_ayanamsha_raman">Raman</string>
+    <string name="tradition_ayanamsha_krishnamurti">Krishnamurti</string>
+    <string name="tradition_ayanamsha_fagan_bradley">Fagan-Bradley</string>
+    <string name="tradition_ayanamsha_pushyapaksha">Pushyapaksha</string>
+    <string name="tradition_ayanamsha_yukteshwar">Yukteshwar</string>
+    <string name="tradition_houses_whole_sign">Ganzzeichen-Häuser</string>
+    <string name="tradition_houses_whole_sign_in_label">Ganzzeichen-Häuser</string>
+    <string name="tradition_houses_equal">Äquale Häuser</string>
+</resources>

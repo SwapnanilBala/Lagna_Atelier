@@ -23,8 +23,13 @@ data class ReportCover(
     val ascendant: String?,
     /** "New Delhi, Delhi, India". */
     val place: String?,
-    /** "3 November 2026". */
+    /** "3 November 2026", in the report's language. */
     val preparedOn: String?,
+    /**
+     * Said under "Begin here" when the report's language is not the one its
+     * chapters are written in: the story routes write English only.
+     */
+    val languageNote: String? = null,
 )
 
 /*
@@ -116,7 +121,7 @@ class ReportPdf(private val context: Context) {
     /** Writes the report to [file] and returns how many pages it has. */
     fun write(story: PersonalStory, cover: ReportCover, file: File): Int {
         val elements = buildList {
-            addAll(beginHere(story))
+            addAll(beginHere(story, cover))
             story.chapters.forEachIndexed { index, chapter -> addAll(chapter(story, chapter, index)) }
             addAll(closing(story))
         }
@@ -221,9 +226,10 @@ class ReportPdf(private val context: Context) {
 
     // ── Begin here ───────────────────────────────────────────────────────
 
-    private fun beginHere(story: PersonalStory): List<Element> = buildList {
+    private fun beginHere(story: PersonalStory, cover: ReportCover): List<Element> = buildList {
         add(kicker(s(R.string.report_pdf_begin_kicker)))
         add(sectionTitle(s(R.string.report_pdf_begin_title)))
+        cover.languageNote?.let { add(text(it, paint(10f, Palette.FAINT), spacing = 1.4f, spaceBefore = 8f)) }
         add(text(story.introduction, paint(12.5f, Palette.MUTED, weight = 300), spacing = 1.5f, spaceBefore = 10f))
         add(rule(spaceBefore = 18f))
         story.preface.forEachIndexed { index, paragraph ->

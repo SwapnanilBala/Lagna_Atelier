@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tradition_ayanamsha_lahiri">লাহিড়ী</string>
+    <string name="tradition_ayanamsha_raman">রমন</string>
+    <string name="tradition_ayanamsha_krishnamurti">কৃষ্ণমূর্তি</string>
+    <string name="tradition_ayanamsha_fagan_bradley">ফেগান-ব্র্যাডলি</string>
+    <string name="tradition_ayanamsha_pushyapaksha">পুষ্যপক্ষ</string>
+    <string name="tradition_ayanamsha_yukteshwar">যুক্তেশ্বর</string>
+    <string name="tradition_houses_whole_sign">পূর্ণ-রাশি ভাব</string>
+    <string name="tradition_houses_whole_sign_in_label">পূর্ণ-রাশি ভাব</string>
+    <string name="tradition_houses_equal">সমান ভাব</string>
+</resources>

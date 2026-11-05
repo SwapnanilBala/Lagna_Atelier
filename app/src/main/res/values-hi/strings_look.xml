@@ -12,7 +12,7 @@
     <string name="look_chart_south_note">राशियाँ अपनी जगह रहती हैं; लग्न राशि भरा हुआ खाना है।</string>
     <string name="look_chart_north_note">भाव अपनी जगह रहते हैं; लग्न ऊपर का हीरा है, और हर भाव में उसकी राशि की संख्या लिखी है, मेष 1 है।</string>
     <string name="look_language_system">फ़ोन की भाषा</string>
-    <string name="look_language_note">ऐप के अपने शब्द इस चुनाव के अनुसार दिखते हैं। आपके लिए लिखे गए पठन अभी अंग्रेज़ी में ही आते हैं।</string>
+    <string name="look_language_note">ऐप के अपने शब्द इस चुनाव के अनुसार दिखते हैं, और वेबसाइट आपके लिए जो पठन लिखती है वे भी। जीवन क्षेत्रों के सार, हस्तरेखा पठन और PDF रिपोर्ट के अध्याय अभी अंग्रेज़ी में ही लिखे जाते हैं।</string>
 
     <!-- The chart, drawn either way -->
     <string name="chart_sign_aries">मेष</string>

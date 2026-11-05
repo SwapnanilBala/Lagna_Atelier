@@ -11,7 +11,7 @@
     <string name="look_chart_south_note">রাশিগুলি নিজের জায়গায় থাকে; লগ্ন রাশি হল রং-ভরা ঘরটি।</string>
     <string name="look_chart_north_note">ভাবগুলি নিজের জায়গায় থাকে; লগ্ন উপরের রম্বস, আর প্রতিটি ভাবে তার রাশির সংখ্যা লেখা থাকে, মেষ হল 1।</string>
     <string name="look_language_system">ফোনের ভাষা</string>
-    <string name="look_language_note">অ্যাপের নিজের লেখা এই পছন্দ মেনে চলে। আপনার জন্য লেখা পাঠ আপাতত ইংরেজিতেই আসে।</string>
+    <string name="look_language_note">অ্যাপের নিজের লেখা এই পছন্দ মেনে চলে, আর ওয়েবসাইট আপনার জন্য যে পাঠ লেখে সেগুলিও। জীবনক্ষেত্রের সারাংশ, হস্তরেখা পাঠ আর PDF প্রতিবেদনের অধ্যায় এখনও ইংরেজিতেই লেখা হয়।</string>
     <string name="chart_sign_aries">মেষ</string>
     <string name="chart_sign_taurus">বৃষ</string>
     <string name="chart_sign_gemini">মিথুন</string>

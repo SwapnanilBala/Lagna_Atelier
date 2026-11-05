@@ -12,7 +12,7 @@
     <string name="look_chart_south_note">Les signes gardent leur place ; l’ascendant est la case remplie.</string>
     <string name="look_chart_north_note">Les maisons gardent leur place ; l’ascendant est le losange du haut, et chaque maison porte le numéro de son signe, le Bélier valant 1.</string>
     <string name="look_language_system">Langue du téléphone</string>
-    <string name="look_language_note">Les textes de l’app suivent ce choix. Les lectures rédigées pour vous arrivent encore en anglais pour l’instant.</string>
+    <string name="look_language_note">Les textes de l’app suivent ce choix, tout comme les lectures que le site rédige pour vous. Les synthèses des domaines de vie, les lectures de la paume et les chapitres du rapport PDF sont encore rédigés en anglais.</string>
 
     <!-- The chart, drawn either way -->
     <string name="chart_sign_aries">Bélier</string>

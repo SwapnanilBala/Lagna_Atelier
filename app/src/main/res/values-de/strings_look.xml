@@ -12,7 +12,7 @@
     <string name="look_chart_south_note">Die Zeichen behalten ihre Plätze; der Aszendent ist das gefüllte Feld.</string>
     <string name="look_chart_north_note">Die Häuser behalten ihre Plätze; der Aszendent ist die obere Raute, und jedes Haus zeigt die Nummer seines Zeichens, Widder als 1.</string>
     <string name="look_language_system">Sprache des Handys</string>
-    <string name="look_language_note">Die App selbst folgt dieser Wahl. Deutungen, die für dich geschrieben werden, kommen vorerst noch auf Englisch.</string>
+    <string name="look_language_note">Die App selbst folgt dieser Wahl, und ebenso die Deutungen, die die Website für dich schreibt. Die Kurzfassungen der Lebensbereiche, Handdeutungen und die Kapitel des PDF-Berichts werden noch auf Englisch geschrieben.</string>
 
     <!-- The chart, drawn either way -->
     <string name="chart_sign_aries">Widder</string>

@@ -12,7 +12,7 @@
     <string name="look_chart_south_note">Los signos mantienen su lugar; el signo ascendente es el cuadro relleno.</string>
     <string name="look_chart_north_note">Las casas mantienen su lugar; el signo ascendente es el rombo superior, y cada casa muestra el número de su signo, con Aries como 1.</string>
     <string name="look_language_system">Idioma del teléfono</string>
-    <string name="look_language_note">Los textos propios de la app siguen esta elección. De momento, las lecturas escritas para ti siguen llegando en inglés.</string>
+    <string name="look_language_note">Los textos propios de la app siguen esta elección, y también las lecturas que la web escribe para ti. Los resúmenes de las áreas de la vida, las lecturas de la palma y los capítulos del informe PDF se escriben todavía en inglés.</string>
 
     <!-- The chart, drawn either way -->
     <string name="chart_sign_aries">Aries</string>

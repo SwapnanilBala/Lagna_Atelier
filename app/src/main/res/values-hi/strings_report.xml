@@ -97,4 +97,5 @@
     <string name="report_pdf_provenance">%1$s (%2$s), %3$s अयनांश और %4$s भाव पद्धति से गणना की गई, जिसमें जन्म समय %5$s दर्ज है। %6$s</string>
     <string name="report_pdf_provenance_clean">सभी %1$d आंतरिक संगति जाँचें सफल रहीं।</string>
     <string name="report_pdf_provenance_qualified">%2$d में से %1$d आंतरिक संगति जाँचें पूरी तरह सफल रहीं; %3$d में एक शर्त आई, जो उन अध्यायों की समर्थन टिप्पणी में दिखाई गई है जिन पर इसका असर है।</string>
+    <string name="report_pdf_language_note">इस रिपोर्ट के अध्याय अंग्रेज़ी में लिखे गए हैं: वेबसाइट अभी अपनी रिपोर्टें केवल अंग्रेज़ी में लिखती है।</string>
 </resources>

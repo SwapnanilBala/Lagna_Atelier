@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapters_label_mahadasha">Comienza la mahadasha de %1$s</string>
+    <string name="chapters_label_saturn_return">%1$s retorno de Saturno</string>
+    <string name="chapters_label_jupiter_return">%1$s retorno de Júpiter</string>
+    <string name="chapters_label_nodal_return">%1$s retorno nodal</string>
+    <string-array name="chapters_ordinals">
+        <item>Primer</item>
+        <item>Segundo</item>
+        <item>Tercer</item>
+        <item>Cuarto</item>
+        <item>Quinto</item>
+        <item>Sexto</item>
+        <item>Séptimo</item>
+        <item>Octavo</item>
+    </string-array>
+    <string name="chapters_theme_sun">Autoridad, identidad y visibilidad</string>
+    <string name="chapters_theme_moon">Bases emocionales, familia y seguridad interior</string>
+    <string name="chapters_theme_mars">Valor, conflicto y acción decidida</string>
+    <string name="chapters_theme_mercury">Comunicación, estudio y pensamiento flexible</string>
+    <string name="chapters_theme_jupiter">Expansión, fe, enseñanza y crecimiento ético</string>
+    <string name="chapters_theme_venus">Amor, pareja, dinero y placer</string>
+    <string name="chapters_theme_saturn">Disciplina, responsabilidad y rendición de cuentas kármica</string>
+    <string name="chapters_theme_rahu">Ambición, hambre y terreno desconocido</string>
+    <string name="chapters_theme_ketu">Desprendimiento, retiro y dominio interior</string>
+    <string name="chapters_theme_saturn_return">Estructura, responsabilidad y el precio de las decisiones</string>
+    <string name="chapters_theme_jupiter_return">Expansión, sentido y un campo de juego más amplio</string>
+    <string name="chapters_theme_nodal_return">Eje del destino — lo que buscas y lo que sueltas</string>
+    <string name="chapters_fact_lord">Señor de la mahadasha: %1$s</string>
+    <string name="chapters_fact_lasts">Dura unos %1$s años</string>
+    <string name="chapters_fact_cycle">Ciclo: unos %1$s años</string>
+    <string name="chapters_fact_natal">%1$s natal: %2$s</string>
+    <string name="chapters_fact_node">%1$s: %2$s</string>
+    <string name="chapters_fact_placement">%1$s / casa %2$d</string>
+</resources>

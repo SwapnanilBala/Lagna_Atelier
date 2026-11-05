@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 import site.lagnaatelier.app.data.BirthDetails
 import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.ReadingLanguage
 import site.lagnaatelier.app.data.periods.PeriodsApi
 import site.lagnaatelier.app.data.timing.TimingQueries
 import site.lagnaatelier.app.data.timing.TimingRepository
@@ -33,7 +34,7 @@ import java.time.LocalDate
  *
  * Each panel loads, fails and retries on its own, so one slow or failing
  * route never holds up the others. What has been fetched lives in a
- * [TimingHolder] kept per chart and day, so coming back to the tab shows it
+ * [TimingHolder] kept per chart, day and language, so coming back to the tab shows it
  * at once. [details] is null for the built-in sample chart, which uses the
  * sample's own birth details.
  */
@@ -41,7 +42,9 @@ import java.time.LocalDate
 fun TimingTab(chart: ChartSummary, details: BirthDetails?, api: LagnaApi, modifier: Modifier = Modifier) {
     val birth = details ?: TimingQueries.sampleDetails
     val today = remember { LocalDate.now() }
-    val holder = remember(birth, today) { TimingHolders.get(birth, today) }
+    /* The activity is recreated in a new language, so this is read afresh when it changes. */
+    val language = ReadingLanguage.current
+    val holder = remember(birth, today, language) { TimingHolders.get(birth, today, language) }
     val repo = remember(api) { TimingRepository(api) }
     val periodsApi = remember(api) { PeriodsApi(api) }
     val scope = rememberCoroutineScope()

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chapters_label_mahadasha">Début de la mahadasha %1$s</string>
+    <string name="chapters_label_saturn_return">Retour de Saturne (%1$s)</string>
+    <string name="chapters_label_jupiter_return">Retour de Jupiter (%1$s)</string>
+    <string name="chapters_label_nodal_return">Retour nodal (%1$s)</string>
+    <string-array name="chapters_ordinals">
+        <item>premier</item>
+        <item>deuxième</item>
+        <item>troisième</item>
+        <item>quatrième</item>
+        <item>cinquième</item>
+        <item>sixième</item>
+        <item>septième</item>
+        <item>huitième</item>
+    </string-array>
+    <string name="chapters_theme_sun">Autorité, identité et visibilité</string>
+    <string name="chapters_theme_moon">Fondations émotionnelles, famille et sécurité intérieure</string>
+    <string name="chapters_theme_mars">Courage, conflit et action décisive</string>
+    <string name="chapters_theme_mercury">Communication, étude et esprit d’adaptation</string>
+    <string name="chapters_theme_jupiter">Expansion, foi, enseignement et croissance éthique</string>
+    <string name="chapters_theme_venus">Amour, partenariat, argent et plaisir</string>
+    <string name="chapters_theme_saturn">Discipline, responsabilité et bilan karmique</string>
+    <string name="chapters_theme_rahu">Ambition, appétit et terrain inconnu</string>
+    <string name="chapters_theme_ketu">Lâcher-prise, retrait et maîtrise intérieure</string>
+    <string name="chapters_theme_saturn_return">Structure, responsabilité et prix des choix</string>
+    <string name="chapters_theme_jupiter_return">Expansion, sens et terrain de jeu élargi</string>
+    <string name="chapters_theme_nodal_return">Axe du destin — ce vers quoi vous tendez et ce que vous lâchez</string>
+    <string name="chapters_fact_lord">Seigneur de la mahadasha : %1$s</string>
+    <string name="chapters_fact_lasts">Dure environ %1$s ans</string>
+    <string name="chapters_fact_cycle">Cycle : environ %1$s ans</string>
+    <string name="chapters_fact_natal">%1$s à la naissance : %2$s</string>
+    <string name="chapters_fact_node">%1$s : %2$s</string>
+    <string name="chapters_fact_placement">%1$s / maison %2$d</string>
+</resources>

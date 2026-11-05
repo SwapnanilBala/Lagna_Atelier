@@ -21,6 +21,7 @@ object SampleChart {
         birthDate = LocalDate.of(1990, 6, 15),
         birthTime = "14:30",
         tradition = "Lahiri Classic",
+        engineId = Traditions.DEFAULT_ENGINE_ID,
         ascendant = Sign.Virgo,
         ascendantDegree = 28.7507,
         moonSign = Sign.Aquarius,

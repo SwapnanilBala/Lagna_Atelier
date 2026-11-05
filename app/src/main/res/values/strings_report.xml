@@ -97,4 +97,6 @@
     <string name="report_pdf_provenance">Calculated with %1$s (%2$s), %3$s ayanamsha, %4$s houses, from a birth time recorded as %5$s. %6$s</string>
     <string name="report_pdf_provenance_clean">All %1$d internal consistency checks passed.</string>
     <string name="report_pdf_provenance_qualified">%1$d of %2$d internal consistency checks passed cleanly; %3$d returned a qualification, which is reflected in the support note of the chapters it affects.</string>
+    <!-- Said in the PDF and on the ready screen when the app is not in English: the story routes write English only -->
+    <string name="report_pdf_language_note">The chapters of this report are written in English: the website writes its reports in English only, for now.</string>
 </resources>

@@ -45,9 +45,9 @@ interface MoreSource {
     suspend fun vargaNotes(vargas: List<Varga>): Map<Int, String>
 }
 
-/** The real thing: the routes in MoreReadingsApi, and /api/chart for a chart's vargas. */
-class NetworkMoreSource(private val api: LagnaApi) : MoreSource {
-    private val routes = MoreReadingsApi(api)
+/** The real thing: the routes in MoreReadingsApi, written in [language], and /api/chart for a chart's vargas. */
+class NetworkMoreSource(private val api: LagnaApi, language: String) : MoreSource {
+    private val routes = MoreReadingsApi(api, language)
     override suspend fun lifeAreas(details: BirthDetails) = routes.lifeAreas(details)
     override suspend fun briefs(details: BirthDetails, domain: LifeAreaKey) = routes.briefs(details, domain)
     override suspend fun areaClassics(details: BirthDetails) = routes.areaClassics(details)
@@ -198,7 +198,10 @@ class MoreHolder(
 
 /*
  * A few charts' worth, for the life of the process, as the timing tab keeps
- * its own. Main thread only.
+ * its own. Each chart in each language is a holder of its own: the written
+ * answers are in the language they were asked in, so a reader who switches
+ * language gets them asked again in the new one rather than shown in the old.
+ * Main thread only.
  */
 object MoreHolders {
     private const val KEEP = 4
@@ -206,6 +209,9 @@ object MoreHolders {
         override fun removeEldestEntry(eldest: MutableMap.MutableEntry<String, MoreHolder>?) = size > KEEP
     }
 
-    fun get(details: BirthDetails, api: LagnaApi): MoreHolder =
-        holders.getOrPut(chartKey(details)) { MoreHolder(details, NetworkMoreSource(api)) }
+    /** The key a chart's holder is kept under: the reading language and the chart. */
+    fun key(details: BirthDetails, language: String): String = "$language|${chartKey(details)}"
+
+    fun get(details: BirthDetails, api: LagnaApi, language: String): MoreHolder =
+        holders.getOrPut(key(details, language)) { MoreHolder(details, NetworkMoreSource(api, language)) }
 }

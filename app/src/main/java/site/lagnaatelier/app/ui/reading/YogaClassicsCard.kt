@@ -32,6 +32,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import site.lagnaatelier.app.R
 import site.lagnaatelier.app.data.LagnaApi
+import site.lagnaatelier.app.data.ReadingLanguage
 import site.lagnaatelier.app.data.reading.ClassicalReading
 import site.lagnaatelier.app.data.reading.ClassicalSegment
 import site.lagnaatelier.app.data.reading.ClassicalSource
@@ -47,7 +48,8 @@ import site.lagnaatelier.app.ui.theme.Muted
 /*
  * A few charts' notes, for the life of the process, keyed by what is sent:
  * two charts whose yogas agree share a note, as they do in the route's own
- * cache. The scope is the process's, not the screen's, so a note being
+ * cache, and the language is part of what is sent, so a note in one language
+ * is never shown in another. The scope is the process's, not the screen's, so a note being
  * written when the reader scrolls on still lands, rather than being paid for
  * and thrown away. Read and written from the main thread only.
  */
@@ -72,7 +74,9 @@ object YogaClassicsNotes {
  */
 @Composable
 internal fun YogaClassicsCard(yogas: List<Yoga>, api: LagnaApi) {
-    val body = remember(yogas) { YogaClassics.requestBody(yogas) } ?: return
+    /* The language rides in the body, so the note is kept per language as well as per set of yogas. */
+    val language = ReadingLanguage.current
+    val body = remember(yogas, language) { YogaClassics.requestBody(yogas, language) } ?: return
     val note = remember(body) { YogaClassicsNotes.get(body) }
     val ask = { YogaClassicsNotes.scope.launch { note.ask { YogaClassics.fetch(api, it) } }; Unit }
 
