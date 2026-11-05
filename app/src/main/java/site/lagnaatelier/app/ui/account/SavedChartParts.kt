@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.addPathNodes
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -95,8 +96,16 @@ internal fun BirthDetails.timeLabel(): String = when (accuracy) {
     TimeAccuracy.Unknown -> stringResource(R.string.saved_time_unknown)
 }
 
-/** "Lahiri · whole sign", or the site's own name for a tradition the app does not list. */
-internal fun SavedChart.traditionText(): String = traditionLabel(details.engineId) ?: tradition
+/** "Lahiri · whole sign" in the app's language, or the site's own name for a tradition the app does not list. */
+@Composable
+internal fun SavedChart.traditionText(): String = traditionName(details.engineId, tradition)
+
+/** [engineId]'s tradition in the app's language ("लाहिड़ी · पूर्ण-राशि"), or [fallback] for one the app does not list. */
+@Composable
+fun traditionName(engineId: String, fallback: String): String {
+    val resources = LocalResources.current
+    return traditionLabel(engineId) { resources.getString(it) } ?: fallback
+}
 
 @Composable
 internal fun SavedChart.risingDegree(): String =

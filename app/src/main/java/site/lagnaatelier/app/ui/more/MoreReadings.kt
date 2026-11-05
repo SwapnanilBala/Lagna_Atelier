@@ -52,6 +52,7 @@ import site.lagnaatelier.app.data.ChartSummary
 import site.lagnaatelier.app.data.LagnaApi
 import site.lagnaatelier.app.data.ReadingLanguage
 import site.lagnaatelier.app.data.timing.TimingQueries
+import site.lagnaatelier.app.ui.account.traditionName
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.GhostChip
 import site.lagnaatelier.app.ui.components.LiquidIcons
@@ -217,7 +218,7 @@ fun MoreOverlay(controller: MoreController, chart: ChartSummary, details: BirthD
                 holder = holder,
                 cast = chart.vargas,
                 timeIsEstimated = chart.timeIsEstimated,
-                tradition = chart.tradition,
+                tradition = traditionName(chart.engineId, chart.tradition),
                 division = controller.division,
                 onDivision = { controller.division = it },
                 onBack = controller::back,

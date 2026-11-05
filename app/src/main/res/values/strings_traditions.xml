@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The traditions' names in the app's language: the intake form's chips and
+    "Lahiri · whole sign" (ui/account/AccountText.kt). The ayanamshas are the
+    website's engineSelect.groups labels, the house systems its
+    divisional.detail.method.houseSystems names; the four named after their
+    authors are the same in every language.
+-->
+<resources>
+    <string name="tradition_ayanamsha_lahiri">Lahiri</string>
+    <string name="tradition_ayanamsha_raman">Raman</string>
+    <string name="tradition_ayanamsha_krishnamurti">Krishnamurti</string>
+    <string name="tradition_ayanamsha_fagan_bradley">Fagan-Bradley</string>
+    <string name="tradition_ayanamsha_pushyapaksha">Pushyapaksha</string>
+    <string name="tradition_ayanamsha_yukteshwar">Yukteshwar</string>
+    <string name="tradition_houses_whole_sign">Whole sign</string>
+    <string name="tradition_houses_whole_sign_in_label">whole sign</string>
+    <string name="tradition_houses_equal">Equal</string>
+    <string name="tradition_houses_placidus" translatable="false">Placidus</string>
+    <string name="tradition_houses_koch" translatable="false">Koch</string>
+    <string name="tradition_houses_campanus" translatable="false">Campanus</string>
+    <string name="tradition_houses_regiomontanus" translatable="false">Regiomontanus</string>
+</resources>

@@ -315,7 +315,7 @@ private fun PreferencesPanel() {
         HorizontalDivider(color = Hairline)
         Setting(
             stringResource(R.string.account_new_charts),
-            traditionLabel(Traditions.DEFAULT_ENGINE_ID).orEmpty(),
+            traditionName(Traditions.DEFAULT_ENGINE_ID, fallback = ""),
             stringResource(R.string.account_new_charts_note),
         )
     }

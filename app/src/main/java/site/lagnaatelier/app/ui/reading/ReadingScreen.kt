@@ -66,6 +66,7 @@ import site.lagnaatelier.app.data.dayMonthYear
 import site.lagnaatelier.app.data.formatDegree
 import site.lagnaatelier.app.data.monthYear
 import site.lagnaatelier.app.data.progress
+import site.lagnaatelier.app.ui.account.traditionName
 import site.lagnaatelier.app.ui.components.CardLabel
 import site.lagnaatelier.app.ui.components.FloatCard
 import site.lagnaatelier.app.ui.components.GhostChip
@@ -305,13 +306,13 @@ private fun ReadingContent(
                         chart.placements,
                         ascendant = chart.ascendant,
                         title = stringResource(R.string.reading_chart_rasi),
-                        subtitle = chart.tradition,
+                        subtitle = traditionName(chart.engineId, chart.tradition),
                     )
                     chart.navamsa.isNotEmpty() && navamsaAscendant != null -> RasiChart(
                         chart.navamsa,
                         ascendant = navamsaAscendant,
                         title = stringResource(R.string.reading_chart_navamsa),
-                        subtitle = "D9 · ${chart.tradition}",
+                        subtitle = "D9 · ${traditionName(chart.engineId, chart.tradition)}",
                     )
                     else -> Text(
                         stringResource(R.string.reading_navamsa_missing),

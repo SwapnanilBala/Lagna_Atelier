@@ -68,6 +68,8 @@ data class ChartSummary(
     val sections: ReadingSections = ReadingSections(),
     /** Every divisional chart the engine cast, D1 to D60 (data/vargas). Empty for the built-in sample. */
     val vargas: List<site.lagnaatelier.app.data.vargas.Varga> = emptyList(),
+    /** The tradition it was cast in, `lahiri_classic`, for naming it in the app's language; [tradition] is the site's English. */
+    val engineId: String = "",
 )
 
 /** The antardashas of the mahadasha running now, from the chart's own dates. */
