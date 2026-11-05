@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="512" height="512">
+  <!-- Same drawing as res/drawable/ic_launcher_*.xml, flattened for the Play Store's 512px icon. -->
+  <rect width="108" height="108" fill="#0B0B0F"/>
+  <g transform="translate(-6.2 0) translate(54 54) scale(0.88) translate(-54 -54)">
+    <path fill="#FFFFFF" d="M36,26h11v43h27v11h-38z"/>
+    <circle cx="72" cy="40" r="14" fill="#F4A6B8"/>
+    <circle cx="72" cy="40" r="9.5" fill="#FFB38A"/>
+    <circle cx="72" cy="40" r="5" fill="#FFD59A"/>
+  </g>
+</svg>
